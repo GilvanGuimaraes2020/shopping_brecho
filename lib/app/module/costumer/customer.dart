@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:brecho_utilities/brecho_utilities.dart';
+import 'package:flutter/material.dart';
 
 class CustomerPage extends StatefulWidget {
   const CustomerPage({Key? key}) : super(key: key);

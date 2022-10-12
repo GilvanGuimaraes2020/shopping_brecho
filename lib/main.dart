@@ -6,4 +6,3 @@ import 'package:shopping_brecho/app_widget.dart';
 void main() {
   runApp(ModularApp(module:AppModule() , child: const AppWidget(),));
 }
-
