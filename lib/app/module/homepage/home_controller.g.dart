@@ -25,6 +25,28 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  late final _$getFirebaseAsyncAction =
+      AsyncAction('_HomeControllerBase.getFirebase', context: context);
+
+  @override
+  Future<void> getFirebase() {
+    return _$getFirebaseAsyncAction.run(() => super.getFirebase());
+  }
+
+  late final _$_HomeControllerBaseActionController =
+      ActionController(name: '_HomeControllerBase', context: context);
+
+  @override
+  void init() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.init');
+    try {
+      return super.init();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

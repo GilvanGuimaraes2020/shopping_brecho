@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.15.1 <3.0.0"
+  sdk: ">=2.18.0 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,13 +34,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  cloud_firestore: ^3.5.1
+  cloud_firestore: ^3.5.1  
   mobx: 2.1.0
   flutter_modular: 5.0.3
   brecho_utilities:
     path: "../packages/brecho_utilities"
   formatter:
-    path: ../packages/formatter
+    path: "../packages/formatter"
+  firebase_core: 1.24.0
 
 dev_dependencies:
   flutter_test:

@@ -4,11 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
 
 class AppWidget extends StatelessWidget {
-  const AppWidget({Key? key}) : super(key: key);
+  const AppWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Modular.setInitialRoute(AppRoute.home);
+    Modular.setInitialRoute(AppRoute.main);
 
     return MaterialApp.router(
         title: 'Cis Artigos',

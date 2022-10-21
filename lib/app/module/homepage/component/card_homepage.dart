@@ -2,7 +2,7 @@ import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 
 class CardHomePage extends StatelessWidget {
-  const CardHomePage({Key? key}) : super(key: key);
+  const CardHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

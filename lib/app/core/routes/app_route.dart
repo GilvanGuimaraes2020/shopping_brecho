@@ -4,5 +4,7 @@ class AppRoute{
   AppRoute._();
 
 
-  static const String home = '/';
+  static const String main = '/';
+  static const String home = '/home';
+
 }
