@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shopping_brecho/app/core/interfaces/teste_repository_interface.dart';
-import 'package:shopping_brecho/app/core/repositories/teste_repository.dart';
+import 'package:shopping_brecho/app/core/interfaces/account_repository_interface.dart';
+import 'package:shopping_brecho/app/core/repositories/account_repository.dart';
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
 import 'package:shopping_brecho/app/module/homepage/home_controller.dart';
 import 'package:shopping_brecho/app/module/homepage/home_page.dart';
@@ -9,7 +9,7 @@ import 'package:shopping_brecho/app/module/main_page/main_page.dart';
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind<ItesteRepository>((i) => TesteRepository()),
+        Bind<IAccountRepositoy>((i) => AccountRepository()),
         Bind.factory((i) => HomeController(i()))
       ];
 

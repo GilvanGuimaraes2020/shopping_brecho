@@ -1,55 +1,44 @@
 import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_brecho/app/core/models/account_alert_model/account_alert_model.dart';
 
 class CardAccountsDue extends StatelessWidget {
-  const CardAccountsDue({super.key});
+  final List<AccountAlertModel> accountAlert;
+  const CardAccountsDue({super.key, required this.accountAlert});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(BrechoSpacing.xvi),
-      margin: const EdgeInsets.all(BrechoSpacing.vi),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          gradient: const LinearGradient(
-              colors: [BrechoColors.primaryBlue5, BrechoColors.primaryBlue8],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight)),
-      child: Column(
-        children: [
-          titleCard,
-          const SizedBox(
-            height: BrechoSpacing.viii,
-          ),
-          Expanded(
-            child: ListView.builder(
-                itemCount: 5,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return bodyCard;
-                }),
-          ),
-        ],
+    return Stack(children: [
+      Container(
+        padding: const EdgeInsets.all(BrechoSpacing.xvi),
+        margin: const EdgeInsets.all(BrechoSpacing.vi),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: const LinearGradient(
+                colors: [BrechoColors.primaryBlue5, BrechoColors.primaryBlue8],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight)),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                  itemCount: accountAlert.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        Text(accountAlert[index].account!),
+                        Text(accountAlert[index].due.toString()),
+                        Text(accountAlert[index].value.toString()),
+                      ],
+                    );
+                  }),
+            ),
+          ],
+        ),
       ),
-    );
+      const Positioned(top: 10, right: 10, child: Text('5'))
+    ]);
   }
 
   Widget get titleCard => const Text("Card das contas vencer");
-
-  Widget get bodyCard => Container(
-        padding: const EdgeInsets.all(BrechoSpacing.xvi),
-        margin: const EdgeInsets.symmetric(horizontal: 5),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: BrechoColors.neutral5),
-        child: Column(
-          children: [
-            const Text('Conta x'),
-            const Text('Data Criaçao'),
-            Row(
-              children: const [Text('valor'), Text('Botão')],
-            )
-          ],
-        ),
-      );
 }

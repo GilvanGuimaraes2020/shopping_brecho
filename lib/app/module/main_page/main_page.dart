@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shopping_brecho/app/core/routes/app_route.dart';
 import 'package:shopping_brecho/app/module/homepage/home_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -17,7 +16,7 @@ class _MainPageState extends State<MainPage> {
         appBar: AppBar(
           title: const Text('Main Page'),
         ),
-        body: Container(
+        body: DecoratedBox(
           decoration: const BoxDecoration(color: Colors.lightGreen),
           child: ElevatedButton(
               onPressed: () {
