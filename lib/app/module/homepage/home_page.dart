@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    controller.getFirebase();
+    controller.init();
   }
 
   @override
