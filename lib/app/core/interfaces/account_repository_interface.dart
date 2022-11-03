@@ -1,8 +1,11 @@
 
 
 import 'package:shopping_brecho/app/core/models/account_alert_model/account_alert_model.dart';
+import 'package:shopping_brecho/app/core/models/account_alert_model/account_register_model.dart';
 
 abstract class IAccountRepositoy{
   
   Future<AccountAlert> getAccountAlert();
+  Future<void> getMovementAccountControl();
+  Future<AccountRegister> getMovementAccountRegister();
 }
