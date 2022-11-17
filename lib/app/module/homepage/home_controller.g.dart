@@ -17,6 +17,28 @@ mixin _$HomeController on _HomeControllerBase, Store {
               () => super.accountAlertList,
               name: '_HomeControllerBase.accountAlertList'))
           .value;
+  Computed<List<AccountRegisterModel>>? _$accountRegisterModelComputed;
+
+  @override
+  List<AccountRegisterModel> get accountRegisterModel =>
+      (_$accountRegisterModelComputed ??= Computed<List<AccountRegisterModel>>(
+              () => super.accountRegisterModel,
+              name: '_HomeControllerBase.accountRegisterModel'))
+          .value;
+  Computed<String?>? _$registersTotalComputed;
+
+  @override
+  String? get registersTotal => (_$registersTotalComputed ??= Computed<String?>(
+          () => super.registersTotal,
+          name: '_HomeControllerBase.registersTotal'))
+      .value;
+  Computed<List<double?>>? _$totalCategoryComputed;
+
+  @override
+  List<double?> get totalCategory => (_$totalCategoryComputed ??=
+          Computed<List<double?>>(() => super.totalCategory,
+              name: '_HomeControllerBase.totalCategory'))
+      .value;
 
   late final _$connectAtom =
       Atom(name: '_HomeControllerBase.connect', context: context);
@@ -50,12 +72,65 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
-  late final _$getFirebaseAsyncAction =
-      AsyncAction('_HomeControllerBase.getFirebase', context: context);
+  late final _$accountRegisterAtom =
+      Atom(name: '_HomeControllerBase.accountRegister', context: context);
 
   @override
-  Future<void> getFirebase() {
-    return _$getFirebaseAsyncAction.run(() => super.getFirebase());
+  AccountRegister get accountRegister {
+    _$accountRegisterAtom.reportRead();
+    return super.accountRegister;
+  }
+
+  @override
+  set accountRegister(AccountRegister value) {
+    _$accountRegisterAtom.reportWrite(value, super.accountRegister, () {
+      super.accountRegister = value;
+    });
+  }
+
+  late final _$totalCategoryAccountAtom =
+      Atom(name: '_HomeControllerBase.totalCategoryAccount', context: context);
+
+  @override
+  List<double?> get totalCategoryAccount {
+    _$totalCategoryAccountAtom.reportRead();
+    return super.totalCategoryAccount;
+  }
+
+  @override
+  set totalCategoryAccount(List<double?> value) {
+    _$totalCategoryAccountAtom.reportWrite(value, super.totalCategoryAccount,
+        () {
+      super.totalCategoryAccount = value;
+    });
+  }
+
+  late final _$getAccountAlertAsyncAction =
+      AsyncAction('_HomeControllerBase.getAccountAlert', context: context);
+
+  @override
+  Future<void> getAccountAlert() {
+    return _$getAccountAlertAsyncAction.run(() => super.getAccountAlert());
+  }
+
+  late final _$getMovementAccountControlAsyncAction = AsyncAction(
+      '_HomeControllerBase.getMovementAccountControl',
+      context: context);
+
+  @override
+  Future<void> getMovementAccountControl() {
+    return _$getMovementAccountControlAsyncAction
+        .run(() => super.getMovementAccountControl());
+  }
+
+  late final _$getMovementAccountRegisterAsyncAction = AsyncAction(
+      '_HomeControllerBase.getMovementAccountRegister',
+      context: context);
+
+  @override
+  Future<void> getMovementAccountRegister() {
+    return _$getMovementAccountRegisterAsyncAction
+        .run(() => super.getMovementAccountRegister());
   }
 
   late final _$_HomeControllerBaseActionController =
@@ -77,7 +152,12 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return '''
 connect: ${connect},
 accountAlert: ${accountAlert},
-accountAlertList: ${accountAlertList}
+accountRegister: ${accountRegister},
+totalCategoryAccount: ${totalCategoryAccount},
+accountAlertList: ${accountAlertList},
+accountRegisterModel: ${accountRegisterModel},
+registersTotal: ${registersTotal},
+totalCategory: ${totalCategory}
     ''';
   }
 }
