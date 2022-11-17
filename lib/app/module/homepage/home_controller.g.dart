@@ -17,13 +17,14 @@ mixin _$HomeController on _HomeControllerBase, Store {
               () => super.accountAlertList,
               name: '_HomeControllerBase.accountAlertList'))
           .value;
-  Computed<List<dynamic>>? _$accountRegisterModelComputed;
+  Computed<List<AccountRegisterModel>>? _$accountRegisterModelComputed;
 
   @override
-  List<dynamic> get accountRegisterModel => (_$accountRegisterModelComputed ??=
-          Computed<List<dynamic>>(() => super.accountRegisterModel,
+  List<AccountRegisterModel> get accountRegisterModel =>
+      (_$accountRegisterModelComputed ??= Computed<List<AccountRegisterModel>>(
+              () => super.accountRegisterModel,
               name: '_HomeControllerBase.accountRegisterModel'))
-      .value;
+          .value;
 
   late final _$connectAtom =
       Atom(name: '_HomeControllerBase.connect', context: context);
@@ -61,13 +62,13 @@ mixin _$HomeController on _HomeControllerBase, Store {
       Atom(name: '_HomeControllerBase.accountRegister', context: context);
 
   @override
-  dynamic get accountRegister {
+  AccountRegister get accountRegister {
     _$accountRegisterAtom.reportRead();
     return super.accountRegister;
   }
 
   @override
-  set accountRegister(dynamic value) {
+  set accountRegister(AccountRegister value) {
     _$accountRegisterAtom.reportWrite(value, super.accountRegister, () {
       super.accountRegister = value;
     });
