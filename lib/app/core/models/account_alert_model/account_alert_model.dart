@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'account_alert_model.freezed.dart';
 part 'account_alert_model.g.dart';
@@ -11,7 +12,7 @@ class AccountAlertModel with _$AccountAlertModel {
   factory AccountAlertModel(
       bool? isrecurrent,
       String? account,
-      @JsonKey(fromJson: _parseToDateTime) DateTime? due,
+      @JsonKey(fromJson: _parseToDateTime) String? due,
       double? value,
       bool? isActive,
       bool? isPaid) = _AccountAlertModel;
@@ -20,10 +21,9 @@ class AccountAlertModel with _$AccountAlertModel {
       _$AccountAlertModelFromJson(json);
 }
 
-DateTime _parseToDateTime(Timestamp timestamp) {
-  // final DateFormat dateFormat = DateFormat("dd/MM");
-  // final String dateString =  dateFormat.format(timestamp.toDate());
-  return timestamp.toDate();
+String _parseToDateTime(Timestamp timestamp) {
+  final DateFormat dateFormat = DateFormat("dd/MM");
+  return dateFormat.format(timestamp.toDate());
 }
 
 @freezed

@@ -21,7 +21,7 @@ Map<String, dynamic> _$$_AccountAlertModelToJson(
     <String, dynamic>{
       'isrecurrent': instance.isrecurrent,
       'account': instance.account,
-      'due': instance.due?.toIso8601String(),
+      'due': instance.due,
       'value': instance.value,
       'is_active': instance.isActive,
       'is_paid': instance.isPaid,

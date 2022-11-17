@@ -23,7 +23,7 @@ mixin _$AccountAlertModel {
   bool? get isrecurrent => throw _privateConstructorUsedError;
   String? get account => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _parseToDateTime)
-  DateTime? get due => throw _privateConstructorUsedError;
+  String? get due => throw _privateConstructorUsedError;
   double? get value => throw _privateConstructorUsedError;
   bool? get isActive => throw _privateConstructorUsedError;
   bool? get isPaid => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $AccountAlertModelCopyWith<$Res> {
   $Res call(
       {bool? isrecurrent,
       String? account,
-      @JsonKey(fromJson: _parseToDateTime) DateTime? due,
+      @JsonKey(fromJson: _parseToDateTime) String? due,
       double? value,
       bool? isActive,
       bool? isPaid});
@@ -81,7 +81,7 @@ class _$AccountAlertModelCopyWithImpl<$Res, $Val extends AccountAlertModel>
       due: freezed == due
           ? _value.due
           : due // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -109,7 +109,7 @@ abstract class _$$_AccountAlertModelCopyWith<$Res>
   $Res call(
       {bool? isrecurrent,
       String? account,
-      @JsonKey(fromJson: _parseToDateTime) DateTime? due,
+      @JsonKey(fromJson: _parseToDateTime) String? due,
       double? value,
       bool? isActive,
       bool? isPaid});
@@ -145,7 +145,7 @@ class __$$_AccountAlertModelCopyWithImpl<$Res>
       freezed == due
           ? _value.due
           : due // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -185,7 +185,7 @@ class _$_AccountAlertModel
   final String? account;
   @override
   @JsonKey(fromJson: _parseToDateTime)
-  final DateTime? due;
+  final String? due;
   @override
   final double? value;
   @override
@@ -250,7 +250,7 @@ abstract class _AccountAlertModel implements AccountAlertModel {
   factory _AccountAlertModel(
       final bool? isrecurrent,
       final String? account,
-      @JsonKey(fromJson: _parseToDateTime) final DateTime? due,
+      @JsonKey(fromJson: _parseToDateTime) final String? due,
       final double? value,
       final bool? isActive,
       final bool? isPaid) = _$_AccountAlertModel;
@@ -264,7 +264,7 @@ abstract class _AccountAlertModel implements AccountAlertModel {
   String? get account;
   @override
   @JsonKey(fromJson: _parseToDateTime)
-  DateTime? get due;
+  String? get due;
   @override
   double? get value;
   @override

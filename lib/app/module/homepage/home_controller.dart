@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/core/interfaces/account_repository_interface.dart';
 import 'package:shopping_brecho/app/core/models/account_alert_model/account_alert_model.dart';
-import 'package:shopping_brecho/app/core/models/account_alert_model/account_register_model.dart';
+import 'package:shopping_brecho/app/core/models/account_register_model/account_register_model.dart';
 
 part 'home_controller.g.dart';
 
@@ -20,6 +20,9 @@ abstract class _HomeControllerBase with Store {
 
   @observable
   AccountRegister accountRegister = AccountRegister.none();
+
+  @observable
+  List<double?> totalCategoryAccount = [];
 
   @action
   void init() {
@@ -42,7 +45,6 @@ abstract class _HomeControllerBase with Store {
   Future<void> getMovementAccountRegister() async {
     accountRegister = AccountRegister.loading();
     accountRegister = await _repository.getMovementAccountRegister();
-    accountRegister.maybeWhen(data: (data) => data, orElse: () => []);
   }
 
   @computed
@@ -52,4 +54,29 @@ abstract class _HomeControllerBase with Store {
   @computed
   List<AccountRegisterModel> get accountRegisterModel =>
       accountRegister.maybeWhen(data: (data) => data, orElse: () => []);
+
+  @computed
+  String? get registersTotal => accountRegister.maybeWhen(
+      data: (data) {
+        final accountValue = data
+            .map((e) => e.registers!.map((x) => x.accountValue))
+            .expand((element) => element)
+            .toList();
+
+        return accountValue
+            .reduce((value, element) => value! + element!)
+            .toString();
+      },
+      orElse: () => null);
+
+  @computed
+  List<double?> get totalCategory => accountRegister.maybeWhen(
+      data: (data) {
+        return data
+            .map((e) => e.registers!
+                .map((x) => x.accountValue)
+                .reduce((value, element) => value! + element!))
+            .toList();
+      },
+      orElse: () => []);
 }
