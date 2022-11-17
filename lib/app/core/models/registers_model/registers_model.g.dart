@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'account_register_model.dart';
+part of 'registers_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AccountRegisterModel _$$_AccountRegisterModelFromJson(
-        Map<String, dynamic> json) =>
-    _$_AccountRegisterModel(
+_$_RegistersModel _$$_RegistersModelFromJson(Map<String, dynamic> json) =>
+    _$_RegistersModel(
       accountBank: json['account_bank'] as String?,
       accountValue: (json['account_value'] as num?)?.toDouble(),
       date: _fromJson(json['date'] as Timestamp),
@@ -16,8 +15,7 @@ _$_AccountRegisterModel _$$_AccountRegisterModelFromJson(
       movementDetail: json['movement_detail'] as String?,
     );
 
-Map<String, dynamic> _$$_AccountRegisterModelToJson(
-        _$_AccountRegisterModel instance) =>
+Map<String, dynamic> _$$_RegistersModelToJson(_$_RegistersModel instance) =>
     <String, dynamic>{
       'account_bank': instance.accountBank,
       'account_value': instance.accountValue,

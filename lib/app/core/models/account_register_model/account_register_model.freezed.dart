@@ -20,12 +20,8 @@ AccountRegisterModel _$AccountRegisterModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AccountRegisterModel {
-  String? get accountBank => throw _privateConstructorUsedError;
-  double? get accountValue => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _fromJson)
-  String? get date => throw _privateConstructorUsedError;
-  String? get movementCurrency => throw _privateConstructorUsedError;
-  String? get movementDetail => throw _privateConstructorUsedError;
+  String? get typeName => throw _privateConstructorUsedError;
+  List<RegistersModel>? get registers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,12 +35,7 @@ abstract class $AccountRegisterModelCopyWith<$Res> {
           $Res Function(AccountRegisterModel) then) =
       _$AccountRegisterModelCopyWithImpl<$Res, AccountRegisterModel>;
   @useResult
-  $Res call(
-      {String? accountBank,
-      double? accountValue,
-      @JsonKey(fromJson: _fromJson) String? date,
-      String? movementCurrency,
-      String? movementDetail});
+  $Res call({String? typeName, List<RegistersModel>? registers});
 }
 
 /// @nodoc
@@ -61,33 +52,18 @@ class _$AccountRegisterModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accountBank = freezed,
-    Object? accountValue = freezed,
-    Object? date = freezed,
-    Object? movementCurrency = freezed,
-    Object? movementDetail = freezed,
+    Object? typeName = freezed,
+    Object? registers = freezed,
   }) {
     return _then(_value.copyWith(
-      accountBank: freezed == accountBank
-          ? _value.accountBank
-          : accountBank // ignore: cast_nullable_to_non_nullable
+      typeName: freezed == typeName
+          ? _value.typeName
+          : typeName // ignore: cast_nullable_to_non_nullable
               as String?,
-      accountValue: freezed == accountValue
-          ? _value.accountValue
-          : accountValue // ignore: cast_nullable_to_non_nullable
-              as double?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      movementCurrency: freezed == movementCurrency
-          ? _value.movementCurrency
-          : movementCurrency // ignore: cast_nullable_to_non_nullable
-              as String?,
-      movementDetail: freezed == movementDetail
-          ? _value.movementDetail
-          : movementDetail // ignore: cast_nullable_to_non_nullable
-              as String?,
+      registers: freezed == registers
+          ? _value.registers
+          : registers // ignore: cast_nullable_to_non_nullable
+              as List<RegistersModel>?,
     ) as $Val);
   }
 }
@@ -100,12 +76,7 @@ abstract class _$$_AccountRegisterModelCopyWith<$Res>
       __$$_AccountRegisterModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? accountBank,
-      double? accountValue,
-      @JsonKey(fromJson: _fromJson) String? date,
-      String? movementCurrency,
-      String? movementDetail});
+  $Res call({String? typeName, List<RegistersModel>? registers});
 }
 
 /// @nodoc
@@ -119,33 +90,18 @@ class __$$_AccountRegisterModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accountBank = freezed,
-    Object? accountValue = freezed,
-    Object? date = freezed,
-    Object? movementCurrency = freezed,
-    Object? movementDetail = freezed,
+    Object? typeName = freezed,
+    Object? registers = freezed,
   }) {
     return _then(_$_AccountRegisterModel(
-      accountBank: freezed == accountBank
-          ? _value.accountBank
-          : accountBank // ignore: cast_nullable_to_non_nullable
+      typeName: freezed == typeName
+          ? _value.typeName
+          : typeName // ignore: cast_nullable_to_non_nullable
               as String?,
-      accountValue: freezed == accountValue
-          ? _value.accountValue
-          : accountValue // ignore: cast_nullable_to_non_nullable
-              as double?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      movementCurrency: freezed == movementCurrency
-          ? _value.movementCurrency
-          : movementCurrency // ignore: cast_nullable_to_non_nullable
-              as String?,
-      movementDetail: freezed == movementDetail
-          ? _value.movementDetail
-          : movementDetail // ignore: cast_nullable_to_non_nullable
-              as String?,
+      registers: freezed == registers
+          ? _value.registers
+          : registers // ignore: cast_nullable_to_non_nullable
+              as List<RegistersModel>?,
     ));
   }
 }
@@ -154,31 +110,19 @@ class __$$_AccountRegisterModelCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class _$_AccountRegisterModel implements _AccountRegisterModel {
-  _$_AccountRegisterModel(
-      {this.accountBank,
-      this.accountValue,
-      @JsonKey(fromJson: _fromJson) this.date,
-      this.movementCurrency,
-      this.movementDetail});
+  _$_AccountRegisterModel({this.typeName, this.registers});
 
   factory _$_AccountRegisterModel.fromJson(Map<String, dynamic> json) =>
       _$$_AccountRegisterModelFromJson(json);
 
   @override
-  final String? accountBank;
+  final String? typeName;
   @override
-  final double? accountValue;
-  @override
-  @JsonKey(fromJson: _fromJson)
-  final String? date;
-  @override
-  final String? movementCurrency;
-  @override
-  final String? movementDetail;
+  final List<RegistersModel>? registers;
 
   @override
   String toString() {
-    return 'AccountRegisterModel(accountBank: $accountBank, accountValue: $accountValue, date: $date, movementCurrency: $movementCurrency, movementDetail: $movementDetail)';
+    return 'AccountRegisterModel(typeName: $typeName, registers: $registers)';
   }
 
   @override
@@ -186,21 +130,15 @@ class _$_AccountRegisterModel implements _AccountRegisterModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AccountRegisterModel &&
-            (identical(other.accountBank, accountBank) ||
-                other.accountBank == accountBank) &&
-            (identical(other.accountValue, accountValue) ||
-                other.accountValue == accountValue) &&
-            (identical(other.date, date) || other.date == date) &&
-            (identical(other.movementCurrency, movementCurrency) ||
-                other.movementCurrency == movementCurrency) &&
-            (identical(other.movementDetail, movementDetail) ||
-                other.movementDetail == movementDetail));
+            (identical(other.typeName, typeName) ||
+                other.typeName == typeName) &&
+            const DeepCollectionEquality().equals(other.registers, registers));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, accountBank, accountValue, date,
-      movementCurrency, movementDetail);
+  int get hashCode => Object.hash(
+      runtimeType, typeName, const DeepCollectionEquality().hash(registers));
 
   @JsonKey(ignore: true)
   @override
@@ -219,26 +157,16 @@ class _$_AccountRegisterModel implements _AccountRegisterModel {
 
 abstract class _AccountRegisterModel implements AccountRegisterModel {
   factory _AccountRegisterModel(
-      {final String? accountBank,
-      final double? accountValue,
-      @JsonKey(fromJson: _fromJson) final String? date,
-      final String? movementCurrency,
-      final String? movementDetail}) = _$_AccountRegisterModel;
+      {final String? typeName,
+      final List<RegistersModel>? registers}) = _$_AccountRegisterModel;
 
   factory _AccountRegisterModel.fromJson(Map<String, dynamic> json) =
       _$_AccountRegisterModel.fromJson;
 
   @override
-  String? get accountBank;
+  String? get typeName;
   @override
-  double? get accountValue;
-  @override
-  @JsonKey(fromJson: _fromJson)
-  String? get date;
-  @override
-  String? get movementCurrency;
-  @override
-  String? get movementDetail;
+  List<RegistersModel>? get registers;
   @override
   @JsonKey(ignore: true)
   _$$_AccountRegisterModelCopyWith<_$_AccountRegisterModel> get copyWith =>
