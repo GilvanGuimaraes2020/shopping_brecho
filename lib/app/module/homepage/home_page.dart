@@ -86,6 +86,68 @@ class _HomePageState extends State<HomePage> {
                   ),
                 )
               ])),
+            ),
+            const SliverPadding(
+              padding: EdgeInsets.symmetric(vertical: BrechoSpacing.viii),
+              sliver: SliverToBoxAdapter(
+                  child: Center(child: Text('Registro de contas'))),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.all(BrechoSpacing.viii),
+              sliver: SliverList(
+                  delegate: SliverChildListDelegate([
+                Container(
+                  padding: const EdgeInsets.all(BrechoSpacing.viii),
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: BrechoColors.primaryBlue10),
+                  child: Column(
+                    children: [
+                      ...List.generate(
+                          controller.accountRegisterModel.length,
+                          (index) => InkWell(
+                                onTap: () {
+                                  debugPrint(controller
+                                      .accountRegisterModel[index].typeName
+                                      .toString());
+                                },
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(controller
+                                            .accountRegisterModel[index]
+                                            .typeName
+                                            .toString()),
+                                        const Expanded(
+                                          child: SizedBox(),
+                                        ),
+                                        Text(
+                                            '${controller.accountRegisterModel[index].registers!.length} registros'),
+                                        const Expanded(
+                                          child: SizedBox(),
+                                        ),
+                                        const Text('R\$: '),
+                                        Text(controller.totalCategory[index]
+                                            .toString())
+                                      ],
+                                    ),
+                                    const Divider(),
+                                  ],
+                                ),
+                              )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const Expanded(child: SizedBox()),
+                          const Text('Valor total pago: '),
+                          Badge(child: controller.registersTotal ?? ''),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ])),
             )
           ]);
         }));
