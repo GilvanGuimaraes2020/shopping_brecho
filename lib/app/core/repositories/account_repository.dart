@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shopping_brecho/app/core/interfaces/account_repository_interface.dart';
 import 'package:shopping_brecho/app/core/models/account_alert_model/account_alert_model.dart';
-import 'package:shopping_brecho/app/core/models/account_alert_model/account_register_model.dart';
+import 'package:shopping_brecho/app/core/models/account_register_model/account_register_model.dart';
 
 class AccountRepository implements IAccountRepositoy {
   final db = FirebaseFirestore.instance;
@@ -36,13 +36,12 @@ class AccountRepository implements IAccountRepositoy {
         .collection('account_movement')
         .doc('account_register')
         .collection('2022_10')
-        .doc('supermarket')
         .get()
-        .then((value) => value.data()?.values.first as List);
-    for (final e in data) {
-      listAccountRegister
-          .add(AccountRegisterModel.fromJson(e as Map<String, dynamic>));
-    }
+        .then((value) => value.docs.map((e) => e.data()).toList());
+    // for (final e in data) {
+    //   listAccountRegister
+    //       .add(AccountRegisterModel.fromJson(e as Map<String, dynamic>));
+    // }
     return AccountRegister.data(listAccountRegister);
   }
 }
