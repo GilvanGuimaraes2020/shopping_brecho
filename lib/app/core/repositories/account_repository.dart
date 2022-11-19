@@ -51,6 +51,4 @@ class AccountRepository implements IAccountRepositoy {
     }
     return AccountRegister.data(listAccountRegister);
   }
-
-
 }
