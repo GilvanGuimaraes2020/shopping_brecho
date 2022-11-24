@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(BrechoSpacing.viii),
               sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                Container(
+                Container( 
                   padding: const EdgeInsets.all(BrechoSpacing.viii),
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -124,6 +124,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         Text(
                                             '${controller.accountRegisterModel[index].registers!.length} registros'),
+                                        const Icon(Icons.remove_red_eye),
                                         const Expanded(
                                           child: SizedBox(),
                                         ),
