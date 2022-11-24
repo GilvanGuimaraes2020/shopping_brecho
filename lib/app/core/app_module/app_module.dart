@@ -4,13 +4,15 @@ import 'package:shopping_brecho/app/core/repositories/account_repository.dart';
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
 import 'package:shopping_brecho/app/module/homepage/home_controller.dart';
 import 'package:shopping_brecho/app/module/homepage/home_page.dart';
+import 'package:shopping_brecho/app/module/kanban/kanban_controller.dart';
 import 'package:shopping_brecho/app/module/main_page/main_page.dart';
 
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<IAccountRepositoy>((i) => AccountRepository()),
-        Bind.factory((i) => HomeController(i()))
+        Bind.factory((i) => HomeController(i())),
+        Bind.factory((i) => KanbanController())
       ];
 
   @override

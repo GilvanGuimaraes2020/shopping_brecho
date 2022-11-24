@@ -1,6 +1,8 @@
+import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/module/homepage/home_page.dart';
+import 'package:shopping_brecho/app/module/kanban/kanban_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -16,14 +18,26 @@ class _MainPageState extends State<MainPage> {
         appBar: AppBar(
           title: const Text('Main Page'),
         ),
-        body: DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.lightGreen),
-          child: ElevatedButton(
-              onPressed: () {
-                Modular.to.push(
-                    MaterialPageRoute(builder: (context) => const HomePage()));
-              },
-              child: const Text('Ir para Home')),
-        ));
+        body: CustomScrollView(slivers: [
+          SliverPadding(
+            padding: const EdgeInsets.all(BrechoSpacing.vi),
+            sliver: SliverToBoxAdapter(
+              child: ElevatedButton(
+                  onPressed: () {
+                    Modular.to.push(MaterialPageRoute(
+                        builder: (context) => const HomePage()));
+                  },
+                  child: const Text('Ir para Home')),
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(BrechoSpacing.vi),
+            sliver: SliverToBoxAdapter(
+                child: ElevatedButton(
+                    onPressed: () => Modular.to.push(MaterialPageRoute(
+                        builder: (context) => const KanbanPage())),
+                    child: const Text('Ir para Kanban'))),
+          )
+        ]));
   }
 }
