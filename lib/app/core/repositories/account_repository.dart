@@ -34,7 +34,7 @@ class AccountRepository implements IAccountRepositoy {
   Future<AccountRegister> getMovementAccountRegister() async {
     final List<AccountRegisterModel> listAccountRegister = [];
 
-    List<Map<String, dynamic>> teste = await db
+   final List<Map<String, dynamic>> teste = await db
         .collection('account_movement')
         .doc('account_register')
         .collection('2022_10')

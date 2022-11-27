@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'kanban_model.freezed.dart';
 part 'kanban_model.g.dart';
@@ -7,18 +9,33 @@ part 'kanban_model.g.dart';
 class KanbanModel with _$KanbanModel {
   @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
   factory KanbanModel({
-    DateTime? createDate,
+    @JsonKey(fromJson: _parseFromCreateDate) String? createDate,
     String? description,
-    DateTime? finishDate,
+    @JsonKey(fromJson: _parseFromfinishDate)  String? finishDate,
     String? level,
     String? responsible,
     String? status,
     String? title,
-    DateTime? updateDate
+    @JsonKey(fromJson: _parseFromUpdateDate )  String? updateDate
   }) = _KanbanModel;
 
   factory KanbanModel.fromJson(Map<String, dynamic> json) => _$KanbanModelFromJson(json);
 
+}
+
+String? _parseFromfinishDate(Timestamp timestamp){
+  final DateFormat dateFormat = DateFormat("dd/MM");
+  return dateFormat.format(timestamp.toDate());
+}
+
+String? _parseFromCreateDate(Timestamp timestamp){
+  final DateFormat dateFormat = DateFormat("dd/MM");
+  return dateFormat.format(timestamp.toDate());
+}
+
+String? _parseFromUpdateDate(Timestamp timestamp){
+  final DateFormat dateFormat = DateFormat("dd/MM");
+  return dateFormat.format(timestamp.toDate());
 }
 
 @freezed 
