@@ -9,6 +9,27 @@ part of 'kanban_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$KanbanController on _KanbanControllerBase, Store {
+  Computed<List<KanbanItemModel>?>? _$toDoListComputed;
+
+  @override
+  List<KanbanItemModel>? get toDoList => (_$toDoListComputed ??=
+          Computed<List<KanbanItemModel>?>(() => super.toDoList,
+              name: '_KanbanControllerBase.toDoList'))
+      .value;
+  Computed<List<KanbanItemModel>?>? _$toDoingListComputed;
+
+  @override
+  List<KanbanItemModel>? get toDoingList => (_$toDoingListComputed ??=
+          Computed<List<KanbanItemModel>?>(() => super.toDoingList,
+              name: '_KanbanControllerBase.toDoingList'))
+      .value;
+  Computed<List<KanbanItemModel>?>? _$toDoneListComputed;
+
+  @override
+  List<KanbanItemModel>? get toDoneList => (_$toDoneListComputed ??=
+          Computed<List<KanbanItemModel>?>(() => super.toDoneList,
+              name: '_KanbanControllerBase.toDoneList'))
+      .value;
   Computed<List<KanbanItemModel>?>? _$tasksComputed;
 
   @override
@@ -33,10 +54,71 @@ mixin _$KanbanController on _KanbanControllerBase, Store {
     });
   }
 
+  late final _$requestStatusAtom =
+      Atom(name: '_KanbanControllerBase.requestStatus', context: context);
+
+  @override
+  RequestStatus get requestStatus {
+    _$requestStatusAtom.reportRead();
+    return super.requestStatus;
+  }
+
+  @override
+  set requestStatus(RequestStatus value) {
+    _$requestStatusAtom.reportWrite(value, super.requestStatus, () {
+      super.requestStatus = value;
+    });
+  }
+
+  late final _$getKanbanAsyncAction =
+      AsyncAction('_KanbanControllerBase.getKanban', context: context);
+
+  @override
+  Future<void> getKanban() {
+    return _$getKanbanAsyncAction.run(() => super.getKanban());
+  }
+
+  late final _$upDownStatusAsyncAction =
+      AsyncAction('_KanbanControllerBase.upDownStatus', context: context);
+
+  @override
+  Future<RequestStatus> upDownStatus(String id) {
+    return _$upDownStatusAsyncAction.run(() => super.upDownStatus(id));
+  }
+
+  late final _$_KanbanControllerBaseActionController =
+      ActionController(name: '_KanbanControllerBase', context: context);
+
+  @override
+  void init() {
+    final _$actionInfo = _$_KanbanControllerBaseActionController.startAction(
+        name: '_KanbanControllerBase.init');
+    try {
+      return super.init();
+    } finally {
+      _$_KanbanControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void downStatus(String id) {
+    final _$actionInfo = _$_KanbanControllerBaseActionController.startAction(
+        name: '_KanbanControllerBase.downStatus');
+    try {
+      return super.downStatus(id);
+    } finally {
+      _$_KanbanControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 kanbanModel: ${kanbanModel},
+requestStatus: ${requestStatus},
+toDoList: ${toDoList},
+toDoingList: ${toDoingList},
+toDoneList: ${toDoneList},
 tasks: ${tasks}
     ''';
   }

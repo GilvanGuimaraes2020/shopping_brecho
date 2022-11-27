@@ -20,14 +20,17 @@ KanbanModel _$KanbanModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$KanbanModel {
-  DateTime? get createDate => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseFromCreateDate)
+  String? get createDate => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  DateTime? get finishDate => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseFromfinishDate)
+  String? get finishDate => throw _privateConstructorUsedError;
   String? get level => throw _privateConstructorUsedError;
   String? get responsible => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
-  DateTime? get updateDate => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseFromUpdateDate)
+  String? get updateDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,14 +45,14 @@ abstract class $KanbanModelCopyWith<$Res> {
       _$KanbanModelCopyWithImpl<$Res, KanbanModel>;
   @useResult
   $Res call(
-      {DateTime? createDate,
+      {@JsonKey(fromJson: _parseFromCreateDate) String? createDate,
       String? description,
-      DateTime? finishDate,
+      @JsonKey(fromJson: _parseFromfinishDate) String? finishDate,
       String? level,
       String? responsible,
       String? status,
       String? title,
-      DateTime? updateDate});
+      @JsonKey(fromJson: _parseFromUpdateDate) String? updateDate});
 }
 
 /// @nodoc
@@ -78,7 +81,7 @@ class _$KanbanModelCopyWithImpl<$Res, $Val extends KanbanModel>
       createDate: freezed == createDate
           ? _value.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -86,7 +89,7 @@ class _$KanbanModelCopyWithImpl<$Res, $Val extends KanbanModel>
       finishDate: freezed == finishDate
           ? _value.finishDate
           : finishDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
@@ -106,7 +109,7 @@ class _$KanbanModelCopyWithImpl<$Res, $Val extends KanbanModel>
       updateDate: freezed == updateDate
           ? _value.updateDate
           : updateDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
     ) as $Val);
   }
 }
@@ -120,14 +123,14 @@ abstract class _$$_KanbanModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime? createDate,
+      {@JsonKey(fromJson: _parseFromCreateDate) String? createDate,
       String? description,
-      DateTime? finishDate,
+      @JsonKey(fromJson: _parseFromfinishDate) String? finishDate,
       String? level,
       String? responsible,
       String? status,
       String? title,
-      DateTime? updateDate});
+      @JsonKey(fromJson: _parseFromUpdateDate) String? updateDate});
 }
 
 /// @nodoc
@@ -154,7 +157,7 @@ class __$$_KanbanModelCopyWithImpl<$Res>
       createDate: freezed == createDate
           ? _value.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -162,7 +165,7 @@ class __$$_KanbanModelCopyWithImpl<$Res>
       finishDate: freezed == finishDate
           ? _value.finishDate
           : finishDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
@@ -182,7 +185,7 @@ class __$$_KanbanModelCopyWithImpl<$Res>
       updateDate: freezed == updateDate
           ? _value.updateDate
           : updateDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
     ));
   }
 }
@@ -192,24 +195,26 @@ class __$$_KanbanModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class _$_KanbanModel implements _KanbanModel {
   _$_KanbanModel(
-      {this.createDate,
+      {@JsonKey(fromJson: _parseFromCreateDate) this.createDate,
       this.description,
-      this.finishDate,
+      @JsonKey(fromJson: _parseFromfinishDate) this.finishDate,
       this.level,
       this.responsible,
       this.status,
       this.title,
-      this.updateDate});
+      @JsonKey(fromJson: _parseFromUpdateDate) this.updateDate});
 
   factory _$_KanbanModel.fromJson(Map<String, dynamic> json) =>
       _$$_KanbanModelFromJson(json);
 
   @override
-  final DateTime? createDate;
+  @JsonKey(fromJson: _parseFromCreateDate)
+  final String? createDate;
   @override
   final String? description;
   @override
-  final DateTime? finishDate;
+  @JsonKey(fromJson: _parseFromfinishDate)
+  final String? finishDate;
   @override
   final String? level;
   @override
@@ -219,7 +224,8 @@ class _$_KanbanModel implements _KanbanModel {
   @override
   final String? title;
   @override
-  final DateTime? updateDate;
+  @JsonKey(fromJson: _parseFromUpdateDate)
+  final String? updateDate;
 
   @override
   String toString() {
@@ -267,24 +273,27 @@ class _$_KanbanModel implements _KanbanModel {
 
 abstract class _KanbanModel implements KanbanModel {
   factory _KanbanModel(
-      {final DateTime? createDate,
-      final String? description,
-      final DateTime? finishDate,
-      final String? level,
-      final String? responsible,
-      final String? status,
-      final String? title,
-      final DateTime? updateDate}) = _$_KanbanModel;
+          {@JsonKey(fromJson: _parseFromCreateDate) final String? createDate,
+          final String? description,
+          @JsonKey(fromJson: _parseFromfinishDate) final String? finishDate,
+          final String? level,
+          final String? responsible,
+          final String? status,
+          final String? title,
+          @JsonKey(fromJson: _parseFromUpdateDate) final String? updateDate}) =
+      _$_KanbanModel;
 
   factory _KanbanModel.fromJson(Map<String, dynamic> json) =
       _$_KanbanModel.fromJson;
 
   @override
-  DateTime? get createDate;
+  @JsonKey(fromJson: _parseFromCreateDate)
+  String? get createDate;
   @override
   String? get description;
   @override
-  DateTime? get finishDate;
+  @JsonKey(fromJson: _parseFromfinishDate)
+  String? get finishDate;
   @override
   String? get level;
   @override
@@ -294,7 +303,8 @@ abstract class _KanbanModel implements KanbanModel {
   @override
   String? get title;
   @override
-  DateTime? get updateDate;
+  @JsonKey(fromJson: _parseFromUpdateDate)
+  String? get updateDate;
   @override
   @JsonKey(ignore: true)
   _$$_KanbanModelCopyWith<_$_KanbanModel> get copyWith =>
