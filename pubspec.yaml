@@ -41,6 +41,7 @@ dependencies:
   freezed: 2.2.0
   flutter_mobx: 2.0.6+4
   intl: 0.17.0
+  modal_bottom_sheet: 2.1.2
   brecho_utilities:
     path: "../packages/brecho_utilities"
   formatter:
