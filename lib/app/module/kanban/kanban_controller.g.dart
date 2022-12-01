@@ -70,6 +70,22 @@ mixin _$KanbanController on _KanbanControllerBase, Store {
     });
   }
 
+  late final _$changeStatusAtom =
+      Atom(name: '_KanbanControllerBase.changeStatus', context: context);
+
+  @override
+  bool get changeStatus {
+    _$changeStatusAtom.reportRead();
+    return super.changeStatus;
+  }
+
+  @override
+  set changeStatus(bool value) {
+    _$changeStatusAtom.reportWrite(value, super.changeStatus, () {
+      super.changeStatus = value;
+    });
+  }
+
   late final _$getKanbanAsyncAction =
       AsyncAction('_KanbanControllerBase.getKanban', context: context);
 
@@ -78,12 +94,21 @@ mixin _$KanbanController on _KanbanControllerBase, Store {
     return _$getKanbanAsyncAction.run(() => super.getKanban());
   }
 
-  late final _$upDownStatusAsyncAction =
-      AsyncAction('_KanbanControllerBase.upDownStatus', context: context);
+  late final _$upStatusAsyncAction =
+      AsyncAction('_KanbanControllerBase.upStatus', context: context);
 
   @override
-  Future<RequestStatus> upDownStatus(String id) {
-    return _$upDownStatusAsyncAction.run(() => super.upDownStatus(id));
+  Future<void> upStatus(String id, String currentStatus) {
+    return _$upStatusAsyncAction.run(() => super.upStatus(id, currentStatus));
+  }
+
+  late final _$downStatusAsyncAction =
+      AsyncAction('_KanbanControllerBase.downStatus', context: context);
+
+  @override
+  Future<void> downStatus(String id, String currentStatus) {
+    return _$downStatusAsyncAction
+        .run(() => super.downStatus(id, currentStatus));
   }
 
   late final _$_KanbanControllerBaseActionController =
@@ -101,11 +126,11 @@ mixin _$KanbanController on _KanbanControllerBase, Store {
   }
 
   @override
-  void downStatus(String id) {
+  void retry() {
     final _$actionInfo = _$_KanbanControllerBaseActionController.startAction(
-        name: '_KanbanControllerBase.downStatus');
+        name: '_KanbanControllerBase.retry');
     try {
-      return super.downStatus(id);
+      return super.retry();
     } finally {
       _$_KanbanControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -116,6 +141,7 @@ mixin _$KanbanController on _KanbanControllerBase, Store {
     return '''
 kanbanModel: ${kanbanModel},
 requestStatus: ${requestStatus},
+changeStatus: ${changeStatus},
 toDoList: ${toDoList},
 toDoingList: ${toDoingList},
 toDoneList: ${toDoneList},

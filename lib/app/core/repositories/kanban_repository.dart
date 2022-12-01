@@ -21,7 +21,7 @@ class KanbanRepository implements IKanbanRepository {
   @override
   Future<RequestStatus> upStatus(String id, Map<String, String> status) async {
     try {
-      await db.doc(id).set(status, SetOptions(merge: true));
+      await db.collection('tasks').doc(id).set(status, SetOptions(merge: true));
       return RequestStatus.success();
     } catch (e) {
       return RequestStatus.error(e);
