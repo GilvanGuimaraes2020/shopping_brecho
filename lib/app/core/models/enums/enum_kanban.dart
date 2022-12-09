@@ -23,3 +23,16 @@ extension KanbanExtension on KanbanEnum {
     }
   }
 }
+
+KanbanEnum? kanbanEnumByString(String? value){
+  switch (value) {
+    case 'DONE':
+      return KanbanEnum.done;
+    case 'TODO':
+      return KanbanEnum.todo;
+    case 'DOING':
+      return KanbanEnum.doing;
+    default:
+      return null;
+  }
+}

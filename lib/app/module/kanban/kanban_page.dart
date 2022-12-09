@@ -6,7 +6,9 @@ import 'package:shopping_brecho/app/core/models/enums/enum_kanban.dart';
 import 'package:shopping_brecho/app/core/models/enums/status_due_enum.dart';
 import 'package:shopping_brecho/app/core/models/kanban_model/kanban_item_model.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension.dart';
+import 'package:shopping_brecho/app/module/kanban/components/edit_card.dart';
 import 'package:shopping_brecho/app/module/kanban/kanban_controller.dart';
+import 'package:shopping_brecho/app/utils/modal_dialog/modal_dialog.dart';
 
 class KanbanPage extends StatefulWidget {
   const KanbanPage({super.key});
@@ -159,11 +161,25 @@ class TaskItem extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Center(
-                                child: Text(
-                                        kanbanItem[index].kanban?.responsible ??
-                                            'Sem dados')
-                                    .h2MediumItalicUnder(),
+                              GestureDetector(
+                                key: Key(kanbanItem[index].id!),
+                                onTap: () async {
+                                  await BrechoDialog.showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) {
+                                        return EditCard(
+                                          model: kanbanItem[index].kanban!,
+                                          key: Key(kanbanItem[index].id!),
+                                        );
+                                      });
+                                },
+                                child: Center(
+                                  child: Text(kanbanItem[index]
+                                              .kanban
+                                              ?.responsible ??
+                                          'Sem dados')
+                                      .h2underItalicLink(),
+                                ),
                               ),
                               const SizedBox(
                                 height: BrechoSpacing.iv,

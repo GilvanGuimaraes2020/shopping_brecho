@@ -6,6 +6,11 @@ const _underItalic = TextStyle(
     decoration: TextDecoration.underline,
     decorationColor: Colors.black87);
 
+const _underItalicLink = TextStyle(
+    fontStyle: FontStyle.italic,
+    decoration: TextDecoration.underline,
+    decorationColor: Colors.blue);
+
 const _h1 = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.bold,
@@ -32,6 +37,12 @@ const _h5 = TextStyle(
     color: BrechoColors.monoBlack,
     decoration: TextDecoration.none);
 
+const _h6 = TextStyle(
+    fontSize: 8,
+    fontWeight: FontWeight.bold,
+    color: BrechoColors.monoBlack,
+    decoration: TextDecoration.none);
+
 extension TextTypograph on Text {
   Text h1Thin({TextStyle? style}) {
     final TextStyle defaultStyle =
@@ -39,6 +50,15 @@ extension TextTypograph on Text {
     return Text(data!,
         style: (this.style ?? defaultStyle).merge(this.style ?? defaultStyle),
         key: key);
+  }
+
+  Text h1MediumRegular({TextStyle? style}) {
+    final TextStyle defaultStyle = _h1.merge(const TextStyle(
+        fontWeight: FontWeight.w400, decoration: TextDecoration.none));
+    return Text(
+      data!,
+      style: (this.style ?? defaultStyle).merge(this.style ?? defaultStyle),
+    );
   }
 
   Text h2Thin({TextStyle? style}) {
@@ -100,6 +120,23 @@ extension TextTypograph on Text {
 
   Text h5Thin({TextStyle? style}) {
     const TextStyle defaultStyle = _h5;
+    return Text(
+      data!,
+      style: (this.style ?? defaultStyle).merge(this.style ?? defaultStyle),
+    );
+  }
+
+  Text h2underItalicLink({TextStyle? style}) {
+    final TextStyle defaultStyle =
+        _h2.merge(const TextStyle(color: Colors.blue)).merge(_underItalicLink);
+    return Text(
+      data!,
+      style: (this.style ?? defaultStyle).merge(this.style ?? defaultStyle),
+    );
+  }
+
+  Text h6Thin({TextStyle? style}) {
+    const TextStyle defaultStyle = _h6;
     return Text(
       data!,
       style: (this.style ?? defaultStyle).merge(this.style ?? defaultStyle),

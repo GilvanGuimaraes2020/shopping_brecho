@@ -26,12 +26,12 @@ class BrechoDialog {
 }
 
 class _WebModal extends StatelessWidget {
-  final Color? backColor;
+  final Color? backgroundColor;
   final EdgeInsets padding;
   final Widget child;
 
   const _WebModal(
-      {super.key, required this.padding, required this.child, this.backColor});
+      {required this.padding, required this.child, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class _WebModal extends StatelessWidget {
       child: Padding(
         padding: padding,
         child: Material(
-          color: backColor,
+          color: backgroundColor,
           clipBehavior: Clip.antiAlias,
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20)),
