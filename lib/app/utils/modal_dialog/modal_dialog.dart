@@ -1,3 +1,4 @@
+import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -26,12 +27,12 @@ class BrechoDialog {
 }
 
 class _WebModal extends StatelessWidget {
-  final Color? backgroundColor;
+  final Color backgroundColor ;
   final EdgeInsets padding;
   final Widget child;
 
   const _WebModal(
-      {required this.padding, required this.child, this.backgroundColor});
+      {required this.padding, required this.child, this.backgroundColor = BrechoColors.neutral1});
 
   @override
   Widget build(BuildContext context) {

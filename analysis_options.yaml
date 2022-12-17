@@ -13,6 +13,7 @@ linter:
   rules:
     sort_pub_dependencies: false
     require_trailing_commas: false
+    avoid_positional_boolean_parameters: false
 
 analyzer:
   exclude:
