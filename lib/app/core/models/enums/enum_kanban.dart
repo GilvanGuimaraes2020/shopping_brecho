@@ -12,14 +12,14 @@ extension KanbanExtension on KanbanEnum {
     }
   }
 
-  String get label{
+  String get label {
     switch (this) {
       case KanbanEnum.todo:
         return 'Fazer';
       case KanbanEnum.doing:
-      return 'Fazendo';
+        return 'Fazendo';
       case KanbanEnum.done:
-      return 'Feito';
+        return 'Feito';
     }
   }
 }

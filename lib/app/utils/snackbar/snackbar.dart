@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 enum BrechoSnackbarStatus { error, success, warning }
 
+// ignore: avoid_classes_with_only_static_members
 class BrechoSnackbar {
-  static final BrechoSnackbar _internal = BrechoSnackbar._internal;
-  factory BrechoSnackbar() {
-    return _internal;
-  }
+  // static final BrechoSnackbar _internal = BrechoSnackbar._internal;
+
+  // factory BrechoSnackbar._() ;
 
   static final GlobalKey<ScaffoldMessengerState> rootMessengerState =
       GlobalKey<ScaffoldMessengerState>();

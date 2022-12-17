@@ -86,6 +86,54 @@ mixin _$KanbanController on _KanbanControllerBase, Store {
     });
   }
 
+  late final _$lowFilterValueAtom =
+      Atom(name: '_KanbanControllerBase.lowFilterValue', context: context);
+
+  @override
+  bool get lowFilterValue {
+    _$lowFilterValueAtom.reportRead();
+    return super.lowFilterValue;
+  }
+
+  @override
+  set lowFilterValue(bool value) {
+    _$lowFilterValueAtom.reportWrite(value, super.lowFilterValue, () {
+      super.lowFilterValue = value;
+    });
+  }
+
+  late final _$mediumFilterValueAtom =
+      Atom(name: '_KanbanControllerBase.mediumFilterValue', context: context);
+
+  @override
+  bool get mediumFilterValue {
+    _$mediumFilterValueAtom.reportRead();
+    return super.mediumFilterValue;
+  }
+
+  @override
+  set mediumFilterValue(bool value) {
+    _$mediumFilterValueAtom.reportWrite(value, super.mediumFilterValue, () {
+      super.mediumFilterValue = value;
+    });
+  }
+
+  late final _$highFilterValueAtom =
+      Atom(name: '_KanbanControllerBase.highFilterValue', context: context);
+
+  @override
+  bool get highFilterValue {
+    _$highFilterValueAtom.reportRead();
+    return super.highFilterValue;
+  }
+
+  @override
+  set highFilterValue(bool value) {
+    _$highFilterValueAtom.reportWrite(value, super.highFilterValue, () {
+      super.highFilterValue = value;
+    });
+  }
+
   late final _$getKanbanAsyncAction =
       AsyncAction('_KanbanControllerBase.getKanban', context: context);
 
@@ -109,6 +157,22 @@ mixin _$KanbanController on _KanbanControllerBase, Store {
   Future<void> downStatus(String id, String currentStatus) {
     return _$downStatusAsyncAction
         .run(() => super.downStatus(id, currentStatus));
+  }
+
+  late final _$filterKanbanAsyncAction =
+      AsyncAction('_KanbanControllerBase.filterKanban', context: context);
+
+  @override
+  Future<void> filterKanban() {
+    return _$filterKanbanAsyncAction.run(() => super.filterKanban());
+  }
+
+  late final _$applyCardFilterAsyncAction =
+      AsyncAction('_KanbanControllerBase.applyCardFilter', context: context);
+
+  @override
+  Future<void> applyCardFilter() {
+    return _$applyCardFilterAsyncAction.run(() => super.applyCardFilter());
   }
 
   late final _$_KanbanControllerBaseActionController =
@@ -137,11 +201,69 @@ mixin _$KanbanController on _KanbanControllerBase, Store {
   }
 
   @override
+  void setLow(bool? value) {
+    final _$actionInfo = _$_KanbanControllerBaseActionController.startAction(
+        name: '_KanbanControllerBase.setLow');
+    try {
+      return super.setLow(value);
+    } finally {
+      _$_KanbanControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMedium(bool? value) {
+    final _$actionInfo = _$_KanbanControllerBaseActionController.startAction(
+        name: '_KanbanControllerBase.setMedium');
+    try {
+      return super.setMedium(value);
+    } finally {
+      _$_KanbanControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setHigh(bool? value) {
+    final _$actionInfo = _$_KanbanControllerBaseActionController.startAction(
+        name: '_KanbanControllerBase.setHigh');
+    try {
+      return super.setHigh(value);
+    } finally {
+      _$_KanbanControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setKeyWord(dynamic value) {
+    final _$actionInfo = _$_KanbanControllerBaseActionController.startAction(
+        name: '_KanbanControllerBase.setKeyWord');
+    try {
+      return super.setKeyWord(value);
+    } finally {
+      _$_KanbanControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearCardFilter() {
+    final _$actionInfo = _$_KanbanControllerBaseActionController.startAction(
+        name: '_KanbanControllerBase.clearCardFilter');
+    try {
+      return super.clearCardFilter();
+    } finally {
+      _$_KanbanControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 kanbanModel: ${kanbanModel},
 requestStatus: ${requestStatus},
 changeStatus: ${changeStatus},
+lowFilterValue: ${lowFilterValue},
+mediumFilterValue: ${mediumFilterValue},
+highFilterValue: ${highFilterValue},
 toDoList: ${toDoList},
 toDoingList: ${toDoingList},
 toDoneList: ${toDoneList},

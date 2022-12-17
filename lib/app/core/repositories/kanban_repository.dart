@@ -10,12 +10,17 @@ class KanbanRepository implements IKanbanRepository {
   @override
   Future<KanbanItem> tasks() async {
     final kanban = <KanbanItemModel>[];
-    final data = await db.collection('tasks').get().then((value) => value.docs);
-    for (final element in data) {
-      kanban.add(KanbanItemModel(
-          id: element.id, kanban: KanbanModel.fromJson(element.data())));
+    try {
+      final data =
+          await db.collection('tasks').get().then((value) => value.docs);
+      for (final element in data) {
+        kanban.add(KanbanItemModel(
+            id: element.id, kanban: KanbanModel.fromJson(element.data())));
+      }
+      return KanbanItem.data(kanban);
+    } catch (e) {
+      return KanbanItem.error();
     }
-    return KanbanItem.data(kanban);
   }
 
   @override
@@ -25,6 +30,44 @@ class KanbanRepository implements IKanbanRepository {
       return RequestStatus.success();
     } catch (e) {
       return RequestStatus.error(e);
+    }
+  }
+
+  @override
+  Future<RequestStatus> saveData(
+      {String? id, Map<String, dynamic>? payload}) async {
+    try {
+      await db
+          .collection('tasks')
+          .doc(id)
+          .set(payload ?? {}, SetOptions(merge: true));
+      return RequestStatus.success();
+    } catch (e) {
+      return RequestStatus.error(e);
+    }
+  }
+
+  @override
+  Future<KanbanItem> filterKanban({Map<String, dynamic>? payload}) async {
+    final List<KanbanItemModel> kanban = [];
+    try {
+      final data = await db
+          .collection('tasks')
+          .where('level', whereIn: payload?['level'] as List<String?>)
+          .where('responsible', isGreaterThanOrEqualTo: payload?['responsible'])
+          .where('responsible',
+              isLessThan: payload!['responsible'].toString().isNotEmpty
+                  ? "${payload['responsible']}z"
+                  : '')
+          .get()
+          .then((value) => value.docs);
+      for (final element in data) {
+        kanban.add(KanbanItemModel(
+            id: element.id, kanban: KanbanModel.fromJson(element.data())));
+      }
+      return KanbanItem.data(kanban);
+    } catch (e) {
+      return KanbanItem.error();
     }
   }
 }
