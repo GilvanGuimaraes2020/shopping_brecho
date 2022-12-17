@@ -16,7 +16,7 @@ class AppModule extends Module {
         Bind<IAccountRepositoy>((i) => AccountRepository()),
         Bind<IKanbanRepository>((i) => KanbanRepository()),
         Bind.factory((i) => HomeController(i())),
-        Bind.factory((i) => EditCardController()),
+        Bind.factory((i) => EditCardController(i())),
         Bind.factory((i) => KanbanController(i()))
       ];
 

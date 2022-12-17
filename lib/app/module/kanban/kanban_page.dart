@@ -7,6 +7,7 @@ import 'package:shopping_brecho/app/core/models/enums/status_due_enum.dart';
 import 'package:shopping_brecho/app/core/models/kanban_model/kanban_item_model.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension.dart';
 import 'package:shopping_brecho/app/module/kanban/components/edit_card.dart';
+import 'package:shopping_brecho/app/module/kanban/components/filter_card.dart';
 import 'package:shopping_brecho/app/module/kanban/kanban_controller.dart';
 import 'package:shopping_brecho/app/utils/modal_dialog/modal_dialog.dart';
 
@@ -36,12 +37,27 @@ class _KanbanPageState extends State<KanbanPage> {
             SliverAppBar.large(
               actions: [
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () async {
+                    // await controller.filterKanban();
+                    BrechoDialog.showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return FilterCardWidget(
+                            controller: controller,
+                          );
+                        });
+                  },
                   icon: const Icon(Icons.format_list_bulleted),
                   label: const Text('Filtro'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    BrechoDialog.showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return const EditCard();
+                        }).then((value) => controller.init());
+                  },
                   icon: const Icon(Icons.add_circle),
                   label: const Text('Adicionar'),
                 )
@@ -168,8 +184,8 @@ class TaskItem extends StatelessWidget {
                                       context: context,
                                       builder: (context) {
                                         return EditCard(
-                                          model: kanbanItem[index].kanban!,
-                                          key: Key(kanbanItem[index].id!),
+                                          model: kanbanItem[index].kanban,
+                                          id: kanbanItem[index].id,
                                         );
                                       });
                                 },

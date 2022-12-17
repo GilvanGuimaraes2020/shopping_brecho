@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
+import 'package:shopping_brecho/app/core/models/enums/enum_kanban.dart';
+import 'package:shopping_brecho/app/core/models/enums/level_enum.dart';
 import 'package:shopping_brecho/app/core/models/enums/status_due_enum.dart';
 
 part 'kanban_model.freezed.dart';
@@ -12,7 +14,7 @@ class KanbanModel with _$KanbanModel {
   factory KanbanModel(
           {@JsonKey(fromJson: _parseFromCreateDate) String? createDate,
           String? description,
-          @JsonKey(fromJson: _parseToDatetimeFinishedDate ) DateTime? finishDate,
+          @JsonKey(fromJson: _parseToDatetimeFinishedDate) DateTime? finishDate,
           String? level,
           String? responsible,
           String? status,
@@ -27,24 +29,30 @@ class KanbanModel with _$KanbanModel {
     return dateFormat.format(finishDate!);
   }
 
-  StatusLimitEnum get statusLimit{
+  StatusLimitEnum get statusLimit {
     final DateTime currentDate = DateTime.now();
     final int intervalDate = finishDate!.difference(currentDate).inDays;
-    if(intervalDate > 3) {
+    if (intervalDate > 3) {
       return StatusLimitEnum.inTheLimit;
-    } else if(intervalDate <=3 && intervalDate>=0){
+    } else if (intervalDate <= 3 && intervalDate >= 0) {
       return StatusLimitEnum.limitTime;
-    } else{
+    } else {
       return StatusLimitEnum.late;
     }
   }
+
+  KanbanEnum? get statusKanbanEnum =>
+      KanbanEnum.values.firstWhere((e) => e.value == status);
+
+  LevelEnum? get levelEnum =>
+      LevelEnum.values.firstWhere((e) => e.level == level);
 
   factory KanbanModel.fromJson(Map<String, dynamic> json) =>
       _$KanbanModelFromJson(json);
 }
 
-DateTime _parseToDatetimeFinishedDate(Timestamp timestamp){
-return timestamp.toDate();
+DateTime _parseToDatetimeFinishedDate(Timestamp timestamp) {
+  return timestamp.toDate();
 }
 
 String? _parseFromCreateDate(Timestamp timestamp) {
