@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/badge.dart';
+import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/module/homepage/home_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(BrechoSpacing.viii),
               sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                Container( 
+                Container(
                   padding: const EdgeInsets.all(BrechoSpacing.viii),
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                                         width: BrechoSpacing.viii,
                                       ),
                                       const Icon(
-                                        Icons.warning,
+                                        BrechoIcons.warning,
                                         color: BrechoColors.responseWarning,
                                       )
                                     ],

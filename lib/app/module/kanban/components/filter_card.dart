@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension.dart';
 import 'package:shopping_brecho/app/module/kanban/kanban_controller.dart';
 
@@ -24,7 +25,7 @@ class FilterCardWidget extends StatelessWidget {
             child: CustomScrollView(
               slivers: [
                 SliverAppBar(
-                  title: const Text("Filtrar card").h2MediumBold(),
+                  title: const Text("Filtrar card").h3Medium(),
                   backgroundColor: BrechoColors.monoWhite,
                   leading: GestureDetector(
                     onTap: () => Modular.to.pop(),
@@ -41,13 +42,8 @@ class FilterCardWidget extends StatelessWidget {
                       right: BrechoSpacing.xx,
                       left: BrechoSpacing.xx),
                   sliver: SliverToBoxAdapter(
-                    child: TextField(
+                    child: BrechoTextField(
                       onChanged: controller?.setKeyWord,
-                      decoration: InputDecoration(
-                          label: const Text('Responsavel'),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.circular(BrechoSpacing.x))),
                     ),
                   ),
                 ),

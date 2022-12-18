@@ -1,5 +1,6 @@
 import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 
 class CustomerPage extends StatefulWidget {
   const CustomerPage({super.key});
@@ -18,9 +19,7 @@ class _CustomerPageState extends State<CustomerPage> {
       body: Form(
           child: Column(
         children: const [
-          TextField(
-            decoration: InputDecoration(label: Text('Nome')),
-          ),
+          BrechoTextField(),
           SizedBox(height: BrechoSpacing.iv),
           ElevatedButton(
             onPressed: null,

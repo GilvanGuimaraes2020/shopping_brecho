@@ -10,4 +10,11 @@ abstract class _RegisterExpenseController with Store{
   _RegisterExpenseController();
 
   final priceCtl = TextEditingController();
+  final descriptionCtl = TextEditingController();
+  final dataCtl = TextEditingController();
+
+  @action 
+  void setDropValue(dynamic value){
+
+  }
 }
