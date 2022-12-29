@@ -1,5 +1,6 @@
 import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_brecho/app/helpers/extension/extension.dart';
 
 enum BrechoSnackbarStatus { error, success, warning }
 
@@ -37,17 +38,13 @@ class BrechoSnackbar {
         action: action,
         backgroundColor: backColor,
         content: DecoratedBox(
-          decoration: const BoxDecoration(boxShadow: [
-            BoxShadow(
-              color: BrechoColors.neutral1,
-              blurRadius: BrechoSpacing.x,
-              blurStyle: BlurStyle.solid,
-              offset: Offset(10, 10),
-            ),
-          ]),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(BrechoSpacing.viii)),
           child: Row(children: [
             Icon(icon),
-            Text(text),
+            const Expanded(child: SizedBox()),
+            Text(text).labelMediumSemiBold(),
+            const Expanded(child: SizedBox()),
             InkWell(
               onTap: () =>
                   rootMessengerState.currentState?.hideCurrentSnackBar(),

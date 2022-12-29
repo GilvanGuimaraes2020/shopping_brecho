@@ -29,6 +29,13 @@
             {
               "client_id": "323595993351-8n4kulphbpapgaedelr5dnbakl7e2g0h.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "323595993351-vvpan6u6scpjvkigrlrrlsuhafp2h65l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shoppingBrecho"
+              }
             }
           ]
         }

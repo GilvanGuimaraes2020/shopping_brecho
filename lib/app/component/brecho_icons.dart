@@ -2,6 +2,7 @@
 import 'package:flutter/widgets.dart';
 
 class BrechoIcons {
+  BrechoIcons._();
   static const IconData arrow_back =
       IconData(0xe092, fontFamily: 'MaterialIcons', matchTextDirection: true);
 
@@ -162,4 +163,9 @@ class BrechoIcons {
       IconData(0xe09d, fontFamily: 'MaterialIcons', matchTextDirection: true);
 
   static const IconData warning = IconData(0xe6cb, fontFamily: 'MaterialIcons');
+
+  static const keyboard_arrow_down =
+      IconData(0xe353, fontFamily: 'MaterialIcons');
+
+  static const done = IconData(0xe1f6, fontFamily: 'MaterialIcons');
 }
