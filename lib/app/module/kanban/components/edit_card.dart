@@ -2,6 +2,7 @@ import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/core/models/enums/enum_kanban.dart';
 import 'package:shopping_brecho/app/core/models/enums/level_enum.dart';
 import 'package:shopping_brecho/app/core/models/kanban_model/kanban_model.dart';
@@ -51,8 +52,7 @@ class _EditCardState extends State<EditCard> {
                     decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(BrechoSpacing.x)),
-                    child: Center(
-                        child: const Text('Editar card').h1MediumRegular()),
+                    child: Center(child: const Text('Editar card').h3Medium()),
                   ),
                 ),
                 Padding(
@@ -89,51 +89,32 @@ class _EditCardState extends State<EditCard> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(BrechoSpacing.viii),
-                  child: TextField(
+                  child: BrechoTextField(
                     enabled: widget.id == null,
                     controller: controller.titleCtl,
                     onChanged: controller.setTitle,
-                    decoration: InputDecoration(
-                        label: const Text('Titulo'),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(BrechoSpacing.x))),
+                   
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(BrechoSpacing.viii),
-                  child: TextField(
+                  child: BrechoTextField(
                     controller: controller.responsibleCtl,
                     onChanged: controller.setResponsible,
-                    decoration: InputDecoration(
-                        label: const Text('Responsavel'),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(BrechoSpacing.x))),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(BrechoSpacing.viii),
-                  child: TextField(
+                  child: BrechoTextField(
                     controller: controller.descriptionCtl,
                     onChanged: controller.setDescription,
-                    decoration: InputDecoration(
-                        label: const Text('Descrição'),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(BrechoSpacing.x))),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(BrechoSpacing.viii),
-                  child: TextField(
+                  child: BrechoTextField(
                     controller: controller.finishDateCtl,
                     onChanged: controller.setFinishDate,
-                    decoration: InputDecoration(
-                        label: const Text('Data final'),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.circular(BrechoSpacing.x))),
                   ),
                 ),
                 Padding(

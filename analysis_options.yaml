@@ -13,6 +13,8 @@ linter:
   rules:
     sort_pub_dependencies: false
     require_trailing_commas: false
+    avoid_positional_boolean_parameters: false
+    no_leading_underscores_for_local_identifiers: false
 
 analyzer:
   exclude:

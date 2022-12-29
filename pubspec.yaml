@@ -46,7 +46,10 @@ dependencies:
     path: "../packages/brecho_utilities"
   formatter:
     path: "../packages/formatter"
-  firebase_core: 2.3.0
+  firebase_core: 2.4.0
+  firebase_remote_config: 3.0.8 
+  firebase_analytics: 10.0.8
+  firebase_crashlytics: 3.0.8
 
 dev_dependencies:
   flutter_test:

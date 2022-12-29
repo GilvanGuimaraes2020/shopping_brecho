@@ -150,7 +150,7 @@ class TaskItem extends StatelessWidget {
                       BorderRadius.all(Radius.circular(BrechoSpacing.viii))),
               padding: const EdgeInsets.only(bottom: BrechoSpacing.vi),
               child:
-                  Center(child: Text(kanbanEnum?.label ?? '').h2MediumBold()),
+                  Center(child: Text(kanbanEnum?.label ?? '').bodyMediumRegular()),
             ),
             Expanded(
                 child: SizedBox(
@@ -194,7 +194,7 @@ class TaskItem extends StatelessWidget {
                                               .kanban
                                               ?.responsible ??
                                           'Sem dados')
-                                      .h2underItalicLink(),
+                                      .h3Light(),
                                 ),
                               ),
                               const SizedBox(

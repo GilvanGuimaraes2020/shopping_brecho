@@ -37,6 +37,13 @@ mixin _$KanbanController on _KanbanControllerBase, Store {
       (_$tasksComputed ??= Computed<List<KanbanItemModel>?>(() => super.tasks,
               name: '_KanbanControllerBase.tasks'))
           .value;
+  Computed<String?>? _$keyWordToSearchComputed;
+
+  @override
+  String? get keyWordToSearch => (_$keyWordToSearchComputed ??=
+          Computed<String?>(() => super.keyWordToSearch,
+              name: '_KanbanControllerBase.keyWordToSearch'))
+      .value;
 
   late final _$kanbanModelAtom =
       Atom(name: '_KanbanControllerBase.kanbanModel', context: context);
@@ -267,7 +274,8 @@ highFilterValue: ${highFilterValue},
 toDoList: ${toDoList},
 toDoingList: ${toDoingList},
 toDoneList: ${toDoneList},
-tasks: ${tasks}
+tasks: ${tasks},
+keyWordToSearch: ${keyWordToSearch}
     ''';
   }
 }
