@@ -97,7 +97,7 @@ abstract class _RegisterExpenseController with Store {
       'account_date': buyDate,
       'description': description,
       'category': categoryModel?.value
-    }, doc: categoryModel?.value ?? '', collection: '2022_12');
+    }, category: categoryModel?.value ?? '', shortDate: '2022_12');
   }
 
   //Validate String

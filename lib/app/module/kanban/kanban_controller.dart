@@ -23,7 +23,7 @@ abstract class _KanbanControllerBase with Store {
   KanbanItem kanbanModel = KanbanItem.none();
 
   @observable
-  RequestStatus requestStatus = RequestStatus.none();
+  RequestStatus requestStatus =const RequestStatus.none();
 
   @observable
   bool changeStatus = false;
@@ -55,7 +55,7 @@ abstract class _KanbanControllerBase with Store {
 
   @action
   Future<void> upStatus(String id, String currentStatus) async {
-    requestStatus = RequestStatus.loading();
+    requestStatus =const RequestStatus.loading();
     String newStatus = '';
     if (currentStatus == KanbanEnum.todo.value) {
       newStatus = KanbanEnum.doing.value;
@@ -80,7 +80,7 @@ abstract class _KanbanControllerBase with Store {
 
   @action
   Future<void> downStatus(String id, String currentStatus) async {
-    requestStatus = RequestStatus.loading();
+    requestStatus =const RequestStatus.loading();
     String newStatus = '';
     if (currentStatus == KanbanEnum.doing.value) {
       newStatus = KanbanEnum.todo.value;

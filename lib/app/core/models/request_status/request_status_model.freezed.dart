@@ -22,6 +22,7 @@ mixin _$RequestStatus {
     required TResult Function() loading,
     required TResult Function() none,
     required TResult Function(Object? e) error,
+    required TResult Function(Object? data) successWithData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$RequestStatus {
     TResult? Function()? loading,
     TResult? Function()? none,
     TResult? Function(Object? e)? error,
+    TResult? Function(Object? data)? successWithData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$RequestStatus {
     TResult Function()? loading,
     TResult Function()? none,
     TResult Function(Object? e)? error,
+    TResult Function(Object? data)? successWithData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,8 @@ mixin _$RequestStatus {
     required TResult Function(RequestStatusLoading value) loading,
     required TResult Function(RequestStatusNone value) none,
     required TResult Function(RequestStatusError value) error,
+    required TResult Function(RequestStatusSuccessWithData value)
+        successWithData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +60,7 @@ mixin _$RequestStatus {
     TResult? Function(RequestStatusLoading value)? loading,
     TResult? Function(RequestStatusNone value)? none,
     TResult? Function(RequestStatusError value)? error,
+    TResult? Function(RequestStatusSuccessWithData value)? successWithData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +69,7 @@ mixin _$RequestStatus {
     TResult Function(RequestStatusLoading value)? loading,
     TResult Function(RequestStatusNone value)? none,
     TResult Function(RequestStatusError value)? error,
+    TResult Function(RequestStatusSuccessWithData value)? successWithData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -105,7 +112,7 @@ class __$$RequestStatusSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RequestStatusSuccess implements RequestStatusSuccess {
-  _$RequestStatusSuccess();
+  const _$RequestStatusSuccess();
 
   @override
   String toString() {
@@ -128,6 +135,7 @@ class _$RequestStatusSuccess implements RequestStatusSuccess {
     required TResult Function() loading,
     required TResult Function() none,
     required TResult Function(Object? e) error,
+    required TResult Function(Object? data) successWithData,
   }) {
     return success();
   }
@@ -139,6 +147,7 @@ class _$RequestStatusSuccess implements RequestStatusSuccess {
     TResult? Function()? loading,
     TResult? Function()? none,
     TResult? Function(Object? e)? error,
+    TResult? Function(Object? data)? successWithData,
   }) {
     return success?.call();
   }
@@ -150,6 +159,7 @@ class _$RequestStatusSuccess implements RequestStatusSuccess {
     TResult Function()? loading,
     TResult Function()? none,
     TResult Function(Object? e)? error,
+    TResult Function(Object? data)? successWithData,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -165,6 +175,8 @@ class _$RequestStatusSuccess implements RequestStatusSuccess {
     required TResult Function(RequestStatusLoading value) loading,
     required TResult Function(RequestStatusNone value) none,
     required TResult Function(RequestStatusError value) error,
+    required TResult Function(RequestStatusSuccessWithData value)
+        successWithData,
   }) {
     return success(this);
   }
@@ -176,6 +188,7 @@ class _$RequestStatusSuccess implements RequestStatusSuccess {
     TResult? Function(RequestStatusLoading value)? loading,
     TResult? Function(RequestStatusNone value)? none,
     TResult? Function(RequestStatusError value)? error,
+    TResult? Function(RequestStatusSuccessWithData value)? successWithData,
   }) {
     return success?.call(this);
   }
@@ -187,6 +200,7 @@ class _$RequestStatusSuccess implements RequestStatusSuccess {
     TResult Function(RequestStatusLoading value)? loading,
     TResult Function(RequestStatusNone value)? none,
     TResult Function(RequestStatusError value)? error,
+    TResult Function(RequestStatusSuccessWithData value)? successWithData,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -197,7 +211,7 @@ class _$RequestStatusSuccess implements RequestStatusSuccess {
 }
 
 abstract class RequestStatusSuccess implements RequestStatus {
-  factory RequestStatusSuccess() = _$RequestStatusSuccess;
+  const factory RequestStatusSuccess() = _$RequestStatusSuccess;
 }
 
 /// @nodoc
@@ -219,7 +233,7 @@ class __$$RequestStatusLoadingCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RequestStatusLoading implements RequestStatusLoading {
-  _$RequestStatusLoading();
+  const _$RequestStatusLoading();
 
   @override
   String toString() {
@@ -242,6 +256,7 @@ class _$RequestStatusLoading implements RequestStatusLoading {
     required TResult Function() loading,
     required TResult Function() none,
     required TResult Function(Object? e) error,
+    required TResult Function(Object? data) successWithData,
   }) {
     return loading();
   }
@@ -253,6 +268,7 @@ class _$RequestStatusLoading implements RequestStatusLoading {
     TResult? Function()? loading,
     TResult? Function()? none,
     TResult? Function(Object? e)? error,
+    TResult? Function(Object? data)? successWithData,
   }) {
     return loading?.call();
   }
@@ -264,6 +280,7 @@ class _$RequestStatusLoading implements RequestStatusLoading {
     TResult Function()? loading,
     TResult Function()? none,
     TResult Function(Object? e)? error,
+    TResult Function(Object? data)? successWithData,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -279,6 +296,8 @@ class _$RequestStatusLoading implements RequestStatusLoading {
     required TResult Function(RequestStatusLoading value) loading,
     required TResult Function(RequestStatusNone value) none,
     required TResult Function(RequestStatusError value) error,
+    required TResult Function(RequestStatusSuccessWithData value)
+        successWithData,
   }) {
     return loading(this);
   }
@@ -290,6 +309,7 @@ class _$RequestStatusLoading implements RequestStatusLoading {
     TResult? Function(RequestStatusLoading value)? loading,
     TResult? Function(RequestStatusNone value)? none,
     TResult? Function(RequestStatusError value)? error,
+    TResult? Function(RequestStatusSuccessWithData value)? successWithData,
   }) {
     return loading?.call(this);
   }
@@ -301,6 +321,7 @@ class _$RequestStatusLoading implements RequestStatusLoading {
     TResult Function(RequestStatusLoading value)? loading,
     TResult Function(RequestStatusNone value)? none,
     TResult Function(RequestStatusError value)? error,
+    TResult Function(RequestStatusSuccessWithData value)? successWithData,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -311,7 +332,7 @@ class _$RequestStatusLoading implements RequestStatusLoading {
 }
 
 abstract class RequestStatusLoading implements RequestStatus {
-  factory RequestStatusLoading() = _$RequestStatusLoading;
+  const factory RequestStatusLoading() = _$RequestStatusLoading;
 }
 
 /// @nodoc
@@ -333,7 +354,7 @@ class __$$RequestStatusNoneCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RequestStatusNone implements RequestStatusNone {
-  _$RequestStatusNone();
+  const _$RequestStatusNone();
 
   @override
   String toString() {
@@ -356,6 +377,7 @@ class _$RequestStatusNone implements RequestStatusNone {
     required TResult Function() loading,
     required TResult Function() none,
     required TResult Function(Object? e) error,
+    required TResult Function(Object? data) successWithData,
   }) {
     return none();
   }
@@ -367,6 +389,7 @@ class _$RequestStatusNone implements RequestStatusNone {
     TResult? Function()? loading,
     TResult? Function()? none,
     TResult? Function(Object? e)? error,
+    TResult? Function(Object? data)? successWithData,
   }) {
     return none?.call();
   }
@@ -378,6 +401,7 @@ class _$RequestStatusNone implements RequestStatusNone {
     TResult Function()? loading,
     TResult Function()? none,
     TResult Function(Object? e)? error,
+    TResult Function(Object? data)? successWithData,
     required TResult orElse(),
   }) {
     if (none != null) {
@@ -393,6 +417,8 @@ class _$RequestStatusNone implements RequestStatusNone {
     required TResult Function(RequestStatusLoading value) loading,
     required TResult Function(RequestStatusNone value) none,
     required TResult Function(RequestStatusError value) error,
+    required TResult Function(RequestStatusSuccessWithData value)
+        successWithData,
   }) {
     return none(this);
   }
@@ -404,6 +430,7 @@ class _$RequestStatusNone implements RequestStatusNone {
     TResult? Function(RequestStatusLoading value)? loading,
     TResult? Function(RequestStatusNone value)? none,
     TResult? Function(RequestStatusError value)? error,
+    TResult? Function(RequestStatusSuccessWithData value)? successWithData,
   }) {
     return none?.call(this);
   }
@@ -415,6 +442,7 @@ class _$RequestStatusNone implements RequestStatusNone {
     TResult Function(RequestStatusLoading value)? loading,
     TResult Function(RequestStatusNone value)? none,
     TResult Function(RequestStatusError value)? error,
+    TResult Function(RequestStatusSuccessWithData value)? successWithData,
     required TResult orElse(),
   }) {
     if (none != null) {
@@ -425,7 +453,7 @@ class _$RequestStatusNone implements RequestStatusNone {
 }
 
 abstract class RequestStatusNone implements RequestStatus {
-  factory RequestStatusNone() = _$RequestStatusNone;
+  const factory RequestStatusNone() = _$RequestStatusNone;
 }
 
 /// @nodoc
@@ -459,7 +487,7 @@ class __$$RequestStatusErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RequestStatusError implements RequestStatusError {
-  _$RequestStatusError([this.e]);
+  const _$RequestStatusError([this.e]);
 
   @override
   final Object? e;
@@ -495,6 +523,7 @@ class _$RequestStatusError implements RequestStatusError {
     required TResult Function() loading,
     required TResult Function() none,
     required TResult Function(Object? e) error,
+    required TResult Function(Object? data) successWithData,
   }) {
     return error(e);
   }
@@ -506,6 +535,7 @@ class _$RequestStatusError implements RequestStatusError {
     TResult? Function()? loading,
     TResult? Function()? none,
     TResult? Function(Object? e)? error,
+    TResult? Function(Object? data)? successWithData,
   }) {
     return error?.call(e);
   }
@@ -517,6 +547,7 @@ class _$RequestStatusError implements RequestStatusError {
     TResult Function()? loading,
     TResult Function()? none,
     TResult Function(Object? e)? error,
+    TResult Function(Object? data)? successWithData,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -532,6 +563,8 @@ class _$RequestStatusError implements RequestStatusError {
     required TResult Function(RequestStatusLoading value) loading,
     required TResult Function(RequestStatusNone value) none,
     required TResult Function(RequestStatusError value) error,
+    required TResult Function(RequestStatusSuccessWithData value)
+        successWithData,
   }) {
     return error(this);
   }
@@ -543,6 +576,7 @@ class _$RequestStatusError implements RequestStatusError {
     TResult? Function(RequestStatusLoading value)? loading,
     TResult? Function(RequestStatusNone value)? none,
     TResult? Function(RequestStatusError value)? error,
+    TResult? Function(RequestStatusSuccessWithData value)? successWithData,
   }) {
     return error?.call(this);
   }
@@ -554,6 +588,7 @@ class _$RequestStatusError implements RequestStatusError {
     TResult Function(RequestStatusLoading value)? loading,
     TResult Function(RequestStatusNone value)? none,
     TResult Function(RequestStatusError value)? error,
+    TResult Function(RequestStatusSuccessWithData value)? successWithData,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -564,10 +599,164 @@ class _$RequestStatusError implements RequestStatusError {
 }
 
 abstract class RequestStatusError implements RequestStatus {
-  factory RequestStatusError([final Object? e]) = _$RequestStatusError;
+  const factory RequestStatusError([final Object? e]) = _$RequestStatusError;
 
   Object? get e;
   @JsonKey(ignore: true)
   _$$RequestStatusErrorCopyWith<_$RequestStatusError> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RequestStatusSuccessWithDataCopyWith<$Res> {
+  factory _$$RequestStatusSuccessWithDataCopyWith(
+          _$RequestStatusSuccessWithData value,
+          $Res Function(_$RequestStatusSuccessWithData) then) =
+      __$$RequestStatusSuccessWithDataCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object? data});
+}
+
+/// @nodoc
+class __$$RequestStatusSuccessWithDataCopyWithImpl<$Res>
+    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusSuccessWithData>
+    implements _$$RequestStatusSuccessWithDataCopyWith<$Res> {
+  __$$RequestStatusSuccessWithDataCopyWithImpl(
+      _$RequestStatusSuccessWithData _value,
+      $Res Function(_$RequestStatusSuccessWithData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = freezed,
+  }) {
+    return _then(_$RequestStatusSuccessWithData(
+      freezed == data ? _value.data : data,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RequestStatusSuccessWithData implements RequestStatusSuccessWithData {
+  const _$RequestStatusSuccessWithData([this.data]);
+
+  @override
+  final Object? data;
+
+  @override
+  String toString() {
+    return 'RequestStatus.successWithData(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RequestStatusSuccessWithData &&
+            const DeepCollectionEquality().equals(other.data, data));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RequestStatusSuccessWithDataCopyWith<_$RequestStatusSuccessWithData>
+      get copyWith => __$$RequestStatusSuccessWithDataCopyWithImpl<
+          _$RequestStatusSuccessWithData>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() success,
+    required TResult Function() loading,
+    required TResult Function() none,
+    required TResult Function(Object? e) error,
+    required TResult Function(Object? data) successWithData,
+  }) {
+    return successWithData(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? success,
+    TResult? Function()? loading,
+    TResult? Function()? none,
+    TResult? Function(Object? e)? error,
+    TResult? Function(Object? data)? successWithData,
+  }) {
+    return successWithData?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? success,
+    TResult Function()? loading,
+    TResult Function()? none,
+    TResult Function(Object? e)? error,
+    TResult Function(Object? data)? successWithData,
+    required TResult orElse(),
+  }) {
+    if (successWithData != null) {
+      return successWithData(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RequestStatusSuccess value) success,
+    required TResult Function(RequestStatusLoading value) loading,
+    required TResult Function(RequestStatusNone value) none,
+    required TResult Function(RequestStatusError value) error,
+    required TResult Function(RequestStatusSuccessWithData value)
+        successWithData,
+  }) {
+    return successWithData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RequestStatusSuccess value)? success,
+    TResult? Function(RequestStatusLoading value)? loading,
+    TResult? Function(RequestStatusNone value)? none,
+    TResult? Function(RequestStatusError value)? error,
+    TResult? Function(RequestStatusSuccessWithData value)? successWithData,
+  }) {
+    return successWithData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RequestStatusSuccess value)? success,
+    TResult Function(RequestStatusLoading value)? loading,
+    TResult Function(RequestStatusNone value)? none,
+    TResult Function(RequestStatusError value)? error,
+    TResult Function(RequestStatusSuccessWithData value)? successWithData,
+    required TResult orElse(),
+  }) {
+    if (successWithData != null) {
+      return successWithData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RequestStatusSuccessWithData implements RequestStatus {
+  const factory RequestStatusSuccessWithData([final Object? data]) =
+      _$RequestStatusSuccessWithData;
+
+  Object? get data;
+  @JsonKey(ignore: true)
+  _$$RequestStatusSuccessWithDataCopyWith<_$RequestStatusSuccessWithData>
+      get copyWith => throw _privateConstructorUsedError;
 }

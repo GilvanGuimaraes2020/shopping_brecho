@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:shopping_brecho/app/core/interfaces/account_repository_interface.dart';
 import 'package:shopping_brecho/app/core/models/account_alert_model/account_alert_model.dart';
 import 'package:shopping_brecho/app/core/models/account_register_model/account_register_model.dart';
 import 'package:shopping_brecho/app/core/models/registers_model/registers_model.dart';
+import 'package:shopping_brecho/app/core/models/request_status/request_status_model.dart';
 
 class AccountRepository implements IAccountRepositoy {
   final db = FirebaseFirestore.instance;
@@ -53,18 +55,23 @@ class AccountRepository implements IAccountRepositoy {
   }
 
   @override
-  Future<void> registerAccount(
+  Future<RequestStatus> registerAccount(
       {required Map<String, dynamic> payload,
-      required String doc,
-      required String collection}) async {
-    final teste = await db
-        .collection('account_movement')
-        .doc('account_register')
-        .collection(collection)
-        .doc(doc)
-        .set({
-      'register': FieldValue.arrayUnion([payload])
-    }, SetOptions(merge: true));
-    teste;
+      required String category,
+      required String shortDate}) async {
+    try {
+      final teste = await db
+          .collection('account_movement')
+          .doc('account_register')
+          .collection(shortDate)
+          .doc(category)
+          .set({
+        'register': FieldValue.arrayUnion([payload])
+      }, SetOptions(merge: true));
+      return const RequestStatus.success();
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return const RequestStatus.error();
+    }
   }
 }
