@@ -34,6 +34,22 @@ class RemoteConfigService implements IRemoteConfig {
   List<LabelValueModel>? getCategory() {
     try {
       final List<LabelValueModel> values = [];
+      final json =
+          jsonDecode(_remoteConfig.getString('register_expense'))['category'];
+      json.forEach((e) {
+        values.add(LabelValueModel.fromJson(e as Map<String, dynamic>));
+      });
+      return values;
+    } catch (e, s) {
+      _crashlytics.recordError(e, s);
+      return null;
+    }
+  }
+
+  @override
+  List<LabelValueModel>? getPaymentType() {
+    try {
+      final List<LabelValueModel> values = [];
       final json = jsonDecode(
           _remoteConfig.getString('register_expense'))['payment_type'];
       json.forEach((e) {
@@ -44,11 +60,5 @@ class RemoteConfigService implements IRemoteConfig {
       _crashlytics.recordError(e, s);
       return null;
     }
-  }
-  
-  @override
-  List<LabelValueModel>? getPaymentType() {
-    // TODO: implement getPaymentType
-    throw UnimplementedError();
   }
 }

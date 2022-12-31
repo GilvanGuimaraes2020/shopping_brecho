@@ -34,7 +34,7 @@ class AccountRepository implements IAccountRepositoy {
   Future<AccountRegister> getMovementAccountRegister() async {
     final List<AccountRegisterModel> listAccountRegister = [];
 
-   final List<Map<String, dynamic>> teste = await db
+    final List<Map<String, dynamic>> teste = await db
         .collection('account_movement')
         .doc('account_register')
         .collection('2022_10')
@@ -50,5 +50,21 @@ class AccountRepository implements IAccountRepositoy {
           registers: listRegisters, typeName: data['type_name'] as String?));
     }
     return AccountRegister.data(listAccountRegister);
+  }
+
+  @override
+  Future<void> registerAccount(
+      {required Map<String, dynamic> payload,
+      required String doc,
+      required String collection}) async {
+    final teste = await db
+        .collection('account_movement')
+        .doc('account_register')
+        .collection(collection)
+        .doc(doc)
+        .set({
+      'register': FieldValue.arrayUnion([payload])
+    }, SetOptions(merge: true));
+    teste;
   }
 }

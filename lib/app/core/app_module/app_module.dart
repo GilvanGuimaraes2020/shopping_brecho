@@ -24,7 +24,7 @@ class AppModule extends Module {
         Bind.factory((i) => HomeController(i())),
         Bind.factory((i) => EditCardController(i())),
         Bind.factory((i) => KanbanController(i())),
-        Bind.factory((i) => RegisterExpenseController(i.get())),
+        Bind.factory((i) => RegisterExpenseController(i.get(), i.get())),
         Bind.factory((i) => MainController(i.get())),
       ];
 
@@ -33,6 +33,6 @@ class AppModule extends Module {
         ChildRoute(AppRoute.home, child: (context, args) => const HomePage()),
         ChildRoute(AppRoute.main, child: (context, args) => const MainPage()),
         ChildRoute(AppRoute.registerExpense,
-            child: (context, args) => const RegisterExpensePage())
+            child: (context, _) => const RegisterExpensePage())
       ];
 }

@@ -3,3 +3,7 @@ extension ExtensionString on String {
     return isEmpty ? '' : '${this[0].toUpperCase()}${substring(1)}';
   }
 }
+
+extension ExtensionMaybeNullString on String? {
+  bool get isNotNullAndNotEmpty => this?.isNotEmpty ?? false;
+}

@@ -5,4 +5,8 @@ abstract class IAccountRepositoy {
   Future<AccountAlert> getAccountAlert();
   Future<void> getMovementAccountControl();
   Future<AccountRegister> getMovementAccountRegister();
+  Future<void> registerAccount(
+      {required Map<String, dynamic> payload,
+      required String doc,
+      required String collection});
 }
