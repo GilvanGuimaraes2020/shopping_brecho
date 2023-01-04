@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/brecho_drop_down.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/component/brecho_text_top_down.dart';
+import 'package:shopping_brecho/app/core/models/request_status/request_status_model.dart';
 import 'package:shopping_brecho/app/module/register_expense/register_expense_controller.dart';
 import 'package:shopping_brecho/app/utils/snackbar/snackbar.dart';
 
@@ -108,22 +109,34 @@ class _RegisterExpensePageState extends State<RegisterExpensePage> {
       ),
       bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(BrechoSpacing.viii),
-          child: MaterialButton(
-            onPressed: () {
-              late String text;
-              late BrechoSnackbarStatus status;
-              controller.setAutoValidateAlways(true);
-              if (controller.formIsValid) {
-                controller.saveData();
-                text = 'Salvo com sucesso!';
-                status = BrechoSnackbarStatus.success;
-              } else {
-                text = 'Não foi salvo!';
-                status = BrechoSnackbarStatus.error;
-              }
-              BrechoSnackbar.show(text: text, brechoSnackbarStatus: status);
-            },
-            child: const Text('Salvar'),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(BrechoSpacing.viii),
+                color: BrechoColors.primaryBlue5),
+            child: MaterialButton(
+              padding: const EdgeInsets.all(BrechoSpacing.viii),
+              onPressed: () async {
+                late String text;
+                late BrechoSnackbarStatus status;
+                controller.setAutoValidateAlways(true);
+                if (controller.formIsValid) {
+                  final result = await controller.saveData();
+                  if (result is RequestStatusSuccess) {
+                  Modular.to.pop();
+                    text = 'Salvo com sucesso!';
+                    status = BrechoSnackbarStatus.success;
+                  } else {
+                    text = 'Não foi possivel salvar!';
+                    status = BrechoSnackbarStatus.error;
+                  }
+                } else {
+                  text = 'Dados invalidos!';
+                  status = BrechoSnackbarStatus.error;
+                }
+                BrechoSnackbar.show(text: text, brechoSnackbarStatus: status);
+              },
+              child: const Text('Salvar'),
+            ),
           )),
     );
   }

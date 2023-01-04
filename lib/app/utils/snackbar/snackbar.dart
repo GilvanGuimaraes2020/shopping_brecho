@@ -16,7 +16,7 @@ class BrechoSnackbar {
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? show(
       {required String text,
       required BrechoSnackbarStatus brechoSnackbarStatus,
-      int seconds = 2,
+      int seconds = 3,
       SnackBarAction? action}) {
     Color backColor;
     IconData icon;
@@ -37,9 +37,13 @@ class BrechoSnackbar {
     return rootMessengerState.currentState?.showSnackBar(SnackBar(
         action: action,
         backgroundColor: backColor,
-        content: DecoratedBox(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(BrechoSpacing.viii)),
+        duration: Duration(seconds: seconds),
+        padding: const EdgeInsets.all(BrechoSpacing.viii),
+        elevation: 8,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(BrechoSpacing.viii)),
+        content: SizedBox(
+          height: 50,
           child: Row(children: [
             Icon(icon),
             const Expanded(child: SizedBox()),

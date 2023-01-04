@@ -11,9 +11,10 @@ class RegistersModel with _$RegistersModel {
   factory RegistersModel(
       {String? accountBank,
       double? accountValue,
-      @JsonKey(fromJson: _fromJson) String? date,
+      @JsonKey(fromJson: _fromJson, toJson: _toJson) String? date,
       String? movementCurrency,
-      String? movementDetail}) = _RegistersModel;
+      String? movementDetail,
+      int? installment}) = _RegistersModel;
 
   factory RegistersModel.fromJson(Map<String, dynamic> json) =>
       _$RegistersModelFromJson(json);
@@ -22,4 +23,17 @@ class RegistersModel with _$RegistersModel {
 String _fromJson(Timestamp timestamp) {
   final DateTime dateTime = timestamp.toDate();
   return DateFormat('dd/MM').format(dateTime);
+}
+
+DateTime? _toJson(String? date){
+  return DateFormat('dd/MM/yyyy').parse(date ?? '');
+}
+
+@freezed 
+class Registers with _$Registers{
+  factory Registers.data(List<RegistersModel> registersModel) = RegistersData;
+  factory Registers.loading() = RegistersLoading;
+  factory Registers.error() = RegistersError;
+  factory Registers.none() = RegistersNone;
+
 }

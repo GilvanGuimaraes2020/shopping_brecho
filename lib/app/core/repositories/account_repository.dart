@@ -34,24 +34,31 @@ class AccountRepository implements IAccountRepositoy {
 
   @override
   Future<AccountRegister> getMovementAccountRegister() async {
-    final List<AccountRegisterModel> listAccountRegister = [];
+    try {
+      final List<AccountRegisterModel> listAccountRegister = [];
 
-    final List<Map<String, dynamic>> teste = await db
-        .collection('account_movement')
-        .doc('account_register')
-        .collection('2022_10')
-        .get()
-        .then((value) => value.docs.map((e) => e.data()).toList());
+      final List<Map<String, dynamic>> teste = await db
+          .collection('account_movement')
+          .doc('account_register')
+          .collection('2023_01')
+          .get()
+          .then((value) => value.docs
+              .map((e) => {'type_name': e.id, 'registers': e.data()})
+              .toList());
 
-    for (final data in teste) {
-      final registers = data['registers'] as List;
-      final List<RegistersModel> listRegisters = registers
-          .map((e) => RegistersModel.fromJson(e as Map<String, dynamic>))
-          .toList();
-      listAccountRegister.add(AccountRegisterModel(
-          registers: listRegisters, typeName: data['type_name'] as String?));
+      for (final data in teste) {
+        final registers = data['registers']['register'] as List;
+        final List<RegistersModel> listRegisters = registers
+            .map((e) => RegistersModel.fromJson(e as Map<String, dynamic>))
+            .toList();
+        listAccountRegister.add(AccountRegisterModel(
+            registers: listRegisters, typeName: data['type_name'] as String?));
+      }
+      return AccountRegister.data(listAccountRegister);
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return AccountRegister.error();
     }
-    return AccountRegister.data(listAccountRegister);
   }
 
   @override
@@ -60,7 +67,7 @@ class AccountRepository implements IAccountRepositoy {
       required String category,
       required String shortDate}) async {
     try {
-      final teste = await db
+      await db
           .collection('account_movement')
           .doc('account_register')
           .collection(shortDate)

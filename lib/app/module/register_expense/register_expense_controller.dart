@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/core/interfaces/account_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/remote_config_interface.dart';
+import 'package:shopping_brecho/app/core/models/enums/account_bank_enum.dart';
 import 'package:shopping_brecho/app/core/models/label_value_model/label_value_model.dart';
+import 'package:shopping_brecho/app/core/models/registers_model/registers_model.dart';
+import 'package:shopping_brecho/app/core/models/request_status/request_status_model.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/mask_text.dart';
 import 'package:shopping_brecho/app/helpers/validator_helper/validator_helper.dart';
@@ -49,6 +52,9 @@ abstract class _RegisterExpenseController with Store {
   @observable
   String? installment;
 
+  @observable
+  AccountBankEnum? accountBankEnum;
+
   @action
   void setAutoValidateAlways(dynamic value) {
     autoValidateAlways = value as bool;
@@ -83,6 +89,19 @@ abstract class _RegisterExpenseController with Store {
   @action
   void setPaymentType(dynamic value) {
     paymentModel = paymentTypeList?[value as int];
+    switch (paymentModel?.value) {
+      case 'MONEY':
+        accountBankEnum = AccountBankEnum.capitalTurnover;
+        break;
+      case 'CREDIT_CARD':
+        accountBankEnum = AccountBankEnum.invoiceSantander;
+        break;
+      case 'PIX':
+        accountBankEnum = AccountBankEnum.bankBradesco;
+        break;
+      default:
+        accountBankEnum = AccountBankEnum.undefined;
+    }
   }
 
   @action
@@ -91,13 +110,18 @@ abstract class _RegisterExpenseController with Store {
   }
 
   @action
-  void saveData() {
-    _accountRepositoy.registerAccount(payload: {
-      'account_value': price,
-      'account_date': buyDate,
-      'description': description,
-      'category': categoryModel?.value
-    }, category: categoryModel?.value ?? '', shortDate: '2022_12');
+  Future<RequestStatus> saveData() async {
+    final payload = RegistersModel(
+        accountBank: accountBankEnum?.type,
+        accountValue: double.tryParse(price ?? ''),
+        date: buyDate,
+        movementCurrency: paymentModel?.value,
+        movementDetail: description,
+        installment: int.tryParse(installment ?? ''));
+    return _accountRepositoy.registerAccount(
+        payload: payload.toJson(),
+        category: categoryModel?.value ?? '',
+        shortDate: codeCollection);
   }
 
   //Validate String
@@ -128,6 +152,12 @@ abstract class _RegisterExpenseController with Store {
   @computed
   List<String> get paymentTypeNames =>
       paymentTypeList?.map((e) => e.label ?? '').toList() ?? [];
+
+  @computed
+  String get codeCollection {
+    final List<String> dateSplit = buyDate?.split('/') ?? [];
+    return '${dateSplit[2]}_${dateSplit[1]}';
+  }
 
 //validation
   @computed

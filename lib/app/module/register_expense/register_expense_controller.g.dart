@@ -23,6 +23,13 @@ mixin _$RegisterExpenseController on _RegisterExpenseController, Store {
           Computed<List<String>>(() => super.paymentTypeNames,
               name: '_RegisterExpenseController.paymentTypeNames'))
       .value;
+  Computed<String>? _$codeCollectionComputed;
+
+  @override
+  String get codeCollection =>
+      (_$codeCollectionComputed ??= Computed<String>(() => super.codeCollection,
+              name: '_RegisterExpenseController.codeCollection'))
+          .value;
   Computed<bool>? _$descriptionIsvalidComputed;
 
   @override
@@ -210,6 +217,30 @@ mixin _$RegisterExpenseController on _RegisterExpenseController, Store {
     });
   }
 
+  late final _$accountBankEnumAtom = Atom(
+      name: '_RegisterExpenseController.accountBankEnum', context: context);
+
+  @override
+  AccountBankEnum? get accountBankEnum {
+    _$accountBankEnumAtom.reportRead();
+    return super.accountBankEnum;
+  }
+
+  @override
+  set accountBankEnum(AccountBankEnum? value) {
+    _$accountBankEnumAtom.reportWrite(value, super.accountBankEnum, () {
+      super.accountBankEnum = value;
+    });
+  }
+
+  late final _$saveDataAsyncAction =
+      AsyncAction('_RegisterExpenseController.saveData', context: context);
+
+  @override
+  Future<RequestStatus> saveData() {
+    return _$saveDataAsyncAction.run(() => super.saveData());
+  }
+
   late final _$_RegisterExpenseControllerActionController =
       ActionController(name: '_RegisterExpenseController', context: context);
 
@@ -302,17 +333,6 @@ mixin _$RegisterExpenseController on _RegisterExpenseController, Store {
   }
 
   @override
-  void saveData() {
-    final _$actionInfo = _$_RegisterExpenseControllerActionController
-        .startAction(name: '_RegisterExpenseController.saveData');
-    try {
-      return super.saveData();
-    } finally {
-      _$_RegisterExpenseControllerActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String? validateCategory(dynamic value) {
     final _$actionInfo = _$_RegisterExpenseControllerActionController
         .startAction(name: '_RegisterExpenseController.validateCategory');
@@ -368,8 +388,10 @@ description: ${description},
 buyDate: ${buyDate},
 price: ${price},
 installment: ${installment},
+accountBankEnum: ${accountBankEnum},
 categoryNames: ${categoryNames},
 paymentTypeNames: ${paymentTypeNames},
+codeCollection: ${codeCollection},
 descriptionIsvalid: ${descriptionIsvalid},
 priceIsValid: ${priceIsValid},
 categoryIsValid: ${categoryIsValid},
