@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/badge.dart';
-import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/module/homepage/home_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Observer(builder: (context) {
           return CustomScrollView(slivers: [
-            const SliverPadding(
+            /*  const SliverPadding(
                 padding: EdgeInsets.all(BrechoSpacing.viii),
                 sliver: SliverToBoxAdapter(
                   child: Center(child: Text("Contas Fixas")),
@@ -87,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 )
               ])),
-            ),
+            ), */
             const SliverPadding(
               padding: EdgeInsets.symmetric(vertical: BrechoSpacing.viii),
               sliver: SliverToBoxAdapter(
@@ -116,10 +115,15 @@ class _HomePageState extends State<HomePage> {
                                   children: [
                                     Row(
                                       children: [
-                                        Text(controller
-                                            .accountRegisterModel[index]
-                                            .typeName
-                                            .toString()),
+                                        Text(controller.categories
+                                                ?.firstWhere((element) =>
+                                                    controller
+                                                        .accountRegisterModel[
+                                                            index]
+                                                        .typeName ==
+                                                    element.value)
+                                                .label ??
+                                            ''),
                                         const Expanded(
                                           child: SizedBox(),
                                         ),

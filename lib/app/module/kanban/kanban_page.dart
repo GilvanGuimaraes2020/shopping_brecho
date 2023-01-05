@@ -149,8 +149,8 @@ class TaskItem extends StatelessWidget {
                   borderRadius:
                       BorderRadius.all(Radius.circular(BrechoSpacing.viii))),
               padding: const EdgeInsets.only(bottom: BrechoSpacing.vi),
-              child:
-                  Center(child: Text(kanbanEnum?.label ?? '').bodyMediumRegular()),
+              child: Center(
+                  child: Text(kanbanEnum?.label ?? '').bodyMediumRegular()),
             ),
             Expanded(
                 child: SizedBox(
@@ -194,7 +194,7 @@ class TaskItem extends StatelessWidget {
                                               .kanban
                                               ?.responsible ??
                                           'Sem dados')
-                                      .h3Light(),
+                                      .bodySmallMedium(),
                                 ),
                               ),
                               const SizedBox(
@@ -204,11 +204,13 @@ class TaskItem extends StatelessWidget {
                                   text: TextSpan(children: <TextSpan>[
                                 TextSpan(
                                     text: 'Titulo: ',
-                                    style: const Text('').h4Medium().style),
+                                    style:
+                                        const Text('').bodySmallMedium().style),
                                 TextSpan(
                                     text: kanbanItem[index].kanban?.title ??
                                         'Sem dados',
-                                    style: const Text('').h4Thin().style)
+                                    style:
+                                        const Text('').bodySmallMedium().style)
                               ])),
                               const SizedBox(
                                 height: BrechoSpacing.iv,
@@ -219,26 +221,34 @@ class TaskItem extends StatelessWidget {
                                       text: TextSpan(children: <TextSpan>[
                                     TextSpan(
                                         text: 'Inicio: ',
-                                        style: const Text('').h4Medium().style),
+                                        style: const Text('')
+                                            .bodyMediumSemiBold()
+                                            .style),
                                     TextSpan(
                                         text: kanbanItem[index]
                                                 .kanban
                                                 ?.createDate ??
                                             'Sem dados',
-                                        style: const Text('').h4Thin().style)
+                                        style: const Text('')
+                                            .bodySmallMedium()
+                                            .style)
                                   ])),
                                   const Expanded(child: SizedBox()),
                                   RichText(
                                       text: TextSpan(children: <TextSpan>[
                                     TextSpan(
                                         text: 'Fim: ',
-                                        style: const Text('').h4Medium().style),
+                                        style: const Text('')
+                                            .bodyMediumSemiBold()
+                                            .style),
                                     TextSpan(
                                         text: kanbanItem[index]
                                                 .kanban
                                                 ?.shortFinishedDate ??
                                             'Sem dados',
-                                        style: const Text('').h4Thin().style)
+                                        style: const Text('')
+                                            .bodySmallMedium()
+                                            .style)
                                   ])),
                                 ],
                               ),
@@ -249,7 +259,9 @@ class TaskItem extends StatelessWidget {
                                   text: TextSpan(children: <TextSpan>[
                                 TextSpan(
                                     text: 'Desc: ',
-                                    style: const Text('').h4Medium().style),
+                                    style: const Text('')
+                                        .bodyMediumSemiBold()
+                                        .style),
                                 TextSpan(
                                     text:
                                         kanbanItem[index].kanban?.description ??
@@ -257,7 +269,7 @@ class TaskItem extends StatelessWidget {
                                     style: const Text(
                                       '',
                                       maxLines: 3,
-                                    ).h4Thin().style)
+                                    ).bodySmallMedium().style)
                               ])),
                               const SizedBox(
                                 height: BrechoSpacing.vi,

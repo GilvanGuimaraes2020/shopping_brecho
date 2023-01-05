@@ -21,7 +21,7 @@ class AppModule extends Module {
         Bind<IAccountRepositoy>((i) => AccountRepository()),
         Bind<IKanbanRepository>((i) => KanbanRepository()),
         Bind<IRemoteConfig>((i) => RemoteConfigService()),
-        Bind.factory((i) => HomeController(i())),
+        Bind.factory((i) => HomeController(i(), i())),
         Bind.factory((i) => EditCardController(i())),
         Bind.factory((i) => KanbanController(i())),
         Bind.factory((i) => RegisterExpenseController(i.get(), i.get())),

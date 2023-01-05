@@ -664,7 +664,7 @@ extension BrechoTypographyExtession on Text {
   }
 
   // h4
-  Text h4Thin({TextStyle? style}) {
+  Text bodySmallMediumh4Thin({TextStyle? style}) {
     final TextStyle defaultStyle = _h4.merge(const TextStyle(fontWeight: FontWeight.w100));
     return Text(data!,
         style: (style ?? defaultStyle).merge(style ?? defaultStyle),
