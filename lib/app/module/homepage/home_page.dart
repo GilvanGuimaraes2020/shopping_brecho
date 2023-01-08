@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/badge.dart';
+import 'package:shopping_brecho/app/core/models/registers_model/registers_model.dart';
+import 'package:shopping_brecho/app/helpers/extension/extension.dart';
+import 'package:shopping_brecho/app/module/homepage/component/card_detail_account.dart';
 import 'package:shopping_brecho/app/module/homepage/home_controller.dart';
+import 'package:shopping_brecho/app/utils/modal_dialog/modal_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -107,35 +111,38 @@ class _HomePageState extends State<HomePage> {
                           controller.accountRegisterModel.length,
                           (index) => InkWell(
                                 onTap: () {
-                                  debugPrint(controller
-                                      .accountRegisterModel[index].typeName
-                                      .toString());
+                                  _showModal(
+                                      controller.accountRegisterModel[index]
+                                          .registers,
+                                      controller.accountRegisterModel[index]
+                                          .typeName);
                                 },
                                 child: Column(
                                   children: [
                                     Row(
                                       children: [
-                                        Text(controller.categories
-                                                ?.firstWhere((element) =>
-                                                    controller
-                                                        .accountRegisterModel[
-                                                            index]
-                                                        .typeName ==
-                                                    element.value)
-                                                .label ??
-                                            ''),
-                                        const Expanded(
-                                          child: SizedBox(),
+                                        Expanded(
+                                          child: Text(controller.categories
+                                                  ?.firstWhere((element) =>
+                                                      controller
+                                                          .accountRegisterModel[
+                                                              index]
+                                                          .typeName ==
+                                                      element.value)
+                                                  .label ??
+                                              ''),
+                                        ),
+                                        Expanded(
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                  '${controller.accountRegisterModel[index].registers!.length} registro'),
+                                              const Icon(Icons.remove_red_eye),
+                                            ],
+                                          ),
                                         ),
                                         Text(
-                                            '${controller.accountRegisterModel[index].registers!.length} registros'),
-                                        const Icon(Icons.remove_red_eye),
-                                        const Expanded(
-                                          child: SizedBox(),
-                                        ),
-                                        const Text('R\$: '),
-                                        Text(controller.totalCategory[index]
-                                            .toString())
+                                            'R\$: ${controller.totalCategory[index]}')
                                       ],
                                     ),
                                     const Divider(),
@@ -157,5 +164,51 @@ class _HomePageState extends State<HomePage> {
             )
           ]);
         }));
+  }
+
+  void _showModal(List<RegistersModel>? registers, String? typeName) {
+    final String? detailAccount = controller.categories
+        ?.firstWhere((element) => element.value == typeName)
+        .label;
+    final List<double?> accountValue =
+        registers?.map((e) => e.accountValue).toList() ?? [];
+    final double? maxValue = accountValue
+        .reduce((value, element) => value! > element! ? value : element);
+    BrechoDialog.showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Material(
+            color: BrechoColors.monoWhite,
+            child: CustomScrollView(
+              slivers: [
+                SliverPadding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: BrechoSpacing.viii),
+                  sliver: SliverToBoxAdapter(
+                    child: Center(
+                        child: Text('Detalhamento $detailAccount')
+                            .bodyMediumBold()),
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: BrechoSpacing.viii),
+                  sliver: SliverList(
+                      delegate: SliverChildListDelegate(List.generate(
+                          registers?.length ?? 0,
+                          (index) => CardDetailAccount(
+                                detail: registers?[index].movementDetail,
+                                buyDate: registers?[index].date,
+                                price:
+                                    registers?[index].accountValue.toString(),
+                                isBigger:
+                                    registers?[index].accountValue == maxValue,
+                                typeName: typeName,
+                              )))),
+                )
+              ],
+            ),
+          );
+        });
   }
 }
