@@ -7,6 +7,9 @@ enum IconIndication {
   drogstore('DROGSTORE'),
   vehicle('VEHICLE'),
   pet('PET'),
+  utility('UTILITY'),
+  recreation('RECREATION'),
+  donation('DONATION'),
   undefined('UNDEFINED');
 
   const IconIndication(this.type);
@@ -17,6 +20,8 @@ enum IconIndication {
 extension IconIndicationExtension on IconIndication {
   IconData get iconIndication {
     switch (this) {
+      case IconIndication.donation:
+        return const IconData(0xf06a4, fontFamily: 'MaterialIcons');
       case IconIndication.drogstore:
         return const IconData(0xe39e, fontFamily: 'MaterialIcons');
       case IconIndication.superMarket:
@@ -25,6 +30,10 @@ extension IconIndicationExtension on IconIndication {
         return const IconData(0xe4a1, fontFamily: 'MaterialIcons');
       case IconIndication.vehicle:
         return const IconData(0xe1d7, fontFamily: 'MaterialIcons');
+      case IconIndication.utility:
+        return const IconData(0xe318, fontFamily: 'MaterialIcons');
+      case IconIndication.recreation:
+        return const IconData(0xf655, fontFamily: 'MaterialIcons');
       default:
         return const IconData(0xe491, fontFamily: 'MaterialIcons');
     }
@@ -41,6 +50,10 @@ IconIndication? iconIndicationByValue(String? value) {
       return IconIndication.vehicle;
     case 'PET':
       return IconIndication.pet;
+    case 'UTILITY':
+      return IconIndication.utility;
+    case 'RECREATION':
+      return IconIndication.recreation;
     default:
       return null;
   }

@@ -149,6 +149,15 @@ mixin _$HomeController on _HomeControllerBase, Store {
         .run(() => super.getMovementAccountRegister());
   }
 
+  late final _$onFilterAsyncAction =
+      AsyncAction('_HomeControllerBase.onFilter', context: context);
+
+  @override
+  Future<void> onFilter(String startDate, String endDate, String keyword) {
+    return _$onFilterAsyncAction
+        .run(() => super.onFilter(startDate, endDate, keyword));
+  }
+
   late final _$_HomeControllerBaseActionController =
       ActionController(name: '_HomeControllerBase', context: context);
 

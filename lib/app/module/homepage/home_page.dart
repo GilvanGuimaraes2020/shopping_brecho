@@ -2,7 +2,9 @@ import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shopping_brecho/app/component/accordeon.dart';
 import 'package:shopping_brecho/app/component/badge.dart';
+import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/core/models/registers_model/registers_model.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension.dart';
 import 'package:shopping_brecho/app/module/homepage/component/card_detail_account.dart';
@@ -28,14 +30,26 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final double myAppBarHeight = MediaQuery.of(context).size.height * 0.1;
+
     return Scaffold(
-        appBar: AppBar(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(myAppBarHeight),
+        child: AppBar(
           centerTitle: true,
-          title: const Text("Pagina Principal"),
+          title: Column(
+            children: const [
+              Text("Pagina Principal"),
+            ],
+          ),
         ),
-        body: Observer(builder: (context) {
-          return CustomScrollView(slivers: [
-            /*  const SliverPadding(
+      ),
+      body: Observer(builder: (context) {
+        return CustomScrollView(slivers: [
+          SliverToBoxAdapter(
+              child:
+                  Accordeon(title: 'Filtrar', onFilter: controller.onFilter)),
+          /*  const SliverPadding(
                 padding: EdgeInsets.all(BrechoSpacing.viii),
                 sliver: SliverToBoxAdapter(
                   child: Center(child: Text("Contas Fixas")),
@@ -91,79 +105,84 @@ class _HomePageState extends State<HomePage> {
                 )
               ])),
             ), */
-            const SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: BrechoSpacing.viii),
-              sliver: SliverToBoxAdapter(
-                  child: Center(child: Text('Registro de contas'))),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.all(BrechoSpacing.viii),
-              sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                Container(
-                  padding: const EdgeInsets.all(BrechoSpacing.viii),
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: BrechoColors.primaryBlue10),
-                  child: Column(
-                    children: [
-                      ...List.generate(
-                          controller.accountRegisterModel.length,
-                          (index) => InkWell(
-                                onTap: () {
-                                  _showModal(
-                                      controller.accountRegisterModel[index]
-                                          .registers,
-                                      controller.accountRegisterModel[index]
-                                          .typeName);
-                                },
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(controller.categories
-                                                  ?.firstWhere((element) =>
-                                                      controller
-                                                          .accountRegisterModel[
-                                                              index]
-                                                          .typeName ==
-                                                      element.value)
-                                                  .label ??
-                                              ''),
+          const SliverPadding(
+            padding: EdgeInsets.symmetric(vertical: BrechoSpacing.viii),
+            sliver: SliverToBoxAdapter(
+                child: Center(child: Text('Registro de contas'))),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(BrechoSpacing.viii),
+            sliver: SliverList(
+                delegate: SliverChildListDelegate([
+              Container(
+                padding: const EdgeInsets.all(BrechoSpacing.viii),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: BrechoColors.primaryBlue10),
+                child: Column(
+                  children: [
+                    ...List.generate(
+                        controller.accountRegisterModel.length,
+                        (index) => InkWell(
+                              onTap: () {
+                                _showModal(
+                                    controller
+                                        .accountRegisterModel[index].registers,
+                                    controller
+                                        .accountRegisterModel[index].typeName);
+                              },
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(controller.categories
+                                                ?.firstWhere((element) =>
+                                                    controller
+                                                        .accountRegisterModel[
+                                                            index]
+                                                        .typeName ==
+                                                    element.value)
+                                                .label ??
+                                            ''),
+                                      ),
+                                      Expanded(
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                                '${controller.accountRegisterModel[index].registers!.length} registro'),
+                                            const Icon(Icons.remove_red_eye),
+                                          ],
                                         ),
-                                        Expanded(
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                  '${controller.accountRegisterModel[index].registers!.length} registro'),
-                                              const Icon(Icons.remove_red_eye),
-                                            ],
-                                          ),
-                                        ),
-                                        Text(
-                                            'R\$: ${controller.totalCategory[index]}')
-                                      ],
-                                    ),
-                                    const Divider(),
-                                  ],
-                                ),
-                              )),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const Expanded(child: SizedBox()),
-                          const Text('Valor total pago: '),
-                          Badge(child: controller.registersTotal ?? ''),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ])),
-            )
-          ]);
-        }));
+                                      ),
+                                      Text(
+                                          'R\$: ${controller.totalCategory[index]}')
+                                    ],
+                                  ),
+                                  const Divider(),
+                                ],
+                              ),
+                            )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const Expanded(child: SizedBox()),
+                        const Text('Valor total pago: '),
+                        Badge(child: controller.registersTotal ?? ''),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ])),
+          )
+        ]);
+      }),
+      floatingActionButton: const FloatingActionButton(
+        onPressed: null,
+        child: Icon(BrechoIcons.add),
+      ),
+    );
   }
 
   void _showModal(List<RegistersModel>? registers, String? typeName) {

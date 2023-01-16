@@ -5,9 +5,10 @@ import 'package:shopping_brecho/app/core/models/request_status/request_status_mo
 abstract class IAccountRepositoy {
   Future<AccountAlert> getAccountAlert();
   Future<void> getMovementAccountControl();
-  Future<AccountRegister> getMovementAccountRegister();
+  Future<AccountRegister> getMovementAccountRegister(String catalogDate);
   Future<RequestStatus> registerAccount(
       {required Map<String, dynamic> payload,
       required String category,
       required String shortDate});
+  Future<AccountRegister> getAccountRegisterFilter(Map<String, dynamic> query);
 }

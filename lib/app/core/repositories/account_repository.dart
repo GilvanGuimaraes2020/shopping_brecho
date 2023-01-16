@@ -33,14 +33,14 @@ class AccountRepository implements IAccountRepositoy {
   }
 
   @override
-  Future<AccountRegister> getMovementAccountRegister() async {
+  Future<AccountRegister> getMovementAccountRegister(String catalogDate) async {
     try {
       final List<AccountRegisterModel> listAccountRegister = [];
 
       final List<Map<String, dynamic>> teste = await db
           .collection('account_movement')
           .doc('account_register')
-          .collection('2023_01')
+          .collection(catalogDate)
           .get()
           .then((value) => value.docs
               .map((e) => {'type_name': e.id, 'registers': e.data()})
@@ -54,6 +54,39 @@ class AccountRepository implements IAccountRepositoy {
         listAccountRegister.add(AccountRegisterModel(
             registers: listRegisters, typeName: data['type_name'] as String?));
       }
+      return AccountRegister.data(listAccountRegister);
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return AccountRegister.error();
+    }
+  }
+
+  @override
+  Future<AccountRegister> getAccountRegisterFilter(
+      Map<String, dynamic> query) async {
+    try {
+      final List<AccountRegisterModel> listAccountRegister = [];
+      for (final element in query['collection_ref'] as List) {
+        final List<Map<String, dynamic>> teste = await db
+            .collection('account_movement')
+            .doc('account_register')
+            .collection(element as String)
+            .get()
+            .then((value) => value.docs
+                .map((e) => {'type_name': e.id, 'registers': e.data()})
+                .toList());
+
+        for (final data in teste) {
+          final registers = data['registers']['register'] as List;
+          final List<RegistersModel> listRegisters = registers
+              .map((e) => RegistersModel.fromJson(e as Map<String, dynamic>))
+              .toList();
+          listAccountRegister.add(AccountRegisterModel(
+              registers: listRegisters,
+              typeName: data['type_name'] as String?));
+        }
+      }
+
       return AccountRegister.data(listAccountRegister);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
