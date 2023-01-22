@@ -172,4 +172,5 @@ class BrechoIcons {
   static const add = IconData(0xe047, fontFamily: 'MaterialIcons');
   static const keyboard_arrow_right =
       IconData(0xea4e, fontFamily: 'MaterialIcons');
+  static const remove = IconData(0xe516, fontFamily: 'MaterialIcons');
 }

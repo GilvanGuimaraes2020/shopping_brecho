@@ -55,9 +55,17 @@ abstract class _RegisterExpenseController with Store {
   @observable
   AccountBankEnum? accountBankEnum;
 
+  @observable
+  bool isAddValue = false;
+
   @action
   void setAutoValidateAlways(dynamic value) {
     autoValidateAlways = value as bool;
+  }
+
+  @action
+  Future<void> setIsAddValue() async {
+    isAddValue = !isAddValue;
   }
 
   @action
@@ -111,15 +119,18 @@ abstract class _RegisterExpenseController with Store {
 
   @action
   Future<RequestStatus> saveData() async {
+    final int mult = isAddValue ? 1 : -1;
     final payload = RegistersModel(
         accountBank: accountBankEnum?.type,
-        accountValue: double.tryParse(price ?? ''),
+        accountValue: double.parse(price ?? '0') * mult,
         date: buyDate,
+        accountMovement: isAddValue ? 'IN' : 'OUT',
         movementCurrency: paymentModel?.value,
         movementDetail: description,
         installment: int.tryParse(installment ?? ''));
+
     return _accountRepositoy.registerAccount(
-        payload: payload.toJson(),
+        payload: payload,
         category: categoryModel?.value ?? '',
         shortDate: codeCollection);
   }

@@ -14,6 +14,7 @@ class RegistersModel with _$RegistersModel {
       @JsonKey(fromJson: _fromJson, toJson: _toJson) String? date,
       String? movementCurrency,
       String? movementDetail,
+      String? accountMovement,
       int? installment}) = _RegistersModel;
 
   factory RegistersModel.fromJson(Map<String, dynamic> json) =>

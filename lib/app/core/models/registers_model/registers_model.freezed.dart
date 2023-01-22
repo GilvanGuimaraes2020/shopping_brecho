@@ -26,6 +26,7 @@ mixin _$RegistersModel {
   String? get date => throw _privateConstructorUsedError;
   String? get movementCurrency => throw _privateConstructorUsedError;
   String? get movementDetail => throw _privateConstructorUsedError;
+  String? get accountMovement => throw _privateConstructorUsedError;
   int? get installment => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $RegistersModelCopyWith<$Res> {
       @JsonKey(fromJson: _fromJson, toJson: _toJson) String? date,
       String? movementCurrency,
       String? movementDetail,
+      String? accountMovement,
       int? installment});
 }
 
@@ -67,6 +69,7 @@ class _$RegistersModelCopyWithImpl<$Res, $Val extends RegistersModel>
     Object? date = freezed,
     Object? movementCurrency = freezed,
     Object? movementDetail = freezed,
+    Object? accountMovement = freezed,
     Object? installment = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,6 +93,10 @@ class _$RegistersModelCopyWithImpl<$Res, $Val extends RegistersModel>
           ? _value.movementDetail
           : movementDetail // ignore: cast_nullable_to_non_nullable
               as String?,
+      accountMovement: freezed == accountMovement
+          ? _value.accountMovement
+          : accountMovement // ignore: cast_nullable_to_non_nullable
+              as String?,
       installment: freezed == installment
           ? _value.installment
           : installment // ignore: cast_nullable_to_non_nullable
@@ -112,6 +119,7 @@ abstract class _$$_RegistersModelCopyWith<$Res>
       @JsonKey(fromJson: _fromJson, toJson: _toJson) String? date,
       String? movementCurrency,
       String? movementDetail,
+      String? accountMovement,
       int? installment});
 }
 
@@ -131,6 +139,7 @@ class __$$_RegistersModelCopyWithImpl<$Res>
     Object? date = freezed,
     Object? movementCurrency = freezed,
     Object? movementDetail = freezed,
+    Object? accountMovement = freezed,
     Object? installment = freezed,
   }) {
     return _then(_$_RegistersModel(
@@ -154,6 +163,10 @@ class __$$_RegistersModelCopyWithImpl<$Res>
           ? _value.movementDetail
           : movementDetail // ignore: cast_nullable_to_non_nullable
               as String?,
+      accountMovement: freezed == accountMovement
+          ? _value.accountMovement
+          : accountMovement // ignore: cast_nullable_to_non_nullable
+              as String?,
       installment: freezed == installment
           ? _value.installment
           : installment // ignore: cast_nullable_to_non_nullable
@@ -172,6 +185,7 @@ class _$_RegistersModel implements _RegistersModel {
       @JsonKey(fromJson: _fromJson, toJson: _toJson) this.date,
       this.movementCurrency,
       this.movementDetail,
+      this.accountMovement,
       this.installment});
 
   factory _$_RegistersModel.fromJson(Map<String, dynamic> json) =>
@@ -189,11 +203,13 @@ class _$_RegistersModel implements _RegistersModel {
   @override
   final String? movementDetail;
   @override
+  final String? accountMovement;
+  @override
   final int? installment;
 
   @override
   String toString() {
-    return 'RegistersModel(accountBank: $accountBank, accountValue: $accountValue, date: $date, movementCurrency: $movementCurrency, movementDetail: $movementDetail, installment: $installment)';
+    return 'RegistersModel(accountBank: $accountBank, accountValue: $accountValue, date: $date, movementCurrency: $movementCurrency, movementDetail: $movementDetail, accountMovement: $accountMovement, installment: $installment)';
   }
 
   @override
@@ -210,6 +226,8 @@ class _$_RegistersModel implements _RegistersModel {
                 other.movementCurrency == movementCurrency) &&
             (identical(other.movementDetail, movementDetail) ||
                 other.movementDetail == movementDetail) &&
+            (identical(other.accountMovement, accountMovement) ||
+                other.accountMovement == accountMovement) &&
             (identical(other.installment, installment) ||
                 other.installment == installment));
   }
@@ -217,7 +235,7 @@ class _$_RegistersModel implements _RegistersModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, accountBank, accountValue, date,
-      movementCurrency, movementDetail, installment);
+      movementCurrency, movementDetail, accountMovement, installment);
 
   @JsonKey(ignore: true)
   @override
@@ -240,6 +258,7 @@ abstract class _RegistersModel implements RegistersModel {
       @JsonKey(fromJson: _fromJson, toJson: _toJson) final String? date,
       final String? movementCurrency,
       final String? movementDetail,
+      final String? accountMovement,
       final int? installment}) = _$_RegistersModel;
 
   factory _RegistersModel.fromJson(Map<String, dynamic> json) =
@@ -256,6 +275,8 @@ abstract class _RegistersModel implements RegistersModel {
   String? get movementCurrency;
   @override
   String? get movementDetail;
+  @override
+  String? get accountMovement;
   @override
   int? get installment;
   @override

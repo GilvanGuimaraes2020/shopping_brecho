@@ -95,19 +95,45 @@ class AccountRepository implements IAccountRepositoy {
   }
 
   @override
-  Future<RequestStatus> registerAccount(
-      {required Map<String, dynamic> payload,
-      required String category,
-      required String shortDate}) async {
+  Future<RequestStatus> registerAccount({
+    required RegistersModel payload,
+    required String category,
+    required String shortDate,
+  }) async {
+    final Map<String, dynamic> toJson = payload.toJson();
+    final String bankToSave = payload.accountBank ?? 'undefined';
+    final double valueToIncrement = payload.accountValue ?? 0;
     try {
-      await db
+      final batch = db.batch();
+
+      final accountRegister = db
           .collection('account_movement')
           .doc('account_register')
           .collection(shortDate)
-          .doc(category)
-          .set({
-        'register': FieldValue.arrayUnion([payload])
-      }, SetOptions(merge: true));
+          .doc(category);
+
+      batch.set(
+          accountRegister,
+          {
+            'register': FieldValue.arrayUnion([toJson])
+          },
+          SetOptions(merge: true));
+
+      final accountControl =
+          db.collection('account_movement').doc('account_control');
+
+      batch.set(
+          accountControl,
+          {
+            bankToSave: {
+              shortDate: FieldValue.increment(valueToIncrement),
+              'total_value': FieldValue.increment(valueToIncrement)
+            }
+          },
+          SetOptions(merge: true));
+
+      await batch.commit();
+
       return const RequestStatus.success();
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);

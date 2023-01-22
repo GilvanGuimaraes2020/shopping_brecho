@@ -233,6 +233,30 @@ mixin _$RegisterExpenseController on _RegisterExpenseController, Store {
     });
   }
 
+  late final _$isAddValueAtom =
+      Atom(name: '_RegisterExpenseController.isAddValue', context: context);
+
+  @override
+  bool get isAddValue {
+    _$isAddValueAtom.reportRead();
+    return super.isAddValue;
+  }
+
+  @override
+  set isAddValue(bool value) {
+    _$isAddValueAtom.reportWrite(value, super.isAddValue, () {
+      super.isAddValue = value;
+    });
+  }
+
+  late final _$setIsAddValueAsyncAction =
+      AsyncAction('_RegisterExpenseController.setIsAddValue', context: context);
+
+  @override
+  Future<void> setIsAddValue() {
+    return _$setIsAddValueAsyncAction.run(() => super.setIsAddValue());
+  }
+
   late final _$saveDataAsyncAction =
       AsyncAction('_RegisterExpenseController.saveData', context: context);
 
@@ -389,6 +413,7 @@ buyDate: ${buyDate},
 price: ${price},
 installment: ${installment},
 accountBankEnum: ${accountBankEnum},
+isAddValue: ${isAddValue},
 categoryNames: ${categoryNames},
 paymentTypeNames: ${paymentTypeNames},
 codeCollection: ${codeCollection},
