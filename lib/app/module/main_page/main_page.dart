@@ -55,7 +55,14 @@ class _MainPageState extends State<MainPage> {
                     onPressed: () =>
                         Modular.to.pushNamed(AppRoute.registerExpense),
                     child: const Text('Registrar despesa'))),
-          )
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.all(BrechoSpacing.vi),
+            sliver: SliverToBoxAdapter(
+                child: ElevatedButton(
+                    onPressed: () => Modular.to.pushNamed(AppRoute.registerBuy),
+                    child: const Text('Efetuar compra'))),
+          ),
         ]));
   }
 }

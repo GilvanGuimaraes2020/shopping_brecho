@@ -2,7 +2,9 @@ import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
+import 'package:shopping_brecho/app/helpers/debouncer/debouncer.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension.dart';
+import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/utils/modal_dialog/modal_dialog.dart';
 
 class BrechoDropDown extends StatefulWidget {
@@ -15,6 +17,8 @@ class BrechoDropDown extends StatefulWidget {
   final String? Function(String?)? validator;
   final bool autovalidate;
   final bool autoValidateAlways;
+  final Widget? trailing;
+  final Function()? onActionTrailing;
 
   const BrechoDropDown(
       {super.key,
@@ -26,7 +30,9 @@ class BrechoDropDown extends StatefulWidget {
       this.controller,
       this.validator,
       this.autovalidate = false,
-      this.autoValidateAlways = false});
+      this.autoValidateAlways = false,
+      this.trailing,
+      this.onActionTrailing});
 
   @override
   State<BrechoDropDown> createState() => _BrechoDropDownState();
@@ -42,6 +48,11 @@ class _BrechoDropDownState extends State<BrechoDropDown> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return IgnorePointer(
       ignoring: !widget.enabled,
@@ -53,9 +64,10 @@ class _BrechoDropDownState extends State<BrechoDropDown> {
           autovalidate: widget.autovalidate,
           autoValidateAlways: widget.autoValidateAlways,
           onTap: () async {
-            final dynamic value = await _showModal();
+            final value = await _showModal() as String?;
             setState(() {
-              _controller.text = value.toString();
+              _controller.text =
+                  value.isNotNullAndNotEmpty ? value.toString() : '';
             });
           },
           readOnly: true,
@@ -67,57 +79,162 @@ class _BrechoDropDownState extends State<BrechoDropDown> {
   }
 
   Future<dynamic> _showModal() async {
-    late String? data;
     return BrechoDialog.showModalBottomSheet(
         context: context,
         builder: (context) {
-          return CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                title: Text(widget.titleDrop ?? '').labelLargeRegular(),
-                backgroundColor: BrechoColors.monoWhite,
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: BrechoSpacing.viii, horizontal: BrechoSpacing.x),
-                sliver: SliverList(
-                    delegate: SliverChildListDelegate([
-                  Column(
-                    children:
-                        List.generate(widget.selectItems?.length ?? 0, (index) {
-                      return GestureDetector(
-                        onTap: () {
-                          widget.onSelectItem!(index);
-                          data = widget.selectItems?[index];
+          return Material(
+            child: CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  title: Text(widget.titleDrop ?? '').labelLargeRegular(),
+                  backgroundColor: BrechoColors.monoWhite,
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: BrechoSpacing.viii,
+                      horizontal: BrechoSpacing.x),
+                  sliver: SliverList(
+                      delegate: SliverChildListDelegate([
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: List.generate(widget.selectItems?.length ?? 0,
+                          (index) {
+                        return GestureDetector(
+                          onTap: () {
+                            widget.onSelectItem!(index);
 
-                          Navigator.of(context).pop();
-                        },
-                        child: DecoratedBox(
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color: BrechoColors.neutral3))),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: BrechoSpacing.x,
-                                horizontal: BrechoSpacing.iv),
-                            child: Row(
-                              children: [
-                                Text(widget.selectItems![index])
-                                    .bodyMediumRegular(),
-                                const Expanded(child: SizedBox()),
-                                const Icon(BrechoIcons.done)
-                              ],
+                            Navigator.of(context)
+                                .pop(widget.selectItems![index]);
+                          },
+                          child: DecoratedBox(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: BrechoColors.neutral7))),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: BrechoSpacing.x,
+                                  horizontal: BrechoSpacing.iv),
+                              child: Row(
+                                children: [
+                                  Text(widget.selectItems![index])
+                                      .bodyMediumRegular(),
+                                  const Expanded(child: SizedBox()),
+                                  if (widget.trailing != null) ...{
+                                    InkWell(
+                                      onTap: () => widget.onActionTrailing,
+                                      child:
+                                          widget.trailing ?? const SizedBox(),
+                                    )
+                                  }
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
-                  )
-                ])),
-              )
-            ],
+                        );
+                      }),
+                    )
+                  ])),
+                )
+              ],
+            ),
           );
-        }).then((value) => data);
+        }).then((value) => value);
+  }
+}
+
+class BrechoDropDownWithFilter extends StatefulWidget {
+  final bool enabled;
+  final String? label;
+  final Function(String? title, String? subtitle)? onSelectItem;
+  final String? titleDrop;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final bool autovalidate;
+  final bool autoValidateAlways;
+  final bool showSearchField;
+  final List<String>? subtitles;
+  final List<String>? titles;
+  final Widget? trailing;
+  final Function()? onActionTrailing;
+  const BrechoDropDownWithFilter(
+      {super.key,
+      this.enabled = true,
+      this.onSelectItem,
+      required this.label,
+      required this.titleDrop,
+      this.controller,
+      this.validator,
+      this.showSearchField = false,
+      this.autovalidate = false,
+      this.autoValidateAlways = false,
+      this.subtitles,
+      this.titles,
+      this.trailing,
+      this.onActionTrailing});
+
+  @override
+  State<BrechoDropDownWithFilter> createState() =>
+      _BrechoDropDownWithFilterState();
+}
+
+class _BrechoDropDownWithFilterState extends State<BrechoDropDownWithFilter> {
+  List<String>? filteredTitle = [];
+  List<String>? filteredSubtitle = [];
+  final TextEditingController _searchController = TextEditingController();
+  final _debounce = Debouncer(miliseconds: 500);
+
+  void _onChangedSearchField(String value) {
+    _debounce.run(() {
+      filteredTitle?.clear();
+      filteredSubtitle?.clear();
+      if (value.isEmpty) {
+        filteredTitle = [...widget.titles ?? []];
+      } else {
+        List<int> indexes = [];
+        indexes = widget.titles
+                ?.asMap()
+                .entries
+                .where((element) =>
+                    element.value.toLowerCase().contains(value.toLowerCase()))
+                .map((e) => e.key)
+                .toList() ??
+            [];
+        filteredTitle = indexes.map((e) {
+          widget.subtitles?.add(widget.subtitles![e]);
+          return widget.titles![e];
+        }).toList();
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            title: Text(widget.titleDrop ?? '').labelLargeRegular(),
+            backgroundColor: BrechoColors.monoWhite,
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(
+                vertical: BrechoSpacing.viii, horizontal: BrechoSpacing.x),
+            sliver: SliverList(delegate: SliverChildListDelegate([])),
+          ),
+          if (widget.showSearchField) ...{
+            BrechoTextField(
+              controller: _searchController,
+              label: 'Digite o nome...',
+              onChanged: (p0) => _onChangedSearchField(p0),
+            ),
+            const SizedBox(
+              height: BrechoSpacing.xvi,
+            )
+          },
+        ],
+      ),
+    );
   }
 }
