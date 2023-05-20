@@ -1,7 +1,11 @@
+import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/core/interfaces/account_repository_interface.dart';
+import 'package:shopping_brecho/app/core/interfaces/remote_config_interface.dart';
 import 'package:shopping_brecho/app/core/models/account_alert_model/account_alert_model.dart';
 import 'package:shopping_brecho/app/core/models/account_register_model/account_register_model.dart';
+import 'package:shopping_brecho/app/core/models/label_value_model/label_value_model.dart';
+import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
 
 part 'home_controller.g.dart';
 
@@ -9,8 +13,9 @@ class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
   final IAccountRepositoy _repository;
+  final IRemoteConfig _rcService;
 
-  _HomeControllerBase(this._repository);
+  _HomeControllerBase(this._repository, this._rcService);
 
   @observable
   bool? connect;
@@ -24,11 +29,15 @@ abstract class _HomeControllerBase with Store {
   @observable
   List<double?> totalCategoryAccount = [];
 
+  @observable
+  List<LabelValueModel>? categories = [];
+
   @action
   void init() {
     getAccountAlert();
     getMovementAccountControl();
     getMovementAccountRegister();
+    getCategory();
   }
 
   @action
@@ -44,7 +53,27 @@ abstract class _HomeControllerBase with Store {
   @action
   Future<void> getMovementAccountRegister() async {
     accountRegister = AccountRegister.loading();
-    accountRegister = await _repository.getMovementAccountRegister();
+    final String catalogDate = DateFormat('yyyy_MM').format(DateTime.now());
+    accountRegister = await _repository.getMovementAccountRegister(catalogDate);
+  }
+
+  @action
+  void getCategory() {
+    categories = [...?_rcService.getCategory()];
+  }
+
+  @action
+  Future<void> onFilter(
+      String startDate, String endDate, String keyword) async {
+    accountRegister = AccountRegister.loading();
+    final Map<String, dynamic> query = {
+      'collection_ref': [
+        FormatHelper.parseStringDateToCollectionRef(startDate),
+        FormatHelper.parseStringDateToCollectionRef(endDate)
+      ],
+      'keyword': keyword
+    };
+    accountRegister = await _repository.getAccountRegisterFilter(query);
   }
 
   @computed

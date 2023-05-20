@@ -15,6 +15,7 @@ linter:
     require_trailing_commas: false
     avoid_positional_boolean_parameters: false
     no_leading_underscores_for_local_identifiers: false
+    equals_elements_in_set: false
 
 analyzer:
   exclude:

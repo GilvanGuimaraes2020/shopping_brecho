@@ -60,9 +60,9 @@ class _MainPageState extends State<MainPage> {
             padding: const EdgeInsets.all(BrechoSpacing.vi),
             sliver: SliverToBoxAdapter(
                 child: ElevatedButton(
-                    onPressed: () => throw Exception(),
-                    child: const Text('Throw test exception'))),
-          )
+                    onPressed: () => Modular.to.pushNamed(AppRoute.registerBuy),
+                    child: const Text('Efetuar compra'))),
+          ),
         ]));
   }
 }

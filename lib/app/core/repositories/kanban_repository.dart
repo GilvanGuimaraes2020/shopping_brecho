@@ -27,7 +27,7 @@ class KanbanRepository implements IKanbanRepository {
   Future<RequestStatus> upStatus(String id, Map<String, String> status) async {
     try {
       await db.collection('tasks').doc(id).set(status, SetOptions(merge: true));
-      return RequestStatus.success();
+      return const RequestStatus.success();
     } catch (e) {
       return RequestStatus.error(e);
     }
@@ -41,7 +41,7 @@ class KanbanRepository implements IKanbanRepository {
           .collection('tasks')
           .doc(id)
           .set(payload ?? {}, SetOptions(merge: true));
-      return RequestStatus.success();
+      return const RequestStatus.success();
     } catch (e) {
       return RequestStatus.error(e);
     }

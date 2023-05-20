@@ -13,13 +13,17 @@ _$_RegistersModel _$$_RegistersModelFromJson(Map<String, dynamic> json) =>
       date: _fromJson(json['date'] as Timestamp),
       movementCurrency: json['movement_currency'] as String?,
       movementDetail: json['movement_detail'] as String?,
+      accountMovement: json['account_movement'] as String?,
+      installment: json['installment'] as int?,
     );
 
 Map<String, dynamic> _$$_RegistersModelToJson(_$_RegistersModel instance) =>
     <String, dynamic>{
       'account_bank': instance.accountBank,
       'account_value': instance.accountValue,
-      'date': instance.date,
+      'date': _toJson(instance.date),
       'movement_currency': instance.movementCurrency,
       'movement_detail': instance.movementDetail,
+      'account_movement': instance.accountMovement,
+      'installment': instance.installment,
     };

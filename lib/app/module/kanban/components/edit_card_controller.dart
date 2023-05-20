@@ -43,7 +43,7 @@ abstract class _EditCardControllerBase with Store {
   String? title;
 
   @observable
-  RequestStatus requestStatus = RequestStatus.none();
+  RequestStatus requestStatus = const RequestStatus.none();
 
   @action
   void init(KanbanModel? model, String? idCard) {
@@ -94,7 +94,7 @@ abstract class _EditCardControllerBase with Store {
 
   @action
   Future<bool> saveData() async {
-    requestStatus = RequestStatus.loading();
+    requestStatus = const RequestStatus.loading();
     final payload = {
       'description': description,
       'level': levelEnum?.level,

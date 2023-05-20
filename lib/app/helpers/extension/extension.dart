@@ -9,6 +9,7 @@ const _h1 =  TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -1.2,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -18,6 +19,7 @@ const _h2 =  TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -1,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -27,6 +29,7 @@ const _h3 = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.8,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -36,6 +39,7 @@ const _h4 = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.6,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -45,6 +49,7 @@ const _h5 = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.5,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -54,6 +59,7 @@ const _h6 = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.4,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -63,6 +69,7 @@ const _bodyLarge = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.45,
   height: 1.33,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -72,6 +79,7 @@ const _bodyMedium = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.4,
   height: 1.38,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -81,6 +89,7 @@ const _bodySmall = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.35,
   height: 1.43,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -90,6 +99,7 @@ const _bodyExtraSmall = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.3,
   height: 1.33,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -99,6 +109,7 @@ const _bodyTiny = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.25,
   height: 1.4,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -108,6 +119,7 @@ const _labelExtraLarge = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.3,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -117,6 +129,7 @@ const _labelLarge = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.3,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -126,6 +139,7 @@ const _labelMedium = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.4,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -135,6 +149,7 @@ const _labelSmall = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.3,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -144,6 +159,7 @@ const _labelExtraSmall = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.3,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -153,6 +169,7 @@ const _labelTiny = TextStyle(
   fontStyle: FontStyle.normal,
   letterSpacing: -0.25,
   height: 1,
+  decoration: TextDecoration.none,
   color: BrechoColors.secondaryBlue5,
 );
 
@@ -647,7 +664,7 @@ extension BrechoTypographyExtession on Text {
   }
 
   // h4
-  Text h4Thin({TextStyle? style}) {
+  Text bodySmallMediumh4Thin({TextStyle? style}) {
     final TextStyle defaultStyle = _h4.merge(const TextStyle(fontWeight: FontWeight.w100));
     return Text(data!,
         style: (style ?? defaultStyle).merge(style ?? defaultStyle),

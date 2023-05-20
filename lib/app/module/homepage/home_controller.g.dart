@@ -105,6 +105,22 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  late final _$categoriesAtom =
+      Atom(name: '_HomeControllerBase.categories', context: context);
+
+  @override
+  List<LabelValueModel>? get categories {
+    _$categoriesAtom.reportRead();
+    return super.categories;
+  }
+
+  @override
+  set categories(List<LabelValueModel>? value) {
+    _$categoriesAtom.reportWrite(value, super.categories, () {
+      super.categories = value;
+    });
+  }
+
   late final _$getAccountAlertAsyncAction =
       AsyncAction('_HomeControllerBase.getAccountAlert', context: context);
 
@@ -133,6 +149,15 @@ mixin _$HomeController on _HomeControllerBase, Store {
         .run(() => super.getMovementAccountRegister());
   }
 
+  late final _$onFilterAsyncAction =
+      AsyncAction('_HomeControllerBase.onFilter', context: context);
+
+  @override
+  Future<void> onFilter(String startDate, String endDate, String keyword) {
+    return _$onFilterAsyncAction
+        .run(() => super.onFilter(startDate, endDate, keyword));
+  }
+
   late final _$_HomeControllerBaseActionController =
       ActionController(name: '_HomeControllerBase', context: context);
 
@@ -148,12 +173,24 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
+  void getCategory() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.getCategory');
+    try {
+      return super.getCategory();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 connect: ${connect},
 accountAlert: ${accountAlert},
 accountRegister: ${accountRegister},
 totalCategoryAccount: ${totalCategoryAccount},
+categories: ${categories},
 accountAlertList: ${accountAlertList},
 accountRegisterModel: ${accountRegisterModel},
 registersTotal: ${registersTotal},

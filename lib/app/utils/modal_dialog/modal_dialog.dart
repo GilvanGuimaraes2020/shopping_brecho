@@ -32,6 +32,7 @@ class _WebModal extends StatelessWidget {
   final Widget child;
 
   const _WebModal(
+      // ignore: unused_element
       {required this.padding, required this.child, this.backgroundColor = BrechoColors.neutral1});
 
   @override

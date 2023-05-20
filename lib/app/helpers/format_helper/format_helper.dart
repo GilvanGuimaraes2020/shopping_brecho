@@ -18,4 +18,9 @@ class FormatHelper {
       return null;
     }
   }
+
+  static String parseStringDateToCollectionRef(String value) {
+    final List<String> partDate = value.split('/');
+    return '${partDate[2]}_${partDate[1]}';
+  }
 }

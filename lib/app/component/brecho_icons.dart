@@ -168,4 +168,9 @@ class BrechoIcons {
       IconData(0xe353, fontFamily: 'MaterialIcons');
 
   static const done = IconData(0xe1f6, fontFamily: 'MaterialIcons');
+  static const add_circle_sharp = IconData(0xe74e, fontFamily: 'MaterialIcons');
+  static const add = IconData(0xe047, fontFamily: 'MaterialIcons');
+  static const keyboard_arrow_right =
+      IconData(0xea4e, fontFamily: 'MaterialIcons');
+  static const remove = IconData(0xe516, fontFamily: 'MaterialIcons');
 }
