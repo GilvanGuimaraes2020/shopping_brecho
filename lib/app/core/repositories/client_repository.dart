@@ -12,7 +12,11 @@ class ClientRepository implements IClientRepository {
   @override
   Future<Client> getClients() async {
     try {
-      final reference = db.collection('shop').doc('shop').collection('clients');
+      final reference = db
+          .collection('shop')
+          .doc('shop')
+          .collection('clients')
+          .orderBy('name', descending: true);
       List<Map<String, dynamic>> json = [];
       json = await reference.get().then((value) => value.docs
           .map((e) => <String, dynamic>{'id': e.id}..addAll(e.data()))
@@ -20,7 +24,7 @@ class ClientRepository implements IClientRepository {
       return Client.data(json.map((e) => ClientModel.fromJson(e)).toList());
     } catch (e, s) {
       crashlytics.recordError(e, s);
-      return  Client.error(e);
+      return Client.error(e);
     }
   }
 }
