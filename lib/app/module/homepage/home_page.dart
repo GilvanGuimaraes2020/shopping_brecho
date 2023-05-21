@@ -191,8 +191,8 @@ class _HomePageState extends State<HomePage> {
         .label;
     final List<double?> accountValue =
         registers?.map((e) => e.accountValue).toList() ?? [];
-    final double? maxValue = accountValue
-        .reduce((value, element) => value! > element! ? value : element);
+    final double? maxValue = accountValue.reduce((value, element) =>
+        (value!).abs() > (element!).abs() ? value.abs() : element.abs());
     BrechoDialog.showModalBottomSheet(
         context: context,
         builder: (context) {
@@ -221,7 +221,8 @@ class _HomePageState extends State<HomePage> {
                                 price:
                                     registers?[index].accountValue.toString(),
                                 isBigger:
-                                    registers?[index].accountValue == maxValue,
+                                    registers?[index].accountValue!.abs() ==
+                                        maxValue,
                                 typeName: typeName,
                               )))),
                 )
