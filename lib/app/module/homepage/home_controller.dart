@@ -27,6 +27,9 @@ abstract class _HomeControllerBase with Store {
   AccountRegister accountRegister = AccountRegister.none();
 
   @observable
+  AccountRegister accountRegisterFiltered = AccountRegister.none();
+
+  @observable
   List<double?> totalCategoryAccount = [];
 
   @observable
@@ -82,30 +85,49 @@ abstract class _HomeControllerBase with Store {
 
   @computed
   List<AccountRegisterModel> get accountRegisterModel =>
-      accountRegister.maybeWhen(data: (data) => data, orElse: () => []);
+      accountRegister.maybeWhen(
+          data: (data) {
+            final List<AccountRegisterModel> listAccountRegisterModel = [];
+            if (categories != null) {
+              for (final e in categories!) {
+                final joinRegisters = data
+                    .where((element) => element.typeName == e.value)
+                    .toList();
+
+                if (joinRegisters.isNotEmpty) {
+                  listAccountRegisterModel.add(AccountRegisterModel(
+                      typeName: e.value,
+                      registers: joinRegisters
+                          .expand((e) => e.registers!.map((element) => element))
+                          .toList()));
+                }
+              }
+
+              return listAccountRegisterModel;
+            }
+            return [];
+          },
+          orElse: () => []);
 
   @computed
   String? get registersTotal => accountRegister.maybeWhen(
-      data: (data) {
-        final accountValue = data
-            .map((e) => e.registers!.map((x) => x.accountValue))
+      data: (_) {
+        final totalRegistersValue = accountRegisterModel
+            .map((e) => e.registers!.map((e) => e.accountValue))
             .expand((element) => element)
             .toList();
 
-        return accountValue
+        return totalRegistersValue
             .reduce((value, element) => value! + element!)
-            .toString();
+            ?.toStringAsFixed(2);
       },
       orElse: () => null);
 
   @computed
-  List<double?> get totalCategory => accountRegister.maybeWhen(
-      data: (data) {
-        return data
-            .map((e) => e.registers!
-                .map((x) => x.accountValue)
-                .reduce((value, element) => value! + element!))
-            .toList();
-      },
-      orElse: () => []);
+  List<String?> get totalCategory => accountRegisterModel
+      .map((e) => e.registers!
+          .map((e) => e.accountValue)
+          .reduce((value, element) => value! + element!)
+          ?.toStringAsFixed(2))
+      .toList();
 }

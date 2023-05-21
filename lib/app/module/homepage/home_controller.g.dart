@@ -32,11 +32,11 @@ mixin _$HomeController on _HomeControllerBase, Store {
           () => super.registersTotal,
           name: '_HomeControllerBase.registersTotal'))
       .value;
-  Computed<List<double?>>? _$totalCategoryComputed;
+  Computed<List<String?>>? _$totalCategoryComputed;
 
   @override
-  List<double?> get totalCategory => (_$totalCategoryComputed ??=
-          Computed<List<double?>>(() => super.totalCategory,
+  List<String?> get totalCategory => (_$totalCategoryComputed ??=
+          Computed<List<String?>>(() => super.totalCategory,
               name: '_HomeControllerBase.totalCategory'))
       .value;
 
@@ -85,6 +85,23 @@ mixin _$HomeController on _HomeControllerBase, Store {
   set accountRegister(AccountRegister value) {
     _$accountRegisterAtom.reportWrite(value, super.accountRegister, () {
       super.accountRegister = value;
+    });
+  }
+
+  late final _$accountRegisterFilteredAtom = Atom(
+      name: '_HomeControllerBase.accountRegisterFiltered', context: context);
+
+  @override
+  AccountRegister get accountRegisterFiltered {
+    _$accountRegisterFilteredAtom.reportRead();
+    return super.accountRegisterFiltered;
+  }
+
+  @override
+  set accountRegisterFiltered(AccountRegister value) {
+    _$accountRegisterFilteredAtom
+        .reportWrite(value, super.accountRegisterFiltered, () {
+      super.accountRegisterFiltered = value;
     });
   }
 
@@ -189,6 +206,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
 connect: ${connect},
 accountAlert: ${accountAlert},
 accountRegister: ${accountRegister},
+accountRegisterFiltered: ${accountRegisterFiltered},
 totalCategoryAccount: ${totalCategoryAccount},
 categories: ${categories},
 accountAlertList: ${accountAlertList},
