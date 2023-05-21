@@ -65,6 +65,20 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
           Computed<List<String>>(() => super.paymentTypeNames,
               name: '_RegisterBuyControllerBase.paymentTypeNames'))
       .value;
+  Computed<bool>? _$priceIsValidComputed;
+
+  @override
+  bool get priceIsValid =>
+      (_$priceIsValidComputed ??= Computed<bool>(() => super.priceIsValid,
+              name: '_RegisterBuyControllerBase.priceIsValid'))
+          .value;
+  Computed<bool>? _$dateIsValidComputed;
+
+  @override
+  bool get dateIsValid =>
+      (_$dateIsValidComputed ??= Computed<bool>(() => super.dateIsValid,
+              name: '_RegisterBuyControllerBase.dateIsValid'))
+          .value;
   Computed<bool>? _$formIsValidComputed;
 
   @override
@@ -271,6 +285,8 @@ listProductBrand: ${listProductBrand},
 listProductModel: ${listProductModel},
 listProduct: ${listProduct},
 paymentTypeNames: ${paymentTypeNames},
+priceIsValid: ${priceIsValid},
+dateIsValid: ${dateIsValid},
 formIsValid: ${formIsValid},
 isLoading: ${isLoading}
     ''';
