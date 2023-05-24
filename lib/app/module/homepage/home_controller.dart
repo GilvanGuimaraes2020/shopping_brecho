@@ -1,3 +1,5 @@
+import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/core/interfaces/account_repository_interface.dart';
@@ -6,6 +8,8 @@ import 'package:shopping_brecho/app/core/models/account_alert_model/account_aler
 import 'package:shopping_brecho/app/core/models/account_register_model/account_register_model.dart';
 import 'package:shopping_brecho/app/core/models/label_value_model/label_value_model.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
+import 'package:shopping_brecho/app/helpers/validator_helper/validator_helper.dart';
+import 'package:shopping_brecho/app/utils/snackbar/snackbar.dart';
 
 part 'home_controller.g.dart';
 
@@ -16,6 +20,15 @@ abstract class _HomeControllerBase with Store {
   final IRemoteConfig _rcService;
 
   _HomeControllerBase(this._repository, this._rcService);
+
+  final TextEditingController startDateCtl =
+      MaskedTextController(mask: '00/0000');
+  final TextEditingController endDateCtl =
+      MaskedTextController(mask: '00/0000');
+  final TextEditingController keywordCtl = TextEditingController();
+
+  @observable
+  bool validateAlways = false;
 
   @observable
   bool? connect;
@@ -35,12 +48,41 @@ abstract class _HomeControllerBase with Store {
   @observable
   List<LabelValueModel>? categories = [];
 
+  @observable
+  String? startDate;
+
+  @observable
+  String? endDate;
+
+  @observable
+  String? keyword;
+
   @action
   void init() {
     getAccountAlert();
     getMovementAccountControl();
     getMovementAccountRegister();
     getCategory();
+  }
+
+  @action
+  void setAutoValidateAlways(dynamic value) {
+    validateAlways = value as bool;
+  }
+
+  @action
+  void setStartDate(String value) {
+    startDate = value.trim();
+  }
+
+  @action
+  void setEndDate(String value) {
+    endDate = value.trim();
+  }
+
+  @action
+  void setKeyword(String value) {
+    keyword = value.trim();
   }
 
   @action
@@ -66,17 +108,38 @@ abstract class _HomeControllerBase with Store {
   }
 
   @action
-  Future<void> onFilter(
-      String startDate, String endDate, String keyword) async {
+  Future<void> onFilter() async {
     accountRegister = AccountRegister.loading();
     final Map<String, dynamic> query = {
       'collection_ref': [
-        FormatHelper.parseStringDateToCollectionRef(startDate),
-        FormatHelper.parseStringDateToCollectionRef(endDate)
+        FormatHelper.parseStringDateToCollectionRef(startDate ?? ''),
+        FormatHelper.parseStringDateToCollectionRef(endDate ?? '')
       ],
       'keyword': keyword
     };
     accountRegister = await _repository.getAccountRegisterFilter(query);
+  }
+
+  @action
+  bool onAccordeonAction() {
+    setAutoValidateAlways(true);
+    if (formIsValid) {
+      return true;
+    }
+    BrechoSnackbar.show(
+        text: 'Informe datas válidas!',
+        brechoSnackbarStatus: BrechoSnackbarStatus.warning);
+    return false;
+  }
+
+  @action
+  String? validateEndDate(String? value) {
+    return endDateIsValid ? null : ValidatorHelper.endDateText;
+  }
+
+  @action
+  String? validateStartDate(String? value) {
+    return startDateIsValid ? null : ValidatorHelper.startDateText;
   }
 
   @computed
@@ -130,4 +193,13 @@ abstract class _HomeControllerBase with Store {
           .reduce((value, element) => value! + element!)
           ?.toStringAsFixed(2))
       .toList();
+
+  @computed
+  bool get endDateIsValid => ValidatorHelper.dateMonthYearIsValid(endDate);
+
+  @computed
+  bool get startDateIsValid => ValidatorHelper.dateMonthYearIsValid(startDate);
+
+  @computed
+  bool get formIsValid => endDateIsValid && startDateIsValid;
 }

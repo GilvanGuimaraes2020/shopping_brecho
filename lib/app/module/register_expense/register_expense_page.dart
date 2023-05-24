@@ -51,7 +51,7 @@ class _RegisterExpensePageState extends State<RegisterExpensePage> {
                   onSelectItem: controller.setCategoryModel,
                   label: 'Categoria',
                   validator: controller.validateCategory,
-                  autovalidate: controller.categoryIsValid,
+                  autovalidate: !controller.categoryIsValid,
                   autoValidateAlways: controller.autoValidateAlways,
                 ),
                 const SizedBox(
@@ -63,8 +63,8 @@ class _RegisterExpensePageState extends State<RegisterExpensePage> {
                   onChanged: controller.setDescription,
                   controller: controller.descriptionCtl,
                   validator: controller.validateDescription,
-                  autovalidate: controller.descriptionIsvalid,
-                  autoValidateAlways: !controller.autoValidateAlways,
+                  autovalidate: !controller.descriptionIsvalid,
+                  autoValidateAlways: controller.autoValidateAlways,
                   textCapitalization: TextCapitalization.words,
                 ),
                 const SizedBox(
@@ -72,6 +72,7 @@ class _RegisterExpensePageState extends State<RegisterExpensePage> {
                 ),
                 Row(
                   key: const Key('RegisterExpense.dataValue'),
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                         child: BrechoTextField(
@@ -79,7 +80,8 @@ class _RegisterExpensePageState extends State<RegisterExpensePage> {
                       controller: controller.buyDateCtl,
                       onChanged: controller.setBuyDate,
                       validator: controller.validateDate,
-                      autovalidate: controller.dateIsValid,
+                      autovalidate: !controller.dateIsValid,
+                      textInputType: TextInputType.datetime,
                       autoValidateAlways: controller.autoValidateAlways,
                     )),
                     const SizedBox(
@@ -95,6 +97,10 @@ class _RegisterExpensePageState extends State<RegisterExpensePage> {
                             onChanged: controller.setPrice,
                             prefixText: 'R\$',
                             isMoneyMaskedTextController: true,
+                            validator: controller.validatePrice,
+                            autovalidate: !controller.priceIsValid,
+                            autoValidateAlways: controller.autoValidateAlways,
+                            textInputType: TextInputType.number,
                           ),
                           Positioned(
                               right: 10,
@@ -144,6 +150,8 @@ class _RegisterExpensePageState extends State<RegisterExpensePage> {
                   onSelectItem: controller.setPaymentType,
                   label: 'Tipo pagamento',
                   validator: controller.validatePaymentType,
+                  autovalidate: !controller.paymentIsValid,
+                  autoValidateAlways: controller.autoValidateAlways,
                 ),
                 const SizedBox(
                   height: BrechoSpacing.xvi,

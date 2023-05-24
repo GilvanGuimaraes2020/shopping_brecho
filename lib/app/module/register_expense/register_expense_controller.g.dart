@@ -401,6 +401,17 @@ mixin _$RegisterExpenseController on _RegisterExpenseController, Store {
   }
 
   @override
+  String? validatePrice(dynamic value) {
+    final _$actionInfo = _$_RegisterExpenseControllerActionController
+        .startAction(name: '_RegisterExpenseController.validatePrice');
+    try {
+      return super.validatePrice(value);
+    } finally {
+      _$_RegisterExpenseControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 autoValidateAlways: ${autoValidateAlways},
