@@ -143,7 +143,7 @@ abstract class _RegisterExpenseController with Store {
 
   @action
   String? validateDescription(dynamic value) {
-    return categoryIsValid ? null : ValidatorHelper.requiredText;
+    return descriptionIsvalid ? null : ValidatorHelper.requiredText;
   }
 
   @action
@@ -154,6 +154,11 @@ abstract class _RegisterExpenseController with Store {
   @action
   String? validatePaymentType(dynamic value) {
     return paymentIsValid ? null : ValidatorHelper.dateText;
+  }
+
+  @action
+  String? validatePrice(dynamic value) {
+    return priceIsValid ? null : ValidatorHelper.requiredText;
   }
 
   @computed

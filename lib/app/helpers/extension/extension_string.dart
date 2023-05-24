@@ -6,6 +6,7 @@ extension ExtensionString on String {
 
 extension ExtensionMaybeNullString on String? {
   bool get isNotNullAndNotEmpty => this?.isNotEmpty ?? false;
+  bool get isNullOrEmpty => this?.isEmpty ?? true;
 }
 
 extension ExtensionMaybeNullList on List? {

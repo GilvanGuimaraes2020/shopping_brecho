@@ -39,6 +39,43 @@ mixin _$HomeController on _HomeControllerBase, Store {
           Computed<List<String?>>(() => super.totalCategory,
               name: '_HomeControllerBase.totalCategory'))
       .value;
+  Computed<bool>? _$endDateIsValidComputed;
+
+  @override
+  bool get endDateIsValid =>
+      (_$endDateIsValidComputed ??= Computed<bool>(() => super.endDateIsValid,
+              name: '_HomeControllerBase.endDateIsValid'))
+          .value;
+  Computed<bool>? _$startDateIsValidComputed;
+
+  @override
+  bool get startDateIsValid => (_$startDateIsValidComputed ??= Computed<bool>(
+          () => super.startDateIsValid,
+          name: '_HomeControllerBase.startDateIsValid'))
+      .value;
+  Computed<bool>? _$formIsValidComputed;
+
+  @override
+  bool get formIsValid =>
+      (_$formIsValidComputed ??= Computed<bool>(() => super.formIsValid,
+              name: '_HomeControllerBase.formIsValid'))
+          .value;
+
+  late final _$validateAlwaysAtom =
+      Atom(name: '_HomeControllerBase.validateAlways', context: context);
+
+  @override
+  bool get validateAlways {
+    _$validateAlwaysAtom.reportRead();
+    return super.validateAlways;
+  }
+
+  @override
+  set validateAlways(bool value) {
+    _$validateAlwaysAtom.reportWrite(value, super.validateAlways, () {
+      super.validateAlways = value;
+    });
+  }
 
   late final _$connectAtom =
       Atom(name: '_HomeControllerBase.connect', context: context);
@@ -138,6 +175,54 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  late final _$startDateAtom =
+      Atom(name: '_HomeControllerBase.startDate', context: context);
+
+  @override
+  String? get startDate {
+    _$startDateAtom.reportRead();
+    return super.startDate;
+  }
+
+  @override
+  set startDate(String? value) {
+    _$startDateAtom.reportWrite(value, super.startDate, () {
+      super.startDate = value;
+    });
+  }
+
+  late final _$endDateAtom =
+      Atom(name: '_HomeControllerBase.endDate', context: context);
+
+  @override
+  String? get endDate {
+    _$endDateAtom.reportRead();
+    return super.endDate;
+  }
+
+  @override
+  set endDate(String? value) {
+    _$endDateAtom.reportWrite(value, super.endDate, () {
+      super.endDate = value;
+    });
+  }
+
+  late final _$keywordAtom =
+      Atom(name: '_HomeControllerBase.keyword', context: context);
+
+  @override
+  String? get keyword {
+    _$keywordAtom.reportRead();
+    return super.keyword;
+  }
+
+  @override
+  set keyword(String? value) {
+    _$keywordAtom.reportWrite(value, super.keyword, () {
+      super.keyword = value;
+    });
+  }
+
   late final _$getAccountAlertAsyncAction =
       AsyncAction('_HomeControllerBase.getAccountAlert', context: context);
 
@@ -170,9 +255,8 @@ mixin _$HomeController on _HomeControllerBase, Store {
       AsyncAction('_HomeControllerBase.onFilter', context: context);
 
   @override
-  Future<void> onFilter(String startDate, String endDate, String keyword) {
-    return _$onFilterAsyncAction
-        .run(() => super.onFilter(startDate, endDate, keyword));
+  Future<void> onFilter() {
+    return _$onFilterAsyncAction.run(() => super.onFilter());
   }
 
   late final _$_HomeControllerBaseActionController =
@@ -190,6 +274,50 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
+  void setAutoValidateAlways(dynamic value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.setAutoValidateAlways');
+    try {
+      return super.setAutoValidateAlways(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setStartDate(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.setStartDate');
+    try {
+      return super.setStartDate(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setEndDate(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.setEndDate');
+    try {
+      return super.setEndDate(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setKeyword(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.setKeyword');
+    try {
+      return super.setKeyword(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void getCategory() {
     final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
         name: '_HomeControllerBase.getCategory');
@@ -201,18 +329,58 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
+  bool onAccordeonAction() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.onAccordeonAction');
+    try {
+      return super.onAccordeonAction();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateEndDate(String? value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.validateEndDate');
+    try {
+      return super.validateEndDate(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateStartDate(String? value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.validateStartDate');
+    try {
+      return super.validateStartDate(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+validateAlways: ${validateAlways},
 connect: ${connect},
 accountAlert: ${accountAlert},
 accountRegister: ${accountRegister},
 accountRegisterFiltered: ${accountRegisterFiltered},
 totalCategoryAccount: ${totalCategoryAccount},
 categories: ${categories},
+startDate: ${startDate},
+endDate: ${endDate},
+keyword: ${keyword},
 accountAlertList: ${accountAlertList},
 accountRegisterModel: ${accountRegisterModel},
 registersTotal: ${registersTotal},
-totalCategory: ${totalCategory}
+totalCategory: ${totalCategory},
+endDateIsValid: ${endDateIsValid},
+startDateIsValid: ${startDateIsValid},
+formIsValid: ${formIsValid}
     ''';
   }
 }

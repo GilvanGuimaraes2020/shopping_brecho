@@ -1,17 +1,16 @@
 // ignore_for_file: equal_elements_in_set
 
 import 'package:brecho_utilities/brecho_utilities.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
-import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension.dart';
-import 'package:shopping_brecho/app/utils/snackbar/snackbar.dart';
 
 class Accordeon extends StatefulWidget {
   final String title;
-  final Function(String, String, String) onFilter;
-  const Accordeon({super.key, required this.title, required this.onFilter});
+  final Widget child;
+  final bool Function()? onAction;
+  const Accordeon(
+      {super.key, required this.title, required this.child, this.onAction});
 
   @override
   State<Accordeon> createState() => _AccordeonState();
@@ -19,9 +18,6 @@ class Accordeon extends StatefulWidget {
 
 class _AccordeonState extends State<Accordeon> {
   bool _toogle = false;
-  final startDateCtl = MaskedTextController(mask: '00/00/0000');
-  final endDateCtl = MaskedTextController(mask: '00/00/0000');
-  final keyWordCtl = TextEditingController();
 
   @override
   void initState() {
@@ -62,23 +58,9 @@ class _AccordeonState extends State<Accordeon> {
           ),
         ),
         if (_toogle) ...{
-          BrechoTextField(
-            label: 'Data inicial',
-            controller: startDateCtl,
-          ),
+          widget.child,
           const SizedBox(
-            height: BrechoSpacing.xvi,
-          ),
-          BrechoTextField(
-            label: 'Data Final',
-            controller: endDateCtl,
-          ),
-          const SizedBox(
-            height: BrechoSpacing.xvi,
-          ),
-          BrechoTextField(
-            label: 'Busca por palavra...',
-            controller: keyWordCtl,
+            height: BrechoSpacing.viii,
           ),
           Padding(
               padding: const EdgeInsets.all(BrechoSpacing.viii),
@@ -88,15 +70,11 @@ class _AccordeonState extends State<Accordeon> {
                     color: BrechoColors.primaryBlue5),
                 child: MaterialButton(
                   padding: const EdgeInsets.all(BrechoSpacing.viii),
-                  onPressed: () async {
-                    if (startDateCtl.text.isNotEmpty) {
+                  onPressed: () {
+                    final result = widget.onAction?.call();
+                    if (result ?? false) {
                       _toogle = !_toogle;
-                      widget.onFilter(startDateCtl.text, endDateCtl.text, keyWordCtl.text);
                       setState(() {});
-                    } else {
-                      BrechoSnackbar.show(
-                          text: 'Informe data inicial',
-                          brechoSnackbarStatus: BrechoSnackbarStatus.warning);
                     }
                   },
                   child: const Text('Salvar'),
