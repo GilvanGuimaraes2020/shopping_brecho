@@ -156,6 +156,7 @@ class BrechoDropDownWithFilter extends StatefulWidget {
   final Widget? trailing;
   final Function()? onActionTrailing;
   final List<String>? dataTrailing;
+  
   const BrechoDropDownWithFilter(
       {super.key,
       this.enabled = true,
