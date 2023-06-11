@@ -21,6 +21,6 @@ class FormatHelper {
 
   static String parseStringDateToCollectionRef(String value) {
     final List<String> partDate = value.split('/');
-    return '${partDate[2]}_${partDate[1]}';
+    return '${partDate[1]}_${partDate[0]}';
   }
 }

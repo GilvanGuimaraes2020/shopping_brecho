@@ -285,7 +285,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
-  void setStartDate(String value) {
+  void setStartDate(dynamic value) {
     final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
         name: '_HomeControllerBase.setStartDate');
     try {

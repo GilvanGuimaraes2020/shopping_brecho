@@ -71,8 +71,8 @@ abstract class _HomeControllerBase with Store {
   }
 
   @action
-  void setStartDate(String value) {
-    startDate = value.trim();
+  void setStartDate(dynamic value) {
+    startDate = value as String;
   }
 
   @action
@@ -123,13 +123,15 @@ abstract class _HomeControllerBase with Store {
   @action
   bool onAccordeonAction() {
     setAutoValidateAlways(true);
-    if (formIsValid) {
-      return true;
+    if (!formIsValid) {
+      BrechoSnackbar.show(
+          text: 'Informe datas válidas!',
+          brechoSnackbarStatus: BrechoSnackbarStatus.warning);
+      return false;
     }
-    BrechoSnackbar.show(
-        text: 'Informe datas válidas!',
-        brechoSnackbarStatus: BrechoSnackbarStatus.warning);
-    return false;
+    onFilter();
+
+    return true;
   }
 
   @action
