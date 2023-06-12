@@ -186,8 +186,8 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
       AsyncAction('_RegisterBuyControllerBase.getClients', context: context);
 
   @override
-  Future<void> getClients() {
-    return _$getClientsAsyncAction.run(() => super.getClients());
+  Future<void> getClients(String keyword) {
+    return _$getClientsAsyncAction.run(() => super.getClients(keyword));
   }
 
   late final _$getPaymentListAsyncAction = AsyncAction(

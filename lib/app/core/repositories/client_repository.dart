@@ -10,13 +10,14 @@ class ClientRepository implements IClientRepository {
   ClientRepository();
 
   @override
-  Future<Client> getClients() async {
+  Future<Client> getClients(String keyword) async {
     try {
       final reference = db
           .collection('shop')
           .doc('shop')
           .collection('clients')
-          .orderBy('name', descending: true);
+          .where('name', isGreaterThanOrEqualTo: keyword)
+          .where('name', isLessThanOrEqualTo: '${keyword}z');
       List<Map<String, dynamic>> json = [];
       json = await reference.get().then((value) => value.docs
           .map((e) => <String, dynamic>{'id': e.id}..addAll(e.data()))
