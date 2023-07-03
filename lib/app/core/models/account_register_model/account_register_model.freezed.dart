@@ -182,6 +182,7 @@ mixin _$AccountRegister {
     required TResult Function() loading,
     required TResult Function(Object? error) error,
     required TResult Function() none,
+    required TResult Function() empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -190,6 +191,7 @@ mixin _$AccountRegister {
     TResult? Function()? loading,
     TResult? Function(Object? error)? error,
     TResult? Function()? none,
+    TResult? Function()? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -198,6 +200,7 @@ mixin _$AccountRegister {
     TResult Function()? loading,
     TResult Function(Object? error)? error,
     TResult Function()? none,
+    TResult Function()? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -207,6 +210,7 @@ mixin _$AccountRegister {
     required TResult Function(AccountRegisterLoading value) loading,
     required TResult Function(AccountRegisterError value) error,
     required TResult Function(AccountRegisterNone value) none,
+    required TResult Function(AccountRegisterEmpty value) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -215,6 +219,7 @@ mixin _$AccountRegister {
     TResult? Function(AccountRegisterLoading value)? loading,
     TResult? Function(AccountRegisterError value)? error,
     TResult? Function(AccountRegisterNone value)? none,
+    TResult? Function(AccountRegisterEmpty value)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -223,6 +228,7 @@ mixin _$AccountRegister {
     TResult Function(AccountRegisterLoading value)? loading,
     TResult Function(AccountRegisterError value)? error,
     TResult Function(AccountRegisterNone value)? none,
+    TResult Function(AccountRegisterEmpty value)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -280,7 +286,7 @@ class __$$AccountRegisterDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AccountRegisterData implements AccountRegisterData {
-  _$AccountRegisterData(this.listAccountRegister);
+  const _$AccountRegisterData(this.listAccountRegister);
 
   @override
   final List<AccountRegisterModel> listAccountRegister;
@@ -318,6 +324,7 @@ class _$AccountRegisterData implements AccountRegisterData {
     required TResult Function() loading,
     required TResult Function(Object? error) error,
     required TResult Function() none,
+    required TResult Function() empty,
   }) {
     return data(listAccountRegister);
   }
@@ -329,6 +336,7 @@ class _$AccountRegisterData implements AccountRegisterData {
     TResult? Function()? loading,
     TResult? Function(Object? error)? error,
     TResult? Function()? none,
+    TResult? Function()? empty,
   }) {
     return data?.call(listAccountRegister);
   }
@@ -340,6 +348,7 @@ class _$AccountRegisterData implements AccountRegisterData {
     TResult Function()? loading,
     TResult Function(Object? error)? error,
     TResult Function()? none,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -355,6 +364,7 @@ class _$AccountRegisterData implements AccountRegisterData {
     required TResult Function(AccountRegisterLoading value) loading,
     required TResult Function(AccountRegisterError value) error,
     required TResult Function(AccountRegisterNone value) none,
+    required TResult Function(AccountRegisterEmpty value) empty,
   }) {
     return data(this);
   }
@@ -366,6 +376,7 @@ class _$AccountRegisterData implements AccountRegisterData {
     TResult? Function(AccountRegisterLoading value)? loading,
     TResult? Function(AccountRegisterError value)? error,
     TResult? Function(AccountRegisterNone value)? none,
+    TResult? Function(AccountRegisterEmpty value)? empty,
   }) {
     return data?.call(this);
   }
@@ -377,6 +388,7 @@ class _$AccountRegisterData implements AccountRegisterData {
     TResult Function(AccountRegisterLoading value)? loading,
     TResult Function(AccountRegisterError value)? error,
     TResult Function(AccountRegisterNone value)? none,
+    TResult Function(AccountRegisterEmpty value)? empty,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -387,7 +399,7 @@ class _$AccountRegisterData implements AccountRegisterData {
 }
 
 abstract class AccountRegisterData implements AccountRegister {
-  factory AccountRegisterData(
+  const factory AccountRegisterData(
           final List<AccountRegisterModel> listAccountRegister) =
       _$AccountRegisterData;
 
@@ -416,7 +428,7 @@ class __$$AccountRegisterLoadingCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AccountRegisterLoading implements AccountRegisterLoading {
-  _$AccountRegisterLoading();
+  const _$AccountRegisterLoading();
 
   @override
   String toString() {
@@ -440,6 +452,7 @@ class _$AccountRegisterLoading implements AccountRegisterLoading {
     required TResult Function() loading,
     required TResult Function(Object? error) error,
     required TResult Function() none,
+    required TResult Function() empty,
   }) {
     return loading();
   }
@@ -451,6 +464,7 @@ class _$AccountRegisterLoading implements AccountRegisterLoading {
     TResult? Function()? loading,
     TResult? Function(Object? error)? error,
     TResult? Function()? none,
+    TResult? Function()? empty,
   }) {
     return loading?.call();
   }
@@ -462,6 +476,7 @@ class _$AccountRegisterLoading implements AccountRegisterLoading {
     TResult Function()? loading,
     TResult Function(Object? error)? error,
     TResult Function()? none,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -477,6 +492,7 @@ class _$AccountRegisterLoading implements AccountRegisterLoading {
     required TResult Function(AccountRegisterLoading value) loading,
     required TResult Function(AccountRegisterError value) error,
     required TResult Function(AccountRegisterNone value) none,
+    required TResult Function(AccountRegisterEmpty value) empty,
   }) {
     return loading(this);
   }
@@ -488,6 +504,7 @@ class _$AccountRegisterLoading implements AccountRegisterLoading {
     TResult? Function(AccountRegisterLoading value)? loading,
     TResult? Function(AccountRegisterError value)? error,
     TResult? Function(AccountRegisterNone value)? none,
+    TResult? Function(AccountRegisterEmpty value)? empty,
   }) {
     return loading?.call(this);
   }
@@ -499,6 +516,7 @@ class _$AccountRegisterLoading implements AccountRegisterLoading {
     TResult Function(AccountRegisterLoading value)? loading,
     TResult Function(AccountRegisterError value)? error,
     TResult Function(AccountRegisterNone value)? none,
+    TResult Function(AccountRegisterEmpty value)? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -509,7 +527,7 @@ class _$AccountRegisterLoading implements AccountRegisterLoading {
 }
 
 abstract class AccountRegisterLoading implements AccountRegister {
-  factory AccountRegisterLoading() = _$AccountRegisterLoading;
+  const factory AccountRegisterLoading() = _$AccountRegisterLoading;
 }
 
 /// @nodoc
@@ -543,7 +561,7 @@ class __$$AccountRegisterErrorCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AccountRegisterError implements AccountRegisterError {
-  _$AccountRegisterError([this.error]);
+  const _$AccountRegisterError([this.error]);
 
   @override
   final Object? error;
@@ -580,6 +598,7 @@ class _$AccountRegisterError implements AccountRegisterError {
     required TResult Function() loading,
     required TResult Function(Object? error) error,
     required TResult Function() none,
+    required TResult Function() empty,
   }) {
     return error(this.error);
   }
@@ -591,6 +610,7 @@ class _$AccountRegisterError implements AccountRegisterError {
     TResult? Function()? loading,
     TResult? Function(Object? error)? error,
     TResult? Function()? none,
+    TResult? Function()? empty,
   }) {
     return error?.call(this.error);
   }
@@ -602,6 +622,7 @@ class _$AccountRegisterError implements AccountRegisterError {
     TResult Function()? loading,
     TResult Function(Object? error)? error,
     TResult Function()? none,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -617,6 +638,7 @@ class _$AccountRegisterError implements AccountRegisterError {
     required TResult Function(AccountRegisterLoading value) loading,
     required TResult Function(AccountRegisterError value) error,
     required TResult Function(AccountRegisterNone value) none,
+    required TResult Function(AccountRegisterEmpty value) empty,
   }) {
     return error(this);
   }
@@ -628,6 +650,7 @@ class _$AccountRegisterError implements AccountRegisterError {
     TResult? Function(AccountRegisterLoading value)? loading,
     TResult? Function(AccountRegisterError value)? error,
     TResult? Function(AccountRegisterNone value)? none,
+    TResult? Function(AccountRegisterEmpty value)? empty,
   }) {
     return error?.call(this);
   }
@@ -639,6 +662,7 @@ class _$AccountRegisterError implements AccountRegisterError {
     TResult Function(AccountRegisterLoading value)? loading,
     TResult Function(AccountRegisterError value)? error,
     TResult Function(AccountRegisterNone value)? none,
+    TResult Function(AccountRegisterEmpty value)? empty,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -649,7 +673,8 @@ class _$AccountRegisterError implements AccountRegisterError {
 }
 
 abstract class AccountRegisterError implements AccountRegister {
-  factory AccountRegisterError([final Object? error]) = _$AccountRegisterError;
+  const factory AccountRegisterError([final Object? error]) =
+      _$AccountRegisterError;
 
   Object? get error;
   @JsonKey(ignore: true)
@@ -676,7 +701,7 @@ class __$$AccountRegisterNoneCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AccountRegisterNone implements AccountRegisterNone {
-  _$AccountRegisterNone();
+  const _$AccountRegisterNone();
 
   @override
   String toString() {
@@ -700,6 +725,7 @@ class _$AccountRegisterNone implements AccountRegisterNone {
     required TResult Function() loading,
     required TResult Function(Object? error) error,
     required TResult Function() none,
+    required TResult Function() empty,
   }) {
     return none();
   }
@@ -711,6 +737,7 @@ class _$AccountRegisterNone implements AccountRegisterNone {
     TResult? Function()? loading,
     TResult? Function(Object? error)? error,
     TResult? Function()? none,
+    TResult? Function()? empty,
   }) {
     return none?.call();
   }
@@ -722,6 +749,7 @@ class _$AccountRegisterNone implements AccountRegisterNone {
     TResult Function()? loading,
     TResult Function(Object? error)? error,
     TResult Function()? none,
+    TResult Function()? empty,
     required TResult orElse(),
   }) {
     if (none != null) {
@@ -737,6 +765,7 @@ class _$AccountRegisterNone implements AccountRegisterNone {
     required TResult Function(AccountRegisterLoading value) loading,
     required TResult Function(AccountRegisterError value) error,
     required TResult Function(AccountRegisterNone value) none,
+    required TResult Function(AccountRegisterEmpty value) empty,
   }) {
     return none(this);
   }
@@ -748,6 +777,7 @@ class _$AccountRegisterNone implements AccountRegisterNone {
     TResult? Function(AccountRegisterLoading value)? loading,
     TResult? Function(AccountRegisterError value)? error,
     TResult? Function(AccountRegisterNone value)? none,
+    TResult? Function(AccountRegisterEmpty value)? empty,
   }) {
     return none?.call(this);
   }
@@ -759,6 +789,7 @@ class _$AccountRegisterNone implements AccountRegisterNone {
     TResult Function(AccountRegisterLoading value)? loading,
     TResult Function(AccountRegisterError value)? error,
     TResult Function(AccountRegisterNone value)? none,
+    TResult Function(AccountRegisterEmpty value)? empty,
     required TResult orElse(),
   }) {
     if (none != null) {
@@ -769,5 +800,126 @@ class _$AccountRegisterNone implements AccountRegisterNone {
 }
 
 abstract class AccountRegisterNone implements AccountRegister {
-  factory AccountRegisterNone() = _$AccountRegisterNone;
+  const factory AccountRegisterNone() = _$AccountRegisterNone;
+}
+
+/// @nodoc
+abstract class _$$AccountRegisterEmptyCopyWith<$Res> {
+  factory _$$AccountRegisterEmptyCopyWith(_$AccountRegisterEmpty value,
+          $Res Function(_$AccountRegisterEmpty) then) =
+      __$$AccountRegisterEmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AccountRegisterEmptyCopyWithImpl<$Res>
+    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterEmpty>
+    implements _$$AccountRegisterEmptyCopyWith<$Res> {
+  __$$AccountRegisterEmptyCopyWithImpl(_$AccountRegisterEmpty _value,
+      $Res Function(_$AccountRegisterEmpty) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AccountRegisterEmpty implements AccountRegisterEmpty {
+  const _$AccountRegisterEmpty();
+
+  @override
+  String toString() {
+    return 'AccountRegister.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AccountRegisterEmpty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<AccountRegisterModel> listAccountRegister)
+        data,
+    required TResult Function() loading,
+    required TResult Function(Object? error) error,
+    required TResult Function() none,
+    required TResult Function() empty,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(List<AccountRegisterModel> listAccountRegister)? data,
+    TResult? Function()? loading,
+    TResult? Function(Object? error)? error,
+    TResult? Function()? none,
+    TResult? Function()? empty,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<AccountRegisterModel> listAccountRegister)? data,
+    TResult Function()? loading,
+    TResult Function(Object? error)? error,
+    TResult Function()? none,
+    TResult Function()? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AccountRegisterData value) data,
+    required TResult Function(AccountRegisterLoading value) loading,
+    required TResult Function(AccountRegisterError value) error,
+    required TResult Function(AccountRegisterNone value) none,
+    required TResult Function(AccountRegisterEmpty value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AccountRegisterData value)? data,
+    TResult? Function(AccountRegisterLoading value)? loading,
+    TResult? Function(AccountRegisterError value)? error,
+    TResult? Function(AccountRegisterNone value)? none,
+    TResult? Function(AccountRegisterEmpty value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AccountRegisterData value)? data,
+    TResult Function(AccountRegisterLoading value)? loading,
+    TResult Function(AccountRegisterError value)? error,
+    TResult Function(AccountRegisterNone value)? none,
+    TResult Function(AccountRegisterEmpty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountRegisterEmpty implements AccountRegister {
+  const factory AccountRegisterEmpty() = _$AccountRegisterEmpty;
 }
