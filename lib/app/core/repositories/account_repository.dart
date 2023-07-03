@@ -66,7 +66,10 @@ class AccountRepository implements IAccountRepositoy {
       Map<String, dynamic> query) async {
     try {
       final List<AccountRegisterModel> listAccountRegister = [];
-      for (final element in query['collection_ref'] as List) {
+      final List collectionRef = query['collection_ref'] as List;
+      collectionRef.removeWhere((element) => collectionRef.contains(element));
+
+      for (final element in collectionRef) {
         final List<Map<String, dynamic>> teste = await db
             .collection('account_movement')
             .doc('account_register')
