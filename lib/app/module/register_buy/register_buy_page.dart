@@ -41,8 +41,9 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
                   ),
                   BrechoDropDownWithFilter(
                       onSelectItem: controller.onSelectClient,
-                      titles: controller.titles,
-                      subtitles: controller.subtitles,
+                      asyncData: controller.getClients,
+                      // titles: controller.titles,
+                      // subtitles: controller.subtitles,
                       titleDrop: 'Escolha o cliente'),
                   const SizedBox(height: BrechoSpacing.xvi),
                   BrechoDropDownWithFilter(
@@ -119,7 +120,6 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
                     status = BrechoSnackbarStatus.error;
                   }
                 } else {
-                  
                   text = 'Dados invalidos!';
                   status = BrechoSnackbarStatus.error;
                 }

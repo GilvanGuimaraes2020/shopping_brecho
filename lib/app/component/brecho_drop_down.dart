@@ -156,20 +156,24 @@ class BrechoDropDownWithFilter extends StatefulWidget {
   final Widget? trailing;
   final Function()? onActionTrailing;
   final List<String>? dataTrailing;
-  const BrechoDropDownWithFilter(
-      {super.key,
-      this.enabled = true,
-      required this.onSelectItem,
-      required this.titleDrop,
-      this.controller,
-      this.validator,
-      this.autovalidate = false,
-      this.autoValidateAlways = false,
-      this.subtitles,
-      this.titles,
-      this.trailing,
-      this.onActionTrailing,
-      this.dataTrailing});
+  final Function(String)? asyncData;
+
+  const BrechoDropDownWithFilter({
+    super.key,
+    this.enabled = true,
+    required this.onSelectItem,
+    required this.titleDrop,
+    this.controller,
+    this.validator,
+    this.autovalidate = false,
+    this.autoValidateAlways = false,
+    this.subtitles,
+    this.titles,
+    this.trailing,
+    this.onActionTrailing,
+    this.dataTrailing,
+    this.asyncData,
+  });
 
   @override
   State<BrechoDropDownWithFilter> createState() =>
@@ -187,31 +191,35 @@ class _BrechoDropDownWithFilterState extends State<BrechoDropDownWithFilter> {
 
   void _onChangedSearchField(String value) {
     _debounce.run(() {
-      filteredTitle?.clear();
-      filteredSubtitle?.clear();
-      if (value.isEmpty) {
-        filteredTitle = [...widget.titles ?? []];
-      } else {
-        List<int> indexes = [];
-        indexes = widget.titles
-                ?.asMap()
-                .entries
-                .where((element) =>
-                    element.value.toLowerCase().contains(value.toLowerCase()))
-                .map((e) => e.key)
-                .toList() ??
-            [];
-        filteredTitle = indexes.map((e) {
-          if (widget.dataTrailing != null) {
-            filteredDataTrailing?.add(widget.dataTrailing![e]);
-          }
-          if (widget.subtitles != null) {
-            filteredSubtitle?.add(widget.subtitles![e]);
-          }
-          return widget.titles![e];
-        }).toList();
+      if (widget.asyncData == null) {
+        filteredTitle?.clear();
+        filteredSubtitle?.clear();
+        if (value.isEmpty) {
+          filteredTitle = [...widget.titles ?? []];
+        } else {
+          List<int> indexes = [];
+          indexes = widget.titles
+                  ?.asMap()
+                  .entries
+                  .where((element) =>
+                      element.value.toLowerCase().contains(value.toLowerCase()))
+                  .map((e) => e.key)
+                  .toList() ??
+              [];
+          filteredTitle = indexes.map((e) {
+            if (widget.dataTrailing != null) {
+              filteredDataTrailing?.add(widget.dataTrailing![e]);
+            }
+            if (widget.subtitles != null) {
+              filteredSubtitle?.add(widget.subtitles![e]);
+            }
+            return widget.titles![e];
+          }).toList();
+        }
+        setState(() {});
+      } else{
+        widget.asyncData?.call(value);
       }
-      setState(() {});
     });
   }
 

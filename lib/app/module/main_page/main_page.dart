@@ -1,6 +1,7 @@
 import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shopping_brecho/app/component/custom_paint.dart';
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
 import 'package:shopping_brecho/app/module/homepage/home_page.dart';
 import 'package:shopping_brecho/app/module/kanban/kanban_page.dart';
@@ -15,6 +16,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final _controller = Modular.get<MainController>();
+
+  final list = [10, 150, 50, 70, 84, 60, 90, 53];
 
   @override
   void initState() {
@@ -63,6 +66,17 @@ class _MainPageState extends State<MainPage> {
                     onPressed: () => Modular.to.pushNamed(AppRoute.registerBuy),
                     child: const Text('Efetuar compra'))),
           ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 200,
+              child: CustomPaint(
+                painter: CustomPaintTeste(list),
+                child: const ColoredBox(
+                    color: Color.fromARGB(25, 158, 158, 158),
+                    child: Text('data', textAlign: TextAlign.center)),
+              ),
+            ),
+          )
         ]));
   }
 }

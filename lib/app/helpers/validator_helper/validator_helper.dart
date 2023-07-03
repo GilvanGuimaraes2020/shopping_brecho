@@ -17,9 +17,13 @@ class ValidatorHelper {
     if (value.isNullOrEmpty) {
       return false;
     }
-    final parts = value?.split('/');
 
-    final monthValue = int.tryParse(parts![0]);
+    if (value!.length < 4) {
+      return false;
+    }
+    final parts = value.split('/');
+
+    final monthValue = int.tryParse(parts[0]);
     final yearValue = int.tryParse(parts[1]);
 
     final monthIsValid =

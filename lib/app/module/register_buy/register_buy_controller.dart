@@ -24,7 +24,6 @@ abstract class _RegisterBuyControllerBase with Store {
   }
 
   void init() {
-    getClients();
     getProducts();
     getPaymentList();
   }
@@ -62,9 +61,9 @@ abstract class _RegisterBuyControllerBase with Store {
   }
 
   @action
-  Future<void> getClients() async {
+  Future<void> getClients(String keyword) async {
     client = const Client.loading();
-    client = await _clientRepository.getClients();
+    client = await _clientRepository.getClients(keyword);
   }
 
   @action
