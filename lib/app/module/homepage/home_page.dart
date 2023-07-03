@@ -45,55 +45,55 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Observer(builder: (context) {
-        return CustomScrollView(slivers: [
-          SliverToBoxAdapter(
-              child: Accordeon(
-                  title: 'Filtrar',
-                  onAction: controller.onAccordeonAction,
-                  child: Column(
-                    children: [
-                      BrechoTextField(
-                        label: 'Data inicial - mm/aaaa',
-                        controller: controller.startDateCtl,
-                        onChanged: controller.setStartDate,
-                        validator: controller.validateStartDate,
-                        autovalidate: !controller.startDateIsValid,
-                        autoValidateAlways: controller.validateAlways,
-                        textInputType: TextInputType.datetime,
-                      ),
-                      const SizedBox(
-                        height: BrechoSpacing.xvi,
-                      ),
-                      BrechoTextField(
-                        label: 'Data Final - mm/aaaa',
-                        controller: controller.endDateCtl,
-                        onChanged: controller.setEndDate,
-                        validator: controller.validateEndDate,
-                        autovalidate: !controller.endDateIsValid,
-                        autoValidateAlways: controller.validateAlways,
-                        textInputType: TextInputType.datetime,
-                      ),
-                      const SizedBox(
-                        height: BrechoSpacing.xvi,
-                      ),
-                    ],
-                  ))),
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(vertical: BrechoSpacing.viii),
-            sliver: SliverToBoxAdapter(
-                child: Center(child: Text('Registro de contas'))),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(BrechoSpacing.viii),
-            sliver: SliverList(
-                delegate: SliverChildListDelegate([
-              Container(
-                padding: const EdgeInsets.all(BrechoSpacing.viii),
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: BrechoColors.primaryBlue10),
+      body: CustomScrollView(slivers: [
+        SliverToBoxAdapter(
+            child: Accordeon(
+                title: 'Filtrar',
+                onAction: controller.onAccordeonAction,
                 child: Column(
+                  children: [
+                    BrechoTextField(
+                      label: 'Data inicial - mm/aaaa',
+                      controller: controller.startDateCtl,
+                      onChanged: controller.setStartDate,
+                      validator: controller.validateStartDate,
+                      autovalidate: !controller.startDateIsValid,
+                      autoValidateAlways: controller.validateAlways,
+                      textInputType: TextInputType.datetime,
+                    ),
+                    const SizedBox(
+                      height: BrechoSpacing.xvi,
+                    ),
+                    BrechoTextField(
+                      label: 'Data Final - mm/aaaa',
+                      controller: controller.endDateCtl,
+                      onChanged: controller.setEndDate,
+                      validator: controller.validateEndDate,
+                      autovalidate: !controller.endDateIsValid,
+                      autoValidateAlways: controller.validateAlways,
+                      textInputType: TextInputType.datetime,
+                    ),
+                    const SizedBox(
+                      height: BrechoSpacing.xvi,
+                    ),
+                  ],
+                ))),
+        const SliverPadding(
+          padding: EdgeInsets.symmetric(vertical: BrechoSpacing.viii),
+          sliver: SliverToBoxAdapter(
+              child: Center(child: Text('Registro de contas'))),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.all(BrechoSpacing.viii),
+          sliver: SliverList(
+              delegate: SliverChildListDelegate([
+            Container(
+              padding: const EdgeInsets.all(BrechoSpacing.viii),
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: BrechoColors.primaryBlue10),
+              child: Observer(builder: (context) {
+                return Column(
                   children: [
                     ...List.generate(
                         controller.accountRegisterModel.length,
@@ -146,12 +146,12 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ],
-                ),
-              )
-            ])),
-          )
-        ]);
-      }),
+                );
+              }),
+            )
+          ])),
+        )
+      ]),
       floatingActionButton: const FloatingActionButton(
         onPressed: null,
         child: Icon(BrechoIcons.add),
