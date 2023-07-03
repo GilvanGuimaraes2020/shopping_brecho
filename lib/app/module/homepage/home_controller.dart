@@ -1,3 +1,4 @@
+import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
@@ -37,10 +38,10 @@ abstract class _HomeControllerBase with Store {
   AccountAlert accountAlert = AccountAlert.none();
 
   @observable
-  AccountRegister accountRegister = AccountRegister.none();
+  AccountRegister accountRegister = const AccountRegister.none();
 
   @observable
-  AccountRegister accountRegisterFiltered = AccountRegister.none();
+  AccountRegister accountRegisterFiltered = const AccountRegister.none();
 
   @observable
   List<double?> totalCategoryAccount = [];
@@ -97,7 +98,7 @@ abstract class _HomeControllerBase with Store {
 
   @action
   Future<void> getMovementAccountRegister() async {
-    accountRegister = AccountRegister.loading();
+    accountRegister = const AccountRegister.loading();
     final String catalogDate = DateFormat('yyyy_MM').format(DateTime.now());
     accountRegister = await _repository.getMovementAccountRegister(catalogDate);
   }
@@ -109,7 +110,7 @@ abstract class _HomeControllerBase with Store {
 
   @action
   Future<void> onFilter() async {
-    accountRegister = AccountRegister.loading();
+    accountRegister = const AccountRegister.loading();
     final Map<String, dynamic> query = {
       'collection_ref': [
         FormatHelper.parseStringDateToCollectionRef(startDate ?? ''),
@@ -197,7 +198,8 @@ abstract class _HomeControllerBase with Store {
       .toList();
 
   @computed
-  bool get endDateIsValid => ValidatorHelper.dateMonthYearIsValid(endDate);
+  bool get endDateIsValid =>
+      ValidatorHelper.dateMonthYearIsValid(endDate) || endDate.isNullOrEmpty();
 
   @computed
   bool get startDateIsValid => ValidatorHelper.dateMonthYearIsValid(startDate);

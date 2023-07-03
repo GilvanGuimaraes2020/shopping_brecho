@@ -54,10 +54,13 @@ class AccountRepository implements IAccountRepositoy {
         listAccountRegister.add(AccountRegisterModel(
             registers: listRegisters, typeName: data['type_name'] as String?));
       }
+      if (listAccountRegister.isEmpty) {
+        return const AccountRegister.empty();
+      }
       return AccountRegister.data(listAccountRegister);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
-      return AccountRegister.error();
+      return const AccountRegister.error();
     }
   }
 
@@ -67,9 +70,9 @@ class AccountRepository implements IAccountRepositoy {
     try {
       final List<AccountRegisterModel> listAccountRegister = [];
       final List collectionRef = query['collection_ref'] as List;
-      collectionRef.removeWhere((element) => collectionRef.contains(element));
+      final distinctRefs = collectionRef.toSet().toList();
 
-      for (final element in collectionRef) {
+      for (final element in distinctRefs) {
         final List<Map<String, dynamic>> teste = await db
             .collection('account_movement')
             .doc('account_register')
@@ -90,10 +93,14 @@ class AccountRepository implements IAccountRepositoy {
         }
       }
 
+      if (listAccountRegister.isEmpty) {
+        return const AccountRegister.empty();
+      }
+
       return AccountRegister.data(listAccountRegister);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
-      return AccountRegister.error();
+      return const AccountRegister.error();
     }
   }
 
