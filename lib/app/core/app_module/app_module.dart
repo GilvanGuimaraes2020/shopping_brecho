@@ -9,6 +9,7 @@ import 'package:shopping_brecho/app/core/repositories/client_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/kanban_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/product_repository.dart';
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
+import 'package:shopping_brecho/app/module/costumer/customer_controller.dart';
 import 'package:shopping_brecho/app/module/homepage/home_controller.dart';
 import 'package:shopping_brecho/app/module/homepage/home_page.dart';
 import 'package:shopping_brecho/app/module/kanban/components/edit_card_controller.dart';
@@ -35,6 +36,7 @@ class AppModule extends Module {
         Bind.factory((i) => RegisterExpenseController(i.get(), i.get())),
         Bind.factory((i) => MainController(i.get())),
         Bind.factory((i) => RegisterBuyController(i.get(), i.get(), i.get())),
+        Bind.factory((i) => CustomerController()),
       ];
 
   @override

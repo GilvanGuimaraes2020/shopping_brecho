@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:shopping_brecho/app/component/brecho_select_modal.dart';
 import 'package:shopping_brecho/app/core/interfaces/client_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/product_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/remote_config_interface.dart';
@@ -61,9 +62,15 @@ abstract class _RegisterBuyControllerBase with Store {
   }
 
   @action
-  Future<void> getClients(String keyword) async {
+  Future<List<AsyncDataModel>> getClients(String keyword) async {
     client = const Client.loading();
-    client = await _clientRepository.getClients(keyword);
+    client = await _clientRepository.getClients(keyword.toUpperCase());
+    return client.maybeWhen(
+        data: (client) => client
+            .map((e) =>
+                AsyncDataModel(title: e.name ?? '', subtitle: e.phone ?? ''))
+            .toList(),
+        orElse: () => []);
   }
 
   @action

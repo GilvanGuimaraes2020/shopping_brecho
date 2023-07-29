@@ -34,55 +34,75 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
         child: Observer(builder: (_) {
           return controller.product.maybeWhen(
             data: (_) {
-              return Column(
-                children: [
-                  const SizedBox(
-                    height: BrechoSpacing.viii,
+              return CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.only(
+                      top: BrechoSpacing.viii,
+                    ),
+                    sliver: SliverToBoxAdapter(
+                      child: BrechoDropDownWithFilter(
+                          onSelectItem: controller.onSelectClient,
+                          asyncData: controller.getClients,
+                          titleDrop: 'Escolha o cliente'),
+                    ),
                   ),
-                  BrechoDropDownWithFilter(
-                      onSelectItem: controller.onSelectClient,
-                      asyncData: controller.getClients,
-                      // titles: controller.titles,
-                      // subtitles: controller.subtitles,
-                      titleDrop: 'Escolha o cliente'),
-                  const SizedBox(height: BrechoSpacing.xvi),
-                  BrechoDropDownWithFilter(
-                    titles: controller.listProductModel,
-                    subtitles: controller.listProductBrand,
-                    onSelectItem: controller.onSelectProduct,
-                    titleDrop: 'Escolha o produto',
-                  ),
-                  const SizedBox(height: BrechoSpacing.xvi),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: BrechoTextField(
-                          label: 'valor',
-                          prefixText: 'R\$ ',
-                          textInputType: TextInputType.number,
-                          onChanged: controller.onChangePrice,
-                        ),
+                  SliverPadding(
+                    padding: const EdgeInsets.only(top: BrechoSpacing.xvi),
+                    sliver: SliverToBoxAdapter(
+                      child: BrechoDropDownWithFilter(
+                        titles: controller.listProductModel,
+                        subtitles: controller.listProductBrand,
+                        onSelectItem: controller.onSelectProduct,
+                        titleDrop: 'Escolha o produto',
                       ),
-                      const SizedBox(width: BrechoSpacing.xvi),
-                      Expanded(
-                        child: BrechoTextField(
-                          controller: MaskedTextController(mask: '00/00/0000'),
-                          label: 'Data',
-                          onChanged: controller.onChangePrice,
-                          textInputType: TextInputType.number,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                  const SizedBox(height: BrechoSpacing.xvi),
-                  BrechoDropDown(
-                      onSelectItem: controller.onSelectPaymentType,
-                      label: 'Tipo de pagamento',
-                      selectItems: controller.paymentTypeNames,
-                      titleDrop: 'Tipo de pagamento'),
-                  const SizedBox(height: BrechoSpacing.xvi),
-                  BrechoTextTopDown(
-                      label: 'Parcelas', onTap: controller.onTapInstallment)
+                  SliverPadding(
+                    padding: const EdgeInsets.only(top: BrechoSpacing.xvi),
+                    sliver: SliverToBoxAdapter(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: BrechoTextField(
+                              label: 'valor',
+                              prefixText: 'R\$ ',
+                              textInputType: TextInputType.number,
+                              onChanged: controller.onChangePrice,
+                            ),
+                          ),
+                          const SizedBox(width: BrechoSpacing.xvi),
+                          Expanded(
+                            child: BrechoTextField(
+                              controller:
+                                  MaskedTextController(mask: '00/00/0000'),
+                              label: 'Data',
+                              onChanged: controller.onChangePrice,
+                              textInputType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.only(top: BrechoSpacing.xvi),
+                    sliver: SliverToBoxAdapter(
+                      child: BrechoDropDown(
+                          onSelectItem: controller.onSelectPaymentType,
+                          label: 'Tipo de pagamento',
+                          selectItems: controller.paymentTypeNames,
+                          titleDrop: 'Tipo de pagamento'),
+                    ),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.only(top: BrechoSpacing.xvi),
+                    sliver: SliverToBoxAdapter(
+                      child: BrechoTextTopDown(
+                          label: 'Parcelas',
+                          onTap: controller.onTapInstallment),
+                    ),
+                  )
                 ],
               );
             },
