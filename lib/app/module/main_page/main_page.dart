@@ -66,6 +66,13 @@ class _MainPageState extends State<MainPage> {
                     onPressed: () => Modular.to.pushNamed(AppRoute.registerBuy),
                     child: const Text('Efetuar compra'))),
           ),
+          SliverPadding(
+            padding: const EdgeInsets.all(BrechoSpacing.vi),
+            sliver: SliverToBoxAdapter(
+                child: ElevatedButton(
+                    onPressed: () => Modular.to.pushNamed(AppRoute.mainClient),
+                    child: const Text('Registrar cliente'))),
+          ),
           SliverToBoxAdapter(
             child: SizedBox(
               height: 200,
