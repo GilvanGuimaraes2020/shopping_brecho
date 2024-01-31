@@ -15,6 +15,8 @@ import 'package:shopping_brecho/app/module/kanban/components/edit_card_controlle
 import 'package:shopping_brecho/app/module/kanban/kanban_controller.dart';
 import 'package:shopping_brecho/app/module/main_page/main_controller.dart';
 import 'package:shopping_brecho/app/module/main_page/main_page.dart';
+import 'package:shopping_brecho/app/module/products/register_client/main_client_page.dart';
+import 'package:shopping_brecho/app/module/products/register_client/register_client_page.dart';
 import 'package:shopping_brecho/app/module/register_buy/register_buy_controller.dart';
 import 'package:shopping_brecho/app/module/register_buy/register_buy_page.dart';
 import 'package:shopping_brecho/app/module/register_expense/register_expense_controller.dart';
@@ -48,6 +50,14 @@ class AppModule extends Module {
         ChildRoute(
           AppRoute.registerBuy,
           child: (context, _) => const RegisterBuyPage(),
+        ),
+        ChildRoute(
+          AppRoute.mainClient,
+          child: (context, _) => const MainClientPage(),
+        ),
+        ChildRoute(
+          AppRoute.registerClient,
+          child: (context, _) => RegisteClientPage(),
         )
       ];
 }

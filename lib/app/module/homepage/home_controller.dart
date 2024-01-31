@@ -199,7 +199,7 @@ abstract class _HomeControllerBase with Store {
 
   @computed
   bool get endDateIsValid =>
-      ValidatorHelper.dateMonthYearIsValid(endDate) || endDate.isNullOrEmpty();
+      ValidatorHelper.dateMonthYearIsValid(endDate) || endDate.isNullOrEmpty;
 
   @computed
   bool get startDateIsValid => ValidatorHelper.dateMonthYearIsValid(startDate);

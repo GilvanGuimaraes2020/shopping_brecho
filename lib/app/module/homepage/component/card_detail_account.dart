@@ -1,6 +1,5 @@
 import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_brecho/app/helpers/extension/extension.dart';
 
 enum IconIndication {
   superMarket('SUPERMARKET'),

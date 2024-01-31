@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
-import 'package:shopping_brecho/app/helpers/extension/extension.dart';
 import 'package:shopping_brecho/app/module/kanban/kanban_controller.dart';
 
 class FilterCardWidget extends StatelessWidget {

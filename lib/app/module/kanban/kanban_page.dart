@@ -5,7 +5,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/core/models/enums/enum_kanban.dart';
 import 'package:shopping_brecho/app/core/models/enums/status_due_enum.dart';
 import 'package:shopping_brecho/app/core/models/kanban_model/kanban_item_model.dart';
-import 'package:shopping_brecho/app/helpers/extension/extension.dart';
 import 'package:shopping_brecho/app/module/kanban/components/edit_card.dart';
 import 'package:shopping_brecho/app/module/kanban/components/filter_card.dart';
 import 'package:shopping_brecho/app/module/kanban/kanban_controller.dart';
