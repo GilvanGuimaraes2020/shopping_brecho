@@ -6,7 +6,6 @@ import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/core/models/enums/enum_kanban.dart';
 import 'package:shopping_brecho/app/core/models/enums/level_enum.dart';
 import 'package:shopping_brecho/app/core/models/kanban_model/kanban_model.dart';
-import 'package:shopping_brecho/app/helpers/extension/extension.dart';
 import 'package:shopping_brecho/app/module/kanban/components/edit_card_controller.dart';
 import 'package:shopping_brecho/app/utils/snackbar/snackbar.dart';
 
