@@ -9,6 +9,13 @@ part of 'register_buy_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
+  Computed<CustomerState>? _$clientComputed;
+
+  @override
+  CustomerState get client =>
+      (_$clientComputed ??= Computed<CustomerState>(() => super.client,
+              name: '_RegisterBuyControllerBase.client'))
+          .value;
   Computed<List<String>?>? _$titlesComputed;
 
   @override
@@ -23,11 +30,11 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
       (_$subtitlesComputed ??= Computed<List<String>?>(() => super.subtitles,
               name: '_RegisterBuyControllerBase.subtitles'))
           .value;
-  Computed<List<ClientModel>>? _$listClientComputed;
+  Computed<List<CustomerModel>>? _$listClientComputed;
 
   @override
-  List<ClientModel> get listClient => (_$listClientComputed ??=
-          Computed<List<ClientModel>>(() => super.listClient,
+  List<CustomerModel> get listClient => (_$listClientComputed ??=
+          Computed<List<CustomerModel>>(() => super.listClient,
               name: '_RegisterBuyControllerBase.listClient'))
       .value;
   Computed<List<String>?>? _$dataTrailingComputed;
@@ -110,22 +117,6 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
     });
   }
 
-  late final _$clientAtom =
-      Atom(name: '_RegisterBuyControllerBase.client', context: context);
-
-  @override
-  Client get client {
-    _$clientAtom.reportRead();
-    return super.client;
-  }
-
-  @override
-  set client(Client value) {
-    _$clientAtom.reportWrite(value, super.client, () {
-      super.client = value;
-    });
-  }
-
   late final _$productAtom =
       Atom(name: '_RegisterBuyControllerBase.product', context: context);
 
@@ -182,14 +173,6 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
     return _$saveDataAsyncAction.run(() => super.saveData());
   }
 
-  late final _$getClientsAsyncAction =
-      AsyncAction('_RegisterBuyControllerBase.getClients', context: context);
-
-  @override
-  Future<void> getClients(String keyword) {
-    return _$getClientsAsyncAction.run(() => super.getClients(keyword));
-  }
-
   late final _$getPaymentListAsyncAction = AsyncAction(
       '_RegisterBuyControllerBase.getPaymentList',
       context: context);
@@ -199,12 +182,13 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
     return _$getPaymentListAsyncAction.run(() => super.getPaymentList());
   }
 
-  late final _$getProductsAsyncAction =
-      AsyncAction('_RegisterBuyControllerBase.getProducts', context: context);
+  late final _$getClientsAsyncAction =
+      AsyncAction('_RegisterBuyControllerBase.getClients', context: context);
 
   @override
-  Future<void> getProducts() {
-    return _$getProductsAsyncAction.run(() => super.getProducts());
+  Future<List<String>?> getClients({String? keyword}) {
+    return _$getClientsAsyncAction
+        .run(() => super.getClients(keyword: keyword));
   }
 
   late final _$onChangePriceAsyncAction =
@@ -273,10 +257,10 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
   String toString() {
     return '''
 autoValidateAlaways: ${autoValidateAlaways},
-client: ${client},
 product: ${product},
 paymentTypeList: ${paymentTypeList},
 requestStatus: ${requestStatus},
+client: ${client},
 titles: ${titles},
 subtitles: ${subtitles},
 listClient: ${listClient},

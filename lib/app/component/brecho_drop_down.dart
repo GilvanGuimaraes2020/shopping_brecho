@@ -155,7 +155,7 @@ class BrechoDropDownWithFilter extends StatefulWidget {
   final Widget? trailing;
   final Function()? onActionTrailing;
   final List<String>? dataTrailing;
-  final Function(String)? asyncData;
+  final Future<List<String>?> Function({String? keyword})? asyncData;
 
   const BrechoDropDownWithFilter({
     super.key,
@@ -216,8 +216,8 @@ class _BrechoDropDownWithFilterState extends State<BrechoDropDownWithFilter> {
           }).toList();
         }
         setState(() {});
-      } else{
-        widget.asyncData?.call(value);
+      } else {
+        widget.asyncData?.call(keyword: value);
       }
     });
   }

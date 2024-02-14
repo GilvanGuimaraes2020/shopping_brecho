@@ -2,13 +2,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/core/app_module/app_module.dart';
+import 'package:shopping_brecho/app/core/service/database_connection.dart/database_connection.dart';
 import 'package:shopping_brecho/app_widget.dart';
 import 'package:shopping_brecho/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load();
+
+  DatabaseConnection();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   FlutterError.onError = (erroDetails) =>

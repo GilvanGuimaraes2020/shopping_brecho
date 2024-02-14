@@ -1,14 +1,18 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/core/interfaces/account_repository_interface.dart';
-import 'package:shopping_brecho/app/core/interfaces/client_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/kanban_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/product_repository_interface.dart';
+import 'package:shopping_brecho/app/core/interfaces/relational_db/product_repository_interface.dart'
+    as rdbi;
 import 'package:shopping_brecho/app/core/interfaces/remote_config_interface.dart';
 import 'package:shopping_brecho/app/core/repositories/account_repository.dart';
-import 'package:shopping_brecho/app/core/repositories/client_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/kanban_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/product_repository.dart';
+import 'package:shopping_brecho/app/core/repositories/relational_db/product_repository.dart'
+    as rdb;
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
+import 'package:shopping_brecho/app/core/service/database/conn/conn.dart';
+import 'package:shopping_brecho/app/core/service/database/interface/remote_database.dart';
 import 'package:shopping_brecho/app/module/homepage/home_controller.dart';
 import 'package:shopping_brecho/app/module/homepage/home_page.dart';
 import 'package:shopping_brecho/app/module/kanban/components/edit_card_controller.dart';
@@ -29,14 +33,18 @@ class AppModule extends Module {
         Bind<IAccountRepositoy>((i) => AccountRepository()),
         Bind<IKanbanRepository>((i) => KanbanRepository()),
         Bind<IRemoteConfig>((i) => RemoteConfigService()),
-        Bind<IClientRepository>((i) => ClientRepository()),
         Bind<IProductRepository>((i) => ProductRepository()),
+        Bind<rdbi.IProductRepository>((i) => rdb.ProductRepository(i.get())),
         Bind.factory((i) => HomeController(i(), i())),
         Bind.factory((i) => EditCardController(i())),
         Bind.factory((i) => KanbanController(i())),
         Bind.factory((i) => RegisterExpenseController(i.get(), i.get())),
         Bind.factory((i) => MainController(i.get())),
-        Bind.factory((i) => RegisterBuyController(i.get(), i.get(), i.get())),
+        Bind.factory(
+            (i) => RegisterBuyController(i.get(), i.get(), )),
+        Bind.singleton<RemoteDatabase>(
+          (i) => Conn(),
+        ),
       ];
 
   @override
