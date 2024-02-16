@@ -1,7 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'customer_model.freezed.dart';
+part 'customer_model.g.dart';
 
 @freezed
 class CustomerModel with _$CustomerModel {

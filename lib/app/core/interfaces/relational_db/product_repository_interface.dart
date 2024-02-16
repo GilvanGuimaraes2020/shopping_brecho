@@ -13,5 +13,6 @@ abstract class IProductRepository {
       {List<String>? columns});
   Future<CustomerState> getCustomer({List<String>? columns});
   Future<BrandState> getBrands({List<String>? columns});
-  Future<ProductState> addProduct(ProductRelationalModel model);
+  Future<ProductState> addProduct(List<ProductRelationalModel> model);
+  Future<ProductState> getAllProducts({List<String>? columns});
 }

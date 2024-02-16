@@ -75,28 +75,54 @@ class _RegisterProductPageState extends State<RegisterProductPage> {
         ),
       ),
       floatingActionButton: BrechoFloatingDock(children: [
-        Expanded(
-            child: BrechoOutlineButton(
-                label: 'Cancelar', onPressed: () => Modular.to.pop())),
-        const SizedBox(
-          width: BrechoSpacing.xvi,
-        ),
-        Expanded(
-            child: BrechoPrimaryButton(
-                label: 'Adicionar',
-                onPressed: () async {
-                  controller.autoValidateAlways = false;
-                  if (controller.formIsValid) {
-                    await controller.addProduct();
-                    BrechoSnackbar.show(
-                        text: 'Adicionado com sucesso!',
-                        brechoSnackbarStatus: BrechoSnackbarStatus.success);
-                  } else {
-                    BrechoSnackbar.show(
-                        text: 'Há erro no formulário!',
-                        brechoSnackbarStatus: BrechoSnackbarStatus.error);
-                  }
-                }))
+        Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                    child: BrechoOutlineButton(
+                        label: 'Cancelar', onPressed: () => Modular.to.pop())),
+                const SizedBox(
+                  width: BrechoSpacing.xvi,
+                ),
+                Expanded(
+                    child: BrechoPrimaryButton(
+                        label: 'Adicionar',
+                        onPressed: () async {
+                          controller.autoValidateAlways = false;
+                          if (controller.formIsValid) {
+                            await controller.addProductList();
+                            BrechoSnackbar.show(
+                                text: 'Adicionado com sucesso!',
+                                brechoSnackbarStatus:
+                                    BrechoSnackbarStatus.success);
+                          } else {
+                            BrechoSnackbar.show(
+                                text: 'Há erro no formulário!',
+                                brechoSnackbarStatus:
+                                    BrechoSnackbarStatus.error);
+                          }
+                        }))
+              ],
+            ),
+            const SizedBox(
+              height: BrechoSpacing.xii,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: BrechoPrimaryButton(
+                      label:
+                          'Enviar p/ banco ${controller.countDataForDatabase}',
+                      onPressed:
+                          controller.countDataForDatabase > 0 ? () async{
+                            await controller.addAllProducts();
+                          } : null),
+                )
+              ],
+            )
+          ],
+        )
       ]),
     );
   }

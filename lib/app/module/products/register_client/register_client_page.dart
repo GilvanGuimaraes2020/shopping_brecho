@@ -23,66 +23,74 @@ class _RegisterClientPage extends State<RegisteClientPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
-        child: Column(children: [
-          BrechoTextField(
-            label: 'Nome do cliente',
-            controller: controller.customerNameCtl,
-            onChanged: controller.setOnChangeCustomerName,
-            validator: controller.validateName,
-            autoValidateAlways: controller.autoValidateAlways,
-            autovalidate: controller.nameIsValid,
-          ),
-          const SizedBox(
-            height: BrechoSpacing.xvi,
-          ),
-          BrechoTextField(
-            label: 'Telefone do cliente',
-            controller: controller.customerPhoneCtl,
-            onChanged: controller.setOnChangeCustomerPhone,
-            validator: controller.validatePhone,
-            autoValidateAlways: controller.autoValidateAlways,
-            autovalidate: controller.phoneIsValid,
-          ),
-          const SizedBox(
-            height: BrechoSpacing.xvi,
-          ),
-          BrechoTextField(
-            label: 'Endereço do cliente',
-            controller: controller.customerAddressCtl,
-            onChanged: controller.setOnChangeCustomerAddress,
-            validator: controller.validateAddress,
-            autoValidateAlways: controller.autoValidateAlways,
-            autovalidate: controller.addressIsValid,
-          ),
-          const SizedBox(
-            height: BrechoSpacing.xvi,
-          ),
-          BrechoTextField(
-            label: 'Bairro',
-            controller: controller.customerNeighborhoodCtl,
-            onChanged: controller.setOnChangeCustomerNeighborhood,
-            validator: controller.validateNeighborhood,
-            autoValidateAlways: controller.autoValidateAlways,
-            autovalidate: controller.neighborhoodIsValid,
-          ),
-          const SizedBox(
-            height: BrechoSpacing.xvi,
-          ),
-          BrechoTextField(
-            label: 'Numero',
-            controller: controller.customerNumberCtl,
-            onChanged: controller.setOnChangeCustomerNumber,
-          ),
-          const SizedBox(
-            height: BrechoSpacing.xvi,
-          ),
-          BrechoTextField(
-            label: 'Observação',
-            maxLines: 5,
-            controller: controller.customerObservationCtl,
-            onChanged: controller.setOnChangeCustomerObservation,
-          ),
-        ]),
+        child: SingleChildScrollView(
+          controller: ScrollController(),
+          child: Column(children: [
+            BrechoTextField(
+              label: 'Nome do cliente',
+              controller: controller.customerNameCtl,
+              onChanged: controller.setOnChangeCustomerName,
+              validator: controller.validateName,
+              autoValidateAlways: controller.autoValidateAlways,
+              autovalidate: controller.nameIsValid,
+              textInputType: TextInputType.name,
+            ),
+            const SizedBox(
+              height: BrechoSpacing.xvi,
+            ),
+            BrechoTextField(
+              label: 'Telefone do cliente',
+              controller: controller.customerPhoneCtl,
+              onChanged: controller.setOnChangeCustomerPhone,
+              validator: controller.validatePhone,
+              autoValidateAlways: controller.autoValidateAlways,
+              autovalidate: controller.phoneIsValid,
+            ),
+            const SizedBox(
+              height: BrechoSpacing.xvi,
+            ),
+            BrechoTextField(
+              label: 'Endereço do cliente',
+              controller: controller.customerAddressCtl,
+              onChanged: controller.setOnChangeCustomerAddress,
+              validator: controller.validateAddress,
+              autoValidateAlways: controller.autoValidateAlways,
+              autovalidate: controller.addressIsValid,
+            ),
+            const SizedBox(
+              height: BrechoSpacing.xvi,
+            ),
+            BrechoTextField(
+              label: 'Bairro',
+              controller: controller.customerNeighborhoodCtl,
+              onChanged: controller.setOnChangeCustomerNeighborhood,
+              validator: controller.validateNeighborhood,
+              autoValidateAlways: controller.autoValidateAlways,
+              autovalidate: controller.neighborhoodIsValid,
+            ),
+            const SizedBox(
+              height: BrechoSpacing.xvi,
+            ),
+            BrechoTextField(
+              label: 'Numero',
+              controller: controller.customerNumberCtl,
+              onChanged: controller.setOnChangeCustomerNumber,
+              textInputType: TextInputType.phone,
+            ),
+            const SizedBox(
+              height: BrechoSpacing.xvi,
+            ),
+            BrechoTextField(
+              label: 'Observação',
+              maxLines: 5,
+              controller: controller.customerObservationCtl,
+              onChanged: controller.setOnChangeCustomerObservation,
+            ),
+            const SizedBox(
+              height: BrechoSpacing.clx,
+            )
+          ]),
+        ),
       ),
       floatingActionButton: BrechoFloatingDock(children: [
         Expanded(
@@ -108,6 +116,7 @@ class _RegisterClientPage extends State<RegisteClientPage> {
                   }
                 }))
       ]),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

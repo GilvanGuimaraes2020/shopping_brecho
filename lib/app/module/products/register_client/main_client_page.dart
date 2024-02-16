@@ -1,8 +1,14 @@
 import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/brecho_bottom_sheet.dart';
+import 'package:shopping_brecho/app/component/brecho_empty_state.dart';
+import 'package:shopping_brecho/app/component/brecho_shimmer.dart';
+import 'package:shopping_brecho/app/core/models/customer/customer_model.dart';
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
+import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
+import 'package:shopping_brecho/app/module/products/register_client/main_client_controller.dart';
 import 'package:shopping_brecho/app/utils/modal_dialog/modal_dialog.dart';
 
 class MainClientPage extends StatefulWidget {
@@ -13,6 +19,7 @@ class MainClientPage extends StatefulWidget {
 }
 
 class _MainClientPageState extends State<MainClientPage> {
+  final controller = Modular.get<MainClientController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,27 +34,29 @@ class _MainClientPageState extends State<MainClientPage> {
               icon: const Icon(Icons.add_circle))
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(BrechoSpacing.xvi),
-        child: CustomScrollView(slivers: [
-          const SliverPadding(
-              padding: EdgeInsets.only(bottom: BrechoSpacing.xvi),
-              sliver: SliverToBoxAdapter(
-                child: Text('5 ultimas vendas'),
-              )),
-          ...List.generate(
-              4,
-              (index) => const SliverToBoxAdapter(
-                    child: _ClientCard(),
-                  )),
-        ]),
-      ),
+      body: Observer(builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(BrechoSpacing.xvi),
+          child: CustomScrollView(slivers: [
+            const SliverPadding(
+                padding: EdgeInsets.only(bottom: BrechoSpacing.xvi),
+                sliver: SliverToBoxAdapter(
+                  child: Text('Ultimas vendas'),
+                )),
+            SliverToBoxAdapter(
+                child: _ClientCard(
+              customerState: controller.customer,
+            ))
+          ]),
+        );
+      }),
     );
   }
 }
 
 class _ClientCard extends StatelessWidget {
-  const _ClientCard();
+  final CustomerState customerState;
+  const _ClientCard({required this.customerState});
 
   Widget _showFilter() {
     return BrechoBottomSheet(
@@ -73,49 +82,68 @@ class _ClientCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: BrechoSpacing.xvi),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-            color: BrechoColors.primaryBlue8,
-            borderRadius: BorderRadius.circular(BrechoSpacing.xvi)),
-        child: InkWell(
-          onDoubleTap: () async => BrechoDialog.showModalBottomSheet(
-              context: context, builder: (context) => _showFilter()),
-          child: SizedBox(
-            height: 70,
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: BrechoSpacing.xvi),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(Icons.person),
-                  const SizedBox(
-                    width: BrechoSpacing.xvi,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text('cliente'),
-                      SizedBox(
-                        height: BrechoSpacing.iv,
+    return customerState.maybeWhen(
+        data: (data) {
+          return Column(
+            children: data
+                .map((e) => Padding(
+                      padding: const EdgeInsets.only(bottom: BrechoSpacing.xvi),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                            color: BrechoColors.primaryBlue8,
+                            borderRadius:
+                                BorderRadius.circular(BrechoSpacing.xvi)),
+                        child: InkWell(
+                          onDoubleTap: () async =>
+                              BrechoDialog.showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => _showFilter()),
+                          child: SizedBox(
+                            height: 70,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: BrechoSpacing.xvi),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Icon(Icons.person),
+                                  const SizedBox(
+                                    width: BrechoSpacing.xvi,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(e.name ?? ''),
+                                      const SizedBox(
+                                        height: BrechoSpacing.iv,
+                                      ),
+                                      Text(e.address ?? ''),
+                                    ],
+                                  ),
+                                  const Expanded(child: SizedBox()),
+                                  Text(FormatHelper.formatPhone(e.phone)),
+                                  const SizedBox(
+                                    width: BrechoSpacing.vi,
+                                  ),
+                                  const Icon(Icons.whatsapp)
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      Text('endereço'),
-                    ],
-                  ),
-                  const Expanded(child: SizedBox()),
-                  const Text('169999999'),
-                  const SizedBox(
-                    width: BrechoSpacing.vi,
-                  ),
-                  const Icon(Icons.whatsapp)
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+                    ))
+                .toList(),
+          );
+        },
+        error: (error) => BrechoEmptyState(
+            title: 'Ops',
+            description: 'Sem dados para exibir.',
+            buttonTitle: 'Tentar novamente',
+            onPressed: () {}),
+        loading: () => const BrechoShimmer(
+            child: BrechoShimmerContainer(width: 300, height: 200)),
+        orElse: () => const SizedBox.shrink());
   }
 }

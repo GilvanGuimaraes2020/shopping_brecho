@@ -47,6 +47,12 @@ abstract class _BuyAndSaleProductStore with Store {
   @observable
   int productCategoryIndex = -1;
 
+  @observable
+  List<ProductRelationalModel> productsToSave = [];
+
+  @observable
+  ProductState products = const ProductState.loading();
+
 //customer
 
   @observable
@@ -159,19 +165,47 @@ abstract class _BuyAndSaleProductStore with Store {
         neighborhood: customerNeighborhood,
         number: int.tryParse(customerNumber));
 
-    await _customerRepository.addCustomer(payload: payload);
+    final result = await _customerRepository.addCustomer(payload: payload);
+
+    result.maybeWhen(
+      data: (data){
+        getAllCustomer();
+      },
+      orElse: ()=>null);
   }
 
   @action
-  Future<void> addProduct() async {
-    final payload = ProductRelationalModel(
+  void addProductList() {
+    final value = ProductRelationalModel(
         productCategoryId: productCategoryList[productCategoryIndex].id,
         oldCategoryId: oldCategoryList[oldCategoryIndex].id,
         brandId: brandList[brandIndex].id,
         model: productModel,
         createdAt: DateTime.now().toUtc());
+    productsToSave.add(value);
+  }
 
-    await _productRepository.addProduct(payload);
+  @action
+  Future<void> addAllProducts() async {
+    final result = await _productRepository.addProduct(productsToSave);
+
+    result.maybeWhen(
+        success: (data) {
+          getAllProducts();
+        },
+        orElse: () => null);
+  }
+
+  @action
+  Future<void> getAllProducts() async {
+    products = const ProductState.loading();
+    products = await _productRepository.getAllProducts();
+    products.maybeWhen(
+        data: (data) {
+          productsToSave.clear();
+          productsToSave = data;
+        },
+        orElse: () => null);
   }
 
   @computed

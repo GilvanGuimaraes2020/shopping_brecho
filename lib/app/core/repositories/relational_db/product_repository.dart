@@ -20,17 +20,36 @@ class ProductRepository implements IProductRepository {
   }
 
   @override
-  Future<ProductState> addProduct(ProductRelationalModel model) async {
+  Future<ProductState> addProduct(List<ProductRelationalModel> models) async {
     try {
-      final valuesInsert =
-          '${model.productCategoryId}, ${model.oldCategoryId}, ${model.brandId}, ${model.model}, ${model.createdAt}';
+      String valuesInsert = '';
+      for (final model in models) {
+        valuesInsert =
+            '(${model.productCategoryId}, ${model.oldCategoryId}, ${model.brandId}, ${model.model}, ${model.createdAt}), $valuesInsert';
+      }
 
       final query =
-          'INSERT INTO product(product_category_id, old_category_id, brand_id, model, created_at) VALUES ($valuesInsert) RETURNING id';
+          'INSERT INTO product(product_category_id, old_category_id, brand_id, model, created_at) VALUES $valuesInsert;';
 
       final result = await _remoteDatabase.query(query);
 
       return ProductState.success(result);
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return ProductState.error(e);
+    }
+  }
+
+  @override
+  Future<ProductState> getAllProducts({List<String>? columns}) async {
+    try {
+      final tableColumns = columns == null ? '*' : columns.join(',');
+      final query = 'SELECT $tableColumns FROM product;';
+
+      final result = await _remoteDatabase.query(query);
+
+      return ProductState.data(
+          result.map((e) => ProductRelationalModel.fromJson(e)).toList());
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
       return ProductState.error(e);

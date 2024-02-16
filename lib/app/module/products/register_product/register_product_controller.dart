@@ -18,7 +18,12 @@ abstract class _RegisterProductController with Store {
   bool autoValidateAlways = true;
 
   @action
-  Future<void> addProduct()async=> _buyAndSaleProductStore.addProduct();
+  Future<void> addProductList() async =>
+      _buyAndSaleProductStore.addProductList();
+
+  @action
+  Future<void> addAllProducts() async =>
+      _buyAndSaleProductStore.addAllProducts();
 
   @action
   void onSelectBrand(dynamic value) => _buyAndSaleProductStore.onSelectBrand;
@@ -49,6 +54,9 @@ abstract class _RegisterProductController with Store {
   @action
   String? validateModel(String? value) =>
       modelIsValid ? null : ValidatorHelper.requiredText;
+
+  @computed
+  int get countDataForDatabase => _buyAndSaleProductStore.productsToSave.length;
 
   @computed
   TextEditingController get productModelCtl =>
