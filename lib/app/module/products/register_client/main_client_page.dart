@@ -20,6 +20,13 @@ class MainClientPage extends StatefulWidget {
 
 class _MainClientPageState extends State<MainClientPage> {
   final controller = Modular.get<MainClientController>();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,6 +92,7 @@ class _ClientCard extends StatelessWidget {
     return customerState.maybeWhen(
         data: (data) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: data
                 .map((e) => Padding(
                       padding: const EdgeInsets.only(bottom: BrechoSpacing.xvi),
@@ -113,6 +121,8 @@ class _ClientCard extends StatelessWidget {
                                   ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(e.name ?? ''),
                                       const SizedBox(

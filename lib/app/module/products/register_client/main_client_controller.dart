@@ -6,11 +6,15 @@ part 'main_client_controller.g.dart';
 
 class MainClientController = _MainClientController with _$MainClientController;
 
-abstract class _MainClientController with Store{
+abstract class _MainClientController with Store {
   final BuyAndSaleProductStore _buyAndSaleProductStore;
 
   _MainClientController(this._buyAndSaleProductStore);
 
-  @computed 
+  Future<void> init() async {
+    _buyAndSaleProductStore.getAllCustomer();
+  }
+
+  @computed
   CustomerState get customer => _buyAndSaleProductStore.customer;
 }

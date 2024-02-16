@@ -7,13 +7,13 @@ part 'customer_model.g.dart';
 class CustomerModel with _$CustomerModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   factory CustomerModel({
-    String? id,
+    int? id,
     String? name,
     String? phone,
     String? address,
     String? neighborhood,
     int? number,
-    DateTime? createdAt,
+    dynamic createdAt,
   }) = _CustomerModel;
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) =>

@@ -14,8 +14,14 @@ class CustomerRepository implements ICustomerRepository {
       final result =
           await _remoteDatabase.query('SELECT * FROM customer_table;');
 
-      return CustomerState.data(
-          result.map((e) => CustomerModel.fromJson(e)).toList());
+      final List<CustomerModel> values = [];
+
+      for (final e in result) {
+        values.add(CustomerModel.fromJson(
+            e['customer_table'] as Map<String, dynamic>));
+      }
+
+      return CustomerState.data(values);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
       return CustomerState.error(e);
@@ -26,7 +32,7 @@ class CustomerRepository implements ICustomerRepository {
   Future<CustomerState> addCustomer({required CustomerModel payload}) async {
     try {
       final valuesToInsert =
-          '${payload.name}, ${payload.phone}, ${payload.address}, ${payload.neighborhood}, ${payload.number}, ${DateTime.now().toUtc()}';
+          "'${payload.name}', '${payload.phone}', '${payload.address}', '${payload.neighborhood}', '${payload.number}', '${DateTime.now().toUtc()}'";
       final result = await _remoteDatabase.query(
           'INSERT INTO customer_table (name, phone, address, neighborhood, number, created_at) VALUES ($valuesToInsert) returning id');
 

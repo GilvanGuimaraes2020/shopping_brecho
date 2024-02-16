@@ -1,6 +1,7 @@
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
+import 'package:shopping_brecho/app/core/models/customer/customer_model.dart';
 import 'package:shopping_brecho/app/core/store/buy_and_sale_product_store.dart';
 import 'package:shopping_brecho/app/helpers/validator_helper/validator_helper.dart';
 
@@ -18,31 +19,31 @@ abstract class _RegisterClientControllerBase with Store {
   bool autoValidateAlways = true;
 
   @action
-  Future<void> addCustomer() async => _buyAndSaleProductStore.addCustomer;
+  Future<CustomerState> addCustomer() async =>  _buyAndSaleProductStore.addCustomer();
 
   @action
   void setOnChangeCustomerName(dynamic value) =>
-      _buyAndSaleProductStore.setOnChangeCustomerName;
+      _buyAndSaleProductStore.setOnChangeCustomerName(value);
 
   @action
   void setOnChangeCustomerPhone(dynamic value) =>
-      _buyAndSaleProductStore.setOnChangeCustomerPhone;
+      _buyAndSaleProductStore.setOnChangeCustomerPhone(value);
 
   @action
   void setOnChangeCustomerAddress(dynamic value) =>
-      _buyAndSaleProductStore.setOnChangeCustomerAddress;
+      _buyAndSaleProductStore.setOnChangeCustomerAddress(value);
 
   @action
   void setOnChangeCustomerNumber(dynamic value) =>
-      _buyAndSaleProductStore.setOnChangeCustomerNumber;
+      _buyAndSaleProductStore.setOnChangeCustomerNumber(value);
 
   @action
   void setOnChangeCustomerNeighborhood(dynamic value) =>
-      _buyAndSaleProductStore.setOnChangeCustomerNeighborhood;
+      _buyAndSaleProductStore.setOnChangeCustomerNeighborhood(value);
 
   @action
   void setOnChangeCustomerObservation(dynamic value) =>
-      _buyAndSaleProductStore.setOnChangeCustomerObservation;
+      _buyAndSaleProductStore.setOnChangeCustomerObservation(value);
 
   @action
   String? validateName(String? value) =>

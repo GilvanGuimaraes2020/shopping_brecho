@@ -157,7 +157,7 @@ abstract class _BuyAndSaleProductStore with Store {
   }
 
   @action
-  Future<void> addCustomer() async {
+  Future<CustomerState> addCustomer() async {
     final payload = CustomerModel(
         name: customerName,
         phone: customerPhone.formatPhoneToSave(),
@@ -167,11 +167,11 @@ abstract class _BuyAndSaleProductStore with Store {
 
     final result = await _customerRepository.addCustomer(payload: payload);
 
-    result.maybeWhen(
-      data: (data){
-        getAllCustomer();
-      },
-      orElse: ()=>null);
+    if (result is CustomerStateSuccess) {
+      getAllCustomer();
+    }
+
+    return result;
   }
 
   @action

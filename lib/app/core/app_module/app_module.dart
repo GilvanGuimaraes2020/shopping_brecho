@@ -43,16 +43,16 @@ class AppModule extends Module {
         Bind.factory((i) => RegisterExpenseController(i.get(), i.get())),
         Bind.factory((i) => MainController(i.get())),
         Bind.factory((i) => RegisterProductController(i.get())),
-        Bind.factory((i) => RegisterClientController(i.get())),
-        Bind.factory((i) => MainClientController(i.get())),
-        Bind.lazySingleton((i) => BuyAndSaleProductStore(i.get(), i.get())),
+        Bind.factory((i) => RegisterClientController(i.get<BuyAndSaleProductStore>())),
+        Bind.factory((i) => MainClientController(i.get<BuyAndSaleProductStore>())),
         Bind.factory((i) => RegisterBuyController(
-              i.get(),
-              i.get(),
+              i.get<IRemoteConfig>(),
+              i.get<BuyAndSaleProductStore>(),
             )),
         Bind.singleton<RemoteDatabase>(
           (i) => Conn(),
         ),
+        Bind.lazySingleton((i) => BuyAndSaleProductStore(i.get(), i.get())),
       ];
 
   @override
