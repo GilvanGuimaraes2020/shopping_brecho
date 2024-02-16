@@ -173,4 +173,11 @@ class BrechoIcons {
   static const keyboard_arrow_right =
       IconData(0xea4e, fontFamily: 'MaterialIcons');
   static const remove = IconData(0xe516, fontFamily: 'MaterialIcons');
+  static const person_add = IconData(0xe492, fontFamily: 'MaterialIcons');
+  static const add_box = IconData(0xe04b, fontFamily: 'MaterialIcons');
+  static const menu_down = IconData(0xe353, fontFamily: 'MaterialIcons');
+  static const search = IconData(0xe567, fontFamily: 'MaterialIcons');
+  static const close = IconData(0xe16a, fontFamily: 'MaterialIcons');
+  static const check_circle_outline = IconData(0xe15a, fontFamily: 'MaterialIcons');
+  static const close_outline = IconData(0xef5a, fontFamily: 'MaterialIcons');
 }

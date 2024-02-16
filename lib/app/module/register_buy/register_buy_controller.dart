@@ -1,11 +1,10 @@
 import 'package:mobx/mobx.dart';
-import 'package:shopping_brecho/app/core/interfaces/client_repository_interface.dart';
-import 'package:shopping_brecho/app/core/interfaces/product_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/remote_config_interface.dart';
-import 'package:shopping_brecho/app/core/models/client_model/client_model.dart';
+import 'package:shopping_brecho/app/core/models/customer/customer_model.dart';
 import 'package:shopping_brecho/app/core/models/label_value_model/label_value_model.dart';
 import 'package:shopping_brecho/app/core/models/product_model/product_model.dart';
 import 'package:shopping_brecho/app/core/models/request_status/request_status_model.dart';
+import 'package:shopping_brecho/app/core/store/buy_and_sale_product_store.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 
 part 'register_buy_controller.g.dart';
@@ -14,17 +13,16 @@ class RegisterBuyController = _RegisterBuyControllerBase
     with _$RegisterBuyController;
 
 abstract class _RegisterBuyControllerBase with Store {
-  final IClientRepository _clientRepository;
-  final IProductRepository _productRepository;
+  final BuyAndSaleProductStore _buyAndSaleStore;
+
   final IRemoteConfig _remoteConfig;
 
-  _RegisterBuyControllerBase(
-      this._clientRepository, this._productRepository, this._remoteConfig) {
+  _RegisterBuyControllerBase(this._remoteConfig, this._buyAndSaleStore) {
     init();
   }
 
-  void init() {
-    getProducts();
+  Future<void> init() async {
+    // getProducts();
     getPaymentList();
   }
 
@@ -37,9 +35,6 @@ abstract class _RegisterBuyControllerBase with Store {
 
   @observable
   bool autoValidateAlaways = false;
-
-  @observable
-  Client client = const Client.none();
 
   @observable
   Product product = const Product.none();
@@ -61,12 +56,6 @@ abstract class _RegisterBuyControllerBase with Store {
   }
 
   @action
-  Future<void> getClients(String keyword) async {
-    client = const Client.loading();
-    client = await _clientRepository.getClients(keyword);
-  }
-
-  @action
   Future<void> getPaymentList() async {
     requestStatus = const RequestStatus.loading();
     paymentTypeList = _remoteConfig.getPaymentType();
@@ -75,11 +64,19 @@ abstract class _RegisterBuyControllerBase with Store {
     }
   }
 
-  @action
-  Future<void> getProducts() async {
-    product = const Product.loading();
-    product = await _productRepository.getProducts();
-  }
+  @action 
+  Future<List<String>?> getClients({String? keyword}) async{
+   await _buyAndSaleStore.getClients();
+   return titles;
+   }
+
+
+
+  // @action
+  // Future<void> getProducts() async {
+  //   product = const Product.loading();
+  //   product = await _productRepository.getProducts();
+  // }
 
   @action
   Future<void> onChangePrice(String value) async {
@@ -101,13 +98,20 @@ abstract class _RegisterBuyControllerBase with Store {
   }
 
   @computed
-  List<String>? get titles => listClient.map((e) => e.name ?? '').toList();
+  CustomerState get client => _buyAndSaleStore.client;
 
   @computed
-  List<String>? get subtitles => listClient.map((e) => e.phone ?? '').toList();
+  List<String>? get titles => client.maybeWhen(
+      data: (customerModel) => customerModel.map((e) => e.name ?? '').toList(),
+      orElse: () => []);
 
   @computed
-  List<ClientModel> get listClient =>
+  List<String>? get subtitles => client.maybeWhen(
+      data: (customerModel) => customerModel.map((e) => e.phone ?? '').toList(),
+      orElse: () => []);
+
+  @computed
+  List<CustomerModel> get listClient =>
       client.maybeWhen(data: (client) => client, orElse: () => []);
 
   @computed
@@ -142,6 +146,6 @@ abstract class _RegisterBuyControllerBase with Store {
   @computed
   bool get isLoading =>
       product is ProductData &&
-      client is ClientData &&
+      client is CustomerStateData &&
       requestStatus is RequestStatusSuccess;
 }

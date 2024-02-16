@@ -42,4 +42,20 @@ class ValidatorHelper {
   static bool textIsValid(String? value) {
     return value?.isNotEmpty ?? false;
   }
+
+  static bool nameIsValid(String? value) {
+    if (value == null || value.length <= 2 || value.contains(RegExp('[0-9]'))) {
+      return false;
+    }
+
+    return true;
+  }
+
+  static bool phoneNumberIsValid(String? value) {
+    return value != null &&
+        (([10, 11, 14, 15].contains(value.length)) ||
+            value.startsWith('+55') &&
+                (value.replaceAll(RegExp('[^0-9]+'), '').length == 13) ||
+            value.replaceAll(RegExp('[^0-9]+'), '').length == 12);
+  }
 }

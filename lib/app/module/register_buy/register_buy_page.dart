@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/brecho_drop_down.dart';
+import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/component/brecho_text_top_down.dart';
 import 'package:shopping_brecho/app/core/models/request_status/request_status_model.dart';
+import 'package:shopping_brecho/app/core/service/database/interface/remote_database.dart';
+import 'package:shopping_brecho/app/module/products/register_product/register_product_page.dart';
 import 'package:shopping_brecho/app/module/register_buy/register_buy_controller.dart';
 import 'package:shopping_brecho/app/utils/snackbar/snackbar.dart';
 
@@ -26,9 +29,25 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    Modular.dispose<RemoteDatabase>();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registrar compra')),
+      appBar: AppBar(
+        title: const Text('Registrar compra'),
+        actions: [
+          IconButton(
+              onPressed: () {}, icon: const Icon(BrechoIcons.person_add)),
+          IconButton(
+              onPressed: () => Modular.to.push(MaterialPageRoute(
+                  builder: (context) => const RegisterProductPage())),
+              icon: const Icon(BrechoIcons.add_box))
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: BrechoSpacing.x),
         child: Observer(builder: (_) {
