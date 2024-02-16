@@ -9,10 +9,13 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:lint/analysis_options.yaml
 
-linter:  
+linter:
   rules:
     sort_pub_dependencies: false
     require_trailing_commas: false
+    avoid_positional_boolean_parameters: false
+    no_leading_underscores_for_local_identifiers: false
+    equals_elements_in_set: false
 
 analyzer:
   exclude:
@@ -20,6 +23,7 @@ analyzer:
     - "**/*.freezed.dart"
     - "**/*.mocks.dart"
     - "lib/generated_plugin_registrant.dart"
+    - "lib/help"
   errors:
     invalid_annotation_target: ignore
     avoid_dynamic_calls: ignore

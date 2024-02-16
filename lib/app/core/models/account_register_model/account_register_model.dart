@@ -17,9 +17,10 @@ class AccountRegisterModel with _$AccountRegisterModel {
 
 @freezed
 class AccountRegister with _$AccountRegister {
-  factory AccountRegister.data(List<AccountRegisterModel> listAccountRegister) =
-      AccountRegisterData;
-  factory AccountRegister.loading() = AccountRegisterLoading;
-  factory AccountRegister.error([Object? error]) = AccountRegisterError;
-  factory AccountRegister.none() = AccountRegisterNone;
+  const factory AccountRegister.data(
+      List<AccountRegisterModel> listAccountRegister) = AccountRegisterData;
+  const factory AccountRegister.loading() = AccountRegisterLoading;
+  const factory AccountRegister.error([Object? error]) = AccountRegisterError;
+  const factory AccountRegister.none() = AccountRegisterNone;
+  const factory AccountRegister.empty() = AccountRegisterEmpty;
 }

@@ -32,13 +32,50 @@ mixin _$HomeController on _HomeControllerBase, Store {
           () => super.registersTotal,
           name: '_HomeControllerBase.registersTotal'))
       .value;
-  Computed<List<double?>>? _$totalCategoryComputed;
+  Computed<List<String?>>? _$totalCategoryComputed;
 
   @override
-  List<double?> get totalCategory => (_$totalCategoryComputed ??=
-          Computed<List<double?>>(() => super.totalCategory,
+  List<String?> get totalCategory => (_$totalCategoryComputed ??=
+          Computed<List<String?>>(() => super.totalCategory,
               name: '_HomeControllerBase.totalCategory'))
       .value;
+  Computed<bool>? _$endDateIsValidComputed;
+
+  @override
+  bool get endDateIsValid =>
+      (_$endDateIsValidComputed ??= Computed<bool>(() => super.endDateIsValid,
+              name: '_HomeControllerBase.endDateIsValid'))
+          .value;
+  Computed<bool>? _$startDateIsValidComputed;
+
+  @override
+  bool get startDateIsValid => (_$startDateIsValidComputed ??= Computed<bool>(
+          () => super.startDateIsValid,
+          name: '_HomeControllerBase.startDateIsValid'))
+      .value;
+  Computed<bool>? _$formIsValidComputed;
+
+  @override
+  bool get formIsValid =>
+      (_$formIsValidComputed ??= Computed<bool>(() => super.formIsValid,
+              name: '_HomeControllerBase.formIsValid'))
+          .value;
+
+  late final _$validateAlwaysAtom =
+      Atom(name: '_HomeControllerBase.validateAlways', context: context);
+
+  @override
+  bool get validateAlways {
+    _$validateAlwaysAtom.reportRead();
+    return super.validateAlways;
+  }
+
+  @override
+  set validateAlways(bool value) {
+    _$validateAlwaysAtom.reportWrite(value, super.validateAlways, () {
+      super.validateAlways = value;
+    });
+  }
 
   late final _$connectAtom =
       Atom(name: '_HomeControllerBase.connect', context: context);
@@ -88,6 +125,23 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  late final _$accountRegisterFilteredAtom = Atom(
+      name: '_HomeControllerBase.accountRegisterFiltered', context: context);
+
+  @override
+  AccountRegister get accountRegisterFiltered {
+    _$accountRegisterFilteredAtom.reportRead();
+    return super.accountRegisterFiltered;
+  }
+
+  @override
+  set accountRegisterFiltered(AccountRegister value) {
+    _$accountRegisterFilteredAtom
+        .reportWrite(value, super.accountRegisterFiltered, () {
+      super.accountRegisterFiltered = value;
+    });
+  }
+
   late final _$totalCategoryAccountAtom =
       Atom(name: '_HomeControllerBase.totalCategoryAccount', context: context);
 
@@ -102,6 +156,70 @@ mixin _$HomeController on _HomeControllerBase, Store {
     _$totalCategoryAccountAtom.reportWrite(value, super.totalCategoryAccount,
         () {
       super.totalCategoryAccount = value;
+    });
+  }
+
+  late final _$categoriesAtom =
+      Atom(name: '_HomeControllerBase.categories', context: context);
+
+  @override
+  List<LabelValueModel>? get categories {
+    _$categoriesAtom.reportRead();
+    return super.categories;
+  }
+
+  @override
+  set categories(List<LabelValueModel>? value) {
+    _$categoriesAtom.reportWrite(value, super.categories, () {
+      super.categories = value;
+    });
+  }
+
+  late final _$startDateAtom =
+      Atom(name: '_HomeControllerBase.startDate', context: context);
+
+  @override
+  String? get startDate {
+    _$startDateAtom.reportRead();
+    return super.startDate;
+  }
+
+  @override
+  set startDate(String? value) {
+    _$startDateAtom.reportWrite(value, super.startDate, () {
+      super.startDate = value;
+    });
+  }
+
+  late final _$endDateAtom =
+      Atom(name: '_HomeControllerBase.endDate', context: context);
+
+  @override
+  String? get endDate {
+    _$endDateAtom.reportRead();
+    return super.endDate;
+  }
+
+  @override
+  set endDate(String? value) {
+    _$endDateAtom.reportWrite(value, super.endDate, () {
+      super.endDate = value;
+    });
+  }
+
+  late final _$keywordAtom =
+      Atom(name: '_HomeControllerBase.keyword', context: context);
+
+  @override
+  String? get keyword {
+    _$keywordAtom.reportRead();
+    return super.keyword;
+  }
+
+  @override
+  set keyword(String? value) {
+    _$keywordAtom.reportWrite(value, super.keyword, () {
+      super.keyword = value;
     });
   }
 
@@ -133,6 +251,14 @@ mixin _$HomeController on _HomeControllerBase, Store {
         .run(() => super.getMovementAccountRegister());
   }
 
+  late final _$onFilterAsyncAction =
+      AsyncAction('_HomeControllerBase.onFilter', context: context);
+
+  @override
+  Future<void> onFilter() {
+    return _$onFilterAsyncAction.run(() => super.onFilter());
+  }
+
   late final _$_HomeControllerBaseActionController =
       ActionController(name: '_HomeControllerBase', context: context);
 
@@ -148,16 +274,113 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
+  void setAutoValidateAlways(dynamic value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.setAutoValidateAlways');
+    try {
+      return super.setAutoValidateAlways(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setStartDate(dynamic value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.setStartDate');
+    try {
+      return super.setStartDate(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setEndDate(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.setEndDate');
+    try {
+      return super.setEndDate(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setKeyword(String value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.setKeyword');
+    try {
+      return super.setKeyword(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void getCategory() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.getCategory');
+    try {
+      return super.getCategory();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool onAccordeonAction() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.onAccordeonAction');
+    try {
+      return super.onAccordeonAction();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateEndDate(String? value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.validateEndDate');
+    try {
+      return super.validateEndDate(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateStartDate(String? value) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.validateStartDate');
+    try {
+      return super.validateStartDate(value);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+validateAlways: ${validateAlways},
 connect: ${connect},
 accountAlert: ${accountAlert},
 accountRegister: ${accountRegister},
+accountRegisterFiltered: ${accountRegisterFiltered},
 totalCategoryAccount: ${totalCategoryAccount},
+categories: ${categories},
+startDate: ${startDate},
+endDate: ${endDate},
+keyword: ${keyword},
 accountAlertList: ${accountAlertList},
 accountRegisterModel: ${accountRegisterModel},
 registersTotal: ${registersTotal},
-totalCategory: ${totalCategory}
+totalCategory: ${totalCategory},
+endDateIsValid: ${endDateIsValid},
+startDateIsValid: ${startDateIsValid},
+formIsValid: ${formIsValid}
     ''';
   }
 }

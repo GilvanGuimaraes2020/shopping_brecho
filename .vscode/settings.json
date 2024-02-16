@@ -1,3 +1,4 @@
 {
-    "dart.flutterSdkPath": "C:\\Users\\58\\fvm\\versions\\3.3.2"
+   "files.autoSave": "afterDelay",
+   "java.configuration.updateBuildConfiguration": "interactive"
 }
