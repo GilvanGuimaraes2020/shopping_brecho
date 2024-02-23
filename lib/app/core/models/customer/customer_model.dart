@@ -19,13 +19,3 @@ class CustomerModel with _$CustomerModel {
   factory CustomerModel.fromJson(Map<String, dynamic> json) =>
       _$CustomerModelFromJson(json);
 }
-
-@freezed
-class CustomerState with _$CustomerState {
-  const factory CustomerState.data(List<CustomerModel> customerModel) =
-      CustomerStateData;
-  const factory CustomerState.success([Object? data]) = CustomerStateSuccess;
-  const factory CustomerState.empty() = CustomerStateEmpty;
-  const factory CustomerState.loading() = CustomerStateLoading;
-  const factory CustomerState.error([Object? error]) = CustomerStateError;
-}

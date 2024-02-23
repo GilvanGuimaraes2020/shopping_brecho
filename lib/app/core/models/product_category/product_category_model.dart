@@ -7,7 +7,7 @@ part 'product_category_model.g.dart';
 class ProductCategoryModel with _$ProductCategoryModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   factory ProductCategoryModel({
-    String? id,
+    int? id,
     String? categoryName,
     String? categoryValue,
   }) = _ProductCategoryModel;

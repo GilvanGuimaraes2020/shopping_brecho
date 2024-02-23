@@ -1,3 +1,4 @@
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 
@@ -18,6 +19,16 @@ class FormatHelper {
     } catch (e) {
       return null;
     }
+  }
+
+  static String formatUTCDateToBRDescription(String stringDate) {
+    final date = DateTime.parse(stringDate).toLocal();
+    final now = DateTime.now();
+
+    final format = date.year != now.year ? "dd/MM/yyyy" : "dd 'de' MMMM";
+
+    initializeDateFormatting('pt_BR');
+    return DateFormat(format, 'pt_BR').format(date);
   }
 
   static String parseStringDateToCollectionRef(String value) {
@@ -45,5 +56,13 @@ class FormatHelper {
     } catch (e) {
       return text;
     }
+  }
+
+  static String formatDateToApi(String date) {
+    final day = date.split('/')[0];
+    final month = date.split('/')[1];
+    final year = date.split('/')[2];
+
+    return '$year-$month-${day}T00:00:00.785Z';
   }
 }

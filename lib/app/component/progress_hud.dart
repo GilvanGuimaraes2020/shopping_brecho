@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 
 class ProgressHud extends StatelessWidget {
@@ -32,66 +33,106 @@ class ProgressHud extends StatelessWidget {
 }
 
 class BrechoLoading extends StatefulWidget {
+  final Color color;
+  final BoxShape shape;
+  final double radius;
+  final double spacing;
   final Duration duration;
-  const BrechoLoading(
-      {super.key, this.duration = const Duration(milliseconds: 1000)});
+  final bool isCentered;
+
+  const BrechoLoading({
+    super.key,
+    this.color = BrechoColors.monoWhite,
+    this.shape = BoxShape.circle,
+    this.radius = 8,
+    this.spacing = 3.0,
+    this.duration = const Duration(milliseconds: 1200),
+    this.isCentered = true,
+  });
 
   @override
-  State<BrechoLoading> createState() => _BrechoLoadingState();
+  BrechoLoadingState createState() => BrechoLoadingState();
 }
 
-class _BrechoLoadingState extends State<BrechoLoading>
+class BrechoLoadingState extends State<BrechoLoading>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  final onColor = Colors.black;
-  final offColor = Colors.white;
 
   @override
   void initState() {
     super.initState();
-
-    _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 800))
+    _controller = AnimationController(vsync: this, duration: widget.duration)
       ..addListener(() {
-        if (mounted) {
-          setState(() {});
-        }
+        if (mounted) setState(() {});
       })
       ..repeat();
   }
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-        children: List.generate(3, (i) {
-      return Opacity(
-        opacity: TweenDouble(begin: 0, end: 1, delay: i / 10)
-            .animate(_controller)
-            .value,
-        child: const DecoratedBox(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.white,
-          ),
-        ),
-      );
-    }));
+    final Widget loadingWidget = Wrap(
+      spacing: widget.spacing,
+      children: List.generate(
+        3,
+        (i) {
+          return Opacity(
+            opacity: DelayTween(begin: 1, end: 0.3, delay: (5 + i) / 10)
+                .animate(_controller)
+                .value,
+            child: _LoadingItem(
+              color: widget.color,
+              shape: widget.shape,
+              radius: widget.radius,
+            ),
+          );
+        },
+      ),
+    );
+
+    return widget.isCentered ? Center(child: loadingWidget) : loadingWidget;
   }
 }
 
-class TweenDouble extends Tween<double> {
+class DelayTween extends Tween<double> {
+  DelayTween({super.begin, super.end, required this.delay});
+
   final double delay;
-  TweenDouble({super.begin, super.end, required this.delay});
 
   @override
-  double lerp(double t) => super.lerp(math.sin(t - delay));
+  double lerp(double t) =>
+      super.lerp((math.sin((t - delay) * 2 * math.pi) + 1) / 2);
 
   @override
   double evaluate(Animation<double> animation) => lerp(animation.value);
+}
+
+class _LoadingItem extends StatelessWidget {
+  final Color color;
+  final BoxShape shape;
+  final double radius;
+
+  const _LoadingItem({
+    required this.color,
+    required this.shape,
+    required this.radius,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.fromSize(
+      size: Size.fromRadius(radius),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: color,
+          shape: shape,
+        ),
+      ),
+    );
+  }
 }
