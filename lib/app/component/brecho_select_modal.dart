@@ -54,8 +54,7 @@ class BrechoSelectModalState extends State<BrechoSelectModal> {
   final List _selecteds = [];
   bool _retryLoad = false;
   String lastKeyWord = '';
-  final _asyncItemDebouncer =
-      Debouncer(miliseconds: 500);
+  final _asyncItemDebouncer = Debouncer(miliseconds: 500);
 
   final List _styles = [
     const Text('').labelSmallRegular().style,
@@ -419,8 +418,7 @@ class BrechoSelectModalState extends State<BrechoSelectModal> {
                       height: 18,
                     ),
                   ),
-                  const Divider(
-                  ),
+                  const Divider(),
                 ],
               );
             }),
@@ -446,8 +444,13 @@ class BrechoSelectModalState extends State<BrechoSelectModal> {
           _selecteds.removeAt(indexAsyncItem);
         } else {
           _selecteds.add(index);
+          if (widget.multiple) {
+            widget.onSelectItem!(_selecteds);
+          } else {
+            widget.onSelectItem!(index);
+            Navigator.of(context).pop();
+          }
         }
-        widget.onSelectItem!(_selecteds);
         break;
       default:
     }

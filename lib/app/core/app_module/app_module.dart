@@ -3,11 +3,13 @@ import 'package:shopping_brecho/app/core/interfaces/account_repository_interface
 import 'package:shopping_brecho/app/core/interfaces/kanban_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/relational_db/customer_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/relational_db/product_repository_interface.dart';
+import 'package:shopping_brecho/app/core/interfaces/relational_db/stock_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/remote_config_interface.dart';
 import 'package:shopping_brecho/app/core/repositories/account_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/kanban_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/relational_db/customer_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/relational_db/product_repository.dart';
+import 'package:shopping_brecho/app/core/repositories/relational_db/stock_repository.dart';
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
 import 'package:shopping_brecho/app/core/service/database/conn/conn.dart';
 import 'package:shopping_brecho/app/core/service/database/interface/remote_database.dart';
@@ -37,22 +39,24 @@ class AppModule extends Module {
         Bind<IRemoteConfig>((i) => RemoteConfigService()),
         Bind<IProductRepository>((i) => ProductRepository(i.get())),
         Bind<ICustomerRepository>((i) => CustomerRepository(i.get())),
+        Bind<IStockRepository>((i) => StockRepository(i.get())),
         Bind.factory((i) => HomeController(i(), i())),
         Bind.factory((i) => EditCardController(i())),
         Bind.factory((i) => KanbanController(i())),
         Bind.factory((i) => RegisterExpenseController(i.get(), i.get())),
         Bind.factory((i) => MainController(i.get())),
         Bind.factory((i) => RegisterProductController(i.get())),
-        Bind.factory((i) => RegisterClientController(i.get())),
-        Bind.factory((i) => MainClientController(i.get())),
-        Bind.lazySingleton((i) => BuyAndSaleProductStore(i.get(), i.get())),
+        Bind.factory(
+            (i) => RegisterClientController(i.get<BuyAndSaleProductStore>())),
+        Bind.factory(
+            (i) => MainClientController(i.get<BuyAndSaleProductStore>())),
         Bind.factory((i) => RegisterBuyController(
-              i.get(),
-              i.get(),
+              i.get<BuyAndSaleProductStore>(),
             )),
         Bind.singleton<RemoteDatabase>(
           (i) => Conn(),
         ),
+        Bind.lazySingleton((i) => BuyAndSaleProductStore(i.get(), i.get(), i.get())),
       ];
 
   @override

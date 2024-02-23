@@ -3,12 +3,15 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shopping_brecho/app/component/brecho_drop_down.dart';
+import 'package:shopping_brecho/app/component/brecho_buttons.dart';
+import 'package:shopping_brecho/app/component/brecho_floating_dock.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
+import 'package:shopping_brecho/app/component/brecho_select_modal_field.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/component/brecho_text_top_down.dart';
-import 'package:shopping_brecho/app/core/models/request_status/request_status_model.dart';
-import 'package:shopping_brecho/app/core/service/database/interface/remote_database.dart';
+import 'package:shopping_brecho/app/component/progress_hud.dart';
+import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
+import 'package:shopping_brecho/app/module/products/register_client/register_client_page.dart';
 import 'package:shopping_brecho/app/module/products/register_product/register_product_page.dart';
 import 'package:shopping_brecho/app/module/register_buy/register_buy_controller.dart';
 import 'package:shopping_brecho/app/utils/snackbar/snackbar.dart';
@@ -26,53 +29,83 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
   @override
   void initState() {
     super.initState();
+    controller.loadData();
   }
 
   @override
   void dispose() {
     super.dispose();
-    Modular.dispose<RemoteDatabase>();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Registrar compra'),
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(BrechoIcons.person_add)),
-          IconButton(
-              onPressed: () => Modular.to.push(MaterialPageRoute(
-                  builder: (context) => const RegisterProductPage())),
-              icon: const Icon(BrechoIcons.add_box))
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: BrechoSpacing.x),
-        child: Observer(builder: (_) {
-          return controller.product.maybeWhen(
-            data: (_) {
-              return Column(
+    return Observer(builder: (context) {
+      return ProgressHud(
+        isLoading: false,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Registrar compra'),
+            actions: [
+              IconButton(
+                  onPressed: () => Modular.to.push(MaterialPageRoute(
+                      builder: (context) => RegisteClientPage())),
+                  icon: const Icon(BrechoIcons.person_add)),
+              IconButton(
+                  onPressed: () => Modular.to.push(MaterialPageRoute(
+                      builder: (context) => const RegisterProductPage())),
+                  icon: const Icon(BrechoIcons.add_box))
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: BrechoSpacing.x),
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: ScrollController(),
+              child: Column(
                 children: [
                   const SizedBox(
                     height: BrechoSpacing.viii,
                   ),
-                  BrechoDropDownWithFilter(
-                      onSelectItem: controller.onSelectClient,
-                      asyncData: controller.getClients,
-                      // titles: controller.titles,
-                      // subtitles: controller.subtitles,
-                      titleDrop: 'Escolha o cliente'),
-                  const SizedBox(height: BrechoSpacing.xvi),
-                  BrechoDropDownWithFilter(
-                    titles: controller.listProductModel,
-                    subtitles: controller.listProductBrand,
-                    onSelectItem: controller.onSelectProduct,
-                    titleDrop: 'Escolha o produto',
+                  BrechoSelectModalField(
+                    onSelectItem: controller.onSelectClient,
+                    showFilterBox: true,
+                    asyncItems: controller.getClients,
+                    selectItems: controller.buyAndSaleStore.customerSelectItems,
+                    selectTitle: 'Escolha o cliente',
+                    label: 'Escolha o cliente',
+                    autovalidate: controller.clientIsValid,
+                    validator: controller.validateClient,
+                    autoValidateAlways: controller.autoValidateAlways,
                   ),
                   const SizedBox(height: BrechoSpacing.xvi),
+                  BrechoSelectModalField(
+                    onSelectItem: controller.registerBuySelectProduct,
+                    selectItems: controller.buyAndSaleStore.productsSelectItems,
+                    label: 'Escolha o produto',
+                    selectTitle: 'Escolha o produto',
+                    validator: controller.validateProduct,
+                    autovalidate: controller.productIsValid,
+                    autoValidateAlways: controller.autoValidateAlways,
+                  ),
+                  const SizedBox(height: BrechoSpacing.xvi),
+                  BrechoSelectModalField(
+                    onSelectItem: controller.registerBuySetPaymentType,
+                    label: 'Tipo de pagamento',
+                    selectItems: controller.buyAndSaleStore.paymentTypeNames,
+                    selectTitle: 'Tipo de pagamento',
+                    autovalidate: controller.paymentTypeIsValid,
+                    validator: controller.validatePaymentType,
+                    autoValidateAlways: controller.autoValidateAlways,
+                  ),
+                  const SizedBox(height: BrechoSpacing.xvi),
+                  if (controller.buyAndSaleStore.isCreditCard) ...{
+                    BrechoTextTopDown(
+                        label: 'Parcelas',
+                        onTap: controller.buyAndSaleStore.onTapInstallment),
+                    const SizedBox(height: BrechoSpacing.xvi),
+                  },
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: BrechoTextField(
@@ -80,6 +113,9 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
                           prefixText: 'R\$ ',
                           textInputType: TextInputType.number,
                           onChanged: controller.onChangePrice,
+                          validator: controller.validatePrice,
+                          autovalidate: controller.productIsValid,
+                          autoValidateAlways: controller.autoValidateAlways,
                         ),
                       ),
                       const SizedBox(width: BrechoSpacing.xvi),
@@ -87,66 +123,61 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
                         child: BrechoTextField(
                           controller: MaskedTextController(mask: '00/00/0000'),
                           label: 'Data',
-                          onChanged: controller.onChangePrice,
+                          onChanged: controller.registerBuyOnChangeDate,
                           textInputType: TextInputType.number,
+                          autovalidate: controller.dateIsValid,
+                          validator: controller.validateDate,
+                          autoValidateAlways: controller.autoValidateAlways,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: BrechoSpacing.xvi),
-                  BrechoDropDown(
-                      onSelectItem: controller.onSelectPaymentType,
-                      label: 'Tipo de pagamento',
-                      selectItems: controller.paymentTypeNames,
-                      titleDrop: 'Tipo de pagamento'),
-                  const SizedBox(height: BrechoSpacing.xvi),
-                  BrechoTextTopDown(
-                      label: 'Parcelas', onTap: controller.onTapInstallment)
+                  const SizedBox(height: BrechoSpacing.clx)
                 ],
-              );
-            },
-            loading: () => const Center(
-              child: SizedBox(
-                height: 100,
-                width: 100,
-                child: CircularProgressIndicator(),
               ),
             ),
-            orElse: () => Container(),
-          );
-        }),
-      ),
-      bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(BrechoSpacing.viii),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(BrechoSpacing.viii),
-                color: BrechoColors.primaryBlue5),
-            child: MaterialButton(
-              padding: const EdgeInsets.all(BrechoSpacing.viii),
-              onPressed: () async {
-                late String text;
-                late BrechoSnackbarStatus status;
-                controller.setAutoValidateAlways(true);
-                if (controller.formIsValid) {
-                  final result = await controller.saveData();
-                  if (result is RequestStatusSuccess) {
-                    Modular.to.pop();
-                    text = 'Salvo com sucesso!';
-                    status = BrechoSnackbarStatus.success;
-                  } else {
-                    text = 'Não foi possivel salvar!';
-                    status = BrechoSnackbarStatus.error;
-                  }
-                } else {
-                  text = 'Dados invalidos!';
-                  status = BrechoSnackbarStatus.error;
-                }
-                BrechoSnackbar.show(text: text, brechoSnackbarStatus: status);
-              },
-              child: const Text('Salvar'),
-            ),
-          )),
-    );
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: BrechoFloatingDock(
+            isVisible: MediaQuery.of(context).viewInsets.bottom == 0,
+            children: [
+              Expanded(
+                  child: BrechoOutlineButton(
+                      label: 'Cancelar', onPressed: () => Modular.to.pop())),
+              const SizedBox(
+                width: BrechoSpacing.xvi,
+              ),
+              Expanded(
+                child: BrechoPrimaryButton(
+                  label: 'Salvar',
+                  onPressed: () async {
+                    late String text;
+                    late BrechoSnackbarStatus status;
+                    controller.setAutoValidateAlways(false);
+                    if (controller.formIsValid) {
+                      final result = await controller.saveProductStock();
+                      if (result is FreezedStatusSuccess) {
+                        Modular.to.pop();
+                        text = 'Salvo com sucesso!';
+                        status = BrechoSnackbarStatus.success;
+                      } else {
+                        text = 'Não foi possivel salvar!';
+                        status = BrechoSnackbarStatus.error;
+                      }
+                    } else {
+                      text = 'Dados invalidos!';
+                      status = BrechoSnackbarStatus.error;
+                    }
+                    BrechoSnackbar.show(
+                        text: text, brechoSnackbarStatus: status);
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

@@ -105,10 +105,18 @@ class _RegisterClientPage extends State<RegisteClientPage> {
                 onPressed: () async {
                   controller.autoValidateAlways = false;
                   if (controller.formIsValid) {
-                    await controller.addCustomer();
-                    BrechoSnackbar.show(
-                        text: "Adicionado com sucesso!",
-                        brechoSnackbarStatus: BrechoSnackbarStatus.success);
+                    final result = await controller.addCustomer();
+                    result.maybeWhen(
+                        success: (data) {
+                          Modular.to.pop();
+                          BrechoSnackbar.show(
+                              text: "Adicionado com sucesso!",
+                              brechoSnackbarStatus:
+                                  BrechoSnackbarStatus.success);
+                        },
+                        orElse: () => BrechoSnackbar.show(
+                            text: "Erro ao adicionar cliente!",
+                            brechoSnackbarStatus: BrechoSnackbarStatus.error));
                   } else {
                     BrechoSnackbar.show(
                         text: 'Há cammpos invalidos!',

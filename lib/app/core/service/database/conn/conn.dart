@@ -6,13 +6,17 @@ import 'package:shopping_brecho/app/core/service/database/interface/remote_datab
 import 'package:shopping_brecho/app/core/service/database_connection.dart/database_connection.dart';
 
 class Conn implements RemoteDatabase, Disposable {
-  Conn() ;
+  Conn();
 
-  static PostgreSQLConnection connection = DatabaseConnection().getSqlConnection();
+  static PostgreSQLConnection connection =
+      DatabaseConnection().getSqlConnection();
 
   @override
   Future<List<Map<String, dynamic>>> query(String query,
       {Map<String, String> variable = const {}}) async {
+    if (connection.isClosed) {
+      await connection.open();
+    }
     return connection.mappedResultsQuery(query, substitutionValues: variable);
   }
 

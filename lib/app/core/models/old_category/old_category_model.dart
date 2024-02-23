@@ -7,7 +7,7 @@ part 'old_category_model.g.dart';
 class OldCategoryModel with _$OldCategoryModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   factory OldCategoryModel({
-    String? id,
+    int? id,
     int? categoryNumber,
     String? categoryLabel,
     String? categoryDescription,
@@ -15,13 +15,4 @@ class OldCategoryModel with _$OldCategoryModel {
 
   factory OldCategoryModel.fromJson(Map<String, dynamic> json) =>
       _$OldCategoryModelFromJson(json);
-}
-
-@freezed
-class OldCategoryState with _$OldCategoryState {
-  const factory OldCategoryState.data(List<OldCategoryModel> oldCategory) =
-      OldCategoryStateData;
-  const factory OldCategoryState.empty() = OldCategoryStateEmpty;
-  const factory OldCategoryState.loading() = OldCategoryStateLoading;
-  const factory OldCategoryState.error([Object? error]) = OldCategoryStateError;
 }

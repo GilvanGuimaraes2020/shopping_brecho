@@ -1,11 +1,12 @@
 import 'package:mobx/mobx.dart';
-import 'package:shopping_brecho/app/core/interfaces/remote_config_interface.dart';
 import 'package:shopping_brecho/app/core/models/customer/customer_model.dart';
+import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
 import 'package:shopping_brecho/app/core/models/label_value_model/label_value_model.dart';
-import 'package:shopping_brecho/app/core/models/product_model/product_model.dart';
+import 'package:shopping_brecho/app/core/models/product_relational_model/product_relational_model.dart';
 import 'package:shopping_brecho/app/core/models/request_status/request_status_model.dart';
 import 'package:shopping_brecho/app/core/store/buy_and_sale_product_store.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
+import 'package:shopping_brecho/app/helpers/validator_helper/validator_helper.dart';
 
 part 'register_buy_controller.g.dart';
 
@@ -13,31 +14,12 @@ class RegisterBuyController = _RegisterBuyControllerBase
     with _$RegisterBuyController;
 
 abstract class _RegisterBuyControllerBase with Store {
-  final BuyAndSaleProductStore _buyAndSaleStore;
+  final BuyAndSaleProductStore buyAndSaleStore;
 
-  final IRemoteConfig _remoteConfig;
-
-  _RegisterBuyControllerBase(this._remoteConfig, this._buyAndSaleStore) {
-    init();
-  }
-
-  Future<void> init() async {
-    // getProducts();
-    getPaymentList();
-  }
-
-  String price = '';
-  String clientName = '';
-  String productName = '';
-  String dateBuy = '';
-  String paymentType = '';
-  String installment = '';
+  _RegisterBuyControllerBase(this.buyAndSaleStore);
 
   @observable
-  bool autoValidateAlaways = false;
-
-  @observable
-  Product product = const Product.none();
+  bool autoValidateAlways = true;
 
   @observable
   List<LabelValueModel>? paymentTypeList;
@@ -45,107 +27,105 @@ abstract class _RegisterBuyControllerBase with Store {
   @observable
   RequestStatus requestStatus = const RequestStatus.none();
 
+  Future<void> loadData() async {
+    Future.wait([
+      buyAndSaleStore.getAllProducts(),
+      buyAndSaleStore.getPaymentType(),
+    ]);
+  }
+
   @action
   void setAutoValidateAlways(dynamic value) {
-    autoValidateAlaways = value as bool;
+    autoValidateAlways = value as bool;
   }
 
   @action
-  Future<RequestStatus> saveData() async {
-    return const RequestStatus.success();
-  }
+  Future<FreezedStatus> saveProductStock() async =>
+      buyAndSaleStore.saveProductStock();
 
   @action
-  Future<void> getPaymentList() async {
-    requestStatus = const RequestStatus.loading();
-    paymentTypeList = _remoteConfig.getPaymentType();
-    if (paymentTypeList.isNotNullAndNotEmpty) {
-      requestStatus = const RequestStatus.success();
-    }
-  }
-
-  @action 
-  Future<List<String>?> getClients({String? keyword}) async{
-   await _buyAndSaleStore.getClients();
-   return titles;
-   }
-
-
-
-  // @action
-  // Future<void> getProducts() async {
-  //   product = const Product.loading();
-  //   product = await _productRepository.getProducts();
-  // }
+  Future<List<Map<String, dynamic>>> getClients(String? keyword) async =>
+      buyAndSaleStore.getClients(filters: {'keyword': keyword});
 
   @action
-  Future<void> onChangePrice(String value) async {
-    price = value;
-  }
+  Future<void> onChangePrice(dynamic value) async =>
+      buyAndSaleStore.registerBuyOnChangePrice(value);
 
   @action
-  Future<void> onSelectClient(String? title, String? subtitle) async {}
+  Future<void> setCustomerName(dynamic value) async =>
+      buyAndSaleStore.registerBuySetClientName(value);
 
   @action
-  Future<void> onSelectProduct(String? title, String? subtitle) async {}
+  Future<void> onSelectClient(dynamic value) async =>
+      buyAndSaleStore.onSelectClient(value);
 
   @action
-  Future<void> onSelectPaymentType(dynamic value) async {}
+  Future<void> registerBuySelectProduct(dynamic value) async =>
+      buyAndSaleStore.registerBuySelectProduct(value);
 
   @action
-  Future<void> onTapInstallment(dynamic value) async {
-    installment = value as String;
-  }
+  Future<void> registerBuySetPaymentType(dynamic value) async =>
+      buyAndSaleStore.registerBuySetPaymentType(value);
+
+  @action
+  void registerBuyOnChangeDate(dynamic value) =>
+      buyAndSaleStore.registerBuyOnChangeDate(value);
+
+  @action
+  String? validateClient(dynamic value) =>
+      clientIsValid ? null : ValidatorHelper.requiredText;
+
+  @action
+  String? validateProduct(dynamic value) =>
+      productIsValid ? null : ValidatorHelper.requiredText;
+
+  @action
+  String? validatePrice(dynamic value) =>
+      priceIsValid ? null : ValidatorHelper.requiredText;
+
+  @action
+  String? validatePaymentType(dynamic value) =>
+      paymentTypeIsValid ? null : ValidatorHelper.requiredText;
+
+  @action
+  String? validateDate(dynamic value) =>
+      dateIsValid ? null : ValidatorHelper.requiredText;
 
   @computed
-  CustomerState get client => _buyAndSaleStore.client;
+  FreezedStatus<List<CustomerModel>> get client => buyAndSaleStore.client;
 
   @computed
-  List<String>? get titles => client.maybeWhen(
-      data: (customerModel) => customerModel.map((e) => e.name ?? '').toList(),
-      orElse: () => []);
+  FreezedStatus<List<ProductRelationalModel>> get products =>
+      buyAndSaleStore.products;
 
   @computed
-  List<String>? get subtitles => client.maybeWhen(
-      data: (customerModel) => customerModel.map((e) => e.phone ?? '').toList(),
-      orElse: () => []);
+  bool get priceIsValid =>
+      buyAndSaleStore.registerBuyPrice.isNotNullAndNotEmpty;
 
   @computed
-  List<CustomerModel> get listClient =>
-      client.maybeWhen(data: (client) => client, orElse: () => []);
+  bool get dateIsValid =>
+      ValidatorHelper.dateIsValid(buyAndSaleStore.registerbuyDate);
 
   @computed
-  List<String>? get dataTrailing =>
-      listProduct.map((e) => e.type ?? '').toList();
+  bool get clientIsValid => buyAndSaleStore.registerClientModel != null;
 
   @computed
-  List<String>? get listProductBrand =>
-      listProduct.map((e) => e.brand ?? '').toList();
+  bool get productIsValid => buyAndSaleStore.registerBuyProductIndex != -1;
 
   @computed
-  List<String>? get listProductModel =>
-      listProduct.map((e) => e.model ?? '').toList();
+  bool get paymentTypeIsValid => buyAndSaleStore.paymentTypeIndex != -1;
 
   @computed
-  List<ProductModel> get listProduct =>
-      product.maybeWhen(data: (productModel) => productModel, orElse: () => []);
-
-  @computed
-  List<String> get paymentTypeNames =>
-      paymentTypeList?.map((e) => e.label ?? '').toList() ?? [];
-
-  @computed
-  bool get priceIsValid => price.isNotNullAndNotEmpty;
-
-  @computed
-  bool get dateIsValid => dateBuy.isNotNullAndNotEmpty;
-
-  @computed
-  bool get formIsValid => priceIsValid && dateIsValid;
+  bool get formIsValid =>
+      priceIsValid &&
+      dateIsValid &&
+      clientIsValid &&
+      productIsValid &&
+      paymentTypeIsValid;
 
   @computed
   bool get isLoading =>
-      product is ProductData &&
-      client is CustomerStateData &&
-      requestStatus is RequestStatusSuccess;
+      products is FreezedStatusLoading ||
+      client is FreezedStatusLoading ||
+      requestStatus is RequestStatusLoading;
 }

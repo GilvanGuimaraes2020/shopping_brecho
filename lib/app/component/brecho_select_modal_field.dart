@@ -67,7 +67,7 @@ class BrechoSelectModalField extends StatefulWidget {
 }
 
 class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
-  TextEditingController? _controller;
+  late TextEditingController _controller;
   FocusNode? _focusNode;
   final _modalFieldKey = GlobalKey<FormState>();
   Size _widgetTotalSize = Size.zero;
@@ -149,9 +149,9 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
 
     _calculateWidgetTotalSize();
 
-    _controller = isControllerNullOrIsMultiple
+    _controller = isControllerNullOrIsMultiple || widget.controller == null
         ? TextEditingController()
-        : widget.controller;
+        : widget.controller!;
 
     _focusNode = widget.focusNode ?? FocusNode();
     _focusNode!.addListener(() {
@@ -160,9 +160,9 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
 
     if (widget.multiple) {
       if (widget.selecteds.isEmpty) {
-        _controller?.text = '';
+        _controller.text = '';
       } else {
-        _controller?.text = '.';
+        _controller.text = '.';
       }
     }
   }
@@ -170,7 +170,7 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
   @override
   void dispose() {
     if (isControllerNullOrIsMultiple) {
-      _controller!.dispose();
+      _controller.dispose();
     }
 
     if (widget.focusNode == null) {
@@ -183,11 +183,11 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
   @override
   void didUpdateWidget(BrechoSelectModalField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.multiple || widget.asyncItems != null) {
+    if (widget.multiple) {
       if (widget.selecteds.isEmpty) {
-        _controller?.text = '';
+        _controller.text = '';
       } else {
-        _controller?.text = '.';
+        _controller.text = '.';
       }
     }
   }
@@ -214,11 +214,11 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
           autoValidateAlways: widget.autoValidateAlways,
           isSelectModalField: true,
           lineValidator: widget.lineValidator,
-          hintText: _controller?.text,
-          floatingLabelBehavior: (_controller?.text ?? '').isNotEmpty ||
-                  _focusNode?.hasFocus == true
-              ? FloatingLabelBehavior.always
-              : FloatingLabelBehavior.auto,
+          hintText: _controller.text,
+          floatingLabelBehavior:
+              _controller.text.isNotEmpty || _focusNode?.hasFocus == true
+                  ? FloatingLabelBehavior.always
+                  : FloatingLabelBehavior.auto,
           isDense: widget.isDense,
         ),
         if (widget.selecteds.isNotEmpty)
@@ -298,12 +298,18 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
   void onSelectItem(dynamic value) {
     dynamic currentValue;
     if (widget.asyncItems != null) {
-      currentValue = List<LabelValueHelperModel>.from(value as List);
+      if (widget.multiple) {
+        currentValue = List<LabelValueHelperModel>.from(value as List);
+      } else {
+        currentValue = value as LabelValueHelperModel;
+        _controller.text = value.label;
+      }
     } else {
       if (widget.multiple) {
         currentValue = List<int>.from(value as List);
       } else {
         currentValue = value as int;
+        _controller.text = widget.selectItems[value];
       }
     }
 
