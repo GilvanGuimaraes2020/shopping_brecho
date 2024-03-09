@@ -13,6 +13,7 @@ class CustomerModel with _$CustomerModel {
     String? address,
     String? neighborhood,
     int? number,
+    String? observation,
     dynamic createdAt,
   }) = _CustomerModel;
 

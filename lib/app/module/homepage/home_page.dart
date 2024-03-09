@@ -7,6 +7,7 @@ import 'package:shopping_brecho/app/component/badge.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/core/models/registers_model/registers_model.dart';
+import 'package:shopping_brecho/app/core/routes/app_route.dart';
 import 'package:shopping_brecho/app/module/homepage/component/card_detail_account.dart';
 import 'package:shopping_brecho/app/module/homepage/home_controller.dart';
 import 'package:shopping_brecho/app/utils/modal_dialog/modal_dialog.dart';
@@ -151,9 +152,9 @@ class _HomePageState extends State<HomePage> {
           ])),
         )
       ]),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
-        child: Icon(BrechoIcons.add),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Modular.to.pushNamed(AppRoute.registerExpense),
+        child: const Icon(BrechoIcons.add),
       ),
     );
   }

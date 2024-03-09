@@ -11,6 +11,8 @@ import 'package:shopping_brecho/app/core/models/label_value_helper_model/label_v
 import 'package:shopping_brecho/app/core/models/old_category/old_category_model.dart';
 import 'package:shopping_brecho/app/core/models/payment_type/payment_type_model.dart';
 import 'package:shopping_brecho/app/core/models/product_category/product_category_model.dart';
+import 'package:shopping_brecho/app/core/models/product_pendency/product_pendency_model.dart';
+import 'package:shopping_brecho/app/core/models/product_pendency_table/product_pendency_table_model.dart';
 import 'package:shopping_brecho/app/core/models/product_relational_model/product_relational_model.dart';
 import 'package:shopping_brecho/app/core/models/product_stock/product_stock_model.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
@@ -83,6 +85,17 @@ abstract class _BuyAndSaleProductStore with Store {
 
   @observable
   String customerNumber = '';
+
+  @observable
+  FreezedStatus<List<ProductPendencyTableModel>> productPendency =
+      const FreezedStatus.loading();
+
+  @observable
+  FreezedStatus<List<ProductPendencyModel>> productPendencyAll =
+      const FreezedStatus.loading();
+
+  @observable
+  ObservableList<int> pendencySelecteds = ObservableList.of([]);
 
   @observable
   String customerObservations = '';
@@ -226,15 +239,26 @@ abstract class _BuyAndSaleProductStore with Store {
         phone: customerPhone.formatPhoneToSave(),
         address: customerAddress,
         neighborhood: customerNeighborhood,
-        number: int.tryParse(customerNumber));
+        number: int.tryParse(customerNumber),
+        observation: customerObservations);
 
     final result = await _customerRepository.addCustomer(payload: payload);
 
     if (result is FreezedStatusSuccess) {
       getAllCustomer(reload: true);
+      resetFields();
     }
 
     return result;
+  }
+
+  @action
+  void resetFields() {
+    customerName = customerNameCtl.text = '';
+    customerPhone = customerPhoneCtl.text = '';
+    customerAddress = customerAddressCtl.text = '';
+    customerNeighborhood = customerNeighborhoodCtl.text = '';
+    customerNumber = customerNumberCtl.text = '';
   }
 
 //Implementar na sequencia para consumir menos banco
@@ -267,6 +291,12 @@ abstract class _BuyAndSaleProductStore with Store {
         },
         orElse: () => null);
     return result;
+  }
+
+  @action
+  Future<FreezedStatus> addProductPendency(
+      List<ProductPendencyTableModel> selectedsPendency) async {
+    return _productRepository.addPendencyList(selectedsPendency);
   }
 
   @action
@@ -317,13 +347,36 @@ abstract class _BuyAndSaleProductStore with Store {
     final payload = ProductStockModel(
       productId: productList[registerBuyProductIndex].id,
       customerId: int.tryParse(registerClientModel?.value.toString() ?? ''),
-      createdAt: FormatHelper.formatDateToApi(registerbuyDate),
+      purchasedAt: FormatHelper.formatDateToApi(registerbuyDate),
+      createdAt: DateTime.now().toUtc().toString(),
       paymentTypeId: paymentTypeModelList.tryGet(paymentTypeIndex)?.id,
       price: double.tryParse(registerBuyPrice),
       isSold: false,
     );
 
-    return _stockRepository.saveProductStock(payload);
+    return _stockRepository.saveProductStock(payload, pendencySelecteds);
+  }
+
+  @action
+  Future<void> getPendencyByProductId(int id) async {
+    productPendency = const FreezedStatus.loading();
+    productPendency =
+        await _productRepository.getPendencyByProductId(id.toString());
+  }
+
+  @action
+  Future<void> getAllPendency() async {
+    productPendencyAll = const FreezedStatus.loading();
+    productPendencyAll = await _stockRepository.getAllPendency();
+  }
+
+  @action
+  void onSelectPendency(int pendencyId) {
+    if (pendencySelecteds.contains(pendencyId)) {
+      pendencySelecteds.removeWhere((element) => element == pendencyId);
+    } else {
+      pendencySelecteds.add(pendencyId);
+    }
   }
 
   @computed
@@ -367,7 +420,9 @@ abstract class _BuyAndSaleProductStore with Store {
 
   @computed
   List<String> get productsSelectItems => products.maybeWhen(
-      data: (data) => data.map((e) => '${e.brandName}\n${e.model}').toList(),
+      data: (data) => data
+          .map((e) => '${e.categoryName}\n${e.brandName}-${e.model}')
+          .toList(),
       orElse: () => []);
 
   @computed

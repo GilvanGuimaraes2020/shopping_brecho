@@ -178,6 +178,17 @@ class BrechoIcons {
   static const menu_down = IconData(0xe353, fontFamily: 'MaterialIcons');
   static const search = IconData(0xe567, fontFamily: 'MaterialIcons');
   static const close = IconData(0xe16a, fontFamily: 'MaterialIcons');
-  static const check_circle_outline = IconData(0xe15a, fontFamily: 'MaterialIcons');
+  static const check_circle_outline =
+      IconData(0xe15a, fontFamily: 'MaterialIcons');
   static const close_outline = IconData(0xef5a, fontFamily: 'MaterialIcons');
+  static const menu_right = IconData(0xe355, fontFamily: 'MaterialIcons');
+  static const home = IconData(0xe318, fontFamily: 'MaterialIcons');
+  static const store = IconData(0xe60a, fontFamily: 'MaterialIcons');
+  static const dashboard = IconData(0xe1b1, fontFamily: 'MaterialIcons');
+  static const schedule = IconData(0xe556, fontFamily: 'MaterialIcons');
+  static const tune = IconData(0xe683, fontFamily: 'MaterialIcons');
+  static const person = IconData(0xe491, fontFamily: 'MaterialIcons');
+  static const house = IconData(0xe328, fontFamily: 'MaterialIcons');
+  static const local_phone = IconData(0xe39f, fontFamily: 'MaterialIcons');
+  static const shopping_cart = IconData(0xe59c, fontFamily: 'MaterialIcons');
 }

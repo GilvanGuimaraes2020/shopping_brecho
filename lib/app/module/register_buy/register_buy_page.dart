@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/brecho_buttons.dart';
+import 'package:shopping_brecho/app/component/brecho_checkbox.dart';
+import 'package:shopping_brecho/app/component/brecho_expansion_tile.dart';
 import 'package:shopping_brecho/app/component/brecho_floating_dock.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_select_modal_field.dart';
@@ -25,6 +27,7 @@ class RegisterBuyPage extends StatefulWidget {
 
 class _RegisterBuyPageState extends State<RegisterBuyPage> {
   final controller = Modular.get<RegisterBuyController>();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -57,11 +60,11 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
             ],
           ),
           body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: BrechoSpacing.x),
+            padding: const EdgeInsets.symmetric(horizontal: BrechoSpacing.xvi),
             child: SingleChildScrollView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: ScrollController(),
+              controller: _scrollController,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
                     height: BrechoSpacing.viii,
@@ -132,6 +135,28 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: BrechoSpacing.xii,
+                  ),
+                  controller.productPendencyAll.maybeWhen(
+                      data: (data) {
+                        return BrechoExpansionTile(
+                            leading: const Text('Pendências (não obrigátorio)')
+                                .labelMediumRegular(),
+                            contentPadding: EdgeInsets.zero,
+                            child: Column(
+                              children: data
+                                  .map((e) => _PendencyItem(
+                                      id: e.id!,
+                                      label: e.pendencyName ?? '',
+                                      onSelectPendency:
+                                          controller.onSelectPendency,
+                                      isSelected: controller.pendencySelecteds
+                                          .contains(e.id)))
+                                  .toList(),
+                            ));
+                      },
+                      orElse: () => const SizedBox.shrink()),
                   const SizedBox(height: BrechoSpacing.clx)
                 ],
               ),
@@ -158,7 +183,7 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
                     if (controller.formIsValid) {
                       final result = await controller.saveProductStock();
                       if (result is FreezedStatusSuccess) {
-                        Modular.to.pop();
+                        Modular.to.pop(result);
                         text = 'Salvo com sucesso!';
                         status = BrechoSnackbarStatus.success;
                       } else {
@@ -179,5 +204,49 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
         ),
       );
     });
+  }
+}
+
+class _PendencyItem extends StatelessWidget {
+  final bool isSelected;
+  final int id;
+  final String label;
+  final Function(int) onSelectPendency;
+
+  const _PendencyItem(
+      {required this.id,
+      required this.label,
+      required this.isSelected,
+      required this.onSelectPendency});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => onSelectPendency.call(id),
+      child: DecoratedBox(
+        decoration: const BoxDecoration(
+            border: Border(
+                bottom: BorderSide(
+          color: BrechoColors.neutral8,
+        ))),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: BrechoSpacing.xvi),
+          child: Row(
+            children: [
+              IgnorePointer(
+                child: BrechoCheckbox(
+                  value: isSelected,
+                  onChanged: (p0) {},
+                ),
+              ),
+              const SizedBox(
+                width: BrechoSpacing.vi,
+              ),
+              Text(label).labelExtraSmallMedium()
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

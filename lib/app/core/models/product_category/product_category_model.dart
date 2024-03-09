@@ -10,6 +10,7 @@ class ProductCategoryModel with _$ProductCategoryModel {
     int? id,
     String? categoryName,
     String? categoryValue,
+    String? color,
   }) = _ProductCategoryModel;
 
   factory ProductCategoryModel.fromJson(Map<String, dynamic> json) =>

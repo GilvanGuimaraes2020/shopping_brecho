@@ -43,11 +43,18 @@ class BrechoSnackbar {
             borderRadius: BorderRadius.circular(BrechoSpacing.viii)),
         content: SizedBox(
           height: 50,
-          child: Row(children: [
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
             Icon(icon),
-            const Expanded(child: SizedBox()),
-            Text(text).labelMediumSemiBold(),
-            const Expanded(child: SizedBox()),
+            Expanded(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: BrechoSpacing.viii),
+                child: Text(
+                  text,
+                  softWrap: true,
+                ).labelMediumSemiBold(),
+              ),
+            ),
             InkWell(
               onTap: () =>
                   rootMessengerState.currentState?.hideCurrentSnackBar(),

@@ -65,3 +65,7 @@ extension ExtensionList<T> on List<T> {
     return index == null || index < 0 || index >= length ? null : this[index];
   }
 }
+
+extension ExtensionMapMaybeNull on Map?{
+bool get isNotNullAndNotEmpty => this?.isNotEmpty ?? false;
+}
