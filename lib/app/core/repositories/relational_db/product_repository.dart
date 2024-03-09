@@ -1,9 +1,11 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:shopping_brecho/app/core/interfaces/relational_db/product_repository_interface.dart';
 import 'package:shopping_brecho/app/core/models/brand/brand_model.dart';
-import 'package:shopping_brecho/app/core/models/customer/customer_model.dart';
+import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
 import 'package:shopping_brecho/app/core/models/old_category/old_category_model.dart';
+import 'package:shopping_brecho/app/core/models/payment_type/payment_type_model.dart';
 import 'package:shopping_brecho/app/core/models/product_category/product_category_model.dart';
+import 'package:shopping_brecho/app/core/models/product_pendency_table/product_pendency_table_model.dart';
 import 'package:shopping_brecho/app/core/models/product_relational_model/product_relational_model.dart';
 import 'package:shopping_brecho/app/core/service/database/interface/remote_database.dart';
 
@@ -19,8 +21,10 @@ class ProductRepository implements IProductRepository {
     return _remoteDatabase.query('SELECT $tableColumns FROM $tableName;');
   }
 
+//Implementar na sequencia para diminuir custo do banco
   @override
-  Future<ProductState> addProduct(List<ProductRelationalModel> models) async {
+  Future<FreezedStatus> addProductList(
+      List<ProductRelationalModel> models) async {
     try {
       String valuesInsert = '';
       for (final model in models) {
@@ -33,90 +37,176 @@ class ProductRepository implements IProductRepository {
 
       final result = await _remoteDatabase.query(query);
 
-      return ProductState.success(result);
+      return FreezedStatus.success(result);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
-      return ProductState.error(e);
+      return FreezedStatus.error(e);
     }
   }
 
   @override
-  Future<ProductState> getAllProducts({List<String>? columns}) async {
+  Future<FreezedStatus> addPendencyList(
+      List<ProductPendencyTableModel> models) async {
     try {
-      final tableColumns = columns == null ? '*' : columns.join(',');
-      final query = 'SELECT $tableColumns FROM product;';
+      String valuesInsert = '';
+      for (final model in models) {
+        valuesInsert =
+            "('${model.productStockId}', '${model.productPendencyId}', 'false', '${DateTime.now().toUtc()}')${valuesInsert.isNotEmpty ? ' , $valuesInsert' : ''}";
+      }
+
+      final query =
+          'INSERT INTO product_pendency_table (product_stock_id, product_pendency_id, completed, created_at) VALUES $valuesInsert;';
 
       final result = await _remoteDatabase.query(query);
 
-      return ProductState.data(
-          result.map((e) => ProductRelationalModel.fromJson(e)).toList());
+      return FreezedStatus.success(result);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
-      return ProductState.error(e);
+      return FreezedStatus.error(e);
     }
   }
 
   @override
-  Future<OldCategoryState> getOldCategory({List<String>? columns}) async {
+  Future<FreezedStatus> addProduct(ProductRelationalModel model) async {
+    try {
+      final valuesInsert =
+          "('${model.productCategoryId}', '${model.oldCategoryId}', '{${model.oldCategoryIdList.join(',')}}', '${model.brandId}', '${model.model}', '${model.createdAt}')";
+
+      final query =
+          'INSERT INTO product(product_category_id, old_category_id, old_category_id_list, brand_id, model, created_at) VALUES $valuesInsert;';
+
+      final result = await _remoteDatabase.query(query);
+
+      return FreezedStatus.success(result);
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return FreezedStatus.error(e);
+    }
+  }
+
+  @override
+  Future<FreezedStatus<List<ProductRelationalModel>>> getAllProducts(
+      {List<String>? columns}) async {
+    try {
+      final tableColumns = columns == null ? '' : columns.join(',');
+      final query =
+          'SELECT product.id, product_category_id, old_category_id, model, brand_id, created_at, brand_table.brand_name, category.category_name  $tableColumns FROM product JOIN brand_table ON product.brand_id = brand_table.id JOIN category ON category.id = product_category_id;';
+
+      final result = await _remoteDatabase.query(query);
+
+      final List<Map<String, dynamic>> jsonList = [];
+
+      for (final e in result) {
+        Map<String, dynamic> json = {};
+        json = Map<String, dynamic>.of(e['product'] as Map<String, dynamic>);
+        json.addAll(e['brand_table'] as Map<String, dynamic>);
+        json.addAll(e['category'] as Map<String, dynamic>);
+        jsonList.add(json);
+      }
+
+      return FreezedStatus.data(
+          jsonList.map((e) => ProductRelationalModel.fromJson(e)).toList());
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return FreezedStatus.error(e);
+    }
+  }
+
+  @override
+  Future<FreezedStatus<List<OldCategoryModel>>> getOldCategory(
+      {List<String>? columns}) async {
     try {
       final tableColumns = columns == null ? '*' : columns.join(',');
       final result = await _remoteDatabase
           .query('SELECT $tableColumns FROM old_category;');
-      return OldCategoryState.data(
-          result.map((e) => OldCategoryModel.fromJson(e)).toList());
+      return FreezedStatus.data(result
+          .map((e) => OldCategoryModel.fromJson(
+              e['old_category'] as Map<String, dynamic>))
+          .toList());
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
-      return OldCategoryState.error(e);
+      return FreezedStatus.error(e);
     }
   }
 
   @override
-  Future<ProductCategoryState> getProductCategory(
+  Future<FreezedStatus<List<ProductCategoryModel>>> getProductCategory(
       {List<String>? columns}) async {
     try {
       final tableColumns = columns == null ? '*' : columns.join(',');
       final result =
           await _remoteDatabase.query('SELECT $tableColumns FROM category;');
-      return ProductCategoryState.data(
-          result.map((e) => ProductCategoryModel.fromJson(e)).toList());
+      return FreezedStatus.data(result
+          .map((e) => ProductCategoryModel.fromJson(
+              e['category'] as Map<String, dynamic>))
+          .toList());
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
-      return ProductCategoryState.error(e);
+      return FreezedStatus.error(e);
     }
   }
 
   @override
-  Future<BrandState> getBrands({List<String>? columns}) async {
+  Future<FreezedStatus<List<BrandModel>>> getBrands(
+      {List<String>? columns}) async {
     try {
       final tableColumns = columns == null ? '*' : columns.join(',');
+      final List<BrandModel> values = [];
       final result =
           await _remoteDatabase.query('SELECT $tableColumns FROM brand_table;');
-      return BrandState.data(
-          result.map((e) => BrandModel.fromJson(e)).toList());
+
+      for (final e in result) {
+        values
+            .add(BrandModel.fromJson(e['brand_table'] as Map<String, dynamic>));
+      }
+      return FreezedStatus.data(values);
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
-      return BrandState.error(e);
+      return FreezedStatus.error(e);
     }
   }
 
   @override
-  Future<CustomerState> getCustomer({List<String>? columns}) async {
+  Future<FreezedStatus<List<ProductPendencyTableModel>>> getPendencyByProductId(
+      String productId) async {
     try {
-      final tableColumns = columns == null ? '*' : columns.join(',');
-      final result = await _remoteDatabase
-          .query('SELECT $tableColumns FROM customer_table;');
-      return CustomerState.data(
-          result.map((e) => CustomerModel.fromJson(e)).toList());
+      final result = await _remoteDatabase.query('''
+          SELECT p.id, p.product_pendency_id, t.pendency_name
+          FROM product_pendency_table as p
+          JOIN product_pendency as t ON t.id = p.product_pendency_id 
+          WHERE completed = false 
+          AND p.product_stock_id = $productId;
+          ''');
+
+      final List<Map<String, dynamic>> jsonList = [];
+
+      for (final e in result) {
+        Map<String, dynamic> json = {};
+        json = Map<String, dynamic>.of(
+            e['product_pendency_table'] as Map<String, dynamic>);
+        json.addAll(e['product_pendency'] as Map<String, dynamic>);
+        jsonList.add(json);
+      }
+
+      return FreezedStatus.data(
+          jsonList.map((e) => ProductPendencyTableModel.fromJson(e)).toList());
     } catch (e, s) {
       FirebaseCrashlytics.instance.recordError(e, s);
-      return CustomerState.error(e);
+      return FreezedStatus.error(e);
     }
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getProductPendency(
-      {List<String>? columns}) async {
-    final tableColumns = columns == null ? '*' : columns.join(',');
-    return _remoteDatabase.query('SELECT $tableColumns FROM product_pendency;');
+  Future<FreezedStatus<List<PaymentTypeModel>>> getPaymentType() async {
+    try {
+      final result = await _remoteDatabase.query('SELECT * FROM payment_type;');
+      return FreezedStatus.data(result
+          .map((e) => PaymentTypeModel.fromJson(
+              e['payment_type'] as Map<String, dynamic>))
+          .toList());
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return FreezedStatus.error(e);
+    }
   }
 }

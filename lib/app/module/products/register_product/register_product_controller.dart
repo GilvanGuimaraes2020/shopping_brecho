@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
-import 'package:shopping_brecho/app/core/store/buy_and_sale_product_store.dart';
+import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
+import 'package:shopping_brecho/app/core/store/buy_and_sale/buy_and_sale_product_store.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/helpers/validator_helper/validator_helper.dart';
 
@@ -10,34 +11,46 @@ class RegisterProductController = _RegisterProductController
     with _$RegisterProductController;
 
 abstract class _RegisterProductController with Store {
-  final BuyAndSaleProductStore _buyAndSaleProductStore;
+  final BuyAndSaleProductStore buyAndSaleProductStore;
 
-  _RegisterProductController(this._buyAndSaleProductStore);
+  _RegisterProductController(this.buyAndSaleProductStore);
 
   @observable
   bool autoValidateAlways = true;
 
   @action
+  Future<void> loadData() async {
+    Future.wait([
+      buyAndSaleProductStore.getOldCategory(),
+      buyAndSaleProductStore.getProductCategory(),
+      buyAndSaleProductStore.getBrands()
+    ]);
+  }
+
+//Implementar na sequencia para minimizar custo do banco
+  @action
   Future<void> addProductList() async =>
-      _buyAndSaleProductStore.addProductList();
+      buyAndSaleProductStore.addProductList();
 
   @action
-  Future<void> addAllProducts() async =>
-      _buyAndSaleProductStore.addAllProducts();
+  Future<FreezedStatus> addAllProducts() async =>
+      buyAndSaleProductStore.addAllProducts();
 
   @action
-  void onSelectBrand(dynamic value) => _buyAndSaleProductStore.onSelectBrand;
+  void onSelectBrand(dynamic value) =>
+      buyAndSaleProductStore.onSelectBrand(value);
 
   @action
   void onSelectOldCategory(dynamic value) =>
-      _buyAndSaleProductStore.onSelectOldCategory;
+      buyAndSaleProductStore.onSelectOldCategory(value);
 
   @action
   void onSelectProductCategory(dynamic value) =>
-      _buyAndSaleProductStore.onSelectProductCategory;
+      buyAndSaleProductStore.onSelectProductCategory(value);
 
   @action
-  void onChangeModel(dynamic value) => _buyAndSaleProductStore.onChangeModel;
+  void onChangeModel(dynamic value) =>
+      buyAndSaleProductStore.onChangeModel(value);
 
   @action
   String? validateOldCategory(String? value) =>
@@ -56,35 +69,36 @@ abstract class _RegisterProductController with Store {
       modelIsValid ? null : ValidatorHelper.requiredText;
 
   @computed
-  int get countDataForDatabase => _buyAndSaleProductStore.productsToSave.length;
+  int get countDataForDatabase => buyAndSaleProductStore.productsToSave.length;
 
   @computed
   TextEditingController get productModelCtl =>
-      _buyAndSaleProductStore.productModelCtl;
+      buyAndSaleProductStore.productModelCtl;
 
   @computed
-  List<String> get brandNames => _buyAndSaleProductStore.brandName;
+  List<String> get brandNames => buyAndSaleProductStore.brandName;
 
   @computed
-  List<String> get oldCategoryName => _buyAndSaleProductStore.oldCategoryName;
+  List<String> get oldCategoryName => buyAndSaleProductStore.oldCategoryName;
 
   @computed
   List<String> get productCategoryName =>
-      _buyAndSaleProductStore.productCategoryName;
+      buyAndSaleProductStore.productCategoryName;
 
   @computed
-  bool get oldCategoryIsValid => _buyAndSaleProductStore.oldCategoryIndex > -1;
+  bool get oldCategoryIsValid =>
+      buyAndSaleProductStore.oldCategoryIndex.isNotNullAndNotEmpty;
 
   @computed
   bool get productCategoryIsValid =>
-      _buyAndSaleProductStore.productCategoryIndex > -1;
+      buyAndSaleProductStore.productCategoryIndex > -1;
 
   @computed
-  bool get brandIsValid => _buyAndSaleProductStore.brandIndex > -1;
+  bool get brandIsValid => buyAndSaleProductStore.brandIndex > -1;
 
   @computed
   bool get modelIsValid =>
-      _buyAndSaleProductStore.productModel.isNotNullAndNotEmpty;
+      buyAndSaleProductStore.productModel.isNotNullAndNotEmpty;
 
   @computed
   bool get formIsValid =>

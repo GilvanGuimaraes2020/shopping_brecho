@@ -9,69 +9,22 @@ part of 'register_buy_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
-  Computed<CustomerState>? _$clientComputed;
+  Computed<FreezedStatus<List<CustomerModel>>>? _$clientComputed;
 
   @override
-  CustomerState get client =>
-      (_$clientComputed ??= Computed<CustomerState>(() => super.client,
+  FreezedStatus<List<CustomerModel>> get client => (_$clientComputed ??=
+          Computed<FreezedStatus<List<CustomerModel>>>(() => super.client,
               name: '_RegisterBuyControllerBase.client'))
+      .value;
+  Computed<FreezedStatus<List<ProductRelationalModel>>>? _$productsComputed;
+
+  @override
+  FreezedStatus<List<ProductRelationalModel>> get products =>
+      (_$productsComputed ??=
+              Computed<FreezedStatus<List<ProductRelationalModel>>>(
+                  () => super.products,
+                  name: '_RegisterBuyControllerBase.products'))
           .value;
-  Computed<List<String>?>? _$titlesComputed;
-
-  @override
-  List<String>? get titles =>
-      (_$titlesComputed ??= Computed<List<String>?>(() => super.titles,
-              name: '_RegisterBuyControllerBase.titles'))
-          .value;
-  Computed<List<String>?>? _$subtitlesComputed;
-
-  @override
-  List<String>? get subtitles =>
-      (_$subtitlesComputed ??= Computed<List<String>?>(() => super.subtitles,
-              name: '_RegisterBuyControllerBase.subtitles'))
-          .value;
-  Computed<List<CustomerModel>>? _$listClientComputed;
-
-  @override
-  List<CustomerModel> get listClient => (_$listClientComputed ??=
-          Computed<List<CustomerModel>>(() => super.listClient,
-              name: '_RegisterBuyControllerBase.listClient'))
-      .value;
-  Computed<List<String>?>? _$dataTrailingComputed;
-
-  @override
-  List<String>? get dataTrailing => (_$dataTrailingComputed ??=
-          Computed<List<String>?>(() => super.dataTrailing,
-              name: '_RegisterBuyControllerBase.dataTrailing'))
-      .value;
-  Computed<List<String>?>? _$listProductBrandComputed;
-
-  @override
-  List<String>? get listProductBrand => (_$listProductBrandComputed ??=
-          Computed<List<String>?>(() => super.listProductBrand,
-              name: '_RegisterBuyControllerBase.listProductBrand'))
-      .value;
-  Computed<List<String>?>? _$listProductModelComputed;
-
-  @override
-  List<String>? get listProductModel => (_$listProductModelComputed ??=
-          Computed<List<String>?>(() => super.listProductModel,
-              name: '_RegisterBuyControllerBase.listProductModel'))
-      .value;
-  Computed<List<ProductModel>>? _$listProductComputed;
-
-  @override
-  List<ProductModel> get listProduct => (_$listProductComputed ??=
-          Computed<List<ProductModel>>(() => super.listProduct,
-              name: '_RegisterBuyControllerBase.listProduct'))
-      .value;
-  Computed<List<String>>? _$paymentTypeNamesComputed;
-
-  @override
-  List<String> get paymentTypeNames => (_$paymentTypeNamesComputed ??=
-          Computed<List<String>>(() => super.paymentTypeNames,
-              name: '_RegisterBuyControllerBase.paymentTypeNames'))
-      .value;
   Computed<bool>? _$priceIsValidComputed;
 
   @override
@@ -86,6 +39,44 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
       (_$dateIsValidComputed ??= Computed<bool>(() => super.dateIsValid,
               name: '_RegisterBuyControllerBase.dateIsValid'))
           .value;
+  Computed<bool>? _$clientIsValidComputed;
+
+  @override
+  bool get clientIsValid =>
+      (_$clientIsValidComputed ??= Computed<bool>(() => super.clientIsValid,
+              name: '_RegisterBuyControllerBase.clientIsValid'))
+          .value;
+  Computed<bool>? _$productIsValidComputed;
+
+  @override
+  bool get productIsValid =>
+      (_$productIsValidComputed ??= Computed<bool>(() => super.productIsValid,
+              name: '_RegisterBuyControllerBase.productIsValid'))
+          .value;
+  Computed<bool>? _$paymentTypeIsValidComputed;
+
+  @override
+  bool get paymentTypeIsValid => (_$paymentTypeIsValidComputed ??=
+          Computed<bool>(() => super.paymentTypeIsValid,
+              name: '_RegisterBuyControllerBase.paymentTypeIsValid'))
+      .value;
+  Computed<FreezedStatus<List<ProductPendencyModel>>>?
+      _$productPendencyAllComputed;
+
+  @override
+  FreezedStatus<List<ProductPendencyModel>> get productPendencyAll =>
+      (_$productPendencyAllComputed ??=
+              Computed<FreezedStatus<List<ProductPendencyModel>>>(
+                  () => super.productPendencyAll,
+                  name: '_RegisterBuyControllerBase.productPendencyAll'))
+          .value;
+  Computed<ObservableList<int>>? _$pendencySelectedsComputed;
+
+  @override
+  ObservableList<int> get pendencySelecteds => (_$pendencySelectedsComputed ??=
+          Computed<ObservableList<int>>(() => super.pendencySelecteds,
+              name: '_RegisterBuyControllerBase.pendencySelecteds'))
+      .value;
   Computed<bool>? _$formIsValidComputed;
 
   @override
@@ -101,35 +92,19 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
               name: '_RegisterBuyControllerBase.isLoading'))
           .value;
 
-  late final _$autoValidateAlawaysAtom = Atom(
-      name: '_RegisterBuyControllerBase.autoValidateAlaways', context: context);
+  late final _$autoValidateAlwaysAtom = Atom(
+      name: '_RegisterBuyControllerBase.autoValidateAlways', context: context);
 
   @override
-  bool get autoValidateAlaways {
-    _$autoValidateAlawaysAtom.reportRead();
-    return super.autoValidateAlaways;
+  bool get autoValidateAlways {
+    _$autoValidateAlwaysAtom.reportRead();
+    return super.autoValidateAlways;
   }
 
   @override
-  set autoValidateAlaways(bool value) {
-    _$autoValidateAlawaysAtom.reportWrite(value, super.autoValidateAlaways, () {
-      super.autoValidateAlaways = value;
-    });
-  }
-
-  late final _$productAtom =
-      Atom(name: '_RegisterBuyControllerBase.product', context: context);
-
-  @override
-  Product get product {
-    _$productAtom.reportRead();
-    return super.product;
-  }
-
-  @override
-  set product(Product value) {
-    _$productAtom.reportWrite(value, super.product, () {
-      super.product = value;
+  set autoValidateAlways(bool value) {
+    _$autoValidateAlwaysAtom.reportWrite(value, super.autoValidateAlways, () {
+      super.autoValidateAlways = value;
     });
   }
 
@@ -165,38 +140,38 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
     });
   }
 
-  late final _$saveDataAsyncAction =
-      AsyncAction('_RegisterBuyControllerBase.saveData', context: context);
-
-  @override
-  Future<RequestStatus> saveData() {
-    return _$saveDataAsyncAction.run(() => super.saveData());
-  }
-
-  late final _$getPaymentListAsyncAction = AsyncAction(
-      '_RegisterBuyControllerBase.getPaymentList',
+  late final _$saveProductStockAsyncAction = AsyncAction(
+      '_RegisterBuyControllerBase.saveProductStock',
       context: context);
 
   @override
-  Future<void> getPaymentList() {
-    return _$getPaymentListAsyncAction.run(() => super.getPaymentList());
+  Future<FreezedStatus<dynamic>> saveProductStock() {
+    return _$saveProductStockAsyncAction.run(() => super.saveProductStock());
   }
 
   late final _$getClientsAsyncAction =
       AsyncAction('_RegisterBuyControllerBase.getClients', context: context);
 
   @override
-  Future<List<String>?> getClients({String? keyword}) {
-    return _$getClientsAsyncAction
-        .run(() => super.getClients(keyword: keyword));
+  Future<List<Map<String, dynamic>>> getClients(String? keyword) {
+    return _$getClientsAsyncAction.run(() => super.getClients(keyword));
   }
 
   late final _$onChangePriceAsyncAction =
       AsyncAction('_RegisterBuyControllerBase.onChangePrice', context: context);
 
   @override
-  Future<void> onChangePrice(String value) {
+  Future<void> onChangePrice(dynamic value) {
     return _$onChangePriceAsyncAction.run(() => super.onChangePrice(value));
+  }
+
+  late final _$setCustomerNameAsyncAction = AsyncAction(
+      '_RegisterBuyControllerBase.setCustomerName',
+      context: context);
+
+  @override
+  Future<void> setCustomerName(dynamic value) {
+    return _$setCustomerNameAsyncAction.run(() => super.setCustomerName(value));
   }
 
   late final _$onSelectClientAsyncAction = AsyncAction(
@@ -204,39 +179,28 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
       context: context);
 
   @override
-  Future<void> onSelectClient(String? title, String? subtitle) {
-    return _$onSelectClientAsyncAction
-        .run(() => super.onSelectClient(title, subtitle));
+  Future<void> onSelectClient(dynamic value) {
+    return _$onSelectClientAsyncAction.run(() => super.onSelectClient(value));
   }
 
-  late final _$onSelectProductAsyncAction = AsyncAction(
-      '_RegisterBuyControllerBase.onSelectProduct',
+  late final _$registerBuySelectProductAsyncAction = AsyncAction(
+      '_RegisterBuyControllerBase.registerBuySelectProduct',
       context: context);
 
   @override
-  Future<void> onSelectProduct(String? title, String? subtitle) {
-    return _$onSelectProductAsyncAction
-        .run(() => super.onSelectProduct(title, subtitle));
+  Future<void> registerBuySelectProduct(dynamic value) {
+    return _$registerBuySelectProductAsyncAction
+        .run(() => super.registerBuySelectProduct(value));
   }
 
-  late final _$onSelectPaymentTypeAsyncAction = AsyncAction(
-      '_RegisterBuyControllerBase.onSelectPaymentType',
+  late final _$registerBuySetPaymentTypeAsyncAction = AsyncAction(
+      '_RegisterBuyControllerBase.registerBuySetPaymentType',
       context: context);
 
   @override
-  Future<void> onSelectPaymentType(dynamic value) {
-    return _$onSelectPaymentTypeAsyncAction
-        .run(() => super.onSelectPaymentType(value));
-  }
-
-  late final _$onTapInstallmentAsyncAction = AsyncAction(
-      '_RegisterBuyControllerBase.onTapInstallment',
-      context: context);
-
-  @override
-  Future<void> onTapInstallment(dynamic value) {
-    return _$onTapInstallmentAsyncAction
-        .run(() => super.onTapInstallment(value));
+  Future<void> registerBuySetPaymentType(dynamic value) {
+    return _$registerBuySetPaymentTypeAsyncAction
+        .run(() => super.registerBuySetPaymentType(value));
   }
 
   late final _$_RegisterBuyControllerBaseActionController =
@@ -254,23 +218,98 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
   }
 
   @override
+  void registerBuyOnChangeDate(dynamic value) {
+    final _$actionInfo =
+        _$_RegisterBuyControllerBaseActionController.startAction(
+            name: '_RegisterBuyControllerBase.registerBuyOnChangeDate');
+    try {
+      return super.registerBuyOnChangeDate(value);
+    } finally {
+      _$_RegisterBuyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void onSelectPendency(int pendencyId) {
+    final _$actionInfo = _$_RegisterBuyControllerBaseActionController
+        .startAction(name: '_RegisterBuyControllerBase.onSelectPendency');
+    try {
+      return super.onSelectPendency(pendencyId);
+    } finally {
+      _$_RegisterBuyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateClient(dynamic value) {
+    final _$actionInfo = _$_RegisterBuyControllerBaseActionController
+        .startAction(name: '_RegisterBuyControllerBase.validateClient');
+    try {
+      return super.validateClient(value);
+    } finally {
+      _$_RegisterBuyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateProduct(dynamic value) {
+    final _$actionInfo = _$_RegisterBuyControllerBaseActionController
+        .startAction(name: '_RegisterBuyControllerBase.validateProduct');
+    try {
+      return super.validateProduct(value);
+    } finally {
+      _$_RegisterBuyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatePrice(dynamic value) {
+    final _$actionInfo = _$_RegisterBuyControllerBaseActionController
+        .startAction(name: '_RegisterBuyControllerBase.validatePrice');
+    try {
+      return super.validatePrice(value);
+    } finally {
+      _$_RegisterBuyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatePaymentType(dynamic value) {
+    final _$actionInfo = _$_RegisterBuyControllerBaseActionController
+        .startAction(name: '_RegisterBuyControllerBase.validatePaymentType');
+    try {
+      return super.validatePaymentType(value);
+    } finally {
+      _$_RegisterBuyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateDate(dynamic value) {
+    final _$actionInfo = _$_RegisterBuyControllerBaseActionController
+        .startAction(name: '_RegisterBuyControllerBase.validateDate');
+    try {
+      return super.validateDate(value);
+    } finally {
+      _$_RegisterBuyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-autoValidateAlaways: ${autoValidateAlaways},
-product: ${product},
+autoValidateAlways: ${autoValidateAlways},
 paymentTypeList: ${paymentTypeList},
 requestStatus: ${requestStatus},
 client: ${client},
-titles: ${titles},
-subtitles: ${subtitles},
-listClient: ${listClient},
-dataTrailing: ${dataTrailing},
-listProductBrand: ${listProductBrand},
-listProductModel: ${listProductModel},
-listProduct: ${listProduct},
-paymentTypeNames: ${paymentTypeNames},
+products: ${products},
 priceIsValid: ${priceIsValid},
 dateIsValid: ${dateIsValid},
+clientIsValid: ${clientIsValid},
+productIsValid: ${productIsValid},
+paymentTypeIsValid: ${paymentTypeIsValid},
+productPendencyAll: ${productPendencyAll},
+pendencySelecteds: ${pendencySelecteds},
 formIsValid: ${formIsValid},
 isLoading: ${isLoading}
     ''';

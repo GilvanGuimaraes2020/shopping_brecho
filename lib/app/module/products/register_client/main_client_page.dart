@@ -6,6 +6,7 @@ import 'package:shopping_brecho/app/component/brecho_bottom_sheet.dart';
 import 'package:shopping_brecho/app/component/brecho_empty_state.dart';
 import 'package:shopping_brecho/app/component/brecho_shimmer.dart';
 import 'package:shopping_brecho/app/core/models/customer/customer_model.dart';
+import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
 import 'package:shopping_brecho/app/module/products/register_client/main_client_controller.dart';
@@ -20,6 +21,13 @@ class MainClientPage extends StatefulWidget {
 
 class _MainClientPageState extends State<MainClientPage> {
   final controller = Modular.get<MainClientController>();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +63,7 @@ class _MainClientPageState extends State<MainClientPage> {
 }
 
 class _ClientCard extends StatelessWidget {
-  final CustomerState customerState;
+  final FreezedStatus<List<CustomerModel>> customerState;
   const _ClientCard({required this.customerState});
 
   Widget _showFilter() {
@@ -85,6 +93,7 @@ class _ClientCard extends StatelessWidget {
     return customerState.maybeWhen(
         data: (data) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: data
                 .map((e) => Padding(
                       padding: const EdgeInsets.only(bottom: BrechoSpacing.xvi),
@@ -113,6 +122,8 @@ class _ClientCard extends StatelessWidget {
                                   ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(e.name ?? ''),
                                       const SizedBox(

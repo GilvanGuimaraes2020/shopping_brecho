@@ -7,25 +7,16 @@ part 'customer_model.g.dart';
 class CustomerModel with _$CustomerModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   factory CustomerModel({
-    String? id,
+    int? id,
     String? name,
     String? phone,
     String? address,
     String? neighborhood,
     int? number,
-    DateTime? createdAt,
+    String? observation,
+    dynamic createdAt,
   }) = _CustomerModel;
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) =>
       _$CustomerModelFromJson(json);
-}
-
-@freezed
-class CustomerState with _$CustomerState {
-  const factory CustomerState.data(List<CustomerModel> customerModel) =
-      CustomerStateData;
-  const factory CustomerState.success([Object? data]) = CustomerStateSuccess;
-  const factory CustomerState.empty() = CustomerStateEmpty;
-  const factory CustomerState.loading() = CustomerStateLoading;
-  const factory CustomerState.error([Object? error]) = CustomerStateError;
 }

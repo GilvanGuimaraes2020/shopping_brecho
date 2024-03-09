@@ -1,3 +1,4 @@
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 
@@ -18,6 +19,29 @@ class FormatHelper {
     } catch (e) {
       return null;
     }
+  }
+
+  static String formatDDMMYYYY(dynamic value) {
+    if (value == null || value == '') return '';
+    DateTime? newValue;
+    if (value is DateTime) {
+      newValue = value;
+    } else {
+      newValue = DateTime.tryParse(value.toString());
+    }
+    return newValue == null
+        ? ''
+        : '${newValue.day}/${newValue.month}/${newValue.year}';
+  }
+
+  static String formatUTCDateToBRDescription(String stringDate) {
+    final date = DateTime.parse(stringDate).toLocal();
+    final now = DateTime.now();
+
+    final format = date.year != now.year ? "dd/MM/yyyy" : "dd 'de' MMMM";
+
+    initializeDateFormatting('pt_BR');
+    return DateFormat(format, 'pt_BR').format(date);
   }
 
   static String parseStringDateToCollectionRef(String value) {
@@ -44,6 +68,33 @@ class FormatHelper {
       return '(${matches.first.group(1)}) ${matches.first.group(2)}-${matches.first.group(3)}';
     } catch (e) {
       return text;
+    }
+  }
+
+  static String formatDateToApi(String date) {
+    final day = date.split('/')[0];
+    final month = date.split('/')[1];
+    final year = date.split('/')[2];
+
+    return '$year-$month-${day}T00:00:00.785Z';
+  }
+
+  static String currency(
+    dynamic value, {
+    String locale = 'pt_BR',
+    String symbol = 'R\$',
+  }) {
+    try {
+      if (value is String) {
+        // ignore: parameter_assignments
+        value = double.tryParse(value);
+      }
+      final valueFormatted = NumberFormat("#,##0.00", locale).format(value);
+      return symbol.trim().isEmpty
+          ? valueFormatted
+          : '${symbol.trim()} $valueFormatted';
+    } catch (_) {
+      return '';
     }
   }
 }
