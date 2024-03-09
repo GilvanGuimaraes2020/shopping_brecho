@@ -44,6 +44,21 @@ class BrechoEmptyState extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.center,
   });
 
+  const BrechoEmptyState.withoutActions({
+    super.key,
+    this.image,
+    this.title = 'Oops!',
+    this.description =
+        'Não foi possível carregar as informações.',
+    this.buttonTitle = '',
+    this.onPressed,
+    this.optionalButtonTitle,
+    this.optionalOnPressed,
+    this.inScrollable = false,
+    this.customPadding,
+    this.mainAxisAlignment = MainAxisAlignment.center,
+  });
+
   const BrechoEmptyState.clearFilters({
     super.key,
     this.image,

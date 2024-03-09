@@ -21,6 +21,19 @@ class FormatHelper {
     }
   }
 
+  static String formatDDMMYYYY(dynamic value) {
+    if (value == null || value == '') return '';
+    DateTime? newValue;
+    if (value is DateTime) {
+      newValue = value;
+    } else {
+      newValue = DateTime.tryParse(value.toString());
+    }
+    return newValue == null
+        ? ''
+        : '${newValue.day}/${newValue.month}/${newValue.year}';
+  }
+
   static String formatUTCDateToBRDescription(String stringDate) {
     final date = DateTime.parse(stringDate).toLocal();
     final now = DateTime.now();
@@ -64,5 +77,24 @@ class FormatHelper {
     final year = date.split('/')[2];
 
     return '$year-$month-${day}T00:00:00.785Z';
+  }
+
+  static String currency(
+    dynamic value, {
+    String locale = 'pt_BR',
+    String symbol = 'R\$',
+  }) {
+    try {
+      if (value is String) {
+        // ignore: parameter_assignments
+        value = double.tryParse(value);
+      }
+      final valueFormatted = NumberFormat("#,##0.00", locale).format(value);
+      return symbol.trim().isEmpty
+          ? valueFormatted
+          : '${symbol.trim()} $valueFormatted';
+    } catch (_) {
+      return '';
+    }
   }
 }

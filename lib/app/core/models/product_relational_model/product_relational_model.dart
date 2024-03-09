@@ -9,6 +9,7 @@ class ProductRelationalModel with _$ProductRelationalModel {
   factory ProductRelationalModel({
     int? id,  
     int? productCategoryId,
+    String? categoryName,
     int? brandId,
     String? model,
     int? oldCategoryId,

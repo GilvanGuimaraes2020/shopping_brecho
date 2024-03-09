@@ -13,13 +13,16 @@ import 'package:shopping_brecho/app/core/repositories/relational_db/stock_reposi
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
 import 'package:shopping_brecho/app/core/service/database/conn/conn.dart';
 import 'package:shopping_brecho/app/core/service/database/interface/remote_database.dart';
-import 'package:shopping_brecho/app/core/store/buy_and_sale_product_store.dart';
+import 'package:shopping_brecho/app/core/store/buy_and_sale/buy_and_sale_product_store.dart';
+import 'package:shopping_brecho/app/core/store/buy_and_sale/main/main_store.dart';
 import 'package:shopping_brecho/app/module/homepage/home_controller.dart';
 import 'package:shopping_brecho/app/module/homepage/home_page.dart';
 import 'package:shopping_brecho/app/module/kanban/components/edit_card_controller.dart';
 import 'package:shopping_brecho/app/module/kanban/kanban_controller.dart';
 import 'package:shopping_brecho/app/module/main_page/main_controller.dart';
 import 'package:shopping_brecho/app/module/main_page/main_page.dart';
+import 'package:shopping_brecho/app/module/products/product_detail/product_detail_controller.dart';
+import 'package:shopping_brecho/app/module/products/product_list/product_list_controller.dart';
 import 'package:shopping_brecho/app/module/products/register_client/main_client_controller.dart';
 import 'package:shopping_brecho/app/module/products/register_client/main_client_page.dart';
 import 'package:shopping_brecho/app/module/products/register_client/register_client_controller.dart';
@@ -44,8 +47,10 @@ class AppModule extends Module {
         Bind.factory((i) => EditCardController(i())),
         Bind.factory((i) => KanbanController(i())),
         Bind.factory((i) => RegisterExpenseController(i.get(), i.get())),
-        Bind.factory((i) => MainController(i.get())),
+        Bind.factory((i) => MainController(i.get(), i.get())),
         Bind.factory((i) => RegisterProductController(i.get())),
+        Bind.factory((i) => ProductListController(i.get())),
+        Bind.factory((i) => ProductDetailController(i.get())),
         Bind.factory(
             (i) => RegisterClientController(i.get<BuyAndSaleProductStore>())),
         Bind.factory(
@@ -56,7 +61,11 @@ class AppModule extends Module {
         Bind.singleton<RemoteDatabase>(
           (i) => Conn(),
         ),
-        Bind.lazySingleton((i) => BuyAndSaleProductStore(i.get(), i.get(), i.get())),
+        Bind.lazySingleton(
+            (i) => BuyAndSaleProductStore(i.get(), i.get(), i.get())),
+        Bind.lazySingleton(
+          (i) => MainStore(),
+        )
       ];
 
   @override

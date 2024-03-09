@@ -5,6 +5,7 @@ import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.da
 import 'package:shopping_brecho/app/core/models/old_category/old_category_model.dart';
 import 'package:shopping_brecho/app/core/models/payment_type/payment_type_model.dart';
 import 'package:shopping_brecho/app/core/models/product_category/product_category_model.dart';
+import 'package:shopping_brecho/app/core/models/product_pendency_table/product_pendency_table_model.dart';
 import 'package:shopping_brecho/app/core/models/product_relational_model/product_relational_model.dart';
 import 'package:shopping_brecho/app/core/service/database/interface/remote_database.dart';
 
@@ -44,6 +45,28 @@ class ProductRepository implements IProductRepository {
   }
 
   @override
+  Future<FreezedStatus> addPendencyList(
+      List<ProductPendencyTableModel> models) async {
+    try {
+      String valuesInsert = '';
+      for (final model in models) {
+        valuesInsert =
+            "('${model.productStockId}', '${model.productPendencyId}', 'false', '${DateTime.now().toUtc()}')${valuesInsert.isNotEmpty ? ' , $valuesInsert' : ''}";
+      }
+
+      final query =
+          'INSERT INTO product_pendency_table (product_stock_id, product_pendency_id, completed, created_at) VALUES $valuesInsert;';
+
+      final result = await _remoteDatabase.query(query);
+
+      return FreezedStatus.success(result);
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return FreezedStatus.error(e);
+    }
+  }
+
+  @override
   Future<FreezedStatus> addProduct(ProductRelationalModel model) async {
     try {
       final valuesInsert =
@@ -67,7 +90,7 @@ class ProductRepository implements IProductRepository {
     try {
       final tableColumns = columns == null ? '' : columns.join(',');
       final query =
-          'SELECT product.id, product_category_id, old_category_id, model, brand_id, created_at, brand_table.brand_name $tableColumns FROM product JOIN brand_table ON product.brand_id = brand_table.id;';
+          'SELECT product.id, product_category_id, old_category_id, model, brand_id, created_at, brand_table.brand_name, category.category_name  $tableColumns FROM product JOIN brand_table ON product.brand_id = brand_table.id JOIN category ON category.id = product_category_id;';
 
       final result = await _remoteDatabase.query(query);
 
@@ -77,6 +100,7 @@ class ProductRepository implements IProductRepository {
         Map<String, dynamic> json = {};
         json = Map<String, dynamic>.of(e['product'] as Map<String, dynamic>);
         json.addAll(e['brand_table'] as Map<String, dynamic>);
+        json.addAll(e['category'] as Map<String, dynamic>);
         jsonList.add(json);
       }
 
@@ -143,10 +167,33 @@ class ProductRepository implements IProductRepository {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getProductPendency(
-      {List<String>? columns}) async {
-    final tableColumns = columns == null ? '*' : columns.join(',');
-    return _remoteDatabase.query('SELECT $tableColumns FROM product_pendency;');
+  Future<FreezedStatus<List<ProductPendencyTableModel>>> getPendencyByProductId(
+      String productId) async {
+    try {
+      final result = await _remoteDatabase.query('''
+          SELECT p.id, p.product_pendency_id, t.pendency_name
+          FROM product_pendency_table as p
+          JOIN product_pendency as t ON t.id = p.product_pendency_id 
+          WHERE completed = false 
+          AND p.product_stock_id = $productId;
+          ''');
+
+      final List<Map<String, dynamic>> jsonList = [];
+
+      for (final e in result) {
+        Map<String, dynamic> json = {};
+        json = Map<String, dynamic>.of(
+            e['product_pendency_table'] as Map<String, dynamic>);
+        json.addAll(e['product_pendency'] as Map<String, dynamic>);
+        jsonList.add(json);
+      }
+
+      return FreezedStatus.data(
+          jsonList.map((e) => ProductPendencyTableModel.fromJson(e)).toList());
+    } catch (e, s) {
+      FirebaseCrashlytics.instance.recordError(e, s);
+      return FreezedStatus.error(e);
+    }
   }
 
   @override

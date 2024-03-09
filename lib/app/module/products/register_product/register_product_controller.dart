@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
-import 'package:shopping_brecho/app/core/store/buy_and_sale_product_store.dart';
+import 'package:shopping_brecho/app/core/store/buy_and_sale/buy_and_sale_product_store.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/helpers/validator_helper/validator_helper.dart';
 

@@ -2,7 +2,7 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
-import 'package:shopping_brecho/app/core/store/buy_and_sale_product_store.dart';
+import 'package:shopping_brecho/app/core/store/buy_and_sale/buy_and_sale_product_store.dart';
 import 'package:shopping_brecho/app/helpers/validator_helper/validator_helper.dart';
 
 part 'register_client_controller.g.dart';

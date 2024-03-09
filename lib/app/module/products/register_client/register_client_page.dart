@@ -1,6 +1,7 @@
 import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:postgres/postgres.dart';
 import 'package:shopping_brecho/app/component/brecho_buttons.dart';
 import 'package:shopping_brecho/app/component/brecho_floating_dock.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
@@ -113,6 +114,15 @@ class _RegisterClientPage extends State<RegisteClientPage> {
                               text: "Adicionado com sucesso!",
                               brechoSnackbarStatus:
                                   BrechoSnackbarStatus.success);
+                        },
+                        error: (error) {
+                          String text = "Erro ao adicionar cliente!";
+                          if (error is PostgreSQLException) {
+                            text = error.message ?? '';
+                          }
+                          BrechoSnackbar.show(
+                              text: text,
+                              brechoSnackbarStatus: BrechoSnackbarStatus.error);
                         },
                         orElse: () => BrechoSnackbar.show(
                             text: "Erro ao adicionar cliente!",

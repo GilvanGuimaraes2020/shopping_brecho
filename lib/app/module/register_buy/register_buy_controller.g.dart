@@ -60,6 +60,23 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
           Computed<bool>(() => super.paymentTypeIsValid,
               name: '_RegisterBuyControllerBase.paymentTypeIsValid'))
       .value;
+  Computed<FreezedStatus<List<ProductPendencyModel>>>?
+      _$productPendencyAllComputed;
+
+  @override
+  FreezedStatus<List<ProductPendencyModel>> get productPendencyAll =>
+      (_$productPendencyAllComputed ??=
+              Computed<FreezedStatus<List<ProductPendencyModel>>>(
+                  () => super.productPendencyAll,
+                  name: '_RegisterBuyControllerBase.productPendencyAll'))
+          .value;
+  Computed<ObservableList<int>>? _$pendencySelectedsComputed;
+
+  @override
+  ObservableList<int> get pendencySelecteds => (_$pendencySelectedsComputed ??=
+          Computed<ObservableList<int>>(() => super.pendencySelecteds,
+              name: '_RegisterBuyControllerBase.pendencySelecteds'))
+      .value;
   Computed<bool>? _$formIsValidComputed;
 
   @override
@@ -213,6 +230,17 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
   }
 
   @override
+  void onSelectPendency(int pendencyId) {
+    final _$actionInfo = _$_RegisterBuyControllerBaseActionController
+        .startAction(name: '_RegisterBuyControllerBase.onSelectPendency');
+    try {
+      return super.onSelectPendency(pendencyId);
+    } finally {
+      _$_RegisterBuyControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String? validateClient(dynamic value) {
     final _$actionInfo = _$_RegisterBuyControllerBaseActionController
         .startAction(name: '_RegisterBuyControllerBase.validateClient');
@@ -280,6 +308,8 @@ dateIsValid: ${dateIsValid},
 clientIsValid: ${clientIsValid},
 productIsValid: ${productIsValid},
 paymentTypeIsValid: ${paymentTypeIsValid},
+productPendencyAll: ${productPendencyAll},
+pendencySelecteds: ${pendencySelecteds},
 formIsValid: ${formIsValid},
 isLoading: ${isLoading}
     ''';

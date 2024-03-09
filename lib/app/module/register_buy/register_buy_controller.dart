@@ -2,9 +2,10 @@ import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/core/models/customer/customer_model.dart';
 import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
 import 'package:shopping_brecho/app/core/models/label_value_model/label_value_model.dart';
+import 'package:shopping_brecho/app/core/models/product_pendency/product_pendency_model.dart';
 import 'package:shopping_brecho/app/core/models/product_relational_model/product_relational_model.dart';
 import 'package:shopping_brecho/app/core/models/request_status/request_status_model.dart';
-import 'package:shopping_brecho/app/core/store/buy_and_sale_product_store.dart';
+import 'package:shopping_brecho/app/core/store/buy_and_sale/buy_and_sale_product_store.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/helpers/validator_helper/validator_helper.dart';
 
@@ -31,6 +32,7 @@ abstract class _RegisterBuyControllerBase with Store {
     Future.wait([
       buyAndSaleStore.getAllProducts(),
       buyAndSaleStore.getPaymentType(),
+      buyAndSaleStore.getAllPendency()
     ]);
   }
 
@@ -70,6 +72,10 @@ abstract class _RegisterBuyControllerBase with Store {
   @action
   void registerBuyOnChangeDate(dynamic value) =>
       buyAndSaleStore.registerBuyOnChangeDate(value);
+
+  @action
+  void onSelectPendency(int pendencyId) =>
+      buyAndSaleStore.onSelectPendency(pendencyId);
 
   @action
   String? validateClient(dynamic value) =>
@@ -114,6 +120,14 @@ abstract class _RegisterBuyControllerBase with Store {
 
   @computed
   bool get paymentTypeIsValid => buyAndSaleStore.paymentTypeIndex != -1;
+
+  @computed
+  FreezedStatus<List<ProductPendencyModel>> get productPendencyAll =>
+      buyAndSaleStore.productPendencyAll;
+
+  @computed
+  ObservableList<int> get pendencySelecteds =>
+      buyAndSaleStore.pendencySelecteds;
 
   @computed
   bool get formIsValid =>

@@ -11,6 +11,7 @@ class ProductStockModel with _$ProductStockModel {
     int? productId,
     int? customerId,
     dynamic createdAt,
+    dynamic purchasedAt,
     @Default([]) List<int> pendencyList,
     int? paymentTypeId,
     double? price,
