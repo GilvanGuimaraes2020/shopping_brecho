@@ -11,6 +11,7 @@ import 'package:shopping_brecho/app/core/models/product_stock/product_stock_list
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
 import 'package:shopping_brecho/app/module/products/component/pendency_list_widget.dart';
 import 'package:shopping_brecho/app/module/products/product_detail/product_detail_controller.dart';
+import 'package:shopping_brecho/app/module/register_sale/register_sale_page.dart';
 import 'package:shopping_brecho/app/utils/modal_dialog/modal_dialog.dart';
 import 'package:shopping_brecho/app/utils/snackbar/snackbar.dart';
 
@@ -37,8 +38,20 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: const Text('Detalhes do produto').labelMediumRegular()),
+      appBar: AppBar(
+        title: const Text('Detalhes do produto').labelMediumRegular(),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: BrechoSpacing.xvi),
+            child: BrechoIconButton(
+                icon: BrechoIcons.point_of_sale,
+                shape: BrechoIconButtonShape.square,
+                onPressed: () => Modular.to.push(MaterialPageRoute(
+                    builder: (context) => RegisterSalePage(
+                        stockListModel: widget.stockListModel)))),
+          )
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(BrechoSpacing.xxiv),
         child: Observer(builder: (context) {

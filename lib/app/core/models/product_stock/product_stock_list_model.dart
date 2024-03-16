@@ -22,6 +22,7 @@ class ProductStockListModel with _$ProductStockListModel {
     int? number,
     String? address,
     dynamic purchasedAt,
+    @Default(false) bool hasPendency,
   }) = _ProductStockListModel;
 
   factory ProductStockListModel.fromJson(Map<String, dynamic> json) =>

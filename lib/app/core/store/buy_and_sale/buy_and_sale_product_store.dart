@@ -15,6 +15,7 @@ import 'package:shopping_brecho/app/core/models/product_pendency/product_pendenc
 import 'package:shopping_brecho/app/core/models/product_pendency_table/product_pendency_table_model.dart';
 import 'package:shopping_brecho/app/core/models/product_relational_model/product_relational_model.dart';
 import 'package:shopping_brecho/app/core/models/product_stock/product_stock_model.dart';
+import 'package:shopping_brecho/app/core/models/register_sale/register_sale_model.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
 
@@ -100,12 +101,18 @@ abstract class _BuyAndSaleProductStore with Store {
   @observable
   String customerObservations = '';
 
+  @observable
+  LabelValueHelperModel? registerSaleClientModel;
+
   //register client
   @observable
   LabelValueHelperModel? registerClientModel;
 
   @observable
   String registerBuyPrice = '';
+
+  @observable
+  String registerSalePrice = '';
 
   @observable
   String registerBuyClientName = '';
@@ -123,7 +130,12 @@ abstract class _BuyAndSaleProductStore with Store {
   @observable
   String registerbuyDate = '';
 
-  String installment = '';
+  @observable
+  String registerSaleDate = '';
+
+  String installment = '1';
+
+  int currentProductStockId = -1;
 
 //product controllers
   final productModelCtl = TextEditingController(text: '');
@@ -193,6 +205,10 @@ abstract class _BuyAndSaleProductStore with Store {
   @action
   void registerBuyOnChangePrice(dynamic value) =>
       registerBuyPrice = value as String;
+
+  @action
+  void registerBuyOnChangeSalePrice(dynamic value) =>
+      registerSalePrice = value as String;
 
   @action
   void registerBuySetClientName(dynamic value) =>
@@ -314,8 +330,27 @@ abstract class _BuyAndSaleProductStore with Store {
   }
 
   @action
+  Future<FreezedStatus> saveSale() async {
+    final payload = RegisterSaleModel(
+        customerId: registerSaleClientModel?.value as int,
+        paymentType: paymentTypeModelList[paymentTypeIndex].id!,
+        productStockId: currentProductStockId,
+        createdAt: DateTime.now().toUtc().toString(),
+        observation: customerObservations,
+        sellerAt: FormatHelper.formatDateToApi(registerSaleDate),
+        sellerPrice: double.tryParse(registerSalePrice));
+        
+    return _stockRepository.saveSaleProduct(
+        model: payload, isCreditCard: isCreditCard, qtyInstallments: installment);
+  }
+
+  @action
   Future<void> onSelectClient(dynamic value) async =>
       registerClientModel = value as LabelValueHelperModel;
+
+  @action
+  Future<void> onSelectSaleClient(dynamic value) async =>
+      registerSaleClientModel = value as LabelValueHelperModel;
 
   @action
   Future<void> registerBuySelectProduct(dynamic value) async {
@@ -343,6 +378,10 @@ abstract class _BuyAndSaleProductStore with Store {
       registerbuyDate = value as String;
 
   @action
+  void registerSaleOnChangeDate(dynamic value) =>
+      registerSaleDate = value as String;
+
+  @action
   Future<FreezedStatus> saveProductStock() async {
     final payload = ProductStockModel(
       productId: productList[registerBuyProductIndex].id,
@@ -358,11 +397,15 @@ abstract class _BuyAndSaleProductStore with Store {
   }
 
   @action
-  Future<void> getPendencyByProductId(int id) async {
+  Future<void> getPendencyByProductId() async {
     productPendency = const FreezedStatus.loading();
-    productPendency =
-        await _productRepository.getPendencyByProductId(id.toString());
+    productPendency = await _productRepository
+        .getPendencyByProductId(currentProductStockId.toString());
   }
+
+  @action
+  void setCurrentProductStockId(dynamic value) =>
+      currentProductStockId = value as int;
 
   @action
   Future<void> getAllPendency() async {

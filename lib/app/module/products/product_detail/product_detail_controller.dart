@@ -14,19 +14,19 @@ abstract class _ProductDetailController with Store {
 
   _ProductDetailController(this._buyAndSaleStore) {
     _buyAndSaleStore.getAllPendency();
+    _buyAndSaleStore.getPaymentType();
   }
 
   @observable
   FreezedStatus<List<ProductPendencyTableModel>> productPendency =
       const FreezedStatus.loading();
 
-  int? productStockId;
 
   List<int> selectedsPendency = [];
 
   Future<void> init({required int id}) async {
-    productStockId = id;
-    await _buyAndSaleStore.getPendencyByProductId(id);
+    _buyAndSaleStore.setCurrentProductStockId(id);
+    await _buyAndSaleStore.getPendencyByProductId();
     productPendency = _buyAndSaleStore.productPendency;
   }
 
@@ -60,4 +60,7 @@ abstract class _ProductDetailController with Store {
   @computed
   List<ProductPendencyTableModel> get productPendencyTableList =>
       productPendency.maybeWhen(data: (data) => data, orElse: () => []);
+
+  @computed
+  int get productStockId => _buyAndSaleStore.currentProductStockId;
 }
