@@ -124,7 +124,7 @@ class _StockCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isSold = stockListModel.isSold;
     final Color backgroundColor =
-        isSold ? BrechoColors.primaryBlue10 : BrechoColors.neutral7;
+        isSold ? BrechoColors.primaryBlue8 : BrechoColors.neutral7;
     final String categoryName = stockListModel.categoryName ?? '';
     final String name = stockListModel.name ?? '';
     final String address = stockListModel.address ?? '';
@@ -132,77 +132,95 @@ class _StockCard extends StatelessWidget {
     final String phone = stockListModel.phone ?? '';
     final String color = stockListModel.color ?? '';
     final dynamic purchasedAt = stockListModel.purchasedAt ?? '';
+    final bool hasPendency = stockListModel.hasPendency;
 
     return InkWell(
       onTap: () => Modular.to.push(MaterialPageRoute(
           builder: (context) => ProductDetailPage(
                 stockListModel: stockListModel,
               ))),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: BrechoSpacing.xii, vertical: BrechoSpacing.xvi),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Badge(
-                    child: categoryName,
-                    color: color,
-                  ),
-                  Text(FormatHelper.formatDDMMYYYY(purchasedAt))
-                      .labelSmallBold(),
-                ],
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: BrechoSpacing.xii),
-                child: Row(
+      child: Opacity(
+        opacity: hasPendency ? 0.7 : 1,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: BrechoSpacing.xii, vertical: BrechoSpacing.xvi),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(BrechoIcons.person),
-                    const SizedBox(
-                      width: BrechoSpacing.x,
+                    Badge(
+                      child: categoryName,
+                      color: color,
                     ),
-                    Text(name).labelLargeRegular(),
-                    Expanded(
-                        child: Text(
-                      FormatHelper.currency(price),
-                      textAlign: TextAlign.end,
-                    ).labelLargeRegular())
+                    Text(FormatHelper.formatDDMMYYYY(purchasedAt))
+                        .labelSmallBold(),
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: BrechoSpacing.xii),
-                child: Row(
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: BrechoSpacing.xii),
+                  child: Row(
+                    children: [
+                      const Icon(BrechoIcons.person),
+                      const SizedBox(
+                        width: BrechoSpacing.x,
+                      ),
+                      Text(name).labelLargeRegular(),
+                      Expanded(
+                          child: Text(
+                        FormatHelper.currency(price),
+                        textAlign: TextAlign.end,
+                      ).labelLargeRegular())
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: BrechoSpacing.xii),
+                  child: Row(
+                    children: [
+                      const Icon(BrechoIcons.house),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: BrechoSpacing.xii),
+                        child: Text(address).labelLargeRegular(),
+                      )
+                    ],
+                  ),
+                ),
+                Row(
                   children: [
-                    const Icon(BrechoIcons.house),
+                    const Icon(BrechoIcons.local_phone),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: BrechoSpacing.xii),
-                      child: Text(address).labelLargeRegular(),
-                    )
+                      child: Text(FormatHelper.formatPhone(phone))
+                          .labelLargeRegular(),
+                    ),
+                    const Expanded(child: SizedBox()),
+                    if (hasPendency)
+                      SizedBox.square(
+                        dimension: BrechoSpacing.xxxii,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: BrechoColors.monoWhite),
+                          child: const Icon(
+                            BrechoIcons.warning,
+                            color: BrechoColors.responseWarning,
+                          ),
+                        ),
+                      )
                   ],
-                ),
-              ),
-              Row(
-                children: [
-                  const Icon(BrechoIcons.local_phone),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: BrechoSpacing.xii),
-                    child: Text(FormatHelper.formatPhone(phone))
-                        .labelLargeRegular(),
-                  )
-                ],
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -1,22 +1,284 @@
 import 'package:brecho_utilities/brecho_utilities.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:postgres/postgres.dart';
+import 'package:shopping_brecho/app/component/brecho_buttons.dart';
+import 'package:shopping_brecho/app/component/brecho_floating_dock.dart';
+import 'package:shopping_brecho/app/component/brecho_icons.dart';
+import 'package:shopping_brecho/app/component/brecho_select_modal_field.dart';
+import 'package:shopping_brecho/app/component/brecho_snackbar.dart';
+import 'package:shopping_brecho/app/component/brecho_text_field.dart';
+import 'package:shopping_brecho/app/component/brecho_text_top_down.dart';
+import 'package:shopping_brecho/app/core/models/product_stock/product_stock_list_model.dart';
+import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
+import 'package:shopping_brecho/app/module/products/register_client/register_client_page.dart';
+import 'package:shopping_brecho/app/module/register_sale/register_sale_controller.dart';
 
 class RegisterSalePage extends StatefulWidget {
-  const RegisterSalePage({super.key});
+  final ProductStockListModel stockListModel;
+  const RegisterSalePage({super.key, required this.stockListModel});
 
   @override
   State<RegisterSalePage> createState() => _RegisterSalePageState();
 }
 
 class _RegisterSalePageState extends State<RegisterSalePage> {
+  final controller = Modular.get<RegisterSaleController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Realizar venda').labelSmallRegular(),
+        title: const Text('Realizar venda').labelMediumRegular(),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: BrechoSpacing.xvi),
+            child: BrechoIconButton(
+                icon: BrechoIcons.person_add,
+                onPressed: () => Modular.to.push(MaterialPageRoute(
+                    builder: (context) => RegisteClientPage()))),
+          )
+        ],
       ),
-      body: CustomScrollView(
-        
+      body: Observer(builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: BrechoSpacing.xxiv),
+          child: CustomScrollView(slivers: [
+            const SliverPadding(
+              padding: EdgeInsets.only(top: BrechoSpacing.xxiv),
+              sliver: _Label(
+                label: 'Dados do produto',
+              ),
+            ),
+            _ProductData(
+              model: widget.stockListModel.model ?? '',
+              categoryName: widget.stockListModel.categoryName ?? '',
+              brand: widget.stockListModel.brandName ?? '',
+              price: widget.stockListModel.price ?? '',
+              purchasedAt: widget.stockListModel.purchasedAt.toString(),
+            ),
+            const SliverPadding(
+              padding: EdgeInsets.only(top: BrechoSpacing.xxiv),
+              sliver: _Label(
+                label: 'Dados da venda',
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: BrechoSelectModalField(
+                onSelectItem: controller.onSelectSaleClient,
+                showFilterBox: true,
+                asyncItems: controller.getClients,
+                selectItems: controller.buyAndSaleStore.customerSelectItems,
+                selectTitle: 'Escolha o cliente',
+                label: 'Escolha o cliente',
+                autovalidate: controller.clientIsValid,
+                validator: controller.validateClient,
+                autoValidateAlways: controller.autoValidateAlways,
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.only(top: BrechoSpacing.xvi),
+              sliver: SliverToBoxAdapter(
+                child: BrechoSelectModalField(
+                  onSelectItem: controller.registerBuySetPaymentType,
+                  label: 'Tipo de pagamento',
+                  selectItems: controller.buyAndSaleStore.paymentTypeNames,
+                  selectTitle: 'Tipo de pagamento',
+                  autovalidate: controller.paymentTypeIsValid,
+                  validator: controller.validatePaymentType,
+                  autoValidateAlways: controller.autoValidateAlways,
+                ),
+              ),
+            ),
+            if (controller.buyAndSaleStore.isCreditCard) ...{
+              SliverPadding(
+                padding: const EdgeInsets.only(
+                  top: BrechoSpacing.xvi,
+                ),
+                sliver: SliverToBoxAdapter(
+                  child: BrechoTextTopDown(
+                      label: 'Parcelas',
+                      onTap: controller.buyAndSaleStore.onTapInstallment),
+                ),
+              ),
+            },
+            SliverPadding(
+              padding: const EdgeInsets.only(top: BrechoSpacing.xvi),
+              sliver: SliverToBoxAdapter(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: BrechoTextField(
+                        label: 'valor',
+                        prefixText: 'R\$ ',
+                        textInputType: TextInputType.number,
+                        onChanged: controller.onChangeSalePrice,
+                        validator: controller.validatePrice,
+                        autovalidate: controller.priceIsValid,
+                        autoValidateAlways: controller.autoValidateAlways,
+                      ),
+                    ),
+                    const SizedBox(width: BrechoSpacing.xvi),
+                    Expanded(
+                      child: BrechoTextField(
+                        controller: MaskedTextController(mask: '00/00/0000'),
+                        label: 'Data',
+                        onChanged: controller.registerSaleOnChangeDate,
+                        textInputType: TextInputType.number,
+                        autovalidate: controller.dateIsValid,
+                        validator: controller.validateDate,
+                        autoValidateAlways: controller.autoValidateAlways,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.only(top: BrechoSpacing.xvi),
+              sliver: SliverToBoxAdapter(
+                child: BrechoTextField(
+                  label: 'Observação',
+                  maxLines: 5,
+                  controller: controller.customerObservationCtl,
+                  onChanged: controller.setOnChangeCustomerObservation,
+                ),
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: BrechoSpacing.clx,
+              ),
+            )
+          ]),
+        );
+      }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: MediaQuery.of(context).viewInsets.bottom <= 0
+          ? BrechoFloatingDock(children: [
+              Expanded(
+                  child: BrechoSecondaryButton(
+                      label: 'Cancelar', onPressed: () => Modular.to.pop())),
+              const SizedBox(
+                width: BrechoSpacing.xvi,
+              ),
+              Expanded(
+                child: BrechoPrimaryButton(
+                    label: 'Enviar',
+                    onPressed: () async {
+                      String text = 'Há dados invalidos!';
+                      var status = HenrySnackbarStatus.error;
+                      if (controller.formIsValid) {
+                        final result = await controller.saveSale();
+                        result.maybeWhen(success: (data) {
+                          text = 'Dados salvos com sucesso!';
+                          status = HenrySnackbarStatus.success;
+                          Modular.to.pop();
+                        }, error: (error) {
+                          if (error is PostgreSQLException) {
+                            text = error.message ?? '';
+                          } else {
+                            text = 'Ocorreu um erro no banco!';
+                          }
+                        }, orElse: () {
+                          text = 'Ocorreu algum erro!';
+                          status = HenrySnackbarStatus.warning;
+                        });
+                      }
+
+                      HenrySnackbar.show(text: text, status: status);
+                    }),
+              )
+            ])
+          : null,
+    );
+  }
+}
+
+class _ProductData extends StatelessWidget {
+  final String model;
+  final String categoryName;
+  final String brand;
+  final String purchasedAt;
+  final String price;
+
+  const _ProductData({
+    required this.model,
+    required this.categoryName,
+    required this.brand,
+    required this.purchasedAt,
+    required this.price,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Column(
+        children: [
+          _LabelValue(label: 'Categoria', value: categoryName),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _LabelValue(label: 'Modelo', value: model),
+              _LabelValue(label: 'Marca', value: brand),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _LabelValue(
+                  label: 'Data compra',
+                  value: FormatHelper.formatDDMMYYYY(purchasedAt)),
+              _LabelValue(label: 'Valor', value: price),
+            ],
+          ),
+          const SizedBox(
+            height: BrechoSpacing.xvi,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _LabelValue extends StatelessWidget {
+  final String label;
+  final String value;
+  const _LabelValue({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: BrechoSpacing.viii),
+      child: Row(
+        children: [
+          Text('$label: ').labelSmallSemiBold(),
+          Text(value).labelSmallRegular()
+        ],
+      ),
+    );
+  }
+}
+
+class _Label extends StatelessWidget {
+  final String label;
+  const _Label({required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: BrechoSpacing.viii),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(label).labelLargeSemiBold().color(BrechoColors.monoBlack),
+            const Divider()
+          ],
+        ),
       ),
     );
   }
