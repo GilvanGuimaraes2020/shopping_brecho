@@ -91,6 +91,11 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
                     autoValidateAlways: controller.autoValidateAlways,
                   ),
                   const SizedBox(height: BrechoSpacing.xvi),
+                  BrechoTextField(
+                    label: 'Cor',
+                    onChanged: controller.onChangePrice,
+                  ),
+                  const SizedBox(height: BrechoSpacing.xvi),
                   BrechoSelectModalField(
                     onSelectItem: controller.registerBuySetPaymentType,
                     label: 'Tipo de pagamento',

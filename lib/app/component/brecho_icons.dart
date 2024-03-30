@@ -191,4 +191,5 @@ class BrechoIcons {
   static const house = IconData(0xe328, fontFamily: 'MaterialIcons');
   static const local_phone = IconData(0xe39f, fontFamily: 'MaterialIcons');
   static const shopping_cart = IconData(0xe59c, fontFamily: 'MaterialIcons');
+  static const point_of_sale = IconData(0xe4d8, fontFamily: 'MaterialIcons');
 }

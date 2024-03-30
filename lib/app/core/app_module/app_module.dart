@@ -32,17 +32,21 @@ import 'package:shopping_brecho/app/module/register_buy/register_buy_controller.
 import 'package:shopping_brecho/app/module/register_buy/register_buy_page.dart';
 import 'package:shopping_brecho/app/module/register_expense/register_expense_controller.dart';
 import 'package:shopping_brecho/app/module/register_expense/register_expense_page.dart';
+import 'package:shopping_brecho/app/module/register_sale/register_sale_controller.dart';
 import 'package:shopping_brecho/app/services/remote_config_service.dart';
 
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
+        //repositories
         Bind<IAccountRepositoy>((i) => AccountRepository()),
         Bind<IKanbanRepository>((i) => KanbanRepository()),
         Bind<IRemoteConfig>((i) => RemoteConfigService()),
         Bind<IProductRepository>((i) => ProductRepository(i.get())),
         Bind<ICustomerRepository>((i) => CustomerRepository(i.get())),
         Bind<IStockRepository>((i) => StockRepository(i.get())),
+        //end repositories
+        //page controller
         Bind.factory((i) => HomeController(i(), i())),
         Bind.factory((i) => EditCardController(i())),
         Bind.factory((i) => KanbanController(i())),
@@ -51,6 +55,7 @@ class AppModule extends Module {
         Bind.factory((i) => RegisterProductController(i.get())),
         Bind.factory((i) => ProductListController(i.get())),
         Bind.factory((i) => ProductDetailController(i.get())),
+        Bind.factory((i) => RegisterSaleController(i.get())),
         Bind.factory(
             (i) => RegisterClientController(i.get<BuyAndSaleProductStore>())),
         Bind.factory(
@@ -58,9 +63,11 @@ class AppModule extends Module {
         Bind.factory((i) => RegisterBuyController(
               i.get<BuyAndSaleProductStore>(),
             )),
+        //services
         Bind.singleton<RemoteDatabase>(
           (i) => Conn(),
         ),
+        // end service
         Bind.lazySingleton(
             (i) => BuyAndSaleProductStore(i.get(), i.get(), i.get())),
         Bind.lazySingleton(

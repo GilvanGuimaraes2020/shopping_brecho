@@ -24,6 +24,7 @@ class Badge extends StatelessWidget {
             color: backGroundColor),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               child,

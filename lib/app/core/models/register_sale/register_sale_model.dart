@@ -1,12 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'register_sale_model.freezed.dart';
+part 'register_sale_model.g.dart';
+
 @freezed
 class RegisterSaleModel with _$RegisterSaleModel {
   factory RegisterSaleModel({
-    required int productSellerId,
+     int? productSellerId,
     required int productStockId,
     required int customerId,
-    required int paymentType,
     double? sellerPrice,
     String? observation,
     dynamic createdAt,
