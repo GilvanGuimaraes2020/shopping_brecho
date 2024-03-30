@@ -9,7 +9,6 @@ class RegisterSaleModel with _$RegisterSaleModel {
      int? productSellerId,
     required int productStockId,
     required int customerId,
-    required int paymentType,
     double? sellerPrice,
     String? observation,
     dynamic createdAt,

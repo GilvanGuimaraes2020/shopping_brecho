@@ -18,7 +18,8 @@ class ProductRepository implements IProductRepository {
   Future<List<Map<String, dynamic>>> select(
       {List<String>? columns, required String tableName}) async {
     final tableColumns = columns == null ? '*' : columns.join(',');
-    return _remoteDatabase.query('SELECT $tableColumns FROM $tableName;');
+    return _remoteDatabase
+        .mappedresults('SELECT $tableColumns FROM $tableName;');
   }
 
 //Implementar na sequencia para diminuir custo do banco
@@ -35,7 +36,7 @@ class ProductRepository implements IProductRepository {
       final query =
           'INSERT INTO product(product_category_id, old_category_id, brand_id, model, created_at) VALUES $valuesInsert;';
 
-      final result = await _remoteDatabase.query(query);
+      final result = await _remoteDatabase.mappedresults(query);
 
       return FreezedStatus.success(result);
     } catch (e, s) {
@@ -57,7 +58,7 @@ class ProductRepository implements IProductRepository {
       final query =
           'INSERT INTO product_pendency_table (product_stock_id, product_pendency_id, completed, created_at) VALUES $valuesInsert;';
 
-      final result = await _remoteDatabase.query(query);
+      final result = await _remoteDatabase.mappedresults(query);
 
       return FreezedStatus.success(result);
     } catch (e, s) {
@@ -75,7 +76,7 @@ class ProductRepository implements IProductRepository {
       final query =
           'INSERT INTO product(product_category_id, old_category_id, old_category_id_list, brand_id, model, created_at) VALUES $valuesInsert;';
 
-      final result = await _remoteDatabase.query(query);
+      final result = await _remoteDatabase.mappedresults(query);
 
       return FreezedStatus.success(result);
     } catch (e, s) {
@@ -90,9 +91,9 @@ class ProductRepository implements IProductRepository {
     try {
       final tableColumns = columns == null ? '' : columns.join(',');
       final query =
-          'SELECT product.id, product_category_id, old_category_id, model, brand_id, created_at, brand_table.brand_name, category.category_name  $tableColumns FROM product JOIN brand_table ON product.brand_id = brand_table.id JOIN category ON category.id = product_category_id;';
+          'SELECT product.id, product_category_id, old_category_id, model, brand_id, created_at, brand_table.brand_name, category.category_name  $tableColumns FROM product JOIN brand_table ON product.brand_id = brand_table.id JOIN category ON category.id = product_category_id ORDER BY category_name ASC;';
 
-      final result = await _remoteDatabase.query(query);
+      final result = await _remoteDatabase.mappedresults(query);
 
       final List<Map<String, dynamic>> jsonList = [];
 
@@ -118,7 +119,7 @@ class ProductRepository implements IProductRepository {
     try {
       final tableColumns = columns == null ? '*' : columns.join(',');
       final result = await _remoteDatabase
-          .query('SELECT $tableColumns FROM old_category;');
+          .mappedresults('SELECT $tableColumns FROM old_category;');
       return FreezedStatus.data(result
           .map((e) => OldCategoryModel.fromJson(
               e['old_category'] as Map<String, dynamic>))
@@ -135,7 +136,8 @@ class ProductRepository implements IProductRepository {
     try {
       final tableColumns = columns == null ? '*' : columns.join(',');
       final result =
-          await _remoteDatabase.query('SELECT $tableColumns FROM category;');
+          await _remoteDatabase.mappedresults(
+          'SELECT $tableColumns FROM category ORDER BY category_name ASC;');
       return FreezedStatus.data(result
           .map((e) => ProductCategoryModel.fromJson(
               e['category'] as Map<String, dynamic>))
@@ -153,7 +155,8 @@ class ProductRepository implements IProductRepository {
       final tableColumns = columns == null ? '*' : columns.join(',');
       final List<BrandModel> values = [];
       final result =
-          await _remoteDatabase.query('SELECT $tableColumns FROM brand_table;');
+          await _remoteDatabase
+          .mappedresults('SELECT $tableColumns FROM brand_table;');
 
       for (final e in result) {
         values
@@ -170,7 +173,7 @@ class ProductRepository implements IProductRepository {
   Future<FreezedStatus<List<ProductPendencyTableModel>>> getPendencyByProductId(
       String productId) async {
     try {
-      final result = await _remoteDatabase.query('''
+      final result = await _remoteDatabase.mappedresults('''
           SELECT p.id, p.product_pendency_id, t.pendency_name
           FROM product_pendency_table as p
           JOIN product_pendency as t ON t.id = p.product_pendency_id 
@@ -199,7 +202,8 @@ class ProductRepository implements IProductRepository {
   @override
   Future<FreezedStatus<List<PaymentTypeModel>>> getPaymentType() async {
     try {
-      final result = await _remoteDatabase.query('SELECT * FROM payment_type;');
+      final result =
+          await _remoteDatabase.mappedresults('SELECT * FROM payment_type;');
       return FreezedStatus.data(result
           .map((e) => PaymentTypeModel.fromJson(
               e['payment_type'] as Map<String, dynamic>))

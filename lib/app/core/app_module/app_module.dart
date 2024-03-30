@@ -38,14 +38,14 @@ import 'package:shopping_brecho/app/services/remote_config_service.dart';
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
-    //repositories
+        //repositories
         Bind<IAccountRepositoy>((i) => AccountRepository()),
         Bind<IKanbanRepository>((i) => KanbanRepository()),
         Bind<IRemoteConfig>((i) => RemoteConfigService()),
         Bind<IProductRepository>((i) => ProductRepository(i.get())),
         Bind<ICustomerRepository>((i) => CustomerRepository(i.get())),
         Bind<IStockRepository>((i) => StockRepository(i.get())),
-        //end repositories 
+        //end repositories
         //page controller
         Bind.factory((i) => HomeController(i(), i())),
         Bind.factory((i) => EditCardController(i())),
@@ -63,7 +63,7 @@ class AppModule extends Module {
         Bind.factory((i) => RegisterBuyController(
               i.get<BuyAndSaleProductStore>(),
             )),
-            //services
+        //services
         Bind.singleton<RemoteDatabase>(
           (i) => Conn(),
         ),

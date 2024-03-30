@@ -10,9 +10,9 @@ import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_select_modal_field.dart';
 import 'package:shopping_brecho/app/component/brecho_snackbar.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
-import 'package:shopping_brecho/app/component/brecho_text_top_down.dart';
 import 'package:shopping_brecho/app/core/models/product_stock/product_stock_list_model.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
+import 'package:shopping_brecho/app/module/products/component/add_payment_widget.dart';
 import 'package:shopping_brecho/app/module/products/register_client/register_client_page.dart';
 import 'package:shopping_brecho/app/module/register_sale/register_sale_controller.dart';
 
@@ -56,7 +56,7 @@ class _RegisterSalePageState extends State<RegisterSalePage> {
               model: widget.stockListModel.model ?? '',
               categoryName: widget.stockListModel.categoryName ?? '',
               brand: widget.stockListModel.brandName ?? '',
-              price: widget.stockListModel.price ?? '',
+              price: widget.stockListModel.buyPrice ?? '',
               purchasedAt: widget.stockListModel.purchasedAt.toString(),
             ),
             const SliverPadding(
@@ -66,74 +66,52 @@ class _RegisterSalePageState extends State<RegisterSalePage> {
               ),
             ),
             SliverToBoxAdapter(
-              child: BrechoSelectModalField(
-                onSelectItem: controller.onSelectSaleClient,
-                showFilterBox: true,
-                asyncItems: controller.getClients,
-                selectItems: controller.buyAndSaleStore.customerSelectItems,
-                selectTitle: 'Escolha o cliente',
-                label: 'Escolha o cliente',
-                autovalidate: controller.clientIsValid,
-                validator: controller.validateClient,
-                autoValidateAlways: controller.autoValidateAlways,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: BrechoSelectModalField(
+                      onSelectItem: controller.onSelectSaleClient,
+                      showFilterBox: true,
+                      asyncItems: controller.getClients,
+                      selectItems:
+                          controller.buyAndSaleStore.customerSelectItems,
+                      selectTitle: 'Escolha o cliente',
+                      label: 'Escolha o cliente',
+                      autovalidate: controller.clientIsValid,
+                      validator: controller.validateClient,
+                      autoValidateAlways: controller.autoValidateAlways,
+                    ),
+                  ),
+                  const SizedBox(width: BrechoSpacing.viii),
+                  Expanded(
+                    child: BrechoTextField(
+                      controller: MaskedTextController(mask: '00/00/0000'),
+                      label: 'Data',
+                      onChanged: controller.registerSaleOnChangeDate,
+                      textInputType: TextInputType.number,
+                      autovalidate: controller.dateIsValid,
+                      validator: controller.validateDate,
+                      autoValidateAlways: controller.autoValidateAlways,
+                    ),
+                  ),
+                ],
               ),
             ),
             SliverPadding(
               padding: const EdgeInsets.only(top: BrechoSpacing.xvi),
               sliver: SliverToBoxAdapter(
-                child: BrechoSelectModalField(
-                  onSelectItem: controller.registerBuySetPaymentType,
-                  label: 'Tipo de pagamento',
-                  selectItems: controller.buyAndSaleStore.paymentTypeNames,
-                  selectTitle: 'Tipo de pagamento',
-                  autovalidate: controller.paymentTypeIsValid,
-                  validator: controller.validatePaymentType,
-                  autoValidateAlways: controller.autoValidateAlways,
-                ),
-              ),
-            ),
-            if (controller.buyAndSaleStore.isCreditCard) ...{
-              SliverPadding(
-                padding: const EdgeInsets.only(
-                  top: BrechoSpacing.xvi,
-                ),
-                sliver: SliverToBoxAdapter(
-                  child: BrechoTextTopDown(
-                      label: 'Parcelas',
-                      onTap: controller.buyAndSaleStore.onTapInstallment),
-                ),
-              ),
-            },
-            SliverPadding(
-              padding: const EdgeInsets.only(top: BrechoSpacing.xvi),
-              sliver: SliverToBoxAdapter(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: BrechoTextField(
-                        label: 'valor',
-                        prefixText: 'R\$ ',
-                        textInputType: TextInputType.number,
-                        onChanged: controller.onChangeSalePrice,
-                        validator: controller.validatePrice,
-                        autovalidate: controller.priceIsValid,
-                        autoValidateAlways: controller.autoValidateAlways,
-                      ),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                      color: BrechoColors.neutral9,
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(BrechoSpacing.xii),
+                    child: AddPaymentWidget(
+                      selectItems: controller.buyAndSaleStore.paymentTypeNames,
+                      onSelect: controller.onUpdatePaymentType,
+                      onValidation: (p0) => controller.paymentIsValid = p0,
                     ),
-                    const SizedBox(width: BrechoSpacing.xvi),
-                    Expanded(
-                      child: BrechoTextField(
-                        controller: MaskedTextController(mask: '00/00/0000'),
-                        label: 'Data',
-                        onChanged: controller.registerSaleOnChangeDate,
-                        textInputType: TextInputType.number,
-                        autovalidate: controller.dateIsValid,
-                        validator: controller.validateDate,
-                        autoValidateAlways: controller.autoValidateAlways,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -177,6 +155,7 @@ class _RegisterSalePageState extends State<RegisterSalePage> {
                           text = 'Dados salvos com sucesso!';
                           status = HenrySnackbarStatus.success;
                           Modular.to.pop();
+                          Modular.to.pop(result);
                         }, error: (error) {
                           if (error is PostgreSQLException) {
                             text = error.message ?? '';

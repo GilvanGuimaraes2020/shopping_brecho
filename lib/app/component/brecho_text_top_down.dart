@@ -34,6 +34,7 @@ class _BrechoTextTopDownState extends State<BrechoTextTopDown> {
       child: Opacity(
         opacity: !widget.enabled ? 0.4 : 1,
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Flexible(
               child: BrechoTextField(
