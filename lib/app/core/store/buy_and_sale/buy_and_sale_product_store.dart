@@ -138,6 +138,8 @@ abstract class _BuyAndSaleProductStore with Store {
 
   int currentProductStockId = -1;
 
+  String? productColor;
+
   List<SalePaymentTypeModel> salePaymentList = [];
 
 //product controllers
@@ -353,8 +355,7 @@ abstract class _BuyAndSaleProductStore with Store {
     );
 
     return _stockRepository.saveSaleProduct(
-        model: payload,
-        paymentTypeList: salePaymentList);
+        model: payload, paymentTypeList: salePaymentList);
   }
 
   @action
@@ -389,6 +390,10 @@ abstract class _BuyAndSaleProductStore with Store {
   @action
   void registerBuyOnChangeDate(dynamic value) =>
       registerbuyDate = value as String;
+  
+  @action
+  void setProductColor(dynamic value) =>
+      productColor = value as String;
 
   @action
   void registerSaleOnChangeDate(dynamic value) =>
@@ -404,6 +409,7 @@ abstract class _BuyAndSaleProductStore with Store {
       paymentTypeId: paymentTypeModelList.tryGet(paymentTypeIndex)?.id,
       price: double.tryParse(registerBuyPrice),
       isSold: false,
+      color: productColor
     );
 
     return _stockRepository.saveProductStock(payload, pendencySelecteds);

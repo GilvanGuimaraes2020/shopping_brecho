@@ -193,6 +193,15 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
         .run(() => super.registerBuySelectProduct(value));
   }
 
+  late final _$setProductColorAsyncAction = AsyncAction(
+      '_RegisterBuyControllerBase.setProductColor',
+      context: context);
+
+  @override
+  Future<void> setProductColor(dynamic value) {
+    return _$setProductColorAsyncAction.run(() => super.setProductColor(value));
+  }
+
   late final _$registerBuySetPaymentTypeAsyncAction = AsyncAction(
       '_RegisterBuyControllerBase.registerBuySetPaymentType',
       context: context);
