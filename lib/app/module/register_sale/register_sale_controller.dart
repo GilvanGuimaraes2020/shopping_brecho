@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
+import 'package:shopping_brecho/app/core/models/register_sale/sale_payment_type/sale_payment_type_model.dart';
 import 'package:shopping_brecho/app/core/store/buy_and_sale/buy_and_sale_product_store.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/helpers/validator_helper/validator_helper.dart';
@@ -17,6 +18,8 @@ abstract class _RegisterSaleController with Store {
 
   bool autoValidateAlways = false;
 
+  bool paymentIsValid = false;
+
   @action
   Future<void> onSelectSaleClient(dynamic value) async =>
       buyAndSaleStore.onSelectSaleClient(value);
@@ -27,6 +30,10 @@ abstract class _RegisterSaleController with Store {
 
   @action
   Future<FreezedStatus> saveSale() async => buyAndSaleStore.saveSale();
+
+  @action
+  void onUpdatePaymentType(List<SalePaymentTypeModel> value) =>
+      buyAndSaleStore.onUpdatePaymentType(value);
 
   @action
   String? validateClient(dynamic value) =>
@@ -53,10 +60,6 @@ abstract class _RegisterSaleController with Store {
       buyAndSaleStore.customerObservationCtl;
 
   @action
-  String? validatePaymentType(dynamic value) =>
-      paymentTypeIsValid ? null : ValidatorHelper.requiredText;
-
-  @action
   String? validatePrice(dynamic value) =>
       priceIsValid ? null : ValidatorHelper.requiredText;
 
@@ -68,9 +71,6 @@ abstract class _RegisterSaleController with Store {
   bool get clientIsValid => buyAndSaleStore.registerSaleClientModel != null;
 
   @computed
-  bool get paymentTypeIsValid => buyAndSaleStore.paymentTypeIndex != -1;
-
-  @computed
   bool get priceIsValid =>
       buyAndSaleStore.registerSalePrice.isNotNullAndNotEmpty;
 
@@ -79,16 +79,7 @@ abstract class _RegisterSaleController with Store {
       ValidatorHelper.dateIsValid(buyAndSaleStore.registerSaleDate);
 
   @computed
-  bool get installmentIsValid =>
-      (buyAndSaleStore.isCreditCard &&
-          buyAndSaleStore.installment.isNotNullAndNotEmpty) ||
-      !buyAndSaleStore.isCreditCard;
-
-  @computed
   bool get formIsValid =>
       clientIsValid &&
-      paymentTypeIsValid &&
-      priceIsValid &&
-      dateIsValid &&
-      installmentIsValid;
+      paymentIsValid && dateIsValid;
 }

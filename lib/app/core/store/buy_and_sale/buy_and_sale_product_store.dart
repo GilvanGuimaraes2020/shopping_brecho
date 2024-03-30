@@ -16,6 +16,7 @@ import 'package:shopping_brecho/app/core/models/product_pendency_table/product_p
 import 'package:shopping_brecho/app/core/models/product_relational_model/product_relational_model.dart';
 import 'package:shopping_brecho/app/core/models/product_stock/product_stock_model.dart';
 import 'package:shopping_brecho/app/core/models/register_sale/register_sale_model.dart';
+import 'package:shopping_brecho/app/core/models/register_sale/sale_payment_type/sale_payment_type_model.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
 
@@ -137,6 +138,8 @@ abstract class _BuyAndSaleProductStore with Store {
 
   int currentProductStockId = -1;
 
+  List<SalePaymentTypeModel> salePaymentList = [];
+
 //product controllers
   final productModelCtl = TextEditingController(text: '');
   final brandCtl = TextEditingController(text: '');
@@ -209,6 +212,15 @@ abstract class _BuyAndSaleProductStore with Store {
   @action
   void registerBuyOnChangeSalePrice(dynamic value) =>
       registerSalePrice = value as String;
+
+  @action
+  void onUpdatePaymentType(List<SalePaymentTypeModel> value) {
+    registerSalePrice = value
+        .map((e) => e.value)
+        .reduce((value, element) => value + element)
+        .toString();
+    salePaymentList = value;
+  }
 
   @action
   void registerBuySetClientName(dynamic value) =>
@@ -332,16 +344,17 @@ abstract class _BuyAndSaleProductStore with Store {
   @action
   Future<FreezedStatus> saveSale() async {
     final payload = RegisterSaleModel(
-        customerId: registerSaleClientModel?.value as int,
-        paymentType: paymentTypeModelList[paymentTypeIndex].id!,
-        productStockId: currentProductStockId,
-        createdAt: DateTime.now().toUtc().toString(),
-        observation: customerObservations,
-        sellerAt: FormatHelper.formatDateToApi(registerSaleDate),
-        sellerPrice: double.tryParse(registerSalePrice));
-        
+      customerId: registerSaleClientModel?.value as int,
+      productStockId: currentProductStockId,
+      createdAt: DateTime.now().toUtc().toString(),
+      observation: customerObservations,
+      sellerAt: FormatHelper.formatDateToApi(registerSaleDate),
+      sellerPrice: double.tryParse(registerSalePrice),
+    );
+
     return _stockRepository.saveSaleProduct(
-        model: payload, isCreditCard: isCreditCard, qtyInstallments: installment);
+        model: payload,
+        paymentTypeList: salePaymentList);
   }
 
   @action

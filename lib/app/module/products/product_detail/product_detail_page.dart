@@ -59,8 +59,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             slivers: [
               const _Label(label: 'Cliente'),
               _ClientData(
-                name: widget.stockListModel.name ?? '',
-                address: widget.stockListModel.address ?? '',
+                name: widget.stockListModel.buyName ?? '',
+                address: widget.stockListModel.buyAddress ?? '',
                 phone: widget.stockListModel.phone ?? '',
                 number: widget.stockListModel.number.toString(),
               ),
@@ -69,7 +69,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 model: widget.stockListModel.model ?? '',
                 categoryName: widget.stockListModel.categoryName ?? '',
                 brand: widget.stockListModel.brandName ?? '',
-                price: widget.stockListModel.price ?? '',
+                price: widget.stockListModel.buyPrice ?? '',
                 purchasedAt: widget.stockListModel.purchasedAt.toString(),
               ),
               const _Label(label: 'Pendencia'),

@@ -11,13 +11,26 @@ class Conn implements RemoteDatabase, Disposable {
   static PostgreSQLConnection connection =
       DatabaseConnection().getSqlConnection();
 
-  @override
-  Future<List<Map<String, dynamic>>> query(String query,
-      {Map<String, String> variable = const {}}) async {
-    if (connection.isClosed) {
-      await connection.open();
+  Future<void> _openConnection() async {
+    bool stopConnection = false;
+    Future.delayed(const Duration(seconds: 10), () => stopConnection = true);
+    while (connection.isClosed && !stopConnection) {
+       await connection.open();
     }
+  }
+
+  @override
+  Future<List<Map<String, dynamic>>> mappedresults(String query,
+      {Map<String, String> variable = const {}}) async {
+    await _openConnection();
     return connection.mappedResultsQuery(query, substitutionValues: variable);
+  }
+
+  @override
+  Future<PostgreSQLResult> query(String query,
+      {Map<String, String> variable = const {}}) async {
+    _openConnection();
+    return connection.query(query, substitutionValues: variable);
   }
 
   @override

@@ -17,7 +17,8 @@ class CustomerRepository implements ICustomerRepository {
           ? ''
           : " where lower(name) LIKE lower('${filters!['keyword']}%')";
       final result =
-          await _remoteDatabase.query("SELECT * FROM customer_table$filter;");
+          await _remoteDatabase
+          .mappedresults("SELECT * FROM customer_table$filter;");
 
       final List<CustomerModel> values = [];
 
@@ -38,7 +39,7 @@ class CustomerRepository implements ICustomerRepository {
     try {
       final valuesToInsert =
           "'${payload.name}', '${payload.phone}', '${payload.address}', '${payload.neighborhood}', '${payload.number}', '${DateTime.now().toUtc()}'";
-      final result = await _remoteDatabase.query(
+      final result = await _remoteDatabase.mappedresults(
           'INSERT INTO customer_table (name, phone, address, neighborhood, number, created_at) VALUES ($valuesToInsert) returning id');
 
       return FreezedStatus.success(result);

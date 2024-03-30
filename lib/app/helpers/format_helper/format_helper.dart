@@ -34,6 +34,15 @@ class FormatHelper {
         : '${newValue.day}/${newValue.month}/${newValue.year}';
   }
 
+  static String? formatYYYYMMDD(dynamic value) {
+    if (value == null || value == '') return null;
+    final day = value.split('/')[0];
+    final month = value.split('/')[1];
+    final year = value.split('/')[2];
+
+    return '$year/$month/$day';
+  }
+
   static String formatUTCDateToBRDescription(String stringDate) {
     final date = DateTime.parse(stringDate).toLocal();
     final now = DateTime.now();
