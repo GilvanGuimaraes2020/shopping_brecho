@@ -91,8 +91,8 @@ class StockRepository implements IStockRepository {
       ProductStockModel stock, List<int> pendencies) async {
     try {
       final query =
-          "INSERT INTO product_stock(product_id, customer_id, payment_type_id, created_at, price, is_sold, purchased_at, has_pendency) VALUES " +
-              "('${stock.productId}', '${stock.customerId}', '${stock.paymentTypeId}', '${stock.createdAt}', '${stock.price}', '${stock.isSold}', '${stock.purchasedAt}', '${pendencies.isNotEmpty}') returning product_stock_id";
+          "INSERT INTO product_stock(product_id, customer_id, payment_type_id, created_at, price, is_sold, purchased_at, has_pendency, color) VALUES " +
+              "('${stock.productId}', '${stock.customerId}', '${stock.paymentTypeId}', '${stock.createdAt}', '${stock.price}', '${stock.isSold}', '${stock.purchasedAt}', '${pendencies.isNotEmpty}', '${stock.color}') returning product_stock_id";
 
       final result = await _database.mappedresults(query);
 
@@ -141,7 +141,10 @@ class StockRepository implements IStockRepository {
             ${filters['finished_date'] != null ? " AND purchased_at <= '${filters['finished_date']}'" : ''}
           ''';
 
-      const String orderBy = ' ORDER BY ps.purchased_at DESC';
+      final String order =
+          (filters['order_by'] as String?) ?? 'ps.purchased_at';
+
+      final String orderBy = ' ORDER BY $order DESC';
 
       final query = '''
           SELECT

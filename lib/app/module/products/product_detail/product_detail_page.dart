@@ -71,6 +71,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 brand: widget.stockListModel.brandName ?? '',
                 price: widget.stockListModel.buyPrice ?? '',
                 purchasedAt: widget.stockListModel.purchasedAt.toString(),
+                color: widget.stockListModel.color,
               ),
               const _Label(label: 'Pendencia'),
               _Pendency(
@@ -153,6 +154,7 @@ class _ProductData extends StatelessWidget {
   final String brand;
   final String purchasedAt;
   final String price;
+  final String? color;
 
   const _ProductData({
     required this.model,
@@ -160,6 +162,7 @@ class _ProductData extends StatelessWidget {
     required this.brand,
     required this.purchasedAt,
     required this.price,
+    required this.color,
   });
 
   @override
@@ -167,7 +170,15 @@ class _ProductData extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Column(
         children: [
-          _LabelValue(label: 'Categoria', value: categoryName),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _LabelValue(label: 'Categoria', value: categoryName),
+              _LabelValue(
+                  label: 'Cor',
+                  value: color.isNullOrEmpty ? 'Não informado' : color!)
+            ],
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

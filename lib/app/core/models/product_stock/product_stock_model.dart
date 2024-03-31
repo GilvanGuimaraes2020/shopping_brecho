@@ -15,6 +15,7 @@ class ProductStockModel with _$ProductStockModel {
     @Default([]) List<int> pendencyList,
     int? paymentTypeId,
     double? price,
+    String? color,
     @Default(false) bool isSold,
   }) = _ProductStockModel;
 

@@ -7,6 +7,7 @@ import 'package:shopping_brecho/app/component/brecho_buttons.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_shimmer.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
+import 'package:shopping_brecho/app/component/chips_filter.dart';
 import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
 import 'package:shopping_brecho/app/core/models/product_stock/product_stock_list_model.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
@@ -93,6 +94,11 @@ class _ProductListPageState extends State<ProductListPage> {
                     ],
                   ),
                 ),
+                if (controller.filterChipsItem.isNotEmpty)
+                  SliverToBoxAdapter(
+                      child: ChipsFilter(
+                          items: controller.filterChipsItem,
+                          clearAll: controller.clearFilter)),
                 SliverPadding(
                   padding:
                       const EdgeInsets.symmetric(vertical: BrechoSpacing.xxiv),

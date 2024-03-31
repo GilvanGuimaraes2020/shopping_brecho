@@ -1,5 +1,4 @@
 import 'package:brecho_utilities/brecho_utilities.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/brecho_buttons.dart';
@@ -9,16 +8,11 @@ import 'package:shopping_brecho/app/component/brecho_snackbar.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/module/products/product_list/product_list_controller.dart';
 
-class ProductFilterPage extends StatefulWidget {
+class ProductFilterPage extends StatelessWidget {
   final ProductListController controller;
 
   const ProductFilterPage({super.key, required this.controller});
 
-  @override
-  State<ProductFilterPage> createState() => _ProductFilterPageState();
-}
-
-class _ProductFilterPageState extends State<ProductFilterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,9 +29,9 @@ class _ProductFilterPageState extends State<ProductFilterPage> {
                 child: BrechoSelectModalField(
                   selectTitle: 'Selecione',
                   label: 'Selecione',
-                  selectItems:
-                      widget.controller.saleType.map((e) => e.label).toList(),
-                  onSelectItem: widget.controller.onSelectSale,
+                  controller: controller.isSoldCtl,
+                  selectItems: controller.saleType.map((e) => e.label).toList(),
+                  onSelectItem: controller.onSelectSale,
                 ),
               ),
             ),
@@ -46,8 +40,8 @@ class _ProductFilterPageState extends State<ProductFilterPage> {
               sliver: SliverToBoxAdapter(
                 child: BrechoTextField(
                   label: 'Data inicial',
-                  controller: MaskedTextController(mask: '00/00/0000'),
-                  onChanged: widget.controller.onChangeStartDate,
+                  controller: controller.filterStartDateCtl,
+                  onChanged: controller.onChangeStartDate,
                   textInputType: TextInputType.number,
                 ),
               ),
@@ -56,8 +50,21 @@ class _ProductFilterPageState extends State<ProductFilterPage> {
               child: BrechoTextField(
                 label: 'Data final',
                 textInputType: TextInputType.number,
-                controller: MaskedTextController(mask: '00/00/0000'),
-                onChanged: widget.controller.onChangeFinishDate,
+                controller: controller.filterEndDateCtl,
+                onChanged: controller.onChangeFinishDate,
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.only(top: BrechoSpacing.xxiv),
+              sliver: SliverToBoxAdapter(
+                child: BrechoSelectModalField(
+                  selectTitle: 'Categoria',
+                  label: 'Categoria',
+                  controller: controller.categoryCtl,
+                  selectItems:
+                      controller.categoryBy.map((e) => e.label).toList(),
+                  onSelectItem: controller.onSelectCategory,
+                ),
               ),
             ),
             const SliverToBoxAdapter(
@@ -83,9 +90,9 @@ class _ProductFilterPageState extends State<ProductFilterPage> {
           child: BrechoPrimaryButton(
             label: 'Aplicar',
             onPressed: () {
-              if (widget.controller.formIsValid) {
-                widget.controller.applyFilters();
-                Modular.to.pop(widget.controller.filters);
+              if (controller.formIsValid) {
+                controller.applyFilters();
+                Modular.to.pop(controller.filters);
               } else {
                 HenrySnackbar.show(
                     text: 'Há campos invalidos!',

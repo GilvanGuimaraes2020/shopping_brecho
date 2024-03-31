@@ -93,7 +93,7 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
                   const SizedBox(height: BrechoSpacing.xvi),
                   BrechoTextField(
                     label: 'Cor',
-                    onChanged: controller.onChangePrice,
+                    onChanged: controller.setProductColor,
                   ),
                   const SizedBox(height: BrechoSpacing.xvi),
                   BrechoSelectModalField(
