@@ -141,7 +141,10 @@ class StockRepository implements IStockRepository {
             ${filters['finished_date'] != null ? " AND purchased_at <= '${filters['finished_date']}'" : ''}
           ''';
 
-      const String orderBy = ' ORDER BY ps.purchased_at DESC';
+      final String order =
+          (filters['order_by'] as String?) ?? 'ps.purchased_at';
+
+      final String orderBy = ' ORDER BY $order DESC';
 
       final query = '''
           SELECT
