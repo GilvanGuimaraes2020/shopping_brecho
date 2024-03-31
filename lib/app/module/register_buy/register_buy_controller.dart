@@ -66,6 +66,10 @@ abstract class _RegisterBuyControllerBase with Store {
       buyAndSaleStore.registerBuySelectProduct(value);
 
   @action
+  Future<void> setProductColor(dynamic value) async =>
+      buyAndSaleStore.setProductColor(value);
+
+  @action
   Future<void> registerBuySetPaymentType(dynamic value) async =>
       buyAndSaleStore.registerBuySetPaymentType(value);
 

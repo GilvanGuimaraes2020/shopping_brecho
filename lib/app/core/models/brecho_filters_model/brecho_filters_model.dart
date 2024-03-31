@@ -14,6 +14,7 @@ class BrechoFiltersModel with _$BrechoFiltersModel {
     bool? isSold,
     dynamic startDate,
     dynamic finishedDate,
+    String? orderBy,
   }) = _BrechoFiltersModel;
 
   factory BrechoFiltersModel.fromJson(Map<String, dynamic> json) =>
