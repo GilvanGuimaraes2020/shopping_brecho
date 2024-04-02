@@ -3,12 +3,14 @@ import 'package:shopping_brecho/app/core/interfaces/account_repository_interface
 import 'package:shopping_brecho/app/core/interfaces/kanban_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/relational_db/customer_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/relational_db/product_repository_interface.dart';
+import 'package:shopping_brecho/app/core/interfaces/relational_db/results_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/relational_db/stock_repository_interface.dart';
 import 'package:shopping_brecho/app/core/interfaces/remote_config_interface.dart';
 import 'package:shopping_brecho/app/core/repositories/account_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/kanban_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/relational_db/customer_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/relational_db/product_repository.dart';
+import 'package:shopping_brecho/app/core/repositories/relational_db/results_repository.dart';
 import 'package:shopping_brecho/app/core/repositories/relational_db/stock_repository.dart';
 import 'package:shopping_brecho/app/core/routes/app_route.dart';
 import 'package:shopping_brecho/app/core/service/database/conn/conn.dart';
@@ -33,6 +35,7 @@ import 'package:shopping_brecho/app/module/register_buy/register_buy_page.dart';
 import 'package:shopping_brecho/app/module/register_expense/register_expense_controller.dart';
 import 'package:shopping_brecho/app/module/register_expense/register_expense_page.dart';
 import 'package:shopping_brecho/app/module/register_sale/register_sale_controller.dart';
+import 'package:shopping_brecho/app/module/results/results_controller.dart';
 import 'package:shopping_brecho/app/services/remote_config_service.dart';
 
 class AppModule extends Module {
@@ -45,6 +48,7 @@ class AppModule extends Module {
         Bind<IProductRepository>((i) => ProductRepository(i.get())),
         Bind<ICustomerRepository>((i) => CustomerRepository(i.get())),
         Bind<IStockRepository>((i) => StockRepository(i.get())),
+        Bind<IResultsRepository>((i) => ResultsRepository(i.get())),
         //end repositories
         //page controller
         Bind.factory((i) => HomeController(i(), i())),
@@ -62,6 +66,8 @@ class AppModule extends Module {
             (i) => MainClientController(i.get<BuyAndSaleProductStore>())),
         Bind.factory((i) => RegisterBuyController(
               i.get<BuyAndSaleProductStore>(),
+            )),
+        Bind.factory((i) => ResultsController(i.get()
             )),
         //services
         Bind.singleton<RemoteDatabase>(

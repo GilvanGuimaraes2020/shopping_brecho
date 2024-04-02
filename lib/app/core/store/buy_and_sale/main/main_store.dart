@@ -5,6 +5,7 @@ import 'package:shopping_brecho/app/component/brecho_nav_bar.dart';
 import 'package:shopping_brecho/app/component/unavailable_page.dart';
 import 'package:shopping_brecho/app/module/homepage/home_page.dart';
 import 'package:shopping_brecho/app/module/products/product_list/product_list_page.dart';
+import 'package:shopping_brecho/app/module/results/results_page.dart';
 
 part 'main_store.g.dart';
 
@@ -19,7 +20,7 @@ abstract class _MainStore with Store {
   Map<MainPageViewEnum, Widget> mainPages = {
     MainPageViewEnum.home: const HomePage(),
     MainPageViewEnum.store: const ProductListPage(),
-    MainPageViewEnum.dashboard: const UnavailablePage(),
+    MainPageViewEnum.dashboard: const ResultsPage(),
     MainPageViewEnum.schedule: const UnavailablePage(),
   };
 
