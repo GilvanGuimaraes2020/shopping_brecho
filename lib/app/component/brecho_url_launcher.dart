@@ -14,9 +14,9 @@ import 'package:url_launcher/url_launcher.dart' as launcher;enum BrechoUrlLaunch
   final launcher.LaunchMode mode;
 }
 
-class DryveUrlLauncher {
+class BrechoUrlLauncher {
 
-DryveUrlLauncher._();
+BrechoUrlLauncher._();
 
   static Future<void> launchURL(
     String uri, {

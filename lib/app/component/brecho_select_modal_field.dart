@@ -32,6 +32,7 @@ class BrechoSelectModalField extends StatefulWidget {
   final bool lineValidator;
   final bool isDense;
   final bool? allowEmpty;
+  final bool Function(dynamic)? notAllowSelection;
 
   const BrechoSelectModalField({
     super.key,
@@ -60,6 +61,7 @@ class BrechoSelectModalField extends StatefulWidget {
     this.asyncItems,
     this.isDense = false,
     this.allowEmpty,
+    this.notAllowSelection,
   });
 
   @override
@@ -296,28 +298,31 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
   }
 
   void onSelectItem(dynamic value) {
-    dynamic currentValue;
-    if (widget.asyncItems != null) {
-      if (widget.multiple) {
-        currentValue = List<LabelValueHelperModel>.from(value as List);
+    final notAllowSelection = widget.notAllowSelection?.call(value) ?? false;
+    if (!notAllowSelection) {
+      dynamic currentValue;
+      if (widget.asyncItems != null) {
+        if (widget.multiple) {
+          currentValue = List<LabelValueHelperModel>.from(value as List);
+        } else {
+          currentValue = value as LabelValueHelperModel;
+          _controller.text = value.label;
+        }
       } else {
-        currentValue = value as LabelValueHelperModel;
-        _controller.text = value.label;
+        if (widget.multiple) {
+          currentValue = List<int>.from(value as List);
+        } else {
+          currentValue = value as int;
+          _controller.text = widget.selectItems[value];
+        }
       }
-    } else {
-      if (widget.multiple) {
-        currentValue = List<int>.from(value as List);
-      } else {
-        currentValue = value as int;
-        _controller.text = widget.selectItems[value];
-      }
-    }
 
-    if (currentValue != _currentValue || widget.multiple) {
-      widget.onSelectItem(currentValue);
-      Form.of(context)?.widget.onChanged?.call();
+      if (currentValue != _currentValue || widget.multiple) {
+        widget.onSelectItem(currentValue);
+        Form.of(context)?.widget.onChanged?.call();
+      }
+      _currentValue = currentValue;
     }
-    _currentValue = currentValue;
   }
 
   void _calculateWidgetTotalSize() {
