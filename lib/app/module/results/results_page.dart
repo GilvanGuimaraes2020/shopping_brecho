@@ -194,10 +194,7 @@ class _ResultsPageState extends State<ResultsPage> {
                     sliver: SliverToBoxAdapter(
                       child: Column(
                         children: [
-                          const Text(
-                            'Resultado bruto',
-                            textAlign: TextAlign.center,
-                          ).labelLargeRegular(),
+                          const _Title(title: 'Resultado bruto'),
                           const SizedBox(
                             height: BrechoSpacing.xii,
                           ),
@@ -355,6 +352,36 @@ class _TableRows extends StatelessWidget {
   }
 }
 
+class _Title extends StatelessWidget {
+  final String title;
+  const _Title({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: BrechoSpacing.xvi),
+      child: Row(
+        children: [
+          Expanded(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                  color: BrechoColors.neutral8,
+                  borderRadius: BorderRadius.circular(16)),
+              child: Padding(
+                padding: const EdgeInsets.all(BrechoSpacing.x),
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                ).labelLargeRegular(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _Header extends StatelessWidget {
   final String title;
   const _Header({required this.title});
@@ -363,13 +390,7 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: BrechoSpacing.xvi),
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-          ).labelLargeRegular(),
-        ),
+        _Title(title: title),
         Row(
           children: [
             SizedBox(
@@ -403,17 +424,18 @@ class _EmptyState extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SizedBox(
-          height: BrechoSpacing.lvi,
+          height: BrechoSpacing.xxiv,
         ),
         const Icon(
           BrechoIcons.warning,
-          size: 70,
+          size: 50,
           color: BrechoColors.responseWarning,
         ),
-        const SizedBox(
-          height: BrechoSpacing.xxxii,
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: BrechoSpacing.xxiv),
+          child: const Text('Sem dados para o periodo selecionado!')
+              .labelMediumBold(),
         ),
-        const Text('Sem dados!').labelLargeBold(),
       ],
     ));
   }

@@ -186,16 +186,21 @@ class StockRepository implements IStockRepository {
   Future<FreezedStatus<List<ProductStockListModel>>> getAllProductsSale(
       {required Map<String, dynamic> filters}) async {
     try {
-      // final filter = '''
-      //       where lower(name) LIKE lower('${filters['keyword'] ?? ''}%')
-      //       AND is_sold = $isSold
-      //       ${filters['start_date'] != null ? " AND purchased_at >= '${filters['start_date']}'" : ''}
-      //       ${filters['finished_date'] != null ? " AND purchased_at <= '${filters['finished_date']}'" : ''}
-      //     ''';
+      final isSold = filters['is_sold'] as bool;
 
-      const String orderBy = 'ORDER BY pseller.seller_at DESC';
+      final filter = '''
+            where lower(cseller.name) LIKE lower('${filters['keyword'] ?? ''}%')
+            AND is_sold = $isSold
+            ${filters['start_date'] != null ? " AND pseller.seller_at >= '${filters['start_date']}'" : ''}
+            ${filters['finished_date'] != null ? " AND pseller.seller_at <= '${filters['finished_date']}'" : ''}
+          ''';
 
-      const String query = '''
+      final String order =
+          (filters['order_by'] as String?) ?? 'pseller.seller_at';
+
+      final String orderBy = ' ORDER BY $order DESC';
+
+      final String query = '''
 SELECT ps.product_id, ps.price as buy_price, ps.purchased_at, ps.is_sold, p.model, ct.name as buy_name, ct.address as buy_address, cseller.address as seller_address, cseller.name as seller_name, pseller.seller_price as sale_price, pseller.seller_at, c.color, c.category_name, c.category_value FROM product_stock as ps
 INNER JOIN customer_table as ct ON (ps.customer_id = ct.id) 
 JOIN product as p ON (p.id = ps.product_id)
@@ -204,7 +209,7 @@ JOIN product_seller as pseller ON (
 pseller.product_stock_id = ps.product_stock_id) 
 INNER JOIN customer_table as cseller ON (
 cseller.id = pseller.customer_id)
-WHERE is_sold = TRUE $orderBy
+$filter $orderBy
 ''';
 
       final PostgreSQLResult result = await _database.query(query);
