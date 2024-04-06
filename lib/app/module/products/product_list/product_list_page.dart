@@ -98,7 +98,7 @@ class _ProductListPageState extends State<ProductListPage> {
                   SliverToBoxAdapter(
                       child: ChipsFilter(
                           items: controller.filterChipsItem,
-                          clearAll: controller.clearFilter)),
+                          clearAll: controller.resetAndGetAllStock)),
                 SliverPadding(
                   padding:
                       const EdgeInsets.symmetric(vertical: BrechoSpacing.xxiv),

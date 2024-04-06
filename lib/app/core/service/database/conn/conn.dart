@@ -35,6 +35,6 @@ class Conn implements RemoteDatabase, Disposable {
 
   @override
   Future<void> dispose() async {
-    connection.close();
+    throw 'dispose connection';
   }
 }

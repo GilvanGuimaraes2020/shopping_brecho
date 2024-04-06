@@ -89,7 +89,7 @@ abstract class _ProductListController with Store {
   Future<void> getStockProductAll() async {
     final filter = filters.toJson();
     stockList = const FreezedStatus.loading();
-    if (filter['is_sold'] as bool) {
+    if (isSold) {
       stockList = await _stockRepository.getAllProductsSale(filters: filter);
     } else {
       stockList = await _stockRepository.getAllProductsStock(filters: filter);
@@ -104,6 +104,7 @@ abstract class _ProductListController with Store {
 
   @action
   void resetAndGetAllStock() {
+    clearFilter();
     getStockProductAll();
   }
 
@@ -133,10 +134,11 @@ abstract class _ProductListController with Store {
   @action
   void applyFilters() {
     filters = BrechoFiltersModel(
-      isSold: isSold,
-      startDate: FormatHelper.formatYYYYMMDD(startDate),
-      finishedDate: FormatHelper.formatYYYYMMDD(finishDate),
-        orderBy: categoryBy[categoryIndex].value as String?);
+        isSold: isSold,
+        startDate: FormatHelper.formatYYYYMMDD(startDate),
+        finishedDate: FormatHelper.formatYYYYMMDD(finishDate),
+        orderBy: (categoryBy.tryGet(categoryIndex)?.value as String?) ??
+            categoryBy[1].value.toString());
   }
 
   @action
@@ -156,6 +158,10 @@ abstract class _ProductListController with Store {
     categoryIndex = -1;
 
     categoryCtl.clear();
+
+    isSoldCtl.clear();
+
+    applyFilters();
   }
 
   @computed
