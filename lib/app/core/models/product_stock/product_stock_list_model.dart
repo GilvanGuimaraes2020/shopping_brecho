@@ -27,6 +27,7 @@ class ProductStockListModel with _$ProductStockListModel {
     String? sellerName,
     dynamic sellerAt,
     @Default(false) bool hasPendency,
+    String? productColor,
   }) = _ProductStockListModel;
 
   factory ProductStockListModel.fromJson(Map<String, dynamic> json) =>
