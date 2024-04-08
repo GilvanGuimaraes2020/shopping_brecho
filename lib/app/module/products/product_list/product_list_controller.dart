@@ -135,6 +135,7 @@ abstract class _ProductListController with Store {
   void applyFilters() {
     filters = BrechoFiltersModel(
         isSold: isSold,
+        keyword: name,
         startDate: FormatHelper.formatYYYYMMDD(startDate),
         finishedDate: FormatHelper.formatYYYYMMDD(finishDate),
         orderBy: (categoryBy.tryGet(categoryIndex)?.value as String?) ??

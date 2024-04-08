@@ -6,6 +6,7 @@ import 'package:shopping_brecho/app/component/badge.dart';
 import 'package:shopping_brecho/app/component/brecho_buttons.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_shimmer.dart';
+import 'package:shopping_brecho/app/component/brecho_url_launcher.dart';
 import 'package:shopping_brecho/app/core/models/product_pendency_table/product_pendency_table_model.dart';
 import 'package:shopping_brecho/app/core/models/product_stock/product_stock_list_model.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
@@ -71,7 +72,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 brand: widget.stockListModel.brandName ?? '',
                 price: widget.stockListModel.buyPrice ?? '',
                 purchasedAt: widget.stockListModel.purchasedAt.toString(),
-                color: widget.stockListModel.color,
+                color: widget.stockListModel.productColor,
               ),
               const _Label(label: 'Pendencia'),
               _Pendency(
@@ -230,8 +231,24 @@ class _ClientData extends StatelessWidget {
               _LabelValue(label: 'Número', value: number),
             ],
           ),
-          _LabelValue(
-              label: 'Telefone', value: FormatHelper.formatPhone(phone)),
+          InkWell(
+            onTap: () async {
+             await BrechoUrlLauncher.whatsapp(phone);
+            },
+            child: Row(
+              children: [
+                _LabelValue(
+                    label: 'Telefone', value: FormatHelper.formatPhone(phone)),
+                const Padding(
+                  padding: EdgeInsets.only(left: BrechoSpacing.xxxii),
+                  child: Icon(
+                    Icons.whatsapp,
+                    color: BrechoColors.responseSuccess,
+                  ),
+                )
+              ],
+            ),
+          ),
           const SizedBox(
             height: BrechoSpacing.xvi,
           )

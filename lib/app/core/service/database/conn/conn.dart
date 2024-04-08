@@ -13,9 +13,12 @@ class Conn implements RemoteDatabase, Disposable {
 
   Future<void> _openConnection() async {
     bool stopConnection = false;
-    Future.delayed(const Duration(seconds: 10), () => stopConnection = true);
+    Future.delayed(const Duration(seconds: 5), () {
+      stopConnection = true;
+      connection = DatabaseConnection().getSqlConnection();
+    });
     while (connection.isClosed && !stopConnection) {
-       await connection.open();
+      await connection.open();
     }
   }
 

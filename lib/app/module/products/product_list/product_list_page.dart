@@ -61,6 +61,11 @@ class _ProductListPageState extends State<ProductListPage> {
                           label: 'Pesquisar nome',
                           controller: controller.nameCtl,
                           onChanged: controller.setName,
+                          suffixIcon: BrechoIcons.search,
+                          onTapIcon: () {
+                            controller.applyFilters();
+                            controller.getStockProductAll();
+                          },
                         ),
                       ),
                       Padding(
