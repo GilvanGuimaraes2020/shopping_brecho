@@ -32,7 +32,7 @@ class Conn implements RemoteDatabase, Disposable {
   @override
   Future<PostgreSQLResult> query(String query,
       {Map<String, String> variable = const {}}) async {
-    _openConnection();
+    await _openConnection();
     return connection.query(query, substitutionValues: variable);
   }
 
