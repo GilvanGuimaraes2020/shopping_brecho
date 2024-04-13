@@ -68,7 +68,7 @@ class StockRepository implements IStockRepository {
             final sellerAt = DateTime.tryParse(saleAt.toString());
             for (int i = 1; i <= salePayment.installment; i++) {
               valuesInsert =
-                  "('$sellerId', '${salePayment.paymentType}', '${DateTime.now().toUtc()}', '${sellerAt?.add(Duration(days: i * 30))}', '${salePayment.value / i}', '$i')${valuesInsert.isNotEmpty ? ' , $valuesInsert' : ''}";
+                  "('$sellerId', '${salePayment.paymentType}', '${DateTime.now().toUtc()}', '${sellerAt?.add(Duration(days: i * 30))}', '${salePayment.value / salePayment.installment}', '$i')${valuesInsert.isNotEmpty ? ' , $valuesInsert' : ''}";
             }
           } else {
             valuesInsert =
