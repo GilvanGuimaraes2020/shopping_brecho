@@ -12,6 +12,7 @@ class BrechoFiltersModel with _$BrechoFiltersModel {
   )
   factory BrechoFiltersModel({
     bool? isSold,
+    String? keyword,
     dynamic startDate,
     dynamic finishedDate,
     String? orderBy,

@@ -68,7 +68,7 @@ class StockRepository implements IStockRepository {
             final sellerAt = DateTime.tryParse(saleAt.toString());
             for (int i = 1; i <= salePayment.installment; i++) {
               valuesInsert =
-                  "('$sellerId', '${salePayment.paymentType}', '${DateTime.now().toUtc()}', '${sellerAt?.add(Duration(days: i * 30))}', '${salePayment.value / i}', '$i')${valuesInsert.isNotEmpty ? ' , $valuesInsert' : ''}";
+                  "('$sellerId', '${salePayment.paymentType}', '${DateTime.now().toUtc()}', '${sellerAt?.add(Duration(days: i * 30))}', '${salePayment.value / salePayment.installment}', '$i')${valuesInsert.isNotEmpty ? ' , $valuesInsert' : ''}";
             }
           } else {
             valuesInsert =
@@ -148,7 +148,7 @@ class StockRepository implements IStockRepository {
 
       final query = '''
           SELECT
-          ps.product_stock_id, product_id, customer_id, has_pendency, ps.purchased_at, price as buy_price, is_sold, p.product_category_id, p.model, b.brand_name ,c.category_name, c.category_value, c.color, ct.name as buy_name, ct.phone, ct.address as buy_address, ct.number
+          ps.product_stock_id, product_id, customer_id, has_pendency, ps.purchased_at,ps.color as product_color, price as buy_price, is_sold, p.product_category_id, p.model, b.brand_name ,c.category_name, c.category_value, c.color, ct.name as buy_name, ct.phone, ct.address as buy_address, ct.number
            FROM product_stock as ps
           JOIN product as p ON p.id = product_id 
           JOIN category as c ON c.id = p.product_category_id
