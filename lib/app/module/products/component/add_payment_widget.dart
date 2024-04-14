@@ -52,7 +52,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
     setState(() {
       isCreditCard[index] = widget.selectItems[value as int] == 'Crédito';
       final paymentCurrent = paymentTypeModel[index].copyWith(
-          paymentType: value.toString(), isCreditCard: isCreditCard[index]);
+          paymentType: (value + 1).toString(), isCreditCard: isCreditCard[index]);
       paymentTypeModel[index] = paymentCurrent;
     });
     addNotify();
