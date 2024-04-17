@@ -34,7 +34,7 @@ class ValidatorHelper {
     return monthIsValid && yearIsValid;
   }
 
-  static bool dateIsValid(String? value) {
+  static bool dateIsValid(String? value, {bool allowFutureDate = false}) {
     final regex = RegExp('[\\d]{2}/[\\d]{2}/[\\d]{4}');
     return regex.hasMatch(value ?? '');
   }

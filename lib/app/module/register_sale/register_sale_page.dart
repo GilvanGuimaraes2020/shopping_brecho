@@ -147,28 +147,30 @@ class _RegisterSalePageState extends State<RegisterSalePage> {
                 child: BrechoPrimaryButton(
                     label: 'Enviar',
                     onPressed: () async {
-                      String text = 'Há dados invalidos!';
-                      var status = HenrySnackbarStatus.error;
                       if (controller.formIsValid) {
                         final result = await controller.saveSale();
                         result.maybeWhen(success: (data) {
-                          text = 'Dados salvos com sucesso!';
-                          status = HenrySnackbarStatus.success;
                           Modular.to.pop();
                           Modular.to.pop(result);
                         }, error: (error) {
+                          String text = '';
                           if (error is PostgreSQLException) {
                             text = error.message ?? '';
                           } else {
                             text = 'Ocorreu um erro no banco!';
                           }
+                          HenrySnackbar.show(
+                              text: text, status: HenrySnackbarStatus.error);
                         }, orElse: () {
-                          text = 'Ocorreu algum erro!';
-                          status = HenrySnackbarStatus.warning;
+                          HenrySnackbar.show(
+                              text: 'Ocorreu algum erro!',
+                              status: HenrySnackbarStatus.warning);
                         });
+                      } else {
+                        HenrySnackbar.show(
+                            text: 'Há dados invalidos!',
+                            status: HenrySnackbarStatus.error);
                       }
-
-                      HenrySnackbar.show(text: text, status: status);
                     }),
               )
             ])

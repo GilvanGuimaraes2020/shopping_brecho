@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:postgres/postgres.dart';
 import 'package:shopping_brecho/app/core/service/database/interface/remote_database.dart';
 import 'package:shopping_brecho/app/core/service/database_connection.dart/database_connection.dart';
 
-class Conn implements RemoteDatabase, Disposable {
+class Conn implements RemoteDatabase {
   Conn();
 
   static PostgreSQLConnection connection =
       DatabaseConnection().getSqlConnection();
 
   Future<void> _openConnection() async {
+
     if (connection.isClosed) {
       try {
         await connection.open();
@@ -20,6 +20,7 @@ class Conn implements RemoteDatabase, Disposable {
         FirebaseCrashlytics.instance.recordError(e, s);
       }
     }
+
     if (connection.isClosed) {
       connection = DatabaseConnection().getSqlConnection();
       try {
@@ -28,6 +29,7 @@ class Conn implements RemoteDatabase, Disposable {
         FirebaseCrashlytics.instance.recordError(e, s);
       }
     }
+    
   }
 
   @override
@@ -42,10 +44,5 @@ class Conn implements RemoteDatabase, Disposable {
       {Map<String, String> variable = const {}}) async {
     await _openConnection();
     return connection.query(query, substitutionValues: variable);
-  }
-
-  @override
-  Future<void> dispose() async {
-    throw 'dispose connection';
   }
 }

@@ -1,4 +1,3 @@
-import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/core/interfaces/relational_db/customer_repository_interface.dart';
@@ -19,6 +18,7 @@ import 'package:shopping_brecho/app/core/models/register_sale/register_sale_mode
 import 'package:shopping_brecho/app/core/models/register_sale/sale_payment_type/sale_payment_type_model.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
+import 'package:shopping_brecho/app/helpers/format_helper/mask_text.dart';
 
 part 'buy_and_sale_product_store.g.dart';
 
@@ -147,7 +147,7 @@ abstract class _BuyAndSaleProductStore with Store {
   final brandCtl = TextEditingController(text: '');
 //customer controllers
   final customerNameCtl = TextEditingController(text: '');
-  final customerPhoneCtl = MaskedTextController(mask: '(00) 00000-0000');
+  final customerPhoneCtl = MaskedPhoneNumber();
   final customerAddressCtl = TextEditingController(text: '');
   final customerNeighborhoodCtl = TextEditingController(text: '');
   final customerNumberCtl = TextEditingController(text: '');
