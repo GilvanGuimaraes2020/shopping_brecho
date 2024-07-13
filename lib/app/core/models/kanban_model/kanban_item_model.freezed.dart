@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'kanban_item_model.dart';
 
@@ -12,7 +12,7 @@ part of 'kanban_item_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 KanbanItemModel _$KanbanItemModelFromJson(Map<String, dynamic> json) {
   return _KanbanItemModel.fromJson(json);
@@ -82,11 +82,11 @@ class _$KanbanItemModelCopyWithImpl<$Res, $Val extends KanbanItemModel>
 }
 
 /// @nodoc
-abstract class _$$_KanbanItemModelCopyWith<$Res>
+abstract class _$$KanbanItemModelImplCopyWith<$Res>
     implements $KanbanItemModelCopyWith<$Res> {
-  factory _$$_KanbanItemModelCopyWith(
-          _$_KanbanItemModel value, $Res Function(_$_KanbanItemModel) then) =
-      __$$_KanbanItemModelCopyWithImpl<$Res>;
+  factory _$$KanbanItemModelImplCopyWith(_$KanbanItemModelImpl value,
+          $Res Function(_$KanbanItemModelImpl) then) =
+      __$$KanbanItemModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, KanbanModel? kanban});
@@ -96,11 +96,11 @@ abstract class _$$_KanbanItemModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_KanbanItemModelCopyWithImpl<$Res>
-    extends _$KanbanItemModelCopyWithImpl<$Res, _$_KanbanItemModel>
-    implements _$$_KanbanItemModelCopyWith<$Res> {
-  __$$_KanbanItemModelCopyWithImpl(
-      _$_KanbanItemModel _value, $Res Function(_$_KanbanItemModel) _then)
+class __$$KanbanItemModelImplCopyWithImpl<$Res>
+    extends _$KanbanItemModelCopyWithImpl<$Res, _$KanbanItemModelImpl>
+    implements _$$KanbanItemModelImplCopyWith<$Res> {
+  __$$KanbanItemModelImplCopyWithImpl(
+      _$KanbanItemModelImpl _value, $Res Function(_$KanbanItemModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,7 +109,7 @@ class __$$_KanbanItemModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? kanban = freezed,
   }) {
-    return _then(_$_KanbanItemModel(
+    return _then(_$KanbanItemModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -125,13 +125,13 @@ class __$$_KanbanItemModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_KanbanItemModel
+class _$KanbanItemModelImpl
     with DiagnosticableTreeMixin
     implements _KanbanItemModel {
-  _$_KanbanItemModel({this.id, this.kanban});
+  _$KanbanItemModelImpl({this.id, this.kanban});
 
-  factory _$_KanbanItemModel.fromJson(Map<String, dynamic> json) =>
-      _$$_KanbanItemModelFromJson(json);
+  factory _$KanbanItemModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KanbanItemModelImplFromJson(json);
 
   @override
   final String? id;
@@ -153,10 +153,10 @@ class _$_KanbanItemModel
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_KanbanItemModel &&
+            other is _$KanbanItemModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.kanban, kanban) || other.kanban == kanban));
   }
@@ -168,12 +168,13 @@ class _$_KanbanItemModel
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_KanbanItemModelCopyWith<_$_KanbanItemModel> get copyWith =>
-      __$$_KanbanItemModelCopyWithImpl<_$_KanbanItemModel>(this, _$identity);
+  _$$KanbanItemModelImplCopyWith<_$KanbanItemModelImpl> get copyWith =>
+      __$$KanbanItemModelImplCopyWithImpl<_$KanbanItemModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_KanbanItemModelToJson(
+    return _$$KanbanItemModelImplToJson(
       this,
     );
   }
@@ -181,10 +182,10 @@ class _$_KanbanItemModel
 
 abstract class _KanbanItemModel implements KanbanItemModel {
   factory _KanbanItemModel({final String? id, final KanbanModel? kanban}) =
-      _$_KanbanItemModel;
+      _$KanbanItemModelImpl;
 
   factory _KanbanItemModel.fromJson(Map<String, dynamic> json) =
-      _$_KanbanItemModel.fromJson;
+      _$KanbanItemModelImpl.fromJson;
 
   @override
   String? get id;
@@ -192,7 +193,7 @@ abstract class _KanbanItemModel implements KanbanItemModel {
   KanbanModel? get kanban;
   @override
   @JsonKey(ignore: true)
-  _$$_KanbanItemModelCopyWith<_$_KanbanItemModel> get copyWith =>
+  _$$KanbanItemModelImplCopyWith<_$KanbanItemModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -269,20 +270,20 @@ class _$KanbanItemCopyWithImpl<$Res, $Val extends KanbanItem>
 }
 
 /// @nodoc
-abstract class _$$KanbanItemDataCopyWith<$Res> {
-  factory _$$KanbanItemDataCopyWith(
-          _$KanbanItemData value, $Res Function(_$KanbanItemData) then) =
-      __$$KanbanItemDataCopyWithImpl<$Res>;
+abstract class _$$KanbanItemDataImplCopyWith<$Res> {
+  factory _$$KanbanItemDataImplCopyWith(_$KanbanItemDataImpl value,
+          $Res Function(_$KanbanItemDataImpl) then) =
+      __$$KanbanItemDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<KanbanItemModel> itemModel});
 }
 
 /// @nodoc
-class __$$KanbanItemDataCopyWithImpl<$Res>
-    extends _$KanbanItemCopyWithImpl<$Res, _$KanbanItemData>
-    implements _$$KanbanItemDataCopyWith<$Res> {
-  __$$KanbanItemDataCopyWithImpl(
-      _$KanbanItemData _value, $Res Function(_$KanbanItemData) _then)
+class __$$KanbanItemDataImplCopyWithImpl<$Res>
+    extends _$KanbanItemCopyWithImpl<$Res, _$KanbanItemDataImpl>
+    implements _$$KanbanItemDataImplCopyWith<$Res> {
+  __$$KanbanItemDataImplCopyWithImpl(
+      _$KanbanItemDataImpl _value, $Res Function(_$KanbanItemDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -290,7 +291,7 @@ class __$$KanbanItemDataCopyWithImpl<$Res>
   $Res call({
     Object? itemModel = null,
   }) {
-    return _then(_$KanbanItemData(
+    return _then(_$KanbanItemDataImpl(
       null == itemModel
           ? _value.itemModel
           : itemModel // ignore: cast_nullable_to_non_nullable
@@ -301,8 +302,10 @@ class __$$KanbanItemDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$KanbanItemData with DiagnosticableTreeMixin implements KanbanItemData {
-  _$KanbanItemData(this.itemModel);
+class _$KanbanItemDataImpl
+    with DiagnosticableTreeMixin
+    implements KanbanItemData {
+  _$KanbanItemDataImpl(this.itemModel);
 
   @override
   final List<KanbanItemModel> itemModel;
@@ -321,10 +324,10 @@ class _$KanbanItemData with DiagnosticableTreeMixin implements KanbanItemData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$KanbanItemData &&
+            other is _$KanbanItemDataImpl &&
             const DeepCollectionEquality().equals(other.itemModel, itemModel));
   }
 
@@ -335,8 +338,9 @@ class _$KanbanItemData with DiagnosticableTreeMixin implements KanbanItemData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$KanbanItemDataCopyWith<_$KanbanItemData> get copyWith =>
-      __$$KanbanItemDataCopyWithImpl<_$KanbanItemData>(this, _$identity);
+  _$$KanbanItemDataImplCopyWith<_$KanbanItemDataImpl> get copyWith =>
+      __$$KanbanItemDataImplCopyWithImpl<_$KanbanItemDataImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -415,34 +419,36 @@ class _$KanbanItemData with DiagnosticableTreeMixin implements KanbanItemData {
 
 abstract class KanbanItemData implements KanbanItem {
   factory KanbanItemData(final List<KanbanItemModel> itemModel) =
-      _$KanbanItemData;
+      _$KanbanItemDataImpl;
 
   List<KanbanItemModel> get itemModel;
   @JsonKey(ignore: true)
-  _$$KanbanItemDataCopyWith<_$KanbanItemData> get copyWith =>
+  _$$KanbanItemDataImplCopyWith<_$KanbanItemDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$KanbanItemNoneCopyWith<$Res> {
-  factory _$$KanbanItemNoneCopyWith(
-          _$KanbanItemNone value, $Res Function(_$KanbanItemNone) then) =
-      __$$KanbanItemNoneCopyWithImpl<$Res>;
+abstract class _$$KanbanItemNoneImplCopyWith<$Res> {
+  factory _$$KanbanItemNoneImplCopyWith(_$KanbanItemNoneImpl value,
+          $Res Function(_$KanbanItemNoneImpl) then) =
+      __$$KanbanItemNoneImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$KanbanItemNoneCopyWithImpl<$Res>
-    extends _$KanbanItemCopyWithImpl<$Res, _$KanbanItemNone>
-    implements _$$KanbanItemNoneCopyWith<$Res> {
-  __$$KanbanItemNoneCopyWithImpl(
-      _$KanbanItemNone _value, $Res Function(_$KanbanItemNone) _then)
+class __$$KanbanItemNoneImplCopyWithImpl<$Res>
+    extends _$KanbanItemCopyWithImpl<$Res, _$KanbanItemNoneImpl>
+    implements _$$KanbanItemNoneImplCopyWith<$Res> {
+  __$$KanbanItemNoneImplCopyWithImpl(
+      _$KanbanItemNoneImpl _value, $Res Function(_$KanbanItemNoneImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$KanbanItemNone with DiagnosticableTreeMixin implements KanbanItemNone {
-  _$KanbanItemNone();
+class _$KanbanItemNoneImpl
+    with DiagnosticableTreeMixin
+    implements KanbanItemNone {
+  _$KanbanItemNoneImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -456,9 +462,9 @@ class _$KanbanItemNone with DiagnosticableTreeMixin implements KanbanItemNone {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$KanbanItemNone);
+        (other.runtimeType == runtimeType && other is _$KanbanItemNoneImpl);
   }
 
   @override
@@ -540,31 +546,31 @@ class _$KanbanItemNone with DiagnosticableTreeMixin implements KanbanItemNone {
 }
 
 abstract class KanbanItemNone implements KanbanItem {
-  factory KanbanItemNone() = _$KanbanItemNone;
+  factory KanbanItemNone() = _$KanbanItemNoneImpl;
 }
 
 /// @nodoc
-abstract class _$$KanbanItemLoadingCopyWith<$Res> {
-  factory _$$KanbanItemLoadingCopyWith(
-          _$KanbanItemLoading value, $Res Function(_$KanbanItemLoading) then) =
-      __$$KanbanItemLoadingCopyWithImpl<$Res>;
+abstract class _$$KanbanItemLoadingImplCopyWith<$Res> {
+  factory _$$KanbanItemLoadingImplCopyWith(_$KanbanItemLoadingImpl value,
+          $Res Function(_$KanbanItemLoadingImpl) then) =
+      __$$KanbanItemLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$KanbanItemLoadingCopyWithImpl<$Res>
-    extends _$KanbanItemCopyWithImpl<$Res, _$KanbanItemLoading>
-    implements _$$KanbanItemLoadingCopyWith<$Res> {
-  __$$KanbanItemLoadingCopyWithImpl(
-      _$KanbanItemLoading _value, $Res Function(_$KanbanItemLoading) _then)
+class __$$KanbanItemLoadingImplCopyWithImpl<$Res>
+    extends _$KanbanItemCopyWithImpl<$Res, _$KanbanItemLoadingImpl>
+    implements _$$KanbanItemLoadingImplCopyWith<$Res> {
+  __$$KanbanItemLoadingImplCopyWithImpl(_$KanbanItemLoadingImpl _value,
+      $Res Function(_$KanbanItemLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$KanbanItemLoading
+class _$KanbanItemLoadingImpl
     with DiagnosticableTreeMixin
     implements KanbanItemLoading {
-  _$KanbanItemLoading();
+  _$KanbanItemLoadingImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -578,9 +584,9 @@ class _$KanbanItemLoading
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$KanbanItemLoading);
+        (other.runtimeType == runtimeType && other is _$KanbanItemLoadingImpl);
   }
 
   @override
@@ -662,31 +668,31 @@ class _$KanbanItemLoading
 }
 
 abstract class KanbanItemLoading implements KanbanItem {
-  factory KanbanItemLoading() = _$KanbanItemLoading;
+  factory KanbanItemLoading() = _$KanbanItemLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$KanbanItemErrorCopyWith<$Res> {
-  factory _$$KanbanItemErrorCopyWith(
-          _$KanbanItemError value, $Res Function(_$KanbanItemError) then) =
-      __$$KanbanItemErrorCopyWithImpl<$Res>;
+abstract class _$$KanbanItemErrorImplCopyWith<$Res> {
+  factory _$$KanbanItemErrorImplCopyWith(_$KanbanItemErrorImpl value,
+          $Res Function(_$KanbanItemErrorImpl) then) =
+      __$$KanbanItemErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$KanbanItemErrorCopyWithImpl<$Res>
-    extends _$KanbanItemCopyWithImpl<$Res, _$KanbanItemError>
-    implements _$$KanbanItemErrorCopyWith<$Res> {
-  __$$KanbanItemErrorCopyWithImpl(
-      _$KanbanItemError _value, $Res Function(_$KanbanItemError) _then)
+class __$$KanbanItemErrorImplCopyWithImpl<$Res>
+    extends _$KanbanItemCopyWithImpl<$Res, _$KanbanItemErrorImpl>
+    implements _$$KanbanItemErrorImplCopyWith<$Res> {
+  __$$KanbanItemErrorImplCopyWithImpl(
+      _$KanbanItemErrorImpl _value, $Res Function(_$KanbanItemErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$KanbanItemError
+class _$KanbanItemErrorImpl
     with DiagnosticableTreeMixin
     implements KanbanItemError {
-  _$KanbanItemError();
+  _$KanbanItemErrorImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -700,9 +706,9 @@ class _$KanbanItemError
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$KanbanItemError);
+        (other.runtimeType == runtimeType && other is _$KanbanItemErrorImpl);
   }
 
   @override
@@ -784,5 +790,5 @@ class _$KanbanItemError
 }
 
 abstract class KanbanItemError implements KanbanItem {
-  factory KanbanItemError() = _$KanbanItemError;
+  factory KanbanItemError() = _$KanbanItemErrorImpl;
 }

@@ -6,8 +6,9 @@ part of 'account_alert_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AccountAlertModel _$$_AccountAlertModelFromJson(Map<String, dynamic> json) =>
-    _$_AccountAlertModel(
+_$AccountAlertModelImpl _$$AccountAlertModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AccountAlertModelImpl(
       json['isrecurrent'] as bool?,
       json['account'] as String?,
       _parseToDateTime(json['due'] as Timestamp),
@@ -16,8 +17,8 @@ _$_AccountAlertModel _$$_AccountAlertModelFromJson(Map<String, dynamic> json) =>
       json['is_paid'] as bool?,
     );
 
-Map<String, dynamic> _$$_AccountAlertModelToJson(
-        _$_AccountAlertModel instance) =>
+Map<String, dynamic> _$$AccountAlertModelImplToJson(
+        _$AccountAlertModelImpl instance) =>
     <String, dynamic>{
       'isrecurrent': instance.isrecurrent,
       'account': instance.account,

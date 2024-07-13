@@ -137,7 +137,7 @@ class _ClientCard extends StatelessWidget {
                                   const SizedBox(
                                     width: BrechoSpacing.vi,
                                   ),
-                                  const Icon(Icons.whatsapp)
+                                  const Icon(Icons.whatshot)
                                 ],
                               ),
                             ),

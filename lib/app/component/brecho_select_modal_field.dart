@@ -319,7 +319,7 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
 
       if (currentValue != _currentValue || widget.multiple) {
         widget.onSelectItem(currentValue);
-        Form.of(context)?.widget.onChanged?.call();
+        Form.of(context).widget.onChanged?.call();
       }
       _currentValue = currentValue;
     }

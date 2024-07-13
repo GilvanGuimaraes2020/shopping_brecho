@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'account_sum_category_model.dart';
 
@@ -12,7 +12,7 @@ part of 'account_sum_category_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AccountSumCategoryModel _$AccountSumCategoryModelFromJson(
     Map<String, dynamic> json) {
@@ -70,23 +70,25 @@ class _$AccountSumCategoryModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_AccountSumCategoryModelCopyWith<$Res>
+abstract class _$$AccountSumCategoryModelImplCopyWith<$Res>
     implements $AccountSumCategoryModelCopyWith<$Res> {
-  factory _$$_AccountSumCategoryModelCopyWith(_$_AccountSumCategoryModel value,
-          $Res Function(_$_AccountSumCategoryModel) then) =
-      __$$_AccountSumCategoryModelCopyWithImpl<$Res>;
+  factory _$$AccountSumCategoryModelImplCopyWith(
+          _$AccountSumCategoryModelImpl value,
+          $Res Function(_$AccountSumCategoryModelImpl) then) =
+      __$$AccountSumCategoryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? accountDetail, String? sumCategory});
 }
 
 /// @nodoc
-class __$$_AccountSumCategoryModelCopyWithImpl<$Res>
+class __$$AccountSumCategoryModelImplCopyWithImpl<$Res>
     extends _$AccountSumCategoryModelCopyWithImpl<$Res,
-        _$_AccountSumCategoryModel>
-    implements _$$_AccountSumCategoryModelCopyWith<$Res> {
-  __$$_AccountSumCategoryModelCopyWithImpl(_$_AccountSumCategoryModel _value,
-      $Res Function(_$_AccountSumCategoryModel) _then)
+        _$AccountSumCategoryModelImpl>
+    implements _$$AccountSumCategoryModelImplCopyWith<$Res> {
+  __$$AccountSumCategoryModelImplCopyWithImpl(
+      _$AccountSumCategoryModelImpl _value,
+      $Res Function(_$AccountSumCategoryModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,7 +97,7 @@ class __$$_AccountSumCategoryModelCopyWithImpl<$Res>
     Object? accountDetail = freezed,
     Object? sumCategory = freezed,
   }) {
-    return _then(_$_AccountSumCategoryModel(
+    return _then(_$AccountSumCategoryModelImpl(
       accountDetail: freezed == accountDetail
           ? _value.accountDetail
           : accountDetail // ignore: cast_nullable_to_non_nullable
@@ -111,11 +113,11 @@ class __$$_AccountSumCategoryModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_AccountSumCategoryModel implements _AccountSumCategoryModel {
-  _$_AccountSumCategoryModel({this.accountDetail, this.sumCategory});
+class _$AccountSumCategoryModelImpl implements _AccountSumCategoryModel {
+  _$AccountSumCategoryModelImpl({this.accountDetail, this.sumCategory});
 
-  factory _$_AccountSumCategoryModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AccountSumCategoryModelFromJson(json);
+  factory _$AccountSumCategoryModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccountSumCategoryModelImplFromJson(json);
 
   @override
   final String? accountDetail;
@@ -128,10 +130,10 @@ class _$_AccountSumCategoryModel implements _AccountSumCategoryModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AccountSumCategoryModel &&
+            other is _$AccountSumCategoryModelImpl &&
             (identical(other.accountDetail, accountDetail) ||
                 other.accountDetail == accountDetail) &&
             (identical(other.sumCategory, sumCategory) ||
@@ -145,14 +147,13 @@ class _$_AccountSumCategoryModel implements _AccountSumCategoryModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AccountSumCategoryModelCopyWith<_$_AccountSumCategoryModel>
-      get copyWith =>
-          __$$_AccountSumCategoryModelCopyWithImpl<_$_AccountSumCategoryModel>(
-              this, _$identity);
+  _$$AccountSumCategoryModelImplCopyWith<_$AccountSumCategoryModelImpl>
+      get copyWith => __$$AccountSumCategoryModelImplCopyWithImpl<
+          _$AccountSumCategoryModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AccountSumCategoryModelToJson(
+    return _$$AccountSumCategoryModelImplToJson(
       this,
     );
   }
@@ -161,10 +162,10 @@ class _$_AccountSumCategoryModel implements _AccountSumCategoryModel {
 abstract class _AccountSumCategoryModel implements AccountSumCategoryModel {
   factory _AccountSumCategoryModel(
       {final String? accountDetail,
-      final String? sumCategory}) = _$_AccountSumCategoryModel;
+      final String? sumCategory}) = _$AccountSumCategoryModelImpl;
 
   factory _AccountSumCategoryModel.fromJson(Map<String, dynamic> json) =
-      _$_AccountSumCategoryModel.fromJson;
+      _$AccountSumCategoryModelImpl.fromJson;
 
   @override
   String? get accountDetail;
@@ -172,6 +173,6 @@ abstract class _AccountSumCategoryModel implements AccountSumCategoryModel {
   String? get sumCategory;
   @override
   @JsonKey(ignore: true)
-  _$$_AccountSumCategoryModelCopyWith<_$_AccountSumCategoryModel>
+  _$$AccountSumCategoryModelImplCopyWith<_$AccountSumCategoryModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

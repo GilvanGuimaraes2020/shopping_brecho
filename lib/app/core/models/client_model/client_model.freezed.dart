@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'client_model.dart';
 
@@ -12,7 +12,7 @@ part of 'client_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ClientModel _$ClientModelFromJson(Map<String, dynamic> json) {
   return _ClientModel.fromJson(json);
@@ -98,11 +98,11 @@ class _$ClientModelCopyWithImpl<$Res, $Val extends ClientModel>
 }
 
 /// @nodoc
-abstract class _$$_ClientModelCopyWith<$Res>
+abstract class _$$ClientModelImplCopyWith<$Res>
     implements $ClientModelCopyWith<$Res> {
-  factory _$$_ClientModelCopyWith(
-          _$_ClientModel value, $Res Function(_$_ClientModel) then) =
-      __$$_ClientModelCopyWithImpl<$Res>;
+  factory _$$ClientModelImplCopyWith(
+          _$ClientModelImpl value, $Res Function(_$ClientModelImpl) then) =
+      __$$ClientModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -115,11 +115,11 @@ abstract class _$$_ClientModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ClientModelCopyWithImpl<$Res>
-    extends _$ClientModelCopyWithImpl<$Res, _$_ClientModel>
-    implements _$$_ClientModelCopyWith<$Res> {
-  __$$_ClientModelCopyWithImpl(
-      _$_ClientModel _value, $Res Function(_$_ClientModel) _then)
+class __$$ClientModelImplCopyWithImpl<$Res>
+    extends _$ClientModelCopyWithImpl<$Res, _$ClientModelImpl>
+    implements _$$ClientModelImplCopyWith<$Res> {
+  __$$ClientModelImplCopyWithImpl(
+      _$ClientModelImpl _value, $Res Function(_$ClientModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -132,7 +132,7 @@ class __$$_ClientModelCopyWithImpl<$Res>
     Object? phone = freezed,
     Object? number = freezed,
   }) {
-    return _then(_$_ClientModel(
+    return _then(_$ClientModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -164,8 +164,8 @@ class __$$_ClientModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_ClientModel with DiagnosticableTreeMixin implements _ClientModel {
-  _$_ClientModel(
+class _$ClientModelImpl with DiagnosticableTreeMixin implements _ClientModel {
+  _$ClientModelImpl(
       {this.id,
       this.address,
       this.neighborhood,
@@ -173,8 +173,8 @@ class _$_ClientModel with DiagnosticableTreeMixin implements _ClientModel {
       this.phone,
       this.number});
 
-  factory _$_ClientModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ClientModelFromJson(json);
+  factory _$ClientModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ClientModelImplFromJson(json);
 
   @override
   final String? id;
@@ -208,10 +208,10 @@ class _$_ClientModel with DiagnosticableTreeMixin implements _ClientModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ClientModel &&
+            other is _$ClientModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.neighborhood, neighborhood) ||
@@ -229,12 +229,12 @@ class _$_ClientModel with DiagnosticableTreeMixin implements _ClientModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ClientModelCopyWith<_$_ClientModel> get copyWith =>
-      __$$_ClientModelCopyWithImpl<_$_ClientModel>(this, _$identity);
+  _$$ClientModelImplCopyWith<_$ClientModelImpl> get copyWith =>
+      __$$ClientModelImplCopyWithImpl<_$ClientModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ClientModelToJson(
+    return _$$ClientModelImplToJson(
       this,
     );
   }
@@ -247,10 +247,10 @@ abstract class _ClientModel implements ClientModel {
       final String? neighborhood,
       final String? name,
       final String? phone,
-      final int? number}) = _$_ClientModel;
+      final int? number}) = _$ClientModelImpl;
 
   factory _ClientModel.fromJson(Map<String, dynamic> json) =
-      _$_ClientModel.fromJson;
+      _$ClientModelImpl.fromJson;
 
   @override
   String? get id;
@@ -266,7 +266,7 @@ abstract class _ClientModel implements ClientModel {
   int? get number;
   @override
   @JsonKey(ignore: true)
-  _$$_ClientModelCopyWith<_$_ClientModel> get copyWith =>
+  _$$ClientModelImplCopyWith<_$ClientModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -348,20 +348,20 @@ class _$ClientCopyWithImpl<$Res, $Val extends Client>
 }
 
 /// @nodoc
-abstract class _$$ClientDataCopyWith<$Res> {
-  factory _$$ClientDataCopyWith(
-          _$ClientData value, $Res Function(_$ClientData) then) =
-      __$$ClientDataCopyWithImpl<$Res>;
+abstract class _$$ClientDataImplCopyWith<$Res> {
+  factory _$$ClientDataImplCopyWith(
+          _$ClientDataImpl value, $Res Function(_$ClientDataImpl) then) =
+      __$$ClientDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ClientModel> client});
 }
 
 /// @nodoc
-class __$$ClientDataCopyWithImpl<$Res>
-    extends _$ClientCopyWithImpl<$Res, _$ClientData>
-    implements _$$ClientDataCopyWith<$Res> {
-  __$$ClientDataCopyWithImpl(
-      _$ClientData _value, $Res Function(_$ClientData) _then)
+class __$$ClientDataImplCopyWithImpl<$Res>
+    extends _$ClientCopyWithImpl<$Res, _$ClientDataImpl>
+    implements _$$ClientDataImplCopyWith<$Res> {
+  __$$ClientDataImplCopyWithImpl(
+      _$ClientDataImpl _value, $Res Function(_$ClientDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -369,7 +369,7 @@ class __$$ClientDataCopyWithImpl<$Res>
   $Res call({
     Object? client = null,
   }) {
-    return _then(_$ClientData(
+    return _then(_$ClientDataImpl(
       null == client
           ? _value.client
           : client // ignore: cast_nullable_to_non_nullable
@@ -380,8 +380,8 @@ class __$$ClientDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClientData with DiagnosticableTreeMixin implements ClientData {
-  const _$ClientData(this.client);
+class _$ClientDataImpl with DiagnosticableTreeMixin implements ClientData {
+  const _$ClientDataImpl(this.client);
 
   @override
   final List<ClientModel> client;
@@ -400,10 +400,10 @@ class _$ClientData with DiagnosticableTreeMixin implements ClientData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ClientData &&
+            other is _$ClientDataImpl &&
             const DeepCollectionEquality().equals(other.client, client));
   }
 
@@ -414,8 +414,8 @@ class _$ClientData with DiagnosticableTreeMixin implements ClientData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ClientDataCopyWith<_$ClientData> get copyWith =>
-      __$$ClientDataCopyWithImpl<_$ClientData>(this, _$identity);
+  _$$ClientDataImplCopyWith<_$ClientDataImpl> get copyWith =>
+      __$$ClientDataImplCopyWithImpl<_$ClientDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -499,34 +499,34 @@ class _$ClientData with DiagnosticableTreeMixin implements ClientData {
 }
 
 abstract class ClientData implements Client {
-  const factory ClientData(final List<ClientModel> client) = _$ClientData;
+  const factory ClientData(final List<ClientModel> client) = _$ClientDataImpl;
 
   List<ClientModel> get client;
   @JsonKey(ignore: true)
-  _$$ClientDataCopyWith<_$ClientData> get copyWith =>
+  _$$ClientDataImplCopyWith<_$ClientDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ClientEmptyCopyWith<$Res> {
-  factory _$$ClientEmptyCopyWith(
-          _$ClientEmpty value, $Res Function(_$ClientEmpty) then) =
-      __$$ClientEmptyCopyWithImpl<$Res>;
+abstract class _$$ClientEmptyImplCopyWith<$Res> {
+  factory _$$ClientEmptyImplCopyWith(
+          _$ClientEmptyImpl value, $Res Function(_$ClientEmptyImpl) then) =
+      __$$ClientEmptyImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClientEmptyCopyWithImpl<$Res>
-    extends _$ClientCopyWithImpl<$Res, _$ClientEmpty>
-    implements _$$ClientEmptyCopyWith<$Res> {
-  __$$ClientEmptyCopyWithImpl(
-      _$ClientEmpty _value, $Res Function(_$ClientEmpty) _then)
+class __$$ClientEmptyImplCopyWithImpl<$Res>
+    extends _$ClientCopyWithImpl<$Res, _$ClientEmptyImpl>
+    implements _$$ClientEmptyImplCopyWith<$Res> {
+  __$$ClientEmptyImplCopyWithImpl(
+      _$ClientEmptyImpl _value, $Res Function(_$ClientEmptyImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ClientEmpty with DiagnosticableTreeMixin implements ClientEmpty {
-  const _$ClientEmpty();
+class _$ClientEmptyImpl with DiagnosticableTreeMixin implements ClientEmpty {
+  const _$ClientEmptyImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -540,9 +540,9 @@ class _$ClientEmpty with DiagnosticableTreeMixin implements ClientEmpty {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClientEmpty);
+        (other.runtimeType == runtimeType && other is _$ClientEmptyImpl);
   }
 
   @override
@@ -630,29 +630,29 @@ class _$ClientEmpty with DiagnosticableTreeMixin implements ClientEmpty {
 }
 
 abstract class ClientEmpty implements Client {
-  const factory ClientEmpty() = _$ClientEmpty;
+  const factory ClientEmpty() = _$ClientEmptyImpl;
 }
 
 /// @nodoc
-abstract class _$$ClientNoneCopyWith<$Res> {
-  factory _$$ClientNoneCopyWith(
-          _$ClientNone value, $Res Function(_$ClientNone) then) =
-      __$$ClientNoneCopyWithImpl<$Res>;
+abstract class _$$ClientNoneImplCopyWith<$Res> {
+  factory _$$ClientNoneImplCopyWith(
+          _$ClientNoneImpl value, $Res Function(_$ClientNoneImpl) then) =
+      __$$ClientNoneImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClientNoneCopyWithImpl<$Res>
-    extends _$ClientCopyWithImpl<$Res, _$ClientNone>
-    implements _$$ClientNoneCopyWith<$Res> {
-  __$$ClientNoneCopyWithImpl(
-      _$ClientNone _value, $Res Function(_$ClientNone) _then)
+class __$$ClientNoneImplCopyWithImpl<$Res>
+    extends _$ClientCopyWithImpl<$Res, _$ClientNoneImpl>
+    implements _$$ClientNoneImplCopyWith<$Res> {
+  __$$ClientNoneImplCopyWithImpl(
+      _$ClientNoneImpl _value, $Res Function(_$ClientNoneImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ClientNone with DiagnosticableTreeMixin implements ClientNone {
-  const _$ClientNone();
+class _$ClientNoneImpl with DiagnosticableTreeMixin implements ClientNone {
+  const _$ClientNoneImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -666,9 +666,9 @@ class _$ClientNone with DiagnosticableTreeMixin implements ClientNone {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClientNone);
+        (other.runtimeType == runtimeType && other is _$ClientNoneImpl);
   }
 
   @override
@@ -756,24 +756,24 @@ class _$ClientNone with DiagnosticableTreeMixin implements ClientNone {
 }
 
 abstract class ClientNone implements Client {
-  const factory ClientNone() = _$ClientNone;
+  const factory ClientNone() = _$ClientNoneImpl;
 }
 
 /// @nodoc
-abstract class _$$ClientErrorCopyWith<$Res> {
-  factory _$$ClientErrorCopyWith(
-          _$ClientError value, $Res Function(_$ClientError) then) =
-      __$$ClientErrorCopyWithImpl<$Res>;
+abstract class _$$ClientErrorImplCopyWith<$Res> {
+  factory _$$ClientErrorImplCopyWith(
+          _$ClientErrorImpl value, $Res Function(_$ClientErrorImpl) then) =
+      __$$ClientErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object? error});
 }
 
 /// @nodoc
-class __$$ClientErrorCopyWithImpl<$Res>
-    extends _$ClientCopyWithImpl<$Res, _$ClientError>
-    implements _$$ClientErrorCopyWith<$Res> {
-  __$$ClientErrorCopyWithImpl(
-      _$ClientError _value, $Res Function(_$ClientError) _then)
+class __$$ClientErrorImplCopyWithImpl<$Res>
+    extends _$ClientCopyWithImpl<$Res, _$ClientErrorImpl>
+    implements _$$ClientErrorImplCopyWith<$Res> {
+  __$$ClientErrorImplCopyWithImpl(
+      _$ClientErrorImpl _value, $Res Function(_$ClientErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -781,7 +781,7 @@ class __$$ClientErrorCopyWithImpl<$Res>
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(_$ClientError(
+    return _then(_$ClientErrorImpl(
       freezed == error ? _value.error : error,
     ));
   }
@@ -789,8 +789,8 @@ class __$$ClientErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ClientError with DiagnosticableTreeMixin implements ClientError {
-  const _$ClientError([this.error]);
+class _$ClientErrorImpl with DiagnosticableTreeMixin implements ClientError {
+  const _$ClientErrorImpl([this.error]);
 
   @override
   final Object? error;
@@ -809,10 +809,10 @@ class _$ClientError with DiagnosticableTreeMixin implements ClientError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ClientError &&
+            other is _$ClientErrorImpl &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -823,8 +823,8 @@ class _$ClientError with DiagnosticableTreeMixin implements ClientError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ClientErrorCopyWith<_$ClientError> get copyWith =>
-      __$$ClientErrorCopyWithImpl<_$ClientError>(this, _$identity);
+  _$$ClientErrorImplCopyWith<_$ClientErrorImpl> get copyWith =>
+      __$$ClientErrorImplCopyWithImpl<_$ClientErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -908,34 +908,36 @@ class _$ClientError with DiagnosticableTreeMixin implements ClientError {
 }
 
 abstract class ClientError implements Client {
-  const factory ClientError([final Object? error]) = _$ClientError;
+  const factory ClientError([final Object? error]) = _$ClientErrorImpl;
 
   Object? get error;
   @JsonKey(ignore: true)
-  _$$ClientErrorCopyWith<_$ClientError> get copyWith =>
+  _$$ClientErrorImplCopyWith<_$ClientErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ClientLoadingCopyWith<$Res> {
-  factory _$$ClientLoadingCopyWith(
-          _$ClientLoading value, $Res Function(_$ClientLoading) then) =
-      __$$ClientLoadingCopyWithImpl<$Res>;
+abstract class _$$ClientLoadingImplCopyWith<$Res> {
+  factory _$$ClientLoadingImplCopyWith(
+          _$ClientLoadingImpl value, $Res Function(_$ClientLoadingImpl) then) =
+      __$$ClientLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClientLoadingCopyWithImpl<$Res>
-    extends _$ClientCopyWithImpl<$Res, _$ClientLoading>
-    implements _$$ClientLoadingCopyWith<$Res> {
-  __$$ClientLoadingCopyWithImpl(
-      _$ClientLoading _value, $Res Function(_$ClientLoading) _then)
+class __$$ClientLoadingImplCopyWithImpl<$Res>
+    extends _$ClientCopyWithImpl<$Res, _$ClientLoadingImpl>
+    implements _$$ClientLoadingImplCopyWith<$Res> {
+  __$$ClientLoadingImplCopyWithImpl(
+      _$ClientLoadingImpl _value, $Res Function(_$ClientLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ClientLoading with DiagnosticableTreeMixin implements ClientLoading {
-  const _$ClientLoading();
+class _$ClientLoadingImpl
+    with DiagnosticableTreeMixin
+    implements ClientLoading {
+  const _$ClientLoadingImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -949,9 +951,9 @@ class _$ClientLoading with DiagnosticableTreeMixin implements ClientLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClientLoading);
+        (other.runtimeType == runtimeType && other is _$ClientLoadingImpl);
   }
 
   @override
@@ -1039,5 +1041,5 @@ class _$ClientLoading with DiagnosticableTreeMixin implements ClientLoading {
 }
 
 abstract class ClientLoading implements Client {
-  const factory ClientLoading() = _$ClientLoading;
+  const factory ClientLoading() = _$ClientLoadingImpl;
 }

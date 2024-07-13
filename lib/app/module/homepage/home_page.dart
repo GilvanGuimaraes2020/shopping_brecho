@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shopping_brecho/app/component/accordeon.dart';
-import 'package:shopping_brecho/app/component/badge.dart';
+import 'package:shopping_brecho/app/component/badge.dart' as bd;
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/core/models/registers_model/registers_model.dart';
@@ -38,8 +38,8 @@ class _HomePageState extends State<HomePage> {
         preferredSize: Size.fromHeight(myAppBarHeight),
         child: AppBar(
           centerTitle: true,
-          title: Column(
-            children: const [
+          title: const Column(
+            children: [
               Text("Pagina Principal"),
             ],
           ),
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         const Expanded(child: SizedBox()),
                         const Text('Valor total pago: '),
-                        Badge(child: controller.registersTotal ?? ''),
+                        bd.Badge(child: controller.registersTotal ?? ''),
                       ],
                     ),
                   ],

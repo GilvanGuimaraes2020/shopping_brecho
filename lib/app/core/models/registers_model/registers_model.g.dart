@@ -6,18 +6,19 @@ part of 'registers_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_RegistersModel _$$_RegistersModelFromJson(Map<String, dynamic> json) =>
-    _$_RegistersModel(
+_$RegistersModelImpl _$$RegistersModelImplFromJson(Map<String, dynamic> json) =>
+    _$RegistersModelImpl(
       accountBank: json['account_bank'] as String?,
       accountValue: (json['account_value'] as num?)?.toDouble(),
       date: _fromJson(json['date'] as Timestamp),
       movementCurrency: json['movement_currency'] as String?,
       movementDetail: json['movement_detail'] as String?,
       accountMovement: json['account_movement'] as String?,
-      installment: json['installment'] as int?,
+      installment: (json['installment'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$_RegistersModelToJson(_$_RegistersModel instance) =>
+Map<String, dynamic> _$$RegistersModelImplToJson(
+        _$RegistersModelImpl instance) =>
     <String, dynamic>{
       'account_bank': instance.accountBank,
       'account_value': instance.accountValue,
