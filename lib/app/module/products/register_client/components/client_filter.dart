@@ -61,7 +61,7 @@ class _ClientCard extends StatelessWidget {
                           left: BrechoSpacing.viii, right: BrechoSpacing.iv),
                       child: Text(client.phone ?? ''),
                     ),
-                    const Icon(Icons.whatsapp)
+                    const Icon(Icons.whatshot)
                   ],
                 ),
               ),

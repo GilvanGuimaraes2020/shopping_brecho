@@ -41,14 +41,14 @@ class CardStore extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: BrechoColors.neutral5),
-        child: Column(
+        child:const Column(
           children: [
-            const Text('Item da loja'),
-            const Text('Quantidade no estoque'),
+             Text('Item da loja'),
+             Text('Quantidade no estoque'),
             Row(
-              children: const [Text('custo compra'), Text('Valor total')],
+              children:  [Text('custo compra'), Text('Valor total')],
             ),
-            const Text("Botao")
+             Text("Botao")
           ],
         ),
       );

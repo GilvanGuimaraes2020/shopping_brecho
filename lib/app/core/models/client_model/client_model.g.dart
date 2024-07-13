@@ -6,17 +6,17 @@ part of 'client_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ClientModel _$$_ClientModelFromJson(Map<String, dynamic> json) =>
-    _$_ClientModel(
+_$ClientModelImpl _$$ClientModelImplFromJson(Map<String, dynamic> json) =>
+    _$ClientModelImpl(
       id: json['id'] as String?,
       address: json['address'] as String?,
       neighborhood: json['neighborhood'] as String?,
       name: json['name'] as String?,
       phone: json['phone'] as String?,
-      number: json['number'] as int?,
+      number: (json['number'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$_ClientModelToJson(_$_ClientModel instance) =>
+Map<String, dynamic> _$$ClientModelImplToJson(_$ClientModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'address': instance.address,

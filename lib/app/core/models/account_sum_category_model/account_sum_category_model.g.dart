@@ -6,15 +6,15 @@ part of 'account_sum_category_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AccountSumCategoryModel _$$_AccountSumCategoryModelFromJson(
+_$AccountSumCategoryModelImpl _$$AccountSumCategoryModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_AccountSumCategoryModel(
+    _$AccountSumCategoryModelImpl(
       accountDetail: json['account_detail'] as String?,
       sumCategory: json['sum_category'] as String?,
     );
 
-Map<String, dynamic> _$$_AccountSumCategoryModelToJson(
-        _$_AccountSumCategoryModel instance) =>
+Map<String, dynamic> _$$AccountSumCategoryModelImplToJson(
+        _$AccountSumCategoryModelImpl instance) =>
     <String, dynamic>{
       'account_detail': instance.accountDetail,
       'sum_category': instance.sumCategory,

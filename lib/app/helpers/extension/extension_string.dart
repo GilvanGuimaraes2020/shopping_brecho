@@ -32,7 +32,7 @@ extension ExtensionString on String {
     try {
       String phone = this;
       if (!startsWith("+")) {
-        phone = "+${this}";
+        phone = "+$this";
       }
       formatedPhone = phone.replaceAll(RegExp(r'\+55|\+|\s|-|\(|\)'), '');
     } catch (_) {}

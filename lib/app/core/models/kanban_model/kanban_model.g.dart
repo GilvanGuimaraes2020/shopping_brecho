@@ -6,8 +6,8 @@ part of 'kanban_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_KanbanModel _$$_KanbanModelFromJson(Map<String, dynamic> json) =>
-    _$_KanbanModel(
+_$KanbanModelImpl _$$KanbanModelImplFromJson(Map<String, dynamic> json) =>
+    _$KanbanModelImpl(
       createDate: _parseFromCreateDate(json['create_date'] as Timestamp),
       description: json['description'] as String?,
       finishDate:
@@ -19,7 +19,7 @@ _$_KanbanModel _$$_KanbanModelFromJson(Map<String, dynamic> json) =>
       updateDate: _parseFromUpdateDate(json['update_date'] as Timestamp),
     );
 
-Map<String, dynamic> _$$_KanbanModelToJson(_$_KanbanModel instance) =>
+Map<String, dynamic> _$$KanbanModelImplToJson(_$KanbanModelImpl instance) =>
     <String, dynamic>{
       'create_date': instance.createDate,
       'description': instance.description,

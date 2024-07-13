@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'request_status_model.dart';
 
@@ -12,7 +12,7 @@ part of 'request_status_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$RequestStatus {
@@ -94,25 +94,25 @@ class _$RequestStatusCopyWithImpl<$Res, $Val extends RequestStatus>
 }
 
 /// @nodoc
-abstract class _$$RequestStatusSuccessCopyWith<$Res> {
-  factory _$$RequestStatusSuccessCopyWith(_$RequestStatusSuccess value,
-          $Res Function(_$RequestStatusSuccess) then) =
-      __$$RequestStatusSuccessCopyWithImpl<$Res>;
+abstract class _$$RequestStatusSuccessImplCopyWith<$Res> {
+  factory _$$RequestStatusSuccessImplCopyWith(_$RequestStatusSuccessImpl value,
+          $Res Function(_$RequestStatusSuccessImpl) then) =
+      __$$RequestStatusSuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RequestStatusSuccessCopyWithImpl<$Res>
-    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusSuccess>
-    implements _$$RequestStatusSuccessCopyWith<$Res> {
-  __$$RequestStatusSuccessCopyWithImpl(_$RequestStatusSuccess _value,
-      $Res Function(_$RequestStatusSuccess) _then)
+class __$$RequestStatusSuccessImplCopyWithImpl<$Res>
+    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusSuccessImpl>
+    implements _$$RequestStatusSuccessImplCopyWith<$Res> {
+  __$$RequestStatusSuccessImplCopyWithImpl(_$RequestStatusSuccessImpl _value,
+      $Res Function(_$RequestStatusSuccessImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RequestStatusSuccess implements RequestStatusSuccess {
-  const _$RequestStatusSuccess();
+class _$RequestStatusSuccessImpl implements RequestStatusSuccess {
+  const _$RequestStatusSuccessImpl();
 
   @override
   String toString() {
@@ -120,9 +120,10 @@ class _$RequestStatusSuccess implements RequestStatusSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RequestStatusSuccess);
+        (other.runtimeType == runtimeType &&
+            other is _$RequestStatusSuccessImpl);
   }
 
   @override
@@ -211,29 +212,29 @@ class _$RequestStatusSuccess implements RequestStatusSuccess {
 }
 
 abstract class RequestStatusSuccess implements RequestStatus {
-  const factory RequestStatusSuccess() = _$RequestStatusSuccess;
+  const factory RequestStatusSuccess() = _$RequestStatusSuccessImpl;
 }
 
 /// @nodoc
-abstract class _$$RequestStatusLoadingCopyWith<$Res> {
-  factory _$$RequestStatusLoadingCopyWith(_$RequestStatusLoading value,
-          $Res Function(_$RequestStatusLoading) then) =
-      __$$RequestStatusLoadingCopyWithImpl<$Res>;
+abstract class _$$RequestStatusLoadingImplCopyWith<$Res> {
+  factory _$$RequestStatusLoadingImplCopyWith(_$RequestStatusLoadingImpl value,
+          $Res Function(_$RequestStatusLoadingImpl) then) =
+      __$$RequestStatusLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RequestStatusLoadingCopyWithImpl<$Res>
-    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusLoading>
-    implements _$$RequestStatusLoadingCopyWith<$Res> {
-  __$$RequestStatusLoadingCopyWithImpl(_$RequestStatusLoading _value,
-      $Res Function(_$RequestStatusLoading) _then)
+class __$$RequestStatusLoadingImplCopyWithImpl<$Res>
+    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusLoadingImpl>
+    implements _$$RequestStatusLoadingImplCopyWith<$Res> {
+  __$$RequestStatusLoadingImplCopyWithImpl(_$RequestStatusLoadingImpl _value,
+      $Res Function(_$RequestStatusLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RequestStatusLoading implements RequestStatusLoading {
-  const _$RequestStatusLoading();
+class _$RequestStatusLoadingImpl implements RequestStatusLoading {
+  const _$RequestStatusLoadingImpl();
 
   @override
   String toString() {
@@ -241,9 +242,10 @@ class _$RequestStatusLoading implements RequestStatusLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RequestStatusLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$RequestStatusLoadingImpl);
   }
 
   @override
@@ -332,29 +334,29 @@ class _$RequestStatusLoading implements RequestStatusLoading {
 }
 
 abstract class RequestStatusLoading implements RequestStatus {
-  const factory RequestStatusLoading() = _$RequestStatusLoading;
+  const factory RequestStatusLoading() = _$RequestStatusLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$RequestStatusNoneCopyWith<$Res> {
-  factory _$$RequestStatusNoneCopyWith(
-          _$RequestStatusNone value, $Res Function(_$RequestStatusNone) then) =
-      __$$RequestStatusNoneCopyWithImpl<$Res>;
+abstract class _$$RequestStatusNoneImplCopyWith<$Res> {
+  factory _$$RequestStatusNoneImplCopyWith(_$RequestStatusNoneImpl value,
+          $Res Function(_$RequestStatusNoneImpl) then) =
+      __$$RequestStatusNoneImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RequestStatusNoneCopyWithImpl<$Res>
-    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusNone>
-    implements _$$RequestStatusNoneCopyWith<$Res> {
-  __$$RequestStatusNoneCopyWithImpl(
-      _$RequestStatusNone _value, $Res Function(_$RequestStatusNone) _then)
+class __$$RequestStatusNoneImplCopyWithImpl<$Res>
+    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusNoneImpl>
+    implements _$$RequestStatusNoneImplCopyWith<$Res> {
+  __$$RequestStatusNoneImplCopyWithImpl(_$RequestStatusNoneImpl _value,
+      $Res Function(_$RequestStatusNoneImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RequestStatusNone implements RequestStatusNone {
-  const _$RequestStatusNone();
+class _$RequestStatusNoneImpl implements RequestStatusNone {
+  const _$RequestStatusNoneImpl();
 
   @override
   String toString() {
@@ -362,9 +364,9 @@ class _$RequestStatusNone implements RequestStatusNone {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RequestStatusNone);
+        (other.runtimeType == runtimeType && other is _$RequestStatusNoneImpl);
   }
 
   @override
@@ -453,24 +455,24 @@ class _$RequestStatusNone implements RequestStatusNone {
 }
 
 abstract class RequestStatusNone implements RequestStatus {
-  const factory RequestStatusNone() = _$RequestStatusNone;
+  const factory RequestStatusNone() = _$RequestStatusNoneImpl;
 }
 
 /// @nodoc
-abstract class _$$RequestStatusErrorCopyWith<$Res> {
-  factory _$$RequestStatusErrorCopyWith(_$RequestStatusError value,
-          $Res Function(_$RequestStatusError) then) =
-      __$$RequestStatusErrorCopyWithImpl<$Res>;
+abstract class _$$RequestStatusErrorImplCopyWith<$Res> {
+  factory _$$RequestStatusErrorImplCopyWith(_$RequestStatusErrorImpl value,
+          $Res Function(_$RequestStatusErrorImpl) then) =
+      __$$RequestStatusErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object? e});
 }
 
 /// @nodoc
-class __$$RequestStatusErrorCopyWithImpl<$Res>
-    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusError>
-    implements _$$RequestStatusErrorCopyWith<$Res> {
-  __$$RequestStatusErrorCopyWithImpl(
-      _$RequestStatusError _value, $Res Function(_$RequestStatusError) _then)
+class __$$RequestStatusErrorImplCopyWithImpl<$Res>
+    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusErrorImpl>
+    implements _$$RequestStatusErrorImplCopyWith<$Res> {
+  __$$RequestStatusErrorImplCopyWithImpl(_$RequestStatusErrorImpl _value,
+      $Res Function(_$RequestStatusErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -478,7 +480,7 @@ class __$$RequestStatusErrorCopyWithImpl<$Res>
   $Res call({
     Object? e = freezed,
   }) {
-    return _then(_$RequestStatusError(
+    return _then(_$RequestStatusErrorImpl(
       freezed == e ? _value.e : e,
     ));
   }
@@ -486,8 +488,8 @@ class __$$RequestStatusErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RequestStatusError implements RequestStatusError {
-  const _$RequestStatusError([this.e]);
+class _$RequestStatusErrorImpl implements RequestStatusError {
+  const _$RequestStatusErrorImpl([this.e]);
 
   @override
   final Object? e;
@@ -498,10 +500,10 @@ class _$RequestStatusError implements RequestStatusError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RequestStatusError &&
+            other is _$RequestStatusErrorImpl &&
             const DeepCollectionEquality().equals(other.e, e));
   }
 
@@ -512,8 +514,8 @@ class _$RequestStatusError implements RequestStatusError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RequestStatusErrorCopyWith<_$RequestStatusError> get copyWith =>
-      __$$RequestStatusErrorCopyWithImpl<_$RequestStatusError>(
+  _$$RequestStatusErrorImplCopyWith<_$RequestStatusErrorImpl> get copyWith =>
+      __$$RequestStatusErrorImplCopyWithImpl<_$RequestStatusErrorImpl>(
           this, _$identity);
 
   @override
@@ -599,31 +601,33 @@ class _$RequestStatusError implements RequestStatusError {
 }
 
 abstract class RequestStatusError implements RequestStatus {
-  const factory RequestStatusError([final Object? e]) = _$RequestStatusError;
+  const factory RequestStatusError([final Object? e]) =
+      _$RequestStatusErrorImpl;
 
   Object? get e;
   @JsonKey(ignore: true)
-  _$$RequestStatusErrorCopyWith<_$RequestStatusError> get copyWith =>
+  _$$RequestStatusErrorImplCopyWith<_$RequestStatusErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RequestStatusSuccessWithDataCopyWith<$Res> {
-  factory _$$RequestStatusSuccessWithDataCopyWith(
-          _$RequestStatusSuccessWithData value,
-          $Res Function(_$RequestStatusSuccessWithData) then) =
-      __$$RequestStatusSuccessWithDataCopyWithImpl<$Res>;
+abstract class _$$RequestStatusSuccessWithDataImplCopyWith<$Res> {
+  factory _$$RequestStatusSuccessWithDataImplCopyWith(
+          _$RequestStatusSuccessWithDataImpl value,
+          $Res Function(_$RequestStatusSuccessWithDataImpl) then) =
+      __$$RequestStatusSuccessWithDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object? data});
 }
 
 /// @nodoc
-class __$$RequestStatusSuccessWithDataCopyWithImpl<$Res>
-    extends _$RequestStatusCopyWithImpl<$Res, _$RequestStatusSuccessWithData>
-    implements _$$RequestStatusSuccessWithDataCopyWith<$Res> {
-  __$$RequestStatusSuccessWithDataCopyWithImpl(
-      _$RequestStatusSuccessWithData _value,
-      $Res Function(_$RequestStatusSuccessWithData) _then)
+class __$$RequestStatusSuccessWithDataImplCopyWithImpl<$Res>
+    extends _$RequestStatusCopyWithImpl<$Res,
+        _$RequestStatusSuccessWithDataImpl>
+    implements _$$RequestStatusSuccessWithDataImplCopyWith<$Res> {
+  __$$RequestStatusSuccessWithDataImplCopyWithImpl(
+      _$RequestStatusSuccessWithDataImpl _value,
+      $Res Function(_$RequestStatusSuccessWithDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -631,7 +635,7 @@ class __$$RequestStatusSuccessWithDataCopyWithImpl<$Res>
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_$RequestStatusSuccessWithData(
+    return _then(_$RequestStatusSuccessWithDataImpl(
       freezed == data ? _value.data : data,
     ));
   }
@@ -639,8 +643,9 @@ class __$$RequestStatusSuccessWithDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RequestStatusSuccessWithData implements RequestStatusSuccessWithData {
-  const _$RequestStatusSuccessWithData([this.data]);
+class _$RequestStatusSuccessWithDataImpl
+    implements RequestStatusSuccessWithData {
+  const _$RequestStatusSuccessWithDataImpl([this.data]);
 
   @override
   final Object? data;
@@ -651,10 +656,10 @@ class _$RequestStatusSuccessWithData implements RequestStatusSuccessWithData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RequestStatusSuccessWithData &&
+            other is _$RequestStatusSuccessWithDataImpl &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -665,9 +670,10 @@ class _$RequestStatusSuccessWithData implements RequestStatusSuccessWithData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RequestStatusSuccessWithDataCopyWith<_$RequestStatusSuccessWithData>
-      get copyWith => __$$RequestStatusSuccessWithDataCopyWithImpl<
-          _$RequestStatusSuccessWithData>(this, _$identity);
+  _$$RequestStatusSuccessWithDataImplCopyWith<
+          _$RequestStatusSuccessWithDataImpl>
+      get copyWith => __$$RequestStatusSuccessWithDataImplCopyWithImpl<
+          _$RequestStatusSuccessWithDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -753,10 +759,11 @@ class _$RequestStatusSuccessWithData implements RequestStatusSuccessWithData {
 
 abstract class RequestStatusSuccessWithData implements RequestStatus {
   const factory RequestStatusSuccessWithData([final Object? data]) =
-      _$RequestStatusSuccessWithData;
+      _$RequestStatusSuccessWithDataImpl;
 
   Object? get data;
   @JsonKey(ignore: true)
-  _$$RequestStatusSuccessWithDataCopyWith<_$RequestStatusSuccessWithData>
+  _$$RequestStatusSuccessWithDataImplCopyWith<
+          _$RequestStatusSuccessWithDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

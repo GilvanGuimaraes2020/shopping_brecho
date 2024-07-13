@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'account_register_group_model.dart';
 
@@ -12,7 +12,7 @@ part of 'account_register_group_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AccountRegisterGroupModel _$AccountRegisterGroupModelFromJson(
     Map<String, dynamic> json) {
@@ -84,12 +84,12 @@ class _$AccountRegisterGroupModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_AccountRegisterGroupModelCopyWith<$Res>
+abstract class _$$AccountRegisterGroupModelImplCopyWith<$Res>
     implements $AccountRegisterGroupModelCopyWith<$Res> {
-  factory _$$_AccountRegisterGroupModelCopyWith(
-          _$_AccountRegisterGroupModel value,
-          $Res Function(_$_AccountRegisterGroupModel) then) =
-      __$$_AccountRegisterGroupModelCopyWithImpl<$Res>;
+  factory _$$AccountRegisterGroupModelImplCopyWith(
+          _$AccountRegisterGroupModelImpl value,
+          $Res Function(_$AccountRegisterGroupModelImpl) then) =
+      __$$AccountRegisterGroupModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? group, AccountRegisterModel? register});
@@ -99,13 +99,13 @@ abstract class _$$_AccountRegisterGroupModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AccountRegisterGroupModelCopyWithImpl<$Res>
+class __$$AccountRegisterGroupModelImplCopyWithImpl<$Res>
     extends _$AccountRegisterGroupModelCopyWithImpl<$Res,
-        _$_AccountRegisterGroupModel>
-    implements _$$_AccountRegisterGroupModelCopyWith<$Res> {
-  __$$_AccountRegisterGroupModelCopyWithImpl(
-      _$_AccountRegisterGroupModel _value,
-      $Res Function(_$_AccountRegisterGroupModel) _then)
+        _$AccountRegisterGroupModelImpl>
+    implements _$$AccountRegisterGroupModelImplCopyWith<$Res> {
+  __$$AccountRegisterGroupModelImplCopyWithImpl(
+      _$AccountRegisterGroupModelImpl _value,
+      $Res Function(_$AccountRegisterGroupModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -114,7 +114,7 @@ class __$$_AccountRegisterGroupModelCopyWithImpl<$Res>
     Object? group = freezed,
     Object? register = freezed,
   }) {
-    return _then(_$_AccountRegisterGroupModel(
+    return _then(_$AccountRegisterGroupModelImpl(
       group: freezed == group
           ? _value.group
           : group // ignore: cast_nullable_to_non_nullable
@@ -129,11 +129,11 @@ class __$$_AccountRegisterGroupModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AccountRegisterGroupModel implements _AccountRegisterGroupModel {
-  _$_AccountRegisterGroupModel({this.group, this.register});
+class _$AccountRegisterGroupModelImpl implements _AccountRegisterGroupModel {
+  _$AccountRegisterGroupModelImpl({this.group, this.register});
 
-  factory _$_AccountRegisterGroupModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AccountRegisterGroupModelFromJson(json);
+  factory _$AccountRegisterGroupModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccountRegisterGroupModelImplFromJson(json);
 
   @override
   final String? group;
@@ -146,10 +146,10 @@ class _$_AccountRegisterGroupModel implements _AccountRegisterGroupModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AccountRegisterGroupModel &&
+            other is _$AccountRegisterGroupModelImpl &&
             (identical(other.group, group) || other.group == group) &&
             (identical(other.register, register) ||
                 other.register == register));
@@ -162,13 +162,13 @@ class _$_AccountRegisterGroupModel implements _AccountRegisterGroupModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AccountRegisterGroupModelCopyWith<_$_AccountRegisterGroupModel>
-      get copyWith => __$$_AccountRegisterGroupModelCopyWithImpl<
-          _$_AccountRegisterGroupModel>(this, _$identity);
+  _$$AccountRegisterGroupModelImplCopyWith<_$AccountRegisterGroupModelImpl>
+      get copyWith => __$$AccountRegisterGroupModelImplCopyWithImpl<
+          _$AccountRegisterGroupModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AccountRegisterGroupModelToJson(
+    return _$$AccountRegisterGroupModelImplToJson(
       this,
     );
   }
@@ -177,10 +177,10 @@ class _$_AccountRegisterGroupModel implements _AccountRegisterGroupModel {
 abstract class _AccountRegisterGroupModel implements AccountRegisterGroupModel {
   factory _AccountRegisterGroupModel(
       {final String? group,
-      final AccountRegisterModel? register}) = _$_AccountRegisterGroupModel;
+      final AccountRegisterModel? register}) = _$AccountRegisterGroupModelImpl;
 
   factory _AccountRegisterGroupModel.fromJson(Map<String, dynamic> json) =
-      _$_AccountRegisterGroupModel.fromJson;
+      _$AccountRegisterGroupModelImpl.fromJson;
 
   @override
   String? get group;
@@ -188,7 +188,7 @@ abstract class _AccountRegisterGroupModel implements AccountRegisterGroupModel {
   AccountRegisterModel? get register;
   @override
   @JsonKey(ignore: true)
-  _$$_AccountRegisterGroupModelCopyWith<_$_AccountRegisterGroupModel>
+  _$$AccountRegisterGroupModelImplCopyWith<_$AccountRegisterGroupModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -278,11 +278,12 @@ class _$AccountRegisterGroupCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$AccountRegisterGroupDataCopyWith<$Res>
+abstract class _$$AccountRegisterGroupDataImplCopyWith<$Res>
     implements $AccountRegisterGroupCopyWith<$Res> {
-  factory _$$AccountRegisterGroupDataCopyWith(_$AccountRegisterGroupData value,
-          $Res Function(_$AccountRegisterGroupData) then) =
-      __$$AccountRegisterGroupDataCopyWithImpl<$Res>;
+  factory _$$AccountRegisterGroupDataImplCopyWith(
+          _$AccountRegisterGroupDataImpl value,
+          $Res Function(_$AccountRegisterGroupDataImpl) then) =
+      __$$AccountRegisterGroupDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({AccountRegisterGroupModel register});
@@ -292,11 +293,13 @@ abstract class _$$AccountRegisterGroupDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AccountRegisterGroupDataCopyWithImpl<$Res>
-    extends _$AccountRegisterGroupCopyWithImpl<$Res, _$AccountRegisterGroupData>
-    implements _$$AccountRegisterGroupDataCopyWith<$Res> {
-  __$$AccountRegisterGroupDataCopyWithImpl(_$AccountRegisterGroupData _value,
-      $Res Function(_$AccountRegisterGroupData) _then)
+class __$$AccountRegisterGroupDataImplCopyWithImpl<$Res>
+    extends _$AccountRegisterGroupCopyWithImpl<$Res,
+        _$AccountRegisterGroupDataImpl>
+    implements _$$AccountRegisterGroupDataImplCopyWith<$Res> {
+  __$$AccountRegisterGroupDataImplCopyWithImpl(
+      _$AccountRegisterGroupDataImpl _value,
+      $Res Function(_$AccountRegisterGroupDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -304,7 +307,7 @@ class __$$AccountRegisterGroupDataCopyWithImpl<$Res>
   $Res call({
     Object? register = null,
   }) {
-    return _then(_$AccountRegisterGroupData(
+    return _then(_$AccountRegisterGroupDataImpl(
       null == register
           ? _value.register
           : register // ignore: cast_nullable_to_non_nullable
@@ -315,8 +318,8 @@ class __$$AccountRegisterGroupDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountRegisterGroupData implements AccountRegisterGroupData {
-  _$AccountRegisterGroupData(this.register);
+class _$AccountRegisterGroupDataImpl implements AccountRegisterGroupData {
+  _$AccountRegisterGroupDataImpl(this.register);
 
   @override
   final AccountRegisterGroupModel register;
@@ -327,10 +330,10 @@ class _$AccountRegisterGroupData implements AccountRegisterGroupData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountRegisterGroupData &&
+            other is _$AccountRegisterGroupDataImpl &&
             (identical(other.register, register) ||
                 other.register == register));
   }
@@ -341,10 +344,9 @@ class _$AccountRegisterGroupData implements AccountRegisterGroupData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountRegisterGroupDataCopyWith<_$AccountRegisterGroupData>
-      get copyWith =>
-          __$$AccountRegisterGroupDataCopyWithImpl<_$AccountRegisterGroupData>(
-              this, _$identity);
+  _$$AccountRegisterGroupDataImplCopyWith<_$AccountRegisterGroupDataImpl>
+      get copyWith => __$$AccountRegisterGroupDataImplCopyWithImpl<
+          _$AccountRegisterGroupDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -405,12 +407,12 @@ class _$AccountRegisterGroupData implements AccountRegisterGroupData {
 
 abstract class AccountRegisterGroupData implements AccountRegisterGroup {
   factory AccountRegisterGroupData(final AccountRegisterGroupModel register) =
-      _$AccountRegisterGroupData;
+      _$AccountRegisterGroupDataImpl;
 
   @override
   AccountRegisterGroupModel get register;
   @override
   @JsonKey(ignore: true)
-  _$$AccountRegisterGroupDataCopyWith<_$AccountRegisterGroupData>
+  _$$AccountRegisterGroupDataImplCopyWith<_$AccountRegisterGroupDataImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
