@@ -6,14 +6,16 @@ part of 'label_value_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LabelValueModel _$$_LabelValueModelFromJson(Map<String, dynamic> json) =>
-    _$_LabelValueModel(
+_$LabelValueModelImpl _$$LabelValueModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LabelValueModelImpl(
       label: json['label'] as String?,
       value: json['value'] as String?,
       description: json['description'] as String?,
     );
 
-Map<String, dynamic> _$$_LabelValueModelToJson(_$_LabelValueModel instance) =>
+Map<String, dynamic> _$$LabelValueModelImplToJson(
+        _$LabelValueModelImpl instance) =>
     <String, dynamic>{
       'label': instance.label,
       'value': instance.value,

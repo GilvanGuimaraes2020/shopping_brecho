@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'account_alert_model.dart';
 
@@ -12,7 +12,7 @@ part of 'account_alert_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AccountAlertModel _$AccountAlertModelFromJson(Map<String, dynamic> json) {
   return _AccountAlertModel.fromJson(json);
@@ -99,11 +99,11 @@ class _$AccountAlertModelCopyWithImpl<$Res, $Val extends AccountAlertModel>
 }
 
 /// @nodoc
-abstract class _$$_AccountAlertModelCopyWith<$Res>
+abstract class _$$AccountAlertModelImplCopyWith<$Res>
     implements $AccountAlertModelCopyWith<$Res> {
-  factory _$$_AccountAlertModelCopyWith(_$_AccountAlertModel value,
-          $Res Function(_$_AccountAlertModel) then) =
-      __$$_AccountAlertModelCopyWithImpl<$Res>;
+  factory _$$AccountAlertModelImplCopyWith(_$AccountAlertModelImpl value,
+          $Res Function(_$AccountAlertModelImpl) then) =
+      __$$AccountAlertModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -116,11 +116,11 @@ abstract class _$$_AccountAlertModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AccountAlertModelCopyWithImpl<$Res>
-    extends _$AccountAlertModelCopyWithImpl<$Res, _$_AccountAlertModel>
-    implements _$$_AccountAlertModelCopyWith<$Res> {
-  __$$_AccountAlertModelCopyWithImpl(
-      _$_AccountAlertModel _value, $Res Function(_$_AccountAlertModel) _then)
+class __$$AccountAlertModelImplCopyWithImpl<$Res>
+    extends _$AccountAlertModelCopyWithImpl<$Res, _$AccountAlertModelImpl>
+    implements _$$AccountAlertModelImplCopyWith<$Res> {
+  __$$AccountAlertModelImplCopyWithImpl(_$AccountAlertModelImpl _value,
+      $Res Function(_$AccountAlertModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -133,7 +133,7 @@ class __$$_AccountAlertModelCopyWithImpl<$Res>
     Object? isActive = freezed,
     Object? isPaid = freezed,
   }) {
-    return _then(_$_AccountAlertModel(
+    return _then(_$AccountAlertModelImpl(
       freezed == isrecurrent
           ? _value.isrecurrent
           : isrecurrent // ignore: cast_nullable_to_non_nullable
@@ -165,10 +165,10 @@ class __$$_AccountAlertModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_AccountAlertModel
+class _$AccountAlertModelImpl
     with DiagnosticableTreeMixin
     implements _AccountAlertModel {
-  _$_AccountAlertModel(
+  _$AccountAlertModelImpl(
       this.isrecurrent,
       this.account,
       @JsonKey(fromJson: _parseToDateTime) this.due,
@@ -176,8 +176,8 @@ class _$_AccountAlertModel
       this.isActive,
       this.isPaid);
 
-  factory _$_AccountAlertModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AccountAlertModelFromJson(json);
+  factory _$AccountAlertModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccountAlertModelImplFromJson(json);
 
   @override
   final bool? isrecurrent;
@@ -212,10 +212,10 @@ class _$_AccountAlertModel
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AccountAlertModel &&
+            other is _$AccountAlertModelImpl &&
             (identical(other.isrecurrent, isrecurrent) ||
                 other.isrecurrent == isrecurrent) &&
             (identical(other.account, account) || other.account == account) &&
@@ -234,13 +234,13 @@ class _$_AccountAlertModel
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AccountAlertModelCopyWith<_$_AccountAlertModel> get copyWith =>
-      __$$_AccountAlertModelCopyWithImpl<_$_AccountAlertModel>(
+  _$$AccountAlertModelImplCopyWith<_$AccountAlertModelImpl> get copyWith =>
+      __$$AccountAlertModelImplCopyWithImpl<_$AccountAlertModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AccountAlertModelToJson(
+    return _$$AccountAlertModelImplToJson(
       this,
     );
   }
@@ -253,10 +253,10 @@ abstract class _AccountAlertModel implements AccountAlertModel {
       @JsonKey(fromJson: _parseToDateTime) final String? due,
       final double? value,
       final bool? isActive,
-      final bool? isPaid) = _$_AccountAlertModel;
+      final bool? isPaid) = _$AccountAlertModelImpl;
 
   factory _AccountAlertModel.fromJson(Map<String, dynamic> json) =
-      _$_AccountAlertModel.fromJson;
+      _$AccountAlertModelImpl.fromJson;
 
   @override
   bool? get isrecurrent;
@@ -273,7 +273,7 @@ abstract class _AccountAlertModel implements AccountAlertModel {
   bool? get isPaid;
   @override
   @JsonKey(ignore: true)
-  _$$_AccountAlertModelCopyWith<_$_AccountAlertModel> get copyWith =>
+  _$$AccountAlertModelImplCopyWith<_$AccountAlertModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -350,20 +350,20 @@ class _$AccountAlertCopyWithImpl<$Res, $Val extends AccountAlert>
 }
 
 /// @nodoc
-abstract class _$$AccountAlertDataCopyWith<$Res> {
-  factory _$$AccountAlertDataCopyWith(
-          _$AccountAlertData value, $Res Function(_$AccountAlertData) then) =
-      __$$AccountAlertDataCopyWithImpl<$Res>;
+abstract class _$$AccountAlertDataImplCopyWith<$Res> {
+  factory _$$AccountAlertDataImplCopyWith(_$AccountAlertDataImpl value,
+          $Res Function(_$AccountAlertDataImpl) then) =
+      __$$AccountAlertDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<AccountAlertModel> accountAlertModel});
 }
 
 /// @nodoc
-class __$$AccountAlertDataCopyWithImpl<$Res>
-    extends _$AccountAlertCopyWithImpl<$Res, _$AccountAlertData>
-    implements _$$AccountAlertDataCopyWith<$Res> {
-  __$$AccountAlertDataCopyWithImpl(
-      _$AccountAlertData _value, $Res Function(_$AccountAlertData) _then)
+class __$$AccountAlertDataImplCopyWithImpl<$Res>
+    extends _$AccountAlertCopyWithImpl<$Res, _$AccountAlertDataImpl>
+    implements _$$AccountAlertDataImplCopyWith<$Res> {
+  __$$AccountAlertDataImplCopyWithImpl(_$AccountAlertDataImpl _value,
+      $Res Function(_$AccountAlertDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -371,7 +371,7 @@ class __$$AccountAlertDataCopyWithImpl<$Res>
   $Res call({
     Object? accountAlertModel = null,
   }) {
-    return _then(_$AccountAlertData(
+    return _then(_$AccountAlertDataImpl(
       null == accountAlertModel
           ? _value.accountAlertModel
           : accountAlertModel // ignore: cast_nullable_to_non_nullable
@@ -382,10 +382,10 @@ class __$$AccountAlertDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountAlertData
+class _$AccountAlertDataImpl
     with DiagnosticableTreeMixin
     implements AccountAlertData {
-  _$AccountAlertData(this.accountAlertModel);
+  _$AccountAlertDataImpl(this.accountAlertModel);
 
   @override
   final List<AccountAlertModel> accountAlertModel;
@@ -404,10 +404,10 @@ class _$AccountAlertData
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountAlertData &&
+            other is _$AccountAlertDataImpl &&
             const DeepCollectionEquality()
                 .equals(other.accountAlertModel, accountAlertModel));
   }
@@ -419,8 +419,9 @@ class _$AccountAlertData
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountAlertDataCopyWith<_$AccountAlertData> get copyWith =>
-      __$$AccountAlertDataCopyWithImpl<_$AccountAlertData>(this, _$identity);
+  _$$AccountAlertDataImplCopyWith<_$AccountAlertDataImpl> get copyWith =>
+      __$$AccountAlertDataImplCopyWithImpl<_$AccountAlertDataImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -499,29 +500,29 @@ class _$AccountAlertData
 
 abstract class AccountAlertData implements AccountAlert {
   factory AccountAlertData(final List<AccountAlertModel> accountAlertModel) =
-      _$AccountAlertData;
+      _$AccountAlertDataImpl;
 
   List<AccountAlertModel> get accountAlertModel;
   @JsonKey(ignore: true)
-  _$$AccountAlertDataCopyWith<_$AccountAlertData> get copyWith =>
+  _$$AccountAlertDataImplCopyWith<_$AccountAlertDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AccountAlertErrorCopyWith<$Res> {
-  factory _$$AccountAlertErrorCopyWith(
-          _$AccountAlertError value, $Res Function(_$AccountAlertError) then) =
-      __$$AccountAlertErrorCopyWithImpl<$Res>;
+abstract class _$$AccountAlertErrorImplCopyWith<$Res> {
+  factory _$$AccountAlertErrorImplCopyWith(_$AccountAlertErrorImpl value,
+          $Res Function(_$AccountAlertErrorImpl) then) =
+      __$$AccountAlertErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object? error});
 }
 
 /// @nodoc
-class __$$AccountAlertErrorCopyWithImpl<$Res>
-    extends _$AccountAlertCopyWithImpl<$Res, _$AccountAlertError>
-    implements _$$AccountAlertErrorCopyWith<$Res> {
-  __$$AccountAlertErrorCopyWithImpl(
-      _$AccountAlertError _value, $Res Function(_$AccountAlertError) _then)
+class __$$AccountAlertErrorImplCopyWithImpl<$Res>
+    extends _$AccountAlertCopyWithImpl<$Res, _$AccountAlertErrorImpl>
+    implements _$$AccountAlertErrorImplCopyWith<$Res> {
+  __$$AccountAlertErrorImplCopyWithImpl(_$AccountAlertErrorImpl _value,
+      $Res Function(_$AccountAlertErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -529,7 +530,7 @@ class __$$AccountAlertErrorCopyWithImpl<$Res>
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(_$AccountAlertError(
+    return _then(_$AccountAlertErrorImpl(
       freezed == error ? _value.error : error,
     ));
   }
@@ -537,10 +538,10 @@ class __$$AccountAlertErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountAlertError
+class _$AccountAlertErrorImpl
     with DiagnosticableTreeMixin
     implements AccountAlertError {
-  _$AccountAlertError([this.error]);
+  _$AccountAlertErrorImpl([this.error]);
 
   @override
   final Object? error;
@@ -559,10 +560,10 @@ class _$AccountAlertError
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountAlertError &&
+            other is _$AccountAlertErrorImpl &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -573,8 +574,9 @@ class _$AccountAlertError
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountAlertErrorCopyWith<_$AccountAlertError> get copyWith =>
-      __$$AccountAlertErrorCopyWithImpl<_$AccountAlertError>(this, _$identity);
+  _$$AccountAlertErrorImplCopyWith<_$AccountAlertErrorImpl> get copyWith =>
+      __$$AccountAlertErrorImplCopyWithImpl<_$AccountAlertErrorImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -652,36 +654,36 @@ class _$AccountAlertError
 }
 
 abstract class AccountAlertError implements AccountAlert {
-  factory AccountAlertError([final Object? error]) = _$AccountAlertError;
+  factory AccountAlertError([final Object? error]) = _$AccountAlertErrorImpl;
 
   Object? get error;
   @JsonKey(ignore: true)
-  _$$AccountAlertErrorCopyWith<_$AccountAlertError> get copyWith =>
+  _$$AccountAlertErrorImplCopyWith<_$AccountAlertErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AccountAlertLoadingCopyWith<$Res> {
-  factory _$$AccountAlertLoadingCopyWith(_$AccountAlertLoading value,
-          $Res Function(_$AccountAlertLoading) then) =
-      __$$AccountAlertLoadingCopyWithImpl<$Res>;
+abstract class _$$AccountAlertLoadingImplCopyWith<$Res> {
+  factory _$$AccountAlertLoadingImplCopyWith(_$AccountAlertLoadingImpl value,
+          $Res Function(_$AccountAlertLoadingImpl) then) =
+      __$$AccountAlertLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AccountAlertLoadingCopyWithImpl<$Res>
-    extends _$AccountAlertCopyWithImpl<$Res, _$AccountAlertLoading>
-    implements _$$AccountAlertLoadingCopyWith<$Res> {
-  __$$AccountAlertLoadingCopyWithImpl(
-      _$AccountAlertLoading _value, $Res Function(_$AccountAlertLoading) _then)
+class __$$AccountAlertLoadingImplCopyWithImpl<$Res>
+    extends _$AccountAlertCopyWithImpl<$Res, _$AccountAlertLoadingImpl>
+    implements _$$AccountAlertLoadingImplCopyWith<$Res> {
+  __$$AccountAlertLoadingImplCopyWithImpl(_$AccountAlertLoadingImpl _value,
+      $Res Function(_$AccountAlertLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AccountAlertLoading
+class _$AccountAlertLoadingImpl
     with DiagnosticableTreeMixin
     implements AccountAlertLoading {
-  _$AccountAlertLoading();
+  _$AccountAlertLoadingImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -695,9 +697,10 @@ class _$AccountAlertLoading
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AccountAlertLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$AccountAlertLoadingImpl);
   }
 
   @override
@@ -779,31 +782,31 @@ class _$AccountAlertLoading
 }
 
 abstract class AccountAlertLoading implements AccountAlert {
-  factory AccountAlertLoading() = _$AccountAlertLoading;
+  factory AccountAlertLoading() = _$AccountAlertLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$AccountAlertNoneCopyWith<$Res> {
-  factory _$$AccountAlertNoneCopyWith(
-          _$AccountAlertNone value, $Res Function(_$AccountAlertNone) then) =
-      __$$AccountAlertNoneCopyWithImpl<$Res>;
+abstract class _$$AccountAlertNoneImplCopyWith<$Res> {
+  factory _$$AccountAlertNoneImplCopyWith(_$AccountAlertNoneImpl value,
+          $Res Function(_$AccountAlertNoneImpl) then) =
+      __$$AccountAlertNoneImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AccountAlertNoneCopyWithImpl<$Res>
-    extends _$AccountAlertCopyWithImpl<$Res, _$AccountAlertNone>
-    implements _$$AccountAlertNoneCopyWith<$Res> {
-  __$$AccountAlertNoneCopyWithImpl(
-      _$AccountAlertNone _value, $Res Function(_$AccountAlertNone) _then)
+class __$$AccountAlertNoneImplCopyWithImpl<$Res>
+    extends _$AccountAlertCopyWithImpl<$Res, _$AccountAlertNoneImpl>
+    implements _$$AccountAlertNoneImplCopyWith<$Res> {
+  __$$AccountAlertNoneImplCopyWithImpl(_$AccountAlertNoneImpl _value,
+      $Res Function(_$AccountAlertNoneImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AccountAlertNone
+class _$AccountAlertNoneImpl
     with DiagnosticableTreeMixin
     implements AccountAlertNone {
-  _$AccountAlertNone();
+  _$AccountAlertNoneImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -817,9 +820,9 @@ class _$AccountAlertNone
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AccountAlertNone);
+        (other.runtimeType == runtimeType && other is _$AccountAlertNoneImpl);
   }
 
   @override
@@ -901,5 +904,5 @@ class _$AccountAlertNone
 }
 
 abstract class AccountAlertNone implements AccountAlert {
-  factory AccountAlertNone() = _$AccountAlertNone;
+  factory AccountAlertNone() = _$AccountAlertNoneImpl;
 }

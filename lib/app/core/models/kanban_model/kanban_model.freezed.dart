@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'kanban_model.dart';
 
@@ -12,7 +12,7 @@ part of 'kanban_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 KanbanModel _$KanbanModelFromJson(Map<String, dynamic> json) {
   return _KanbanModel.fromJson(json);
@@ -115,11 +115,11 @@ class _$KanbanModelCopyWithImpl<$Res, $Val extends KanbanModel>
 }
 
 /// @nodoc
-abstract class _$$_KanbanModelCopyWith<$Res>
+abstract class _$$KanbanModelImplCopyWith<$Res>
     implements $KanbanModelCopyWith<$Res> {
-  factory _$$_KanbanModelCopyWith(
-          _$_KanbanModel value, $Res Function(_$_KanbanModel) then) =
-      __$$_KanbanModelCopyWithImpl<$Res>;
+  factory _$$KanbanModelImplCopyWith(
+          _$KanbanModelImpl value, $Res Function(_$KanbanModelImpl) then) =
+      __$$KanbanModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -134,11 +134,11 @@ abstract class _$$_KanbanModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_KanbanModelCopyWithImpl<$Res>
-    extends _$KanbanModelCopyWithImpl<$Res, _$_KanbanModel>
-    implements _$$_KanbanModelCopyWith<$Res> {
-  __$$_KanbanModelCopyWithImpl(
-      _$_KanbanModel _value, $Res Function(_$_KanbanModel) _then)
+class __$$KanbanModelImplCopyWithImpl<$Res>
+    extends _$KanbanModelCopyWithImpl<$Res, _$KanbanModelImpl>
+    implements _$$KanbanModelImplCopyWith<$Res> {
+  __$$KanbanModelImplCopyWithImpl(
+      _$KanbanModelImpl _value, $Res Function(_$KanbanModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -153,7 +153,7 @@ class __$$_KanbanModelCopyWithImpl<$Res>
     Object? title = freezed,
     Object? updateDate = freezed,
   }) {
-    return _then(_$_KanbanModel(
+    return _then(_$KanbanModelImpl(
       createDate: freezed == createDate
           ? _value.createDate
           : createDate // ignore: cast_nullable_to_non_nullable
@@ -193,8 +193,8 @@ class __$$_KanbanModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_KanbanModel extends _KanbanModel {
-  _$_KanbanModel(
+class _$KanbanModelImpl extends _KanbanModel {
+  _$KanbanModelImpl(
       {@JsonKey(fromJson: _parseFromCreateDate) this.createDate,
       this.description,
       @JsonKey(fromJson: _parseToDatetimeFinishedDate) this.finishDate,
@@ -205,8 +205,8 @@ class _$_KanbanModel extends _KanbanModel {
       @JsonKey(fromJson: _parseFromUpdateDate) this.updateDate})
       : super._();
 
-  factory _$_KanbanModel.fromJson(Map<String, dynamic> json) =>
-      _$$_KanbanModelFromJson(json);
+  factory _$KanbanModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$KanbanModelImplFromJson(json);
 
   @override
   @JsonKey(fromJson: _parseFromCreateDate)
@@ -234,10 +234,10 @@ class _$_KanbanModel extends _KanbanModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_KanbanModel &&
+            other is _$KanbanModelImpl &&
             (identical(other.createDate, createDate) ||
                 other.createDate == createDate) &&
             (identical(other.description, description) ||
@@ -261,12 +261,12 @@ class _$_KanbanModel extends _KanbanModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_KanbanModelCopyWith<_$_KanbanModel> get copyWith =>
-      __$$_KanbanModelCopyWithImpl<_$_KanbanModel>(this, _$identity);
+  _$$KanbanModelImplCopyWith<_$KanbanModelImpl> get copyWith =>
+      __$$KanbanModelImplCopyWithImpl<_$KanbanModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_KanbanModelToJson(
+    return _$$KanbanModelImplToJson(
       this,
     );
   }
@@ -274,21 +274,20 @@ class _$_KanbanModel extends _KanbanModel {
 
 abstract class _KanbanModel extends KanbanModel {
   factory _KanbanModel(
-      {@JsonKey(fromJson: _parseFromCreateDate)
-          final String? createDate,
-      final String? description,
-      @JsonKey(fromJson: _parseToDatetimeFinishedDate)
+          {@JsonKey(fromJson: _parseFromCreateDate) final String? createDate,
+          final String? description,
+          @JsonKey(fromJson: _parseToDatetimeFinishedDate)
           final DateTime? finishDate,
-      final String? level,
-      final String? responsible,
-      final String? status,
-      final String? title,
-      @JsonKey(fromJson: _parseFromUpdateDate)
-          final String? updateDate}) = _$_KanbanModel;
+          final String? level,
+          final String? responsible,
+          final String? status,
+          final String? title,
+          @JsonKey(fromJson: _parseFromUpdateDate) final String? updateDate}) =
+      _$KanbanModelImpl;
   _KanbanModel._() : super._();
 
   factory _KanbanModel.fromJson(Map<String, dynamic> json) =
-      _$_KanbanModel.fromJson;
+      _$KanbanModelImpl.fromJson;
 
   @override
   @JsonKey(fromJson: _parseFromCreateDate)
@@ -311,7 +310,7 @@ abstract class _KanbanModel extends KanbanModel {
   String? get updateDate;
   @override
   @JsonKey(ignore: true)
-  _$$_KanbanModelCopyWith<_$_KanbanModel> get copyWith =>
+  _$$KanbanModelImplCopyWith<_$KanbanModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -381,10 +380,10 @@ class _$KanbanCopyWithImpl<$Res, $Val extends Kanban>
 }
 
 /// @nodoc
-abstract class _$$KanbanDataCopyWith<$Res> {
-  factory _$$KanbanDataCopyWith(
-          _$KanbanData value, $Res Function(_$KanbanData) then) =
-      __$$KanbanDataCopyWithImpl<$Res>;
+abstract class _$$KanbanDataImplCopyWith<$Res> {
+  factory _$$KanbanDataImplCopyWith(
+          _$KanbanDataImpl value, $Res Function(_$KanbanDataImpl) then) =
+      __$$KanbanDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({KanbanModel kanbanModel});
 
@@ -392,11 +391,11 @@ abstract class _$$KanbanDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$KanbanDataCopyWithImpl<$Res>
-    extends _$KanbanCopyWithImpl<$Res, _$KanbanData>
-    implements _$$KanbanDataCopyWith<$Res> {
-  __$$KanbanDataCopyWithImpl(
-      _$KanbanData _value, $Res Function(_$KanbanData) _then)
+class __$$KanbanDataImplCopyWithImpl<$Res>
+    extends _$KanbanCopyWithImpl<$Res, _$KanbanDataImpl>
+    implements _$$KanbanDataImplCopyWith<$Res> {
+  __$$KanbanDataImplCopyWithImpl(
+      _$KanbanDataImpl _value, $Res Function(_$KanbanDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -404,7 +403,7 @@ class __$$KanbanDataCopyWithImpl<$Res>
   $Res call({
     Object? kanbanModel = null,
   }) {
-    return _then(_$KanbanData(
+    return _then(_$KanbanDataImpl(
       null == kanbanModel
           ? _value.kanbanModel
           : kanbanModel // ignore: cast_nullable_to_non_nullable
@@ -423,8 +422,8 @@ class __$$KanbanDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$KanbanData implements KanbanData {
-  _$KanbanData(this.kanbanModel);
+class _$KanbanDataImpl implements KanbanData {
+  _$KanbanDataImpl(this.kanbanModel);
 
   @override
   final KanbanModel kanbanModel;
@@ -435,10 +434,10 @@ class _$KanbanData implements KanbanData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$KanbanData &&
+            other is _$KanbanDataImpl &&
             (identical(other.kanbanModel, kanbanModel) ||
                 other.kanbanModel == kanbanModel));
   }
@@ -449,8 +448,8 @@ class _$KanbanData implements KanbanData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$KanbanDataCopyWith<_$KanbanData> get copyWith =>
-      __$$KanbanDataCopyWithImpl<_$KanbanData>(this, _$identity);
+  _$$KanbanDataImplCopyWith<_$KanbanDataImpl> get copyWith =>
+      __$$KanbanDataImplCopyWithImpl<_$KanbanDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -522,34 +521,34 @@ class _$KanbanData implements KanbanData {
 }
 
 abstract class KanbanData implements Kanban {
-  factory KanbanData(final KanbanModel kanbanModel) = _$KanbanData;
+  factory KanbanData(final KanbanModel kanbanModel) = _$KanbanDataImpl;
 
   KanbanModel get kanbanModel;
   @JsonKey(ignore: true)
-  _$$KanbanDataCopyWith<_$KanbanData> get copyWith =>
+  _$$KanbanDataImplCopyWith<_$KanbanDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$KanbanNoneCopyWith<$Res> {
-  factory _$$KanbanNoneCopyWith(
-          _$KanbanNone value, $Res Function(_$KanbanNone) then) =
-      __$$KanbanNoneCopyWithImpl<$Res>;
+abstract class _$$KanbanNoneImplCopyWith<$Res> {
+  factory _$$KanbanNoneImplCopyWith(
+          _$KanbanNoneImpl value, $Res Function(_$KanbanNoneImpl) then) =
+      __$$KanbanNoneImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$KanbanNoneCopyWithImpl<$Res>
-    extends _$KanbanCopyWithImpl<$Res, _$KanbanNone>
-    implements _$$KanbanNoneCopyWith<$Res> {
-  __$$KanbanNoneCopyWithImpl(
-      _$KanbanNone _value, $Res Function(_$KanbanNone) _then)
+class __$$KanbanNoneImplCopyWithImpl<$Res>
+    extends _$KanbanCopyWithImpl<$Res, _$KanbanNoneImpl>
+    implements _$$KanbanNoneImplCopyWith<$Res> {
+  __$$KanbanNoneImplCopyWithImpl(
+      _$KanbanNoneImpl _value, $Res Function(_$KanbanNoneImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$KanbanNone implements KanbanNone {
-  _$KanbanNone();
+class _$KanbanNoneImpl implements KanbanNone {
+  _$KanbanNoneImpl();
 
   @override
   String toString() {
@@ -557,9 +556,9 @@ class _$KanbanNone implements KanbanNone {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$KanbanNone);
+        (other.runtimeType == runtimeType && other is _$KanbanNoneImpl);
   }
 
   @override
@@ -635,29 +634,29 @@ class _$KanbanNone implements KanbanNone {
 }
 
 abstract class KanbanNone implements Kanban {
-  factory KanbanNone() = _$KanbanNone;
+  factory KanbanNone() = _$KanbanNoneImpl;
 }
 
 /// @nodoc
-abstract class _$$KanbanLoadingCopyWith<$Res> {
-  factory _$$KanbanLoadingCopyWith(
-          _$KanbanLoading value, $Res Function(_$KanbanLoading) then) =
-      __$$KanbanLoadingCopyWithImpl<$Res>;
+abstract class _$$KanbanLoadingImplCopyWith<$Res> {
+  factory _$$KanbanLoadingImplCopyWith(
+          _$KanbanLoadingImpl value, $Res Function(_$KanbanLoadingImpl) then) =
+      __$$KanbanLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$KanbanLoadingCopyWithImpl<$Res>
-    extends _$KanbanCopyWithImpl<$Res, _$KanbanLoading>
-    implements _$$KanbanLoadingCopyWith<$Res> {
-  __$$KanbanLoadingCopyWithImpl(
-      _$KanbanLoading _value, $Res Function(_$KanbanLoading) _then)
+class __$$KanbanLoadingImplCopyWithImpl<$Res>
+    extends _$KanbanCopyWithImpl<$Res, _$KanbanLoadingImpl>
+    implements _$$KanbanLoadingImplCopyWith<$Res> {
+  __$$KanbanLoadingImplCopyWithImpl(
+      _$KanbanLoadingImpl _value, $Res Function(_$KanbanLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$KanbanLoading implements KanbanLoading {
-  _$KanbanLoading();
+class _$KanbanLoadingImpl implements KanbanLoading {
+  _$KanbanLoadingImpl();
 
   @override
   String toString() {
@@ -665,9 +664,9 @@ class _$KanbanLoading implements KanbanLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$KanbanLoading);
+        (other.runtimeType == runtimeType && other is _$KanbanLoadingImpl);
   }
 
   @override
@@ -743,5 +742,5 @@ class _$KanbanLoading implements KanbanLoading {
 }
 
 abstract class KanbanLoading implements Kanban {
-  factory KanbanLoading() = _$KanbanLoading;
+  factory KanbanLoading() = _$KanbanLoadingImpl;
 }

@@ -2,7 +2,7 @@ import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shopping_brecho/app/component/badge.dart';
+import 'package:shopping_brecho/app/component/badge.dart' as bd;
 import 'package:shopping_brecho/app/component/brecho_buttons.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_shimmer.dart';
@@ -253,7 +253,7 @@ class _SaleCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: Badge(
+                child: bd.Badge(
                   child: categoryName,
                   color: color,
                 ),
@@ -397,7 +397,7 @@ class _BuyCardWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Badge(
+              bd.Badge(
                 child: categoryName,
                 color: color,
               ),

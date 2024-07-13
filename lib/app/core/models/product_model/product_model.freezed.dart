@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'product_model.dart';
 
@@ -12,7 +12,7 @@ part of 'product_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
   return _ProductModel.fromJson(json);
@@ -80,22 +80,22 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
 }
 
 /// @nodoc
-abstract class _$$_ProductModelCopyWith<$Res>
+abstract class _$$ProductModelImplCopyWith<$Res>
     implements $ProductModelCopyWith<$Res> {
-  factory _$$_ProductModelCopyWith(
-          _$_ProductModel value, $Res Function(_$_ProductModel) then) =
-      __$$_ProductModelCopyWithImpl<$Res>;
+  factory _$$ProductModelImplCopyWith(
+          _$ProductModelImpl value, $Res Function(_$ProductModelImpl) then) =
+      __$$ProductModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String? brand, String? model, String? type});
 }
 
 /// @nodoc
-class __$$_ProductModelCopyWithImpl<$Res>
-    extends _$ProductModelCopyWithImpl<$Res, _$_ProductModel>
-    implements _$$_ProductModelCopyWith<$Res> {
-  __$$_ProductModelCopyWithImpl(
-      _$_ProductModel _value, $Res Function(_$_ProductModel) _then)
+class __$$ProductModelImplCopyWithImpl<$Res>
+    extends _$ProductModelCopyWithImpl<$Res, _$ProductModelImpl>
+    implements _$$ProductModelImplCopyWith<$Res> {
+  __$$ProductModelImplCopyWithImpl(
+      _$ProductModelImpl _value, $Res Function(_$ProductModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -106,7 +106,7 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? model = freezed,
     Object? type = freezed,
   }) {
-    return _then(_$_ProductModel(
+    return _then(_$ProductModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -130,11 +130,11 @@ class __$$_ProductModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable()
-class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
-  _$_ProductModel({this.id, this.brand, this.model, this.type});
+class _$ProductModelImpl with DiagnosticableTreeMixin implements _ProductModel {
+  _$ProductModelImpl({this.id, this.brand, this.model, this.type});
 
-  factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductModelFromJson(json);
+  factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductModelImplFromJson(json);
 
   @override
   final String? id;
@@ -162,10 +162,10 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductModel &&
+            other is _$ProductModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.model, model) || other.model == model) &&
@@ -179,12 +179,12 @@ class _$_ProductModel with DiagnosticableTreeMixin implements _ProductModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>
-      __$$_ProductModelCopyWithImpl<_$_ProductModel>(this, _$identity);
+  _$$ProductModelImplCopyWith<_$ProductModelImpl> get copyWith =>
+      __$$ProductModelImplCopyWithImpl<_$ProductModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductModelToJson(
+    return _$$ProductModelImplToJson(
       this,
     );
   }
@@ -195,10 +195,10 @@ abstract class _ProductModel implements ProductModel {
       {final String? id,
       final String? brand,
       final String? model,
-      final String? type}) = _$_ProductModel;
+      final String? type}) = _$ProductModelImpl;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
-      _$_ProductModel.fromJson;
+      _$ProductModelImpl.fromJson;
 
   @override
   String? get id;
@@ -210,7 +210,7 @@ abstract class _ProductModel implements ProductModel {
   String? get type;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>
+  _$$ProductModelImplCopyWith<_$ProductModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -292,20 +292,20 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
 }
 
 /// @nodoc
-abstract class _$$ProductDataCopyWith<$Res> {
-  factory _$$ProductDataCopyWith(
-          _$ProductData value, $Res Function(_$ProductData) then) =
-      __$$ProductDataCopyWithImpl<$Res>;
+abstract class _$$ProductDataImplCopyWith<$Res> {
+  factory _$$ProductDataImplCopyWith(
+          _$ProductDataImpl value, $Res Function(_$ProductDataImpl) then) =
+      __$$ProductDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ProductModel> productModel});
 }
 
 /// @nodoc
-class __$$ProductDataCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductData>
-    implements _$$ProductDataCopyWith<$Res> {
-  __$$ProductDataCopyWithImpl(
-      _$ProductData _value, $Res Function(_$ProductData) _then)
+class __$$ProductDataImplCopyWithImpl<$Res>
+    extends _$ProductCopyWithImpl<$Res, _$ProductDataImpl>
+    implements _$$ProductDataImplCopyWith<$Res> {
+  __$$ProductDataImplCopyWithImpl(
+      _$ProductDataImpl _value, $Res Function(_$ProductDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -313,7 +313,7 @@ class __$$ProductDataCopyWithImpl<$Res>
   $Res call({
     Object? productModel = null,
   }) {
-    return _then(_$ProductData(
+    return _then(_$ProductDataImpl(
       null == productModel
           ? _value.productModel
           : productModel // ignore: cast_nullable_to_non_nullable
@@ -324,8 +324,8 @@ class __$$ProductDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProductData with DiagnosticableTreeMixin implements ProductData {
-  const _$ProductData(this.productModel);
+class _$ProductDataImpl with DiagnosticableTreeMixin implements ProductData {
+  const _$ProductDataImpl(this.productModel);
 
   @override
   final List<ProductModel> productModel;
@@ -344,10 +344,10 @@ class _$ProductData with DiagnosticableTreeMixin implements ProductData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProductData &&
+            other is _$ProductDataImpl &&
             const DeepCollectionEquality()
                 .equals(other.productModel, productModel));
   }
@@ -359,8 +359,8 @@ class _$ProductData with DiagnosticableTreeMixin implements ProductData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProductDataCopyWith<_$ProductData> get copyWith =>
-      __$$ProductDataCopyWithImpl<_$ProductData>(this, _$identity);
+  _$$ProductDataImplCopyWith<_$ProductDataImpl> get copyWith =>
+      __$$ProductDataImplCopyWithImpl<_$ProductDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -445,34 +445,34 @@ class _$ProductData with DiagnosticableTreeMixin implements ProductData {
 
 abstract class ProductData implements Product {
   const factory ProductData(final List<ProductModel> productModel) =
-      _$ProductData;
+      _$ProductDataImpl;
 
   List<ProductModel> get productModel;
   @JsonKey(ignore: true)
-  _$$ProductDataCopyWith<_$ProductData> get copyWith =>
+  _$$ProductDataImplCopyWith<_$ProductDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProductEmptyCopyWith<$Res> {
-  factory _$$ProductEmptyCopyWith(
-          _$ProductEmpty value, $Res Function(_$ProductEmpty) then) =
-      __$$ProductEmptyCopyWithImpl<$Res>;
+abstract class _$$ProductEmptyImplCopyWith<$Res> {
+  factory _$$ProductEmptyImplCopyWith(
+          _$ProductEmptyImpl value, $Res Function(_$ProductEmptyImpl) then) =
+      __$$ProductEmptyImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProductEmptyCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductEmpty>
-    implements _$$ProductEmptyCopyWith<$Res> {
-  __$$ProductEmptyCopyWithImpl(
-      _$ProductEmpty _value, $Res Function(_$ProductEmpty) _then)
+class __$$ProductEmptyImplCopyWithImpl<$Res>
+    extends _$ProductCopyWithImpl<$Res, _$ProductEmptyImpl>
+    implements _$$ProductEmptyImplCopyWith<$Res> {
+  __$$ProductEmptyImplCopyWithImpl(
+      _$ProductEmptyImpl _value, $Res Function(_$ProductEmptyImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProductEmpty with DiagnosticableTreeMixin implements ProductEmpty {
-  const _$ProductEmpty();
+class _$ProductEmptyImpl with DiagnosticableTreeMixin implements ProductEmpty {
+  const _$ProductEmptyImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -486,9 +486,9 @@ class _$ProductEmpty with DiagnosticableTreeMixin implements ProductEmpty {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ProductEmpty);
+        (other.runtimeType == runtimeType && other is _$ProductEmptyImpl);
   }
 
   @override
@@ -576,29 +576,29 @@ class _$ProductEmpty with DiagnosticableTreeMixin implements ProductEmpty {
 }
 
 abstract class ProductEmpty implements Product {
-  const factory ProductEmpty() = _$ProductEmpty;
+  const factory ProductEmpty() = _$ProductEmptyImpl;
 }
 
 /// @nodoc
-abstract class _$$ProductNoneCopyWith<$Res> {
-  factory _$$ProductNoneCopyWith(
-          _$ProductNone value, $Res Function(_$ProductNone) then) =
-      __$$ProductNoneCopyWithImpl<$Res>;
+abstract class _$$ProductNoneImplCopyWith<$Res> {
+  factory _$$ProductNoneImplCopyWith(
+          _$ProductNoneImpl value, $Res Function(_$ProductNoneImpl) then) =
+      __$$ProductNoneImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProductNoneCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductNone>
-    implements _$$ProductNoneCopyWith<$Res> {
-  __$$ProductNoneCopyWithImpl(
-      _$ProductNone _value, $Res Function(_$ProductNone) _then)
+class __$$ProductNoneImplCopyWithImpl<$Res>
+    extends _$ProductCopyWithImpl<$Res, _$ProductNoneImpl>
+    implements _$$ProductNoneImplCopyWith<$Res> {
+  __$$ProductNoneImplCopyWithImpl(
+      _$ProductNoneImpl _value, $Res Function(_$ProductNoneImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProductNone with DiagnosticableTreeMixin implements ProductNone {
-  const _$ProductNone();
+class _$ProductNoneImpl with DiagnosticableTreeMixin implements ProductNone {
+  const _$ProductNoneImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -612,9 +612,9 @@ class _$ProductNone with DiagnosticableTreeMixin implements ProductNone {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ProductNone);
+        (other.runtimeType == runtimeType && other is _$ProductNoneImpl);
   }
 
   @override
@@ -702,29 +702,31 @@ class _$ProductNone with DiagnosticableTreeMixin implements ProductNone {
 }
 
 abstract class ProductNone implements Product {
-  const factory ProductNone() = _$ProductNone;
+  const factory ProductNone() = _$ProductNoneImpl;
 }
 
 /// @nodoc
-abstract class _$$ProductLoadingCopyWith<$Res> {
-  factory _$$ProductLoadingCopyWith(
-          _$ProductLoading value, $Res Function(_$ProductLoading) then) =
-      __$$ProductLoadingCopyWithImpl<$Res>;
+abstract class _$$ProductLoadingImplCopyWith<$Res> {
+  factory _$$ProductLoadingImplCopyWith(_$ProductLoadingImpl value,
+          $Res Function(_$ProductLoadingImpl) then) =
+      __$$ProductLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProductLoadingCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductLoading>
-    implements _$$ProductLoadingCopyWith<$Res> {
-  __$$ProductLoadingCopyWithImpl(
-      _$ProductLoading _value, $Res Function(_$ProductLoading) _then)
+class __$$ProductLoadingImplCopyWithImpl<$Res>
+    extends _$ProductCopyWithImpl<$Res, _$ProductLoadingImpl>
+    implements _$$ProductLoadingImplCopyWith<$Res> {
+  __$$ProductLoadingImplCopyWithImpl(
+      _$ProductLoadingImpl _value, $Res Function(_$ProductLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ProductLoading with DiagnosticableTreeMixin implements ProductLoading {
-  const _$ProductLoading();
+class _$ProductLoadingImpl
+    with DiagnosticableTreeMixin
+    implements ProductLoading {
+  const _$ProductLoadingImpl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -738,9 +740,9 @@ class _$ProductLoading with DiagnosticableTreeMixin implements ProductLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ProductLoading);
+        (other.runtimeType == runtimeType && other is _$ProductLoadingImpl);
   }
 
   @override
@@ -828,24 +830,24 @@ class _$ProductLoading with DiagnosticableTreeMixin implements ProductLoading {
 }
 
 abstract class ProductLoading implements Product {
-  const factory ProductLoading() = _$ProductLoading;
+  const factory ProductLoading() = _$ProductLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$ProductErrorCopyWith<$Res> {
-  factory _$$ProductErrorCopyWith(
-          _$ProductError value, $Res Function(_$ProductError) then) =
-      __$$ProductErrorCopyWithImpl<$Res>;
+abstract class _$$ProductErrorImplCopyWith<$Res> {
+  factory _$$ProductErrorImplCopyWith(
+          _$ProductErrorImpl value, $Res Function(_$ProductErrorImpl) then) =
+      __$$ProductErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object? error});
 }
 
 /// @nodoc
-class __$$ProductErrorCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductError>
-    implements _$$ProductErrorCopyWith<$Res> {
-  __$$ProductErrorCopyWithImpl(
-      _$ProductError _value, $Res Function(_$ProductError) _then)
+class __$$ProductErrorImplCopyWithImpl<$Res>
+    extends _$ProductCopyWithImpl<$Res, _$ProductErrorImpl>
+    implements _$$ProductErrorImplCopyWith<$Res> {
+  __$$ProductErrorImplCopyWithImpl(
+      _$ProductErrorImpl _value, $Res Function(_$ProductErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -853,7 +855,7 @@ class __$$ProductErrorCopyWithImpl<$Res>
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(_$ProductError(
+    return _then(_$ProductErrorImpl(
       freezed == error ? _value.error : error,
     ));
   }
@@ -861,8 +863,8 @@ class __$$ProductErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProductError with DiagnosticableTreeMixin implements ProductError {
-  const _$ProductError([this.error]);
+class _$ProductErrorImpl with DiagnosticableTreeMixin implements ProductError {
+  const _$ProductErrorImpl([this.error]);
 
   @override
   final Object? error;
@@ -881,10 +883,10 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProductError &&
+            other is _$ProductErrorImpl &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -895,8 +897,8 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProductErrorCopyWith<_$ProductError> get copyWith =>
-      __$$ProductErrorCopyWithImpl<_$ProductError>(this, _$identity);
+  _$$ProductErrorImplCopyWith<_$ProductErrorImpl> get copyWith =>
+      __$$ProductErrorImplCopyWithImpl<_$ProductErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -980,10 +982,10 @@ class _$ProductError with DiagnosticableTreeMixin implements ProductError {
 }
 
 abstract class ProductError implements Product {
-  const factory ProductError([final Object? error]) = _$ProductError;
+  const factory ProductError([final Object? error]) = _$ProductErrorImpl;
 
   Object? get error;
   @JsonKey(ignore: true)
-  _$$ProductErrorCopyWith<_$ProductError> get copyWith =>
+  _$$ProductErrorImplCopyWith<_$ProductErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -2,7 +2,7 @@ import 'package:brecho_utilities/brecho_utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shopping_brecho/app/component/badge.dart';
+import 'package:shopping_brecho/app/component/badge.dart' as bd;
 import 'package:shopping_brecho/app/component/brecho_buttons.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_shimmer.dart';
@@ -135,7 +135,7 @@ class _Pendency extends StatelessWidget {
               children: List.generate(
                   pendencies.length,
                   (index) =>
-                      Badge(child: pendencies[index].pendencyName ?? ''))),
+                      bd.Badge(child: pendencies[index].pendencyName ?? ''))),
         const SizedBox(
           height: BrechoSpacing.xvi,
         ),
@@ -239,10 +239,10 @@ class _ClientData extends StatelessWidget {
               children: [
                 _LabelValue(
                     label: 'Telefone', value: FormatHelper.formatPhone(phone)),
-                const Padding(
-                  padding: EdgeInsets.only(left: BrechoSpacing.xxxii),
+               const  Padding(
+                  padding:  EdgeInsets.only(left: BrechoSpacing.xxxii),
                   child: Icon(
-                    Icons.whatsapp,
+                    Icons.whatshot,
                     color: BrechoColors.responseSuccess,
                   ),
                 )

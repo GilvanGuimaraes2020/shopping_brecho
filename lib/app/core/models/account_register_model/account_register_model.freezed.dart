@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'account_register_model.dart';
 
@@ -12,7 +12,7 @@ part of 'account_register_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AccountRegisterModel _$AccountRegisterModelFromJson(Map<String, dynamic> json) {
   return _AccountRegisterModel.fromJson(json);
@@ -69,22 +69,22 @@ class _$AccountRegisterModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_AccountRegisterModelCopyWith<$Res>
+abstract class _$$AccountRegisterModelImplCopyWith<$Res>
     implements $AccountRegisterModelCopyWith<$Res> {
-  factory _$$_AccountRegisterModelCopyWith(_$_AccountRegisterModel value,
-          $Res Function(_$_AccountRegisterModel) then) =
-      __$$_AccountRegisterModelCopyWithImpl<$Res>;
+  factory _$$AccountRegisterModelImplCopyWith(_$AccountRegisterModelImpl value,
+          $Res Function(_$AccountRegisterModelImpl) then) =
+      __$$AccountRegisterModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? typeName, List<RegistersModel>? registers});
 }
 
 /// @nodoc
-class __$$_AccountRegisterModelCopyWithImpl<$Res>
-    extends _$AccountRegisterModelCopyWithImpl<$Res, _$_AccountRegisterModel>
-    implements _$$_AccountRegisterModelCopyWith<$Res> {
-  __$$_AccountRegisterModelCopyWithImpl(_$_AccountRegisterModel _value,
-      $Res Function(_$_AccountRegisterModel) _then)
+class __$$AccountRegisterModelImplCopyWithImpl<$Res>
+    extends _$AccountRegisterModelCopyWithImpl<$Res, _$AccountRegisterModelImpl>
+    implements _$$AccountRegisterModelImplCopyWith<$Res> {
+  __$$AccountRegisterModelImplCopyWithImpl(_$AccountRegisterModelImpl _value,
+      $Res Function(_$AccountRegisterModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -93,7 +93,7 @@ class __$$_AccountRegisterModelCopyWithImpl<$Res>
     Object? typeName = freezed,
     Object? registers = freezed,
   }) {
-    return _then(_$_AccountRegisterModel(
+    return _then(_$AccountRegisterModelImpl(
       typeName: freezed == typeName
           ? _value.typeName
           : typeName // ignore: cast_nullable_to_non_nullable
@@ -109,11 +109,11 @@ class __$$_AccountRegisterModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_AccountRegisterModel implements _AccountRegisterModel {
-  _$_AccountRegisterModel({this.typeName, this.registers});
+class _$AccountRegisterModelImpl implements _AccountRegisterModel {
+  _$AccountRegisterModelImpl({this.typeName, this.registers});
 
-  factory _$_AccountRegisterModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AccountRegisterModelFromJson(json);
+  factory _$AccountRegisterModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccountRegisterModelImplFromJson(json);
 
   @override
   final String? typeName;
@@ -126,10 +126,10 @@ class _$_AccountRegisterModel implements _AccountRegisterModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AccountRegisterModel &&
+            other is _$AccountRegisterModelImpl &&
             (identical(other.typeName, typeName) ||
                 other.typeName == typeName) &&
             const DeepCollectionEquality().equals(other.registers, registers));
@@ -143,13 +143,14 @@ class _$_AccountRegisterModel implements _AccountRegisterModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AccountRegisterModelCopyWith<_$_AccountRegisterModel> get copyWith =>
-      __$$_AccountRegisterModelCopyWithImpl<_$_AccountRegisterModel>(
-          this, _$identity);
+  _$$AccountRegisterModelImplCopyWith<_$AccountRegisterModelImpl>
+      get copyWith =>
+          __$$AccountRegisterModelImplCopyWithImpl<_$AccountRegisterModelImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AccountRegisterModelToJson(
+    return _$$AccountRegisterModelImplToJson(
       this,
     );
   }
@@ -158,10 +159,10 @@ class _$_AccountRegisterModel implements _AccountRegisterModel {
 abstract class _AccountRegisterModel implements AccountRegisterModel {
   factory _AccountRegisterModel(
       {final String? typeName,
-      final List<RegistersModel>? registers}) = _$_AccountRegisterModel;
+      final List<RegistersModel>? registers}) = _$AccountRegisterModelImpl;
 
   factory _AccountRegisterModel.fromJson(Map<String, dynamic> json) =
-      _$_AccountRegisterModel.fromJson;
+      _$AccountRegisterModelImpl.fromJson;
 
   @override
   String? get typeName;
@@ -169,8 +170,8 @@ abstract class _AccountRegisterModel implements AccountRegisterModel {
   List<RegistersModel>? get registers;
   @override
   @JsonKey(ignore: true)
-  _$$_AccountRegisterModelCopyWith<_$_AccountRegisterModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AccountRegisterModelImplCopyWith<_$AccountRegisterModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -253,20 +254,20 @@ class _$AccountRegisterCopyWithImpl<$Res, $Val extends AccountRegister>
 }
 
 /// @nodoc
-abstract class _$$AccountRegisterDataCopyWith<$Res> {
-  factory _$$AccountRegisterDataCopyWith(_$AccountRegisterData value,
-          $Res Function(_$AccountRegisterData) then) =
-      __$$AccountRegisterDataCopyWithImpl<$Res>;
+abstract class _$$AccountRegisterDataImplCopyWith<$Res> {
+  factory _$$AccountRegisterDataImplCopyWith(_$AccountRegisterDataImpl value,
+          $Res Function(_$AccountRegisterDataImpl) then) =
+      __$$AccountRegisterDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<AccountRegisterModel> listAccountRegister});
 }
 
 /// @nodoc
-class __$$AccountRegisterDataCopyWithImpl<$Res>
-    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterData>
-    implements _$$AccountRegisterDataCopyWith<$Res> {
-  __$$AccountRegisterDataCopyWithImpl(
-      _$AccountRegisterData _value, $Res Function(_$AccountRegisterData) _then)
+class __$$AccountRegisterDataImplCopyWithImpl<$Res>
+    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterDataImpl>
+    implements _$$AccountRegisterDataImplCopyWith<$Res> {
+  __$$AccountRegisterDataImplCopyWithImpl(_$AccountRegisterDataImpl _value,
+      $Res Function(_$AccountRegisterDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -274,7 +275,7 @@ class __$$AccountRegisterDataCopyWithImpl<$Res>
   $Res call({
     Object? listAccountRegister = null,
   }) {
-    return _then(_$AccountRegisterData(
+    return _then(_$AccountRegisterDataImpl(
       null == listAccountRegister
           ? _value.listAccountRegister
           : listAccountRegister // ignore: cast_nullable_to_non_nullable
@@ -285,8 +286,8 @@ class __$$AccountRegisterDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountRegisterData implements AccountRegisterData {
-  const _$AccountRegisterData(this.listAccountRegister);
+class _$AccountRegisterDataImpl implements AccountRegisterData {
+  const _$AccountRegisterDataImpl(this.listAccountRegister);
 
   @override
   final List<AccountRegisterModel> listAccountRegister;
@@ -297,10 +298,10 @@ class _$AccountRegisterData implements AccountRegisterData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountRegisterData &&
+            other is _$AccountRegisterDataImpl &&
             const DeepCollectionEquality()
                 .equals(other.listAccountRegister, listAccountRegister));
   }
@@ -312,8 +313,8 @@ class _$AccountRegisterData implements AccountRegisterData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountRegisterDataCopyWith<_$AccountRegisterData> get copyWith =>
-      __$$AccountRegisterDataCopyWithImpl<_$AccountRegisterData>(
+  _$$AccountRegisterDataImplCopyWith<_$AccountRegisterDataImpl> get copyWith =>
+      __$$AccountRegisterDataImplCopyWithImpl<_$AccountRegisterDataImpl>(
           this, _$identity);
 
   @override
@@ -401,34 +402,36 @@ class _$AccountRegisterData implements AccountRegisterData {
 abstract class AccountRegisterData implements AccountRegister {
   const factory AccountRegisterData(
           final List<AccountRegisterModel> listAccountRegister) =
-      _$AccountRegisterData;
+      _$AccountRegisterDataImpl;
 
   List<AccountRegisterModel> get listAccountRegister;
   @JsonKey(ignore: true)
-  _$$AccountRegisterDataCopyWith<_$AccountRegisterData> get copyWith =>
+  _$$AccountRegisterDataImplCopyWith<_$AccountRegisterDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AccountRegisterLoadingCopyWith<$Res> {
-  factory _$$AccountRegisterLoadingCopyWith(_$AccountRegisterLoading value,
-          $Res Function(_$AccountRegisterLoading) then) =
-      __$$AccountRegisterLoadingCopyWithImpl<$Res>;
+abstract class _$$AccountRegisterLoadingImplCopyWith<$Res> {
+  factory _$$AccountRegisterLoadingImplCopyWith(
+          _$AccountRegisterLoadingImpl value,
+          $Res Function(_$AccountRegisterLoadingImpl) then) =
+      __$$AccountRegisterLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AccountRegisterLoadingCopyWithImpl<$Res>
-    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterLoading>
-    implements _$$AccountRegisterLoadingCopyWith<$Res> {
-  __$$AccountRegisterLoadingCopyWithImpl(_$AccountRegisterLoading _value,
-      $Res Function(_$AccountRegisterLoading) _then)
+class __$$AccountRegisterLoadingImplCopyWithImpl<$Res>
+    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterLoadingImpl>
+    implements _$$AccountRegisterLoadingImplCopyWith<$Res> {
+  __$$AccountRegisterLoadingImplCopyWithImpl(
+      _$AccountRegisterLoadingImpl _value,
+      $Res Function(_$AccountRegisterLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AccountRegisterLoading implements AccountRegisterLoading {
-  const _$AccountRegisterLoading();
+class _$AccountRegisterLoadingImpl implements AccountRegisterLoading {
+  const _$AccountRegisterLoadingImpl();
 
   @override
   String toString() {
@@ -436,9 +439,10 @@ class _$AccountRegisterLoading implements AccountRegisterLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AccountRegisterLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$AccountRegisterLoadingImpl);
   }
 
   @override
@@ -527,24 +531,24 @@ class _$AccountRegisterLoading implements AccountRegisterLoading {
 }
 
 abstract class AccountRegisterLoading implements AccountRegister {
-  const factory AccountRegisterLoading() = _$AccountRegisterLoading;
+  const factory AccountRegisterLoading() = _$AccountRegisterLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$AccountRegisterErrorCopyWith<$Res> {
-  factory _$$AccountRegisterErrorCopyWith(_$AccountRegisterError value,
-          $Res Function(_$AccountRegisterError) then) =
-      __$$AccountRegisterErrorCopyWithImpl<$Res>;
+abstract class _$$AccountRegisterErrorImplCopyWith<$Res> {
+  factory _$$AccountRegisterErrorImplCopyWith(_$AccountRegisterErrorImpl value,
+          $Res Function(_$AccountRegisterErrorImpl) then) =
+      __$$AccountRegisterErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Object? error});
 }
 
 /// @nodoc
-class __$$AccountRegisterErrorCopyWithImpl<$Res>
-    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterError>
-    implements _$$AccountRegisterErrorCopyWith<$Res> {
-  __$$AccountRegisterErrorCopyWithImpl(_$AccountRegisterError _value,
-      $Res Function(_$AccountRegisterError) _then)
+class __$$AccountRegisterErrorImplCopyWithImpl<$Res>
+    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterErrorImpl>
+    implements _$$AccountRegisterErrorImplCopyWith<$Res> {
+  __$$AccountRegisterErrorImplCopyWithImpl(_$AccountRegisterErrorImpl _value,
+      $Res Function(_$AccountRegisterErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -552,7 +556,7 @@ class __$$AccountRegisterErrorCopyWithImpl<$Res>
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(_$AccountRegisterError(
+    return _then(_$AccountRegisterErrorImpl(
       freezed == error ? _value.error : error,
     ));
   }
@@ -560,8 +564,8 @@ class __$$AccountRegisterErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountRegisterError implements AccountRegisterError {
-  const _$AccountRegisterError([this.error]);
+class _$AccountRegisterErrorImpl implements AccountRegisterError {
+  const _$AccountRegisterErrorImpl([this.error]);
 
   @override
   final Object? error;
@@ -572,10 +576,10 @@ class _$AccountRegisterError implements AccountRegisterError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountRegisterError &&
+            other is _$AccountRegisterErrorImpl &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -586,9 +590,10 @@ class _$AccountRegisterError implements AccountRegisterError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountRegisterErrorCopyWith<_$AccountRegisterError> get copyWith =>
-      __$$AccountRegisterErrorCopyWithImpl<_$AccountRegisterError>(
-          this, _$identity);
+  _$$AccountRegisterErrorImplCopyWith<_$AccountRegisterErrorImpl>
+      get copyWith =>
+          __$$AccountRegisterErrorImplCopyWithImpl<_$AccountRegisterErrorImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -674,34 +679,34 @@ class _$AccountRegisterError implements AccountRegisterError {
 
 abstract class AccountRegisterError implements AccountRegister {
   const factory AccountRegisterError([final Object? error]) =
-      _$AccountRegisterError;
+      _$AccountRegisterErrorImpl;
 
   Object? get error;
   @JsonKey(ignore: true)
-  _$$AccountRegisterErrorCopyWith<_$AccountRegisterError> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AccountRegisterErrorImplCopyWith<_$AccountRegisterErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AccountRegisterNoneCopyWith<$Res> {
-  factory _$$AccountRegisterNoneCopyWith(_$AccountRegisterNone value,
-          $Res Function(_$AccountRegisterNone) then) =
-      __$$AccountRegisterNoneCopyWithImpl<$Res>;
+abstract class _$$AccountRegisterNoneImplCopyWith<$Res> {
+  factory _$$AccountRegisterNoneImplCopyWith(_$AccountRegisterNoneImpl value,
+          $Res Function(_$AccountRegisterNoneImpl) then) =
+      __$$AccountRegisterNoneImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AccountRegisterNoneCopyWithImpl<$Res>
-    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterNone>
-    implements _$$AccountRegisterNoneCopyWith<$Res> {
-  __$$AccountRegisterNoneCopyWithImpl(
-      _$AccountRegisterNone _value, $Res Function(_$AccountRegisterNone) _then)
+class __$$AccountRegisterNoneImplCopyWithImpl<$Res>
+    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterNoneImpl>
+    implements _$$AccountRegisterNoneImplCopyWith<$Res> {
+  __$$AccountRegisterNoneImplCopyWithImpl(_$AccountRegisterNoneImpl _value,
+      $Res Function(_$AccountRegisterNoneImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AccountRegisterNone implements AccountRegisterNone {
-  const _$AccountRegisterNone();
+class _$AccountRegisterNoneImpl implements AccountRegisterNone {
+  const _$AccountRegisterNoneImpl();
 
   @override
   String toString() {
@@ -709,9 +714,10 @@ class _$AccountRegisterNone implements AccountRegisterNone {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AccountRegisterNone);
+        (other.runtimeType == runtimeType &&
+            other is _$AccountRegisterNoneImpl);
   }
 
   @override
@@ -800,29 +806,29 @@ class _$AccountRegisterNone implements AccountRegisterNone {
 }
 
 abstract class AccountRegisterNone implements AccountRegister {
-  const factory AccountRegisterNone() = _$AccountRegisterNone;
+  const factory AccountRegisterNone() = _$AccountRegisterNoneImpl;
 }
 
 /// @nodoc
-abstract class _$$AccountRegisterEmptyCopyWith<$Res> {
-  factory _$$AccountRegisterEmptyCopyWith(_$AccountRegisterEmpty value,
-          $Res Function(_$AccountRegisterEmpty) then) =
-      __$$AccountRegisterEmptyCopyWithImpl<$Res>;
+abstract class _$$AccountRegisterEmptyImplCopyWith<$Res> {
+  factory _$$AccountRegisterEmptyImplCopyWith(_$AccountRegisterEmptyImpl value,
+          $Res Function(_$AccountRegisterEmptyImpl) then) =
+      __$$AccountRegisterEmptyImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AccountRegisterEmptyCopyWithImpl<$Res>
-    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterEmpty>
-    implements _$$AccountRegisterEmptyCopyWith<$Res> {
-  __$$AccountRegisterEmptyCopyWithImpl(_$AccountRegisterEmpty _value,
-      $Res Function(_$AccountRegisterEmpty) _then)
+class __$$AccountRegisterEmptyImplCopyWithImpl<$Res>
+    extends _$AccountRegisterCopyWithImpl<$Res, _$AccountRegisterEmptyImpl>
+    implements _$$AccountRegisterEmptyImplCopyWith<$Res> {
+  __$$AccountRegisterEmptyImplCopyWithImpl(_$AccountRegisterEmptyImpl _value,
+      $Res Function(_$AccountRegisterEmptyImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AccountRegisterEmpty implements AccountRegisterEmpty {
-  const _$AccountRegisterEmpty();
+class _$AccountRegisterEmptyImpl implements AccountRegisterEmpty {
+  const _$AccountRegisterEmptyImpl();
 
   @override
   String toString() {
@@ -830,9 +836,10 @@ class _$AccountRegisterEmpty implements AccountRegisterEmpty {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AccountRegisterEmpty);
+        (other.runtimeType == runtimeType &&
+            other is _$AccountRegisterEmptyImpl);
   }
 
   @override
@@ -921,5 +928,5 @@ class _$AccountRegisterEmpty implements AccountRegisterEmpty {
 }
 
 abstract class AccountRegisterEmpty implements AccountRegister {
-  const factory AccountRegisterEmpty() = _$AccountRegisterEmpty;
+  const factory AccountRegisterEmpty() = _$AccountRegisterEmptyImpl;
 }

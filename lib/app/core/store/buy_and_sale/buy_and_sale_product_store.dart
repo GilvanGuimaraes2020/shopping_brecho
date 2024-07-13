@@ -408,7 +408,6 @@ abstract class _BuyAndSaleProductStore with Store {
       createdAt: DateTime.now().toUtc().toString(),
       paymentTypeId: paymentTypeModelList.tryGet(paymentTypeIndex)?.id,
       price: double.tryParse(registerBuyPrice),
-      isSold: false,
       color: productColor
     );
 

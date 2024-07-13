@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'label_value_model.dart';
 
@@ -12,7 +12,7 @@ part of 'label_value_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 LabelValueModel _$LabelValueModelFromJson(Map<String, dynamic> json) {
   return _LabelValueModel.fromJson(json);
@@ -74,22 +74,22 @@ class _$LabelValueModelCopyWithImpl<$Res, $Val extends LabelValueModel>
 }
 
 /// @nodoc
-abstract class _$$_LabelValueModelCopyWith<$Res>
+abstract class _$$LabelValueModelImplCopyWith<$Res>
     implements $LabelValueModelCopyWith<$Res> {
-  factory _$$_LabelValueModelCopyWith(
-          _$_LabelValueModel value, $Res Function(_$_LabelValueModel) then) =
-      __$$_LabelValueModelCopyWithImpl<$Res>;
+  factory _$$LabelValueModelImplCopyWith(_$LabelValueModelImpl value,
+          $Res Function(_$LabelValueModelImpl) then) =
+      __$$LabelValueModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? label, String? value, String? description});
 }
 
 /// @nodoc
-class __$$_LabelValueModelCopyWithImpl<$Res>
-    extends _$LabelValueModelCopyWithImpl<$Res, _$_LabelValueModel>
-    implements _$$_LabelValueModelCopyWith<$Res> {
-  __$$_LabelValueModelCopyWithImpl(
-      _$_LabelValueModel _value, $Res Function(_$_LabelValueModel) _then)
+class __$$LabelValueModelImplCopyWithImpl<$Res>
+    extends _$LabelValueModelCopyWithImpl<$Res, _$LabelValueModelImpl>
+    implements _$$LabelValueModelImplCopyWith<$Res> {
+  __$$LabelValueModelImplCopyWithImpl(
+      _$LabelValueModelImpl _value, $Res Function(_$LabelValueModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_LabelValueModelCopyWithImpl<$Res>
     Object? value = freezed,
     Object? description = freezed,
   }) {
-    return _then(_$_LabelValueModel(
+    return _then(_$LabelValueModelImpl(
       label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -119,11 +119,11 @@ class __$$_LabelValueModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_LabelValueModel implements _LabelValueModel {
-  _$_LabelValueModel({this.label, this.value, this.description});
+class _$LabelValueModelImpl implements _LabelValueModel {
+  _$LabelValueModelImpl({this.label, this.value, this.description});
 
-  factory _$_LabelValueModel.fromJson(Map<String, dynamic> json) =>
-      _$$_LabelValueModelFromJson(json);
+  factory _$LabelValueModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LabelValueModelImplFromJson(json);
 
   @override
   final String? label;
@@ -138,10 +138,10 @@ class _$_LabelValueModel implements _LabelValueModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LabelValueModel &&
+            other is _$LabelValueModelImpl &&
             (identical(other.label, label) || other.label == label) &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.description, description) ||
@@ -155,12 +155,13 @@ class _$_LabelValueModel implements _LabelValueModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LabelValueModelCopyWith<_$_LabelValueModel> get copyWith =>
-      __$$_LabelValueModelCopyWithImpl<_$_LabelValueModel>(this, _$identity);
+  _$$LabelValueModelImplCopyWith<_$LabelValueModelImpl> get copyWith =>
+      __$$LabelValueModelImplCopyWithImpl<_$LabelValueModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LabelValueModelToJson(
+    return _$$LabelValueModelImplToJson(
       this,
     );
   }
@@ -170,10 +171,10 @@ abstract class _LabelValueModel implements LabelValueModel {
   factory _LabelValueModel(
       {final String? label,
       final String? value,
-      final String? description}) = _$_LabelValueModel;
+      final String? description}) = _$LabelValueModelImpl;
 
   factory _LabelValueModel.fromJson(Map<String, dynamic> json) =
-      _$_LabelValueModel.fromJson;
+      _$LabelValueModelImpl.fromJson;
 
   @override
   String? get label;
@@ -183,6 +184,6 @@ abstract class _LabelValueModel implements LabelValueModel {
   String? get description;
   @override
   @JsonKey(ignore: true)
-  _$$_LabelValueModelCopyWith<_$_LabelValueModel> get copyWith =>
+  _$$LabelValueModelImplCopyWith<_$LabelValueModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

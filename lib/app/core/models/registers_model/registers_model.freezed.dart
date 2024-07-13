@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'registers_model.dart';
 
@@ -12,7 +12,7 @@ part of 'registers_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 RegistersModel _$RegistersModelFromJson(Map<String, dynamic> json) {
   return _RegistersModel.fromJson(json);
@@ -106,11 +106,11 @@ class _$RegistersModelCopyWithImpl<$Res, $Val extends RegistersModel>
 }
 
 /// @nodoc
-abstract class _$$_RegistersModelCopyWith<$Res>
+abstract class _$$RegistersModelImplCopyWith<$Res>
     implements $RegistersModelCopyWith<$Res> {
-  factory _$$_RegistersModelCopyWith(
-          _$_RegistersModel value, $Res Function(_$_RegistersModel) then) =
-      __$$_RegistersModelCopyWithImpl<$Res>;
+  factory _$$RegistersModelImplCopyWith(_$RegistersModelImpl value,
+          $Res Function(_$RegistersModelImpl) then) =
+      __$$RegistersModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -124,11 +124,11 @@ abstract class _$$_RegistersModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_RegistersModelCopyWithImpl<$Res>
-    extends _$RegistersModelCopyWithImpl<$Res, _$_RegistersModel>
-    implements _$$_RegistersModelCopyWith<$Res> {
-  __$$_RegistersModelCopyWithImpl(
-      _$_RegistersModel _value, $Res Function(_$_RegistersModel) _then)
+class __$$RegistersModelImplCopyWithImpl<$Res>
+    extends _$RegistersModelCopyWithImpl<$Res, _$RegistersModelImpl>
+    implements _$$RegistersModelImplCopyWith<$Res> {
+  __$$RegistersModelImplCopyWithImpl(
+      _$RegistersModelImpl _value, $Res Function(_$RegistersModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -142,7 +142,7 @@ class __$$_RegistersModelCopyWithImpl<$Res>
     Object? accountMovement = freezed,
     Object? installment = freezed,
   }) {
-    return _then(_$_RegistersModel(
+    return _then(_$RegistersModelImpl(
       accountBank: freezed == accountBank
           ? _value.accountBank
           : accountBank // ignore: cast_nullable_to_non_nullable
@@ -178,8 +178,8 @@ class __$$_RegistersModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
-class _$_RegistersModel implements _RegistersModel {
-  _$_RegistersModel(
+class _$RegistersModelImpl implements _RegistersModel {
+  _$RegistersModelImpl(
       {this.accountBank,
       this.accountValue,
       @JsonKey(fromJson: _fromJson, toJson: _toJson) this.date,
@@ -188,8 +188,8 @@ class _$_RegistersModel implements _RegistersModel {
       this.accountMovement,
       this.installment});
 
-  factory _$_RegistersModel.fromJson(Map<String, dynamic> json) =>
-      _$$_RegistersModelFromJson(json);
+  factory _$RegistersModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RegistersModelImplFromJson(json);
 
   @override
   final String? accountBank;
@@ -213,10 +213,10 @@ class _$_RegistersModel implements _RegistersModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RegistersModel &&
+            other is _$RegistersModelImpl &&
             (identical(other.accountBank, accountBank) ||
                 other.accountBank == accountBank) &&
             (identical(other.accountValue, accountValue) ||
@@ -240,12 +240,13 @@ class _$_RegistersModel implements _RegistersModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RegistersModelCopyWith<_$_RegistersModel> get copyWith =>
-      __$$_RegistersModelCopyWithImpl<_$_RegistersModel>(this, _$identity);
+  _$$RegistersModelImplCopyWith<_$RegistersModelImpl> get copyWith =>
+      __$$RegistersModelImplCopyWithImpl<_$RegistersModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RegistersModelToJson(
+    return _$$RegistersModelImplToJson(
       this,
     );
   }
@@ -259,10 +260,10 @@ abstract class _RegistersModel implements RegistersModel {
       final String? movementCurrency,
       final String? movementDetail,
       final String? accountMovement,
-      final int? installment}) = _$_RegistersModel;
+      final int? installment}) = _$RegistersModelImpl;
 
   factory _RegistersModel.fromJson(Map<String, dynamic> json) =
-      _$_RegistersModel.fromJson;
+      _$RegistersModelImpl.fromJson;
 
   @override
   String? get accountBank;
@@ -281,7 +282,7 @@ abstract class _RegistersModel implements RegistersModel {
   int? get installment;
   @override
   @JsonKey(ignore: true)
-  _$$_RegistersModelCopyWith<_$_RegistersModel> get copyWith =>
+  _$$RegistersModelImplCopyWith<_$RegistersModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -357,20 +358,20 @@ class _$RegistersCopyWithImpl<$Res, $Val extends Registers>
 }
 
 /// @nodoc
-abstract class _$$RegistersDataCopyWith<$Res> {
-  factory _$$RegistersDataCopyWith(
-          _$RegistersData value, $Res Function(_$RegistersData) then) =
-      __$$RegistersDataCopyWithImpl<$Res>;
+abstract class _$$RegistersDataImplCopyWith<$Res> {
+  factory _$$RegistersDataImplCopyWith(
+          _$RegistersDataImpl value, $Res Function(_$RegistersDataImpl) then) =
+      __$$RegistersDataImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<RegistersModel> registersModel});
 }
 
 /// @nodoc
-class __$$RegistersDataCopyWithImpl<$Res>
-    extends _$RegistersCopyWithImpl<$Res, _$RegistersData>
-    implements _$$RegistersDataCopyWith<$Res> {
-  __$$RegistersDataCopyWithImpl(
-      _$RegistersData _value, $Res Function(_$RegistersData) _then)
+class __$$RegistersDataImplCopyWithImpl<$Res>
+    extends _$RegistersCopyWithImpl<$Res, _$RegistersDataImpl>
+    implements _$$RegistersDataImplCopyWith<$Res> {
+  __$$RegistersDataImplCopyWithImpl(
+      _$RegistersDataImpl _value, $Res Function(_$RegistersDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -378,7 +379,7 @@ class __$$RegistersDataCopyWithImpl<$Res>
   $Res call({
     Object? registersModel = null,
   }) {
-    return _then(_$RegistersData(
+    return _then(_$RegistersDataImpl(
       null == registersModel
           ? _value.registersModel
           : registersModel // ignore: cast_nullable_to_non_nullable
@@ -389,8 +390,8 @@ class __$$RegistersDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RegistersData implements RegistersData {
-  _$RegistersData(this.registersModel);
+class _$RegistersDataImpl implements RegistersData {
+  _$RegistersDataImpl(this.registersModel);
 
   @override
   final List<RegistersModel> registersModel;
@@ -401,10 +402,10 @@ class _$RegistersData implements RegistersData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RegistersData &&
+            other is _$RegistersDataImpl &&
             const DeepCollectionEquality()
                 .equals(other.registersModel, registersModel));
   }
@@ -416,8 +417,8 @@ class _$RegistersData implements RegistersData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RegistersDataCopyWith<_$RegistersData> get copyWith =>
-      __$$RegistersDataCopyWithImpl<_$RegistersData>(this, _$identity);
+  _$$RegistersDataImplCopyWith<_$RegistersDataImpl> get copyWith =>
+      __$$RegistersDataImplCopyWithImpl<_$RegistersDataImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -496,34 +497,34 @@ class _$RegistersData implements RegistersData {
 
 abstract class RegistersData implements Registers {
   factory RegistersData(final List<RegistersModel> registersModel) =
-      _$RegistersData;
+      _$RegistersDataImpl;
 
   List<RegistersModel> get registersModel;
   @JsonKey(ignore: true)
-  _$$RegistersDataCopyWith<_$RegistersData> get copyWith =>
+  _$$RegistersDataImplCopyWith<_$RegistersDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RegistersLoadingCopyWith<$Res> {
-  factory _$$RegistersLoadingCopyWith(
-          _$RegistersLoading value, $Res Function(_$RegistersLoading) then) =
-      __$$RegistersLoadingCopyWithImpl<$Res>;
+abstract class _$$RegistersLoadingImplCopyWith<$Res> {
+  factory _$$RegistersLoadingImplCopyWith(_$RegistersLoadingImpl value,
+          $Res Function(_$RegistersLoadingImpl) then) =
+      __$$RegistersLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RegistersLoadingCopyWithImpl<$Res>
-    extends _$RegistersCopyWithImpl<$Res, _$RegistersLoading>
-    implements _$$RegistersLoadingCopyWith<$Res> {
-  __$$RegistersLoadingCopyWithImpl(
-      _$RegistersLoading _value, $Res Function(_$RegistersLoading) _then)
+class __$$RegistersLoadingImplCopyWithImpl<$Res>
+    extends _$RegistersCopyWithImpl<$Res, _$RegistersLoadingImpl>
+    implements _$$RegistersLoadingImplCopyWith<$Res> {
+  __$$RegistersLoadingImplCopyWithImpl(_$RegistersLoadingImpl _value,
+      $Res Function(_$RegistersLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RegistersLoading implements RegistersLoading {
-  _$RegistersLoading();
+class _$RegistersLoadingImpl implements RegistersLoading {
+  _$RegistersLoadingImpl();
 
   @override
   String toString() {
@@ -531,9 +532,9 @@ class _$RegistersLoading implements RegistersLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RegistersLoading);
+        (other.runtimeType == runtimeType && other is _$RegistersLoadingImpl);
   }
 
   @override
@@ -615,29 +616,29 @@ class _$RegistersLoading implements RegistersLoading {
 }
 
 abstract class RegistersLoading implements Registers {
-  factory RegistersLoading() = _$RegistersLoading;
+  factory RegistersLoading() = _$RegistersLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$RegistersErrorCopyWith<$Res> {
-  factory _$$RegistersErrorCopyWith(
-          _$RegistersError value, $Res Function(_$RegistersError) then) =
-      __$$RegistersErrorCopyWithImpl<$Res>;
+abstract class _$$RegistersErrorImplCopyWith<$Res> {
+  factory _$$RegistersErrorImplCopyWith(_$RegistersErrorImpl value,
+          $Res Function(_$RegistersErrorImpl) then) =
+      __$$RegistersErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RegistersErrorCopyWithImpl<$Res>
-    extends _$RegistersCopyWithImpl<$Res, _$RegistersError>
-    implements _$$RegistersErrorCopyWith<$Res> {
-  __$$RegistersErrorCopyWithImpl(
-      _$RegistersError _value, $Res Function(_$RegistersError) _then)
+class __$$RegistersErrorImplCopyWithImpl<$Res>
+    extends _$RegistersCopyWithImpl<$Res, _$RegistersErrorImpl>
+    implements _$$RegistersErrorImplCopyWith<$Res> {
+  __$$RegistersErrorImplCopyWithImpl(
+      _$RegistersErrorImpl _value, $Res Function(_$RegistersErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RegistersError implements RegistersError {
-  _$RegistersError();
+class _$RegistersErrorImpl implements RegistersError {
+  _$RegistersErrorImpl();
 
   @override
   String toString() {
@@ -645,9 +646,9 @@ class _$RegistersError implements RegistersError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RegistersError);
+        (other.runtimeType == runtimeType && other is _$RegistersErrorImpl);
   }
 
   @override
@@ -729,29 +730,29 @@ class _$RegistersError implements RegistersError {
 }
 
 abstract class RegistersError implements Registers {
-  factory RegistersError() = _$RegistersError;
+  factory RegistersError() = _$RegistersErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$RegistersNoneCopyWith<$Res> {
-  factory _$$RegistersNoneCopyWith(
-          _$RegistersNone value, $Res Function(_$RegistersNone) then) =
-      __$$RegistersNoneCopyWithImpl<$Res>;
+abstract class _$$RegistersNoneImplCopyWith<$Res> {
+  factory _$$RegistersNoneImplCopyWith(
+          _$RegistersNoneImpl value, $Res Function(_$RegistersNoneImpl) then) =
+      __$$RegistersNoneImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RegistersNoneCopyWithImpl<$Res>
-    extends _$RegistersCopyWithImpl<$Res, _$RegistersNone>
-    implements _$$RegistersNoneCopyWith<$Res> {
-  __$$RegistersNoneCopyWithImpl(
-      _$RegistersNone _value, $Res Function(_$RegistersNone) _then)
+class __$$RegistersNoneImplCopyWithImpl<$Res>
+    extends _$RegistersCopyWithImpl<$Res, _$RegistersNoneImpl>
+    implements _$$RegistersNoneImplCopyWith<$Res> {
+  __$$RegistersNoneImplCopyWithImpl(
+      _$RegistersNoneImpl _value, $Res Function(_$RegistersNoneImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RegistersNone implements RegistersNone {
-  _$RegistersNone();
+class _$RegistersNoneImpl implements RegistersNone {
+  _$RegistersNoneImpl();
 
   @override
   String toString() {
@@ -759,9 +760,9 @@ class _$RegistersNone implements RegistersNone {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RegistersNone);
+        (other.runtimeType == runtimeType && other is _$RegistersNoneImpl);
   }
 
   @override
@@ -843,5 +844,5 @@ class _$RegistersNone implements RegistersNone {
 }
 
 abstract class RegistersNone implements Registers {
-  factory RegistersNone() = _$RegistersNone;
+  factory RegistersNone() = _$RegistersNoneImpl;
 }
