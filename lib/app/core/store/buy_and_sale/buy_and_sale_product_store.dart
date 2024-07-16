@@ -134,8 +134,11 @@ abstract class _BuyAndSaleProductStore with Store {
   @observable
   String registerSaleDate = '';
 
-  @observable 
-  FreezedStatus saveSimulationStatus = const FreezedStatus.loading();
+  @observable
+  FreezedStatus saveSimulationStatus = const FreezedStatus.empty();
+
+  @observable
+  FreezedStatus saveProductStatus = const FreezedStatus.empty();
 
   String installment = '1';
 
@@ -358,7 +361,7 @@ abstract class _BuyAndSaleProductStore with Store {
       sellerPrice: double.tryParse(registerSalePrice),
     );
 
-  return  saveSimulationStatus = await _stockRepository.saveSaleProduct(
+    return saveSimulationStatus = await _stockRepository.saveSaleProduct(
         model: payload, paymentTypeList: salePaymentList);
   }
 
@@ -394,10 +397,9 @@ abstract class _BuyAndSaleProductStore with Store {
   @action
   void registerBuyOnChangeDate(dynamic value) =>
       registerbuyDate = value as String;
-  
+
   @action
-  void setProductColor(dynamic value) =>
-      productColor = value as String;
+  void setProductColor(dynamic value) => productColor = value as String;
 
   @action
   void registerSaleOnChangeDate(dynamic value) =>
@@ -405,17 +407,18 @@ abstract class _BuyAndSaleProductStore with Store {
 
   @action
   Future<FreezedStatus> saveProductStock() async {
+    saveProductStatus = const FreezedStatus.loading();
     final payload = ProductStockModel(
-      productId: productList[registerBuyProductIndex].id,
-      customerId: int.tryParse(registerClientModel?.value.toString() ?? ''),
-      purchasedAt: FormatHelper.formatDateToApi(registerbuyDate),
-      createdAt: DateTime.now().toUtc().toString(),
-      paymentTypeId: paymentTypeModelList.tryGet(paymentTypeIndex)?.id,
-      price: double.tryParse(registerBuyPrice),
-      color: productColor
-    );
+        productId: productList[registerBuyProductIndex].id,
+        customerId: int.tryParse(registerClientModel?.value.toString() ?? ''),
+        purchasedAt: FormatHelper.formatDateToApi(registerbuyDate),
+        createdAt: DateTime.now().toUtc().toString(),
+        paymentTypeId: paymentTypeModelList.tryGet(paymentTypeIndex)?.id,
+        price: double.tryParse(registerBuyPrice),
+        color: productColor);
 
-    return _stockRepository.saveProductStock(payload, pendencySelecteds);
+    return saveProductStatus =
+        await _stockRepository.saveProductStock(payload, pendencySelecteds);
   }
 
   @action

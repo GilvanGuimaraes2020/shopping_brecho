@@ -146,4 +146,8 @@ abstract class _RegisterBuyControllerBase with Store {
       products is FreezedStatusLoading ||
       client is FreezedStatusLoading ||
       requestStatus is RequestStatusLoading;
+
+  @computed
+  bool get saveProductIsLoading =>
+      buyAndSaleStore.saveProductStatus is FreezedStatusLoading;
 }
