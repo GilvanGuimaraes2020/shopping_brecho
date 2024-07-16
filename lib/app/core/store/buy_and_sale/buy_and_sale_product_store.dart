@@ -134,6 +134,9 @@ abstract class _BuyAndSaleProductStore with Store {
   @observable
   String registerSaleDate = '';
 
+  @observable 
+  FreezedStatus saveSimulationStatus = const FreezedStatus.loading();
+
   String installment = '1';
 
   int currentProductStockId = -1;
@@ -345,6 +348,7 @@ abstract class _BuyAndSaleProductStore with Store {
 
   @action
   Future<FreezedStatus> saveSale() async {
+    saveSimulationStatus = const FreezedStatus.loading();
     final payload = RegisterSaleModel(
       customerId: registerSaleClientModel?.value as int,
       productStockId: currentProductStockId,
@@ -354,7 +358,7 @@ abstract class _BuyAndSaleProductStore with Store {
       sellerPrice: double.tryParse(registerSalePrice),
     );
 
-    return _stockRepository.saveSaleProduct(
+  return  saveSimulationStatus = await _stockRepository.saveSaleProduct(
         model: payload, paymentTypeList: salePaymentList);
   }
 

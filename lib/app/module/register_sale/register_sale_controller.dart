@@ -79,7 +79,9 @@ abstract class _RegisterSaleController with Store {
       ValidatorHelper.dateIsValid(buyAndSaleStore.registerSaleDate);
 
   @computed
-  bool get formIsValid =>
-      clientIsValid &&
-      paymentIsValid && dateIsValid;
+  bool get formIsValid => clientIsValid && paymentIsValid && dateIsValid;
+
+  @computed
+  bool get simulationIsLoading =>
+      buyAndSaleStore.saveSimulationStatus is FreezedStatusLoading;
 }
