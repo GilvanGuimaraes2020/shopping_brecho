@@ -50,7 +50,6 @@ class AppModule extends Module {
     i.add<ICustomerRepository>(CustomerRepository.new);
     i.add<IStockRepository>(StockRepository.new);
     i.add<IResultsRepository>(ResultsRepository.new);
-    //end repositories
 
     //page controller
     i.add(HomeController.new);
@@ -68,8 +67,8 @@ class AppModule extends Module {
     i.add(ResultsController.new);
     //services
     i.addSingleton<RemoteDatabase>(Conn.new);
-    i.addLazySingleton<IRemoteConfig>(RemoteConfigService.new);
-    // end service
+    i.addSingleton<IRemoteConfig>(RemoteConfigService.new);
+    //store
     i.addLazySingleton(BuyAndSaleProductStore.new);
     i.addLazySingleton(MainStore.new);
   }
