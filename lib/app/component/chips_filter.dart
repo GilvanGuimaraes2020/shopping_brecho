@@ -24,7 +24,7 @@ class ChipsFilter extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: [
               const SizedBox(width: BrechoSpacing.xxiv),
-              ...items.map((e) => _chip(e.label, e.action)).toList(),
+              ...items.map((e) => _chip(e.label, e.action)),
               const SizedBox(width: 120),
             ],
           ),

@@ -40,66 +40,48 @@ import 'package:shopping_brecho/app/services/remote_config_service.dart';
 
 class AppModule extends Module {
   @override
-  List<Bind> get binds => [
-        //repositories
-        Bind<IAccountRepositoy>((i) => AccountRepository()),
-        Bind<IKanbanRepository>((i) => KanbanRepository()),
-        Bind<IRemoteConfig>((i) => RemoteConfigService()),
-        Bind<IProductRepository>((i) => ProductRepository(i.get())),
-        Bind<ICustomerRepository>((i) => CustomerRepository(i.get())),
-        Bind<IStockRepository>((i) => StockRepository(i.get())),
-        Bind<IResultsRepository>((i) => ResultsRepository(i.get())),
-        //end repositories
-        //page controller
-        Bind.factory((i) => HomeController(i(), i())),
-        Bind.factory((i) => EditCardController(i())),
-        Bind.factory((i) => KanbanController(i())),
-        Bind.factory((i) => RegisterExpenseController(i.get(), i.get())),
-        Bind.factory((i) => MainController(i.get(), i.get())),
-        Bind.factory((i) => RegisterProductController(i.get())),
-        Bind.factory((i) => ProductListController(i.get())),
-        Bind.factory((i) => ProductDetailController(i.get())),
-        Bind.factory((i) => RegisterSaleController(i.get())),
-        Bind.factory(
-            (i) => RegisterClientController(i.get<BuyAndSaleProductStore>())),
-        Bind.factory(
-            (i) => MainClientController(i.get<BuyAndSaleProductStore>())),
-        Bind.factory((i) => RegisterBuyController(
-              i.get<BuyAndSaleProductStore>(),
-            )),
-        Bind.factory((i) => ResultsController(i.get()
-            )),
-        //services
-        Bind.singleton<RemoteDatabase>(
-          (i) => Conn(),
-        ),
-        // end service
-        Bind.lazySingleton(
-            (i) => BuyAndSaleProductStore(i.get(), i.get(), i.get())),
-        Bind.lazySingleton(
-          (i) => MainStore(),
-        )
-      ];
+  void binds(Injector i) {
+    //repositories
+    i.add<IAccountRepositoy>(AccountRepository.new);
+    i.add<IKanbanRepository>(KanbanRepository.new);
+    i.add<IProductRepository>(
+      ProductRepository.new,
+    );
+    i.add<ICustomerRepository>(CustomerRepository.new);
+    i.add<IStockRepository>(StockRepository.new);
+    i.add<IResultsRepository>(ResultsRepository.new);
+    //end repositories
+
+    //page controller
+    i.add(HomeController.new);
+    i.add(EditCardController.new);
+    i.add(KanbanController.new);
+    i.add(RegisterExpenseController.new);
+    i.add(MainController.new);
+    i.add(RegisterProductController.new);
+    i.add(ProductListController.new);
+    i.add(ProductDetailController.new);
+    i.add(RegisterSaleController.new);
+    i.add(RegisterClientController.new);
+    i.add(MainClientController.new);
+    i.add(RegisterBuyController.new);
+    i.add(ResultsController.new);
+    //services
+    i.addSingleton<RemoteDatabase>(Conn.new);
+    i.addLazySingleton<IRemoteConfig>(RemoteConfigService.new);
+    // end service
+    i.addLazySingleton(BuyAndSaleProductStore.new);
+    i.addLazySingleton(MainStore.new);
+  }
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(AppRoute.home, child: (context, args) => const HomePage()),
-        ChildRoute(AppRoute.main, child: (context, args) => const MainPage()),
-        ChildRoute(
-          AppRoute.registerExpense,
-          child: (context, _) => const RegisterExpensePage(),
-        ),
-        ChildRoute(
-          AppRoute.registerBuy,
-          child: (context, _) => const RegisterBuyPage(),
-        ),
-        ChildRoute(
-          AppRoute.mainClient,
-          child: (context, _) => const MainClientPage(),
-        ),
-        ChildRoute(
-          AppRoute.registerClient,
-          child: (context, _) => RegisteClientPage(),
-        )
-      ];
+  void routes(RouteManager r) {
+    r.child(AppRoute.home, child: (context) => const HomePage());
+    r.child(AppRoute.main, child: (context) => const MainPage());
+    r.child(AppRoute.registerExpense,
+        child: (context) => const RegisterExpensePage());
+    r.child(AppRoute.registerBuy, child: (context) => const RegisterBuyPage());
+    r.child(AppRoute.mainClient, child: (context) => const MainClientPage());
+    r.child(AppRoute.registerClient, child: (context) => RegisteClientPage());
+  }
 }
