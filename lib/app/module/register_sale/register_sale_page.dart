@@ -146,6 +146,7 @@ class _RegisterSalePageState extends State<RegisterSalePage> {
               Expanded(
                 child: BrechoPrimaryButton(
                     label: 'Enviar',
+                    isLoading: controller.simulationIsLoading,
                     onPressed: () async {
                       if (controller.formIsValid) {
                         final result = await controller.saveSale();

@@ -2,11 +2,11 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shopping_brecho/app/component/chips_filter.dart';
+import 'package:shopping_brecho/app/core/interfaces/relational_db/stock_repository_interface.dart';
 import 'package:shopping_brecho/app/core/models/brecho_filters_model/brecho_filters_model.dart';
 import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
 import 'package:shopping_brecho/app/core/models/label_value_helper_model/label_value_helper_model.dart';
 import 'package:shopping_brecho/app/core/models/product_stock/product_stock_list_model.dart';
-import 'package:shopping_brecho/app/core/repositories/relational_db/stock_repository.dart';
 import 'package:shopping_brecho/app/helpers/debouncer/debouncer.dart';
 import 'package:shopping_brecho/app/helpers/extension/extension_string.dart';
 import 'package:shopping_brecho/app/helpers/format_helper/format_helper.dart';
@@ -18,7 +18,7 @@ class ProductListController = _ProductListController
     with _$ProductListController;
 
 abstract class _ProductListController with Store {
-  final StockRepository _stockRepository;
+  final IStockRepository _stockRepository;
 
   _ProductListController(this._stockRepository);
 

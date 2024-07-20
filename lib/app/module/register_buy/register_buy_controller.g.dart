@@ -91,6 +91,13 @@ mixin _$RegisterBuyController on _RegisterBuyControllerBase, Store {
       (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
               name: '_RegisterBuyControllerBase.isLoading'))
           .value;
+  Computed<bool>? _$saveProductIsLoadingComputed;
+
+  @override
+  bool get saveProductIsLoading => (_$saveProductIsLoadingComputed ??=
+          Computed<bool>(() => super.saveProductIsLoading,
+              name: '_RegisterBuyControllerBase.saveProductIsLoading'))
+      .value;
 
   late final _$autoValidateAlwaysAtom = Atom(
       name: '_RegisterBuyControllerBase.autoValidateAlways', context: context);
@@ -320,7 +327,8 @@ paymentTypeIsValid: ${paymentTypeIsValid},
 productPendencyAll: ${productPendencyAll},
 pendencySelecteds: ${pendencySelecteds},
 formIsValid: ${formIsValid},
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+saveProductIsLoading: ${saveProductIsLoading}
     ''';
   }
 }

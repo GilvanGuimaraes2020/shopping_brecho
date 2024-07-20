@@ -181,6 +181,7 @@ class _RegisterBuyPageState extends State<RegisterBuyPage> {
               Expanded(
                 child: BrechoPrimaryButton(
                   label: 'Salvar',
+                  isLoading: controller.saveProductIsLoading,
                   onPressed: () async {
                     late String text;
                     late BrechoSnackbarStatus status;
