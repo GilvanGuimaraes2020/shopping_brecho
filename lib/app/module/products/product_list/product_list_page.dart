@@ -6,6 +6,7 @@ import 'package:shopping_brecho/app/component/badge.dart' as bd;
 import 'package:shopping_brecho/app/component/brecho_buttons.dart';
 import 'package:shopping_brecho/app/component/brecho_icons.dart';
 import 'package:shopping_brecho/app/component/brecho_shimmer.dart';
+import 'package:shopping_brecho/app/component/brecho_snackbar.dart';
 import 'package:shopping_brecho/app/component/brecho_text_field.dart';
 import 'package:shopping_brecho/app/component/chips_filter.dart';
 import 'package:shopping_brecho/app/core/models/freezed_status/freezed_status.dart';
@@ -64,7 +65,7 @@ class _ProductListPageState extends State<ProductListPage> {
                           suffixIcon: BrechoIcons.search,
                           onTapIcon: () {
                             controller.applyFilters();
-                            controller.getStockProductAll();
+                            // controller.getStockProductAll();
                           },
                         ),
                       ),
@@ -178,6 +179,9 @@ class _StockCard extends StatelessWidget {
                       )));
 
               if (result is FreezedStatusSuccess) {
+                HenrySnackbar.show(
+                    text: 'Dados salvos com sucesso!',
+                    status: HenrySnackbarStatus.success);
                 resetAll?.call();
               }
             },
@@ -268,7 +272,7 @@ class _SaleCardWidget extends StatelessWidget {
             text: TextSpan(
               children: [
                 const Text('Compra: ').labelLargeRegular().toTextSpan(),
-                Text(FormatHelper.formatDDMMYYYY(saleAt))
+                Text(FormatHelper.formatDDMMYYYY(purchasedAt))
                     .labelSmallBold()
                     .toTextSpan(),
               ],

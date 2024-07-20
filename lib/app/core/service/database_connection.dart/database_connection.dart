@@ -29,5 +29,10 @@ class DatabaseConnection {
     _sqlConnection = postgresConn;
   }
 
-  PostgreSQLConnection getSqlConnection() => _sqlConnection;
+  PostgreSQLConnection getSqlConnection() {
+    if(_sqlConnection.isClosed){
+      _init();
+    } 
+    return _sqlConnection;
+  }
 }
