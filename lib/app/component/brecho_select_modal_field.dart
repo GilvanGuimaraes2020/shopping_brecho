@@ -275,6 +275,7 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
       context: context,
       padding: padding,
       expand: widget.showFilterBox,
+      enableDrag: true,
       builder: (context) => BrechoSelectModal(
         showFilterBox: widget.showFilterBox,
         title: widget.selectTitle,
@@ -319,7 +320,7 @@ class BrechoSelectModalFieldState extends State<BrechoSelectModalField> {
 
       if (currentValue != _currentValue || widget.multiple) {
         widget.onSelectItem(currentValue);
-        Form.of(context).widget.onChanged?.call();
+        // Form.of(context).widget.onChanged?.call();
       }
       _currentValue = currentValue;
     }
